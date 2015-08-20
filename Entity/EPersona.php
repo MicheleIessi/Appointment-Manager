@@ -26,7 +26,12 @@ class EPersona {
         $this->setDN($dn);
         $this->setCF($cf);
         $this->setSesso($s);
+<<<<<<< HEAD
     }    
+=======
+    }
+    
+>>>>>>> e74b676067763a45b0a4a34ee395cee0f5d733f5
 
     //metodi set aggiungere i controlli (regex?)
     public function setNome($n) {

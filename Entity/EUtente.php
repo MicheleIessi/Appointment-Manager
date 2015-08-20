@@ -17,11 +17,11 @@ class EUtente extends EPersona {
     protected $password;
     protected $numID;
     
-    public function __construct($n, $c, $dn, $cf, $s, $e, $p, $n) {
+    public function __construct($n, $c, $dn, $cf, $s, $e, $p, $id) {
         parent::__construct($n, $c, $dn, $cf, $s);
         $this->setEmail($e);
         $this->setPassword($p);
-        $this->setID($n);
+        $this->setID($id);
     }
 
     public function setEmail($e) {
@@ -43,7 +43,14 @@ class EUtente extends EPersona {
     }
 
     public function setID($n) {
-        
+        $pattern = "#^[0-9]{6}#";
+        if(preg_match($pattern, $n) != 1) {
+            throw new Exception("ID non valido", 1);
+        }
+        $this->numID = $n;
     }
-
+    
+    public function getEmail()    { return $this->email;    }
+    public function getPassword() { return $this->password; }
+    public function getID()       { return $this->numID;    }
 }

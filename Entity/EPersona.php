@@ -79,5 +79,4 @@ class EPersona {
     public function getDN()      { return $this->DN;            }
     public function getCF()      { return $this->codiceFiscale; }
     public function getSesso()   { return $this->sesso;         }
-    
 }

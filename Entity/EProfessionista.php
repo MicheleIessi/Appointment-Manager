@@ -27,7 +27,7 @@ class EProfessionista extends EUtente {
     public function setServiziOfferti($so) {
         $this->serviziOfferti = [];
         foreach ($so as $servizio) {
-            //mancano i controlli
+            controllaEsistenza($so, "servizio");
             array_push($this->serviziOfferti, $servizio);
         }
     }
@@ -35,7 +35,7 @@ class EProfessionista extends EUtente {
     public function setSettore($set) {
         $this->settore = [];
         foreach ($set as $value) {
-            //mancano i controlli
+            controllaEsistenza($set, "settore");
             array_push($this->settore, $value);
         }
     }
@@ -46,5 +46,42 @@ class EProfessionista extends EUtente {
             throw new Exception("Orario non valido", 1);
         }
         $this->orari = $or;
+    }
+    
+    public function aggiungiServizio($so) {
+        controllaEsistenza($so, "servizio");
+        array_push($this->serviziOfferti, $so);
+    }
+    
+    public function aggiungiSettore($set) {
+        if(count($this->settore) >= 3) {
+            throw new Exception("Limite settori raggiunto", 2);
+        }
+        controllaEsistenza($set, "settore");
+        array_push($this->settore, $set);
+    }
+    
+    public function rimuoviServizio($so) {
+        controllaEsistenza($so, "servizio");
+        if(($key = array_search($so, $this->serviziOfferti)) !== false) {
+            unset($this->serviziOfferti[$key]);
+            $this->serviziOfferti = array_values($this->serviziOfferti);
+        }
+        else {
+            throw new Exception ("Servizio non presente", 2);
+        }
+    }
+    
+    private function controllaEsistenza($servizio, $tipo) {
+        //controlla l'esistenza di un servizio o di un settore e ritorna true o false
+        if($tipo === "servizio") {      // cerca tra i servizi
+            ;
+        }
+        else if ($tipo === "settore") { // cerca tra i settori
+            ;
+        } 
+        else {
+            throw new Exception("Tipo non valido", 2);
+        }
     }
 }

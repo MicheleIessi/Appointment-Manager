@@ -9,6 +9,10 @@ class EAppuntamento {
     private $IDCliente;
     private $IDProfessionista;
     
+    /* Visita può essere passato per valore, infatti se un dato oggetto della classe Eservizio cambia, 
+    tale cambiamento non dovrebbe, per scelta progettuale, influenzare appuntamenti che usavano quel servizio
+    prima che venisse modificato     */
+    
     // Costruttore
     public function __construct($d, $o, $v, $IDC, $IDP) {
         $this->setData($d);

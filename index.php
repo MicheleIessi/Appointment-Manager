@@ -11,7 +11,25 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-        // put your code here
+        
+        // Prova riferimento-valore:
+        
+        function pr(&$var)     {
+            $var++;
+        }
+        
+        function pv($var)       {
+            $var++;
+        }
+        
+        $a=5;
+        pr($a);
+        echo "$a";
+        
+        $b=5;
+        pv(b);
+        echo "$b";
+        
         ?>
     </body>
 </html>

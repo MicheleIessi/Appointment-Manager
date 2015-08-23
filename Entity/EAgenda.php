@@ -4,17 +4,14 @@ class EAgenda {
     
     // Attributi
     private $impegni;
-    private $proprietario;
     private $blocchi;
     private $chiaviBlocchi;     // contiene le chiavi dell'array $blocchi; serve nei metodi di modifica dei blocchi
     
     // Costruttore
-    public function __construct($i,$p) {
-        $this->impegni=setImpegni($i);                   // è un array di appuntamenti               
-        $this->proprietario=setProprietario($p);         // composizione
+    public function __construct(&$i) {
+        $this->impegni=setImpegni($i);
         $this->blocchi=setBlocchi(); 
         $this->chiaviBlocchi=setChiaviBlocchi();
-        
     }
     
     // Metodi
@@ -22,18 +19,9 @@ class EAgenda {
         foreach ($i as $appuntamenti) {     
             if( !( is_a($appuntamenti, EAppuntamento) ) )    {    
             throw new Exception("Variabile non valida", 1);
-        }
-    }
-        $this->impegni=$i;
-    }
-    
-    public function setProprietario($p) {
-        if( !( is_a($p, EProfessionista) ) )    {    
-            throw new Exception("Variabile non valida", 1);   
             }
-        else    {
-            $this->proprietario=$p;
         }
+        $this->impegni=$i;
     }
     
     public function setBlocchi()    {       // Metodo per il riempimento dell'array blocchi; le chiavi sono gli orari
@@ -94,11 +82,7 @@ class EAgenda {
     public function getImpegni()    {
         return $this->impegni;
         }
-    
-    public function getProprietario()   {
-        return $this->proprietario;
-    }
-    
+        
     public function getBlocchi()    {
         return $this->blocchi;
     }

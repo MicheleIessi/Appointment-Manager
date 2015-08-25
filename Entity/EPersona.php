@@ -28,7 +28,7 @@ class EPersona {
     }
     
     public function setCognome($c) {
-        $ce = explore(" ", $c);
+        $ce = explode(" ", $c);
         $pattern = "#^([a-zA-Zàèìòù]{0,}[ ']{0,1})[a-zA-Zàèìòù]{0,}$#";
         foreach ($ce as $parola) {
             if(preg_match($pattern, $parola) != 1) {

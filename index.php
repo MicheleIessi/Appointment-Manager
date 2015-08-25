@@ -11,24 +11,17 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-        
-        // Prova riferimento-valore:
-        
-        function pr(&$var)     {
-            $var++;
-        }
-        
-        function pv($var)       {
-            $var++;
-        }
-        
-        $a=5;
-        pr($a);
-        echo "$a";
-        
-        $b=5;
-        pv(b);
-        echo "$b";
+        require 'Entity/EPersona.php';
+        require 'Entity/EProfessionista.php';
+            try {
+                $per = new EPersona("Michele", "Iessi", "6/11/1992", "SSIMHL92S06E243D", "m");
+            } catch (Exception $exc) {
+                echo $exc->getMessage() . ", codice errore:" . $exc->getCode();
+            }
+            
+            echo $per->getNome();
+                    
+            $prof = new EProfessionista();
         
         ?>
     </body>

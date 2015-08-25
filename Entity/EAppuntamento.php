@@ -24,20 +24,31 @@ class EAppuntamento {
     
     // Metodi (aggiungere controlli)
     public function setData($d)    {
-        $this->data=$d;
+        $pattern = "#^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$#";
+        if(preg_match($pattern, $d) != 1) {
+            throw new Exception("Data non valida", 1);
+        }
+        $this->data = $d;
     }
     
     public function setOrario($o)    {
-        $this->orario=$o;
+        $pattern = "#^(2[0-3]|[01][0-9]|[1-9]):([0-5][0-9])$#";
+        $ore = explode("-", $o);
+        foreach ($ore as $orario) {
+            if(preg_match($pattern, $orario) != 1) {
+            throw new Exception("Orario non valido", 1);
+            }
+        }
+        $this->orario = $o;
     }
     
     public function setVisita($v)    {
         
         if (is_null($this->visita))     {
-            $this->visita = new EServizio();    // Costruttore di default
+            $this->visita = new EServizio(null,null,null,0);    // Costruttore di default
         }
         
-        if( !( is_a($v, EServizio)))    {    
+        if( !( is_a($v, "EServizio")))    {    
             throw new Exception("Variabile non valida", 1);   }
         else    {
         $this->visita=$v;   // Composizione 

@@ -39,6 +39,7 @@ class EPersona {
     }
     
     public function setDN($dn) {
+        $dn = rtrim($dn);
         list($d,$m,$y) = explode("/", $dn);
         if(!checkdate($m, $d, $y)) {
                 throw new Exception("Data non valida", 1);
@@ -64,7 +65,7 @@ class EPersona {
     //metodi get
     public function getNome()    { return $this->nome;          } 
     public function getCognome() { return $this->cognome;       }
-    public function getDN()      { return $this->DN;            }
+    public function getDN()      { return $this->dataNascita;   }
     public function getCF()      { return $this->codiceFiscale; }
     public function getSesso()   { return $this->sesso;         }
 }

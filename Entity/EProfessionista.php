@@ -1,5 +1,5 @@
 <?php
-
+include_once 'EUtente.php';
 class EProfessionista extends EUtente {
 
     private $serviziOfferti = [];
@@ -20,7 +20,7 @@ class EProfessionista extends EUtente {
         $this->serviziOfferti = [];
         foreach ($so as $servizio) {
             controllaEsistenza($so, "servizio");
-            array_push($this->serviziOfferti, &$servizio);      //passaggio per riferimento
+            array_push($this->serviziOfferti, $servizio);      //passaggio per riferimento
         }
     }
     

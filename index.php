@@ -11,17 +11,38 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-        require 'Entity/EPersona.php';
-        require 'Entity/EProfessionista.php';
+        include_once 'Entity/EPersona.php';
+        include_once 'Entity/EProfessionista.php';
+        include_once 'Entity/EUtente.php';
             try {
                 $per = new EPersona("Michele", "Iessi", "6/11/1992", "SSIMHL92S06E243D", "m");
             } catch (Exception $exc) {
-                echo $exc->getMessage() . ", codice errore:" . $exc->getCode();
+                echo $exc->getMessage() . ", codice errore: " . $exc->getCode();
             }
             
             echo $per->getNome();
                     
-            $prof = new EProfessionista();
+            try {
+                $utente = new EUtente($per->getNome(), 
+                                      $per->getCognome(), 
+                                      $per->getDN(), 
+                                      $per->getCF(), 
+                                      $per->getSesso(), 
+                                      $e = 'a@a.a', 
+                                      $p = "12345678", 
+                                      $id = "123456");
+            } catch (Exception $exc) {
+                echo $exc->getMessage() . ", codice errore: " . $exc.getcode();
+            }
+
+
+
+            
+//            $prof = new EProfessionista($per->getNome(), 
+//                                        $per->getCognome(), 
+//                                        $per->getDN(), 
+//                                        $per->getCF(), 
+//                                        $per->getSesso(), $e, $p, $id, $so, $set, $or, $al)
         
         ?>
     </body>

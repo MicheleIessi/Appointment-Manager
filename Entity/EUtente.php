@@ -1,5 +1,5 @@
 <?php
-    require 'EPersona.php';
+    include_once 'EPersona.php';
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -36,7 +36,7 @@ class EUtente extends EPersona {
         if(strlen($p) < 8) {
             throw new Exception("Password troppo corta", 1);
         }
-        if(strlent($p) > 20) {
+        if(strlen($p) > 20) {
             throw new Exception("Password troppo lunga", 1);
         }
         $this->password = $p;

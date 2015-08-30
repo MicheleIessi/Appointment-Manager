@@ -1,6 +1,4 @@
 <?php
-
-include_once 'EUtente.php';
 class EProfessionista extends EUtente {
 
     private $serviziOfferti = [];

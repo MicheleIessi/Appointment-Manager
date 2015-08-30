@@ -11,12 +11,8 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-        include_once 'Entity/EPersona.php';
-        include_once 'Entity/EProfessionista.php';
-        include_once 'Entity/EUtente.php';
-        include_once 'Entity/EAppuntamento.php';
-        include_once 'Entity/EServizio.php';
-        include_once 'Entity/EAgenda.php';
+        require_once 'includes/autoload.inc.php';
+
             try {
                 $per = new EPersona("Michele", "Iessi", "6/11/1992", "SSIMHL92S06E243D", "m");
             } catch (Exception $exc) {

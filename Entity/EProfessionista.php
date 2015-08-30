@@ -51,7 +51,6 @@ class EProfessionista extends EUtente {
         
         foreach ($this->agendaLavoro->getBlocchi() as $blocco) {
             if($ora >= $i && $ora < $f) {
-                
                 $this->agendaLavoro->cambiaBlocco($ora, false);
             }
             else {

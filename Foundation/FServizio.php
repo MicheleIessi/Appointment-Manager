@@ -1,5 +1,5 @@
 <?php
 
-class ECliente {
+class FServizio {
     //put your code here
 }

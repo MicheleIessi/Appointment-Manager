@@ -1,5 +1,5 @@
 <?php
 
-class ECliente {
+class FAgenda {
     //put your code here
 }

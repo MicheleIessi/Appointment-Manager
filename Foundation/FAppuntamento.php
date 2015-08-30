@@ -1,5 +1,5 @@
 <?php
 
-class ECliente {
+class FAppuntamento {
     //put your code here
 }

@@ -1,5 +1,5 @@
 <?php
 
-class ECliente {
+class FConnectionDB {
     //put your code here
 }

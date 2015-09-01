@@ -1,5 +1,4 @@
 <?php
-    include_once 'EPersona.php';
 
 class EUtente extends EPersona {
 

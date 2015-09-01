@@ -1,5 +1,4 @@
 <?php
-include_once 'EAppuntamento.php';
 class EAgenda {
     
     // Attributi

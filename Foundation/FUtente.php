@@ -7,10 +7,10 @@
  */
 
 /**
- * Description of FConnectionDB
+ * Description of FUtente
  *
  * @author Davide
  */
-class FConnectionDB {
+class FUtente {
     //put your code here
 }

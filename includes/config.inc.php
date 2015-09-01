@@ -7,17 +7,17 @@
  */
 
 global $config;
+global $dbms;
+$dbms = 'mysql'; //nel caso cambiasse dbms
 
-$config['smarty']['template_dir'] =
-'templates/main/template/';
-$config['smarty']['compile_dir'] =
-'templates/main/templates_c/';
-$config['smarty']['config_dir'] =
-'templates/main/configs/';
-$config['smarty']['cache_dir'] =
-'templates/main/cache/';
+$config[$dbms]['user'] = 'root';
+$config[$dbms]['password'] = '';
+$config[$dbms]['host'] = 'localhost';
+$config[$dbms]['database'] = 'appointmentmanagerdb';
 
-$config['mysql']['user'] = 'root';
-$config['mysql']['password'] = '';
-$config['mysql']['host'] = 'localhost';
-$config['mysql']['database'] = 'appointmentmanagerdb';
+$config['url'] = 'localhost/appointment-manager';
+
+$config['smarty']['template_dir'] = 'templates/templates/';
+$config['smarty']['compile_dir'] = 'templates/templates_c/';
+$config['smarty']['config_dir'] = 'templates/configs/';
+$config['smarty']['cache_dir'] = 'templates/cache/';

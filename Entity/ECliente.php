@@ -1,5 +1,8 @@
 <?php
 
 class ECliente {
-    //put your code here
+    
+    public function __construct($n, $c, $dn, $cf, $s, $e, $p) {
+        parent::__construct($n, $c, $dn, $cf, $s, $e, $p);
+    }
 }

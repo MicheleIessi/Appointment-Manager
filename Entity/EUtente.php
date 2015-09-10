@@ -5,12 +5,14 @@ class EUtente extends EPersona {
     protected $email;
     protected $password;
     protected $numID;
+    static $totID = 0;
     
-    public function __construct($n, $c, $dn, $cf, $s, $e, $p, $id) {
+    public function __construct($n, $c, $dn, $cf, $s, $e, $p) {
         parent::__construct($n, $c, $dn, $cf, $s);
         $this->setEmail($e);
         $this->setPassword($p);
-        $this->setID($id);
+        EUtente::$totID++;
+        $this->numID=EUtente::$totID;
     }
 
     public function setEmail($e) {
@@ -30,7 +32,8 @@ class EUtente extends EPersona {
         }
         $this->password = $p;
     }
-
+    
+    /*
     public function setID($n) {
         $pattern = "#^[0-9]{6}#";
         if(preg_match($pattern, $n) != 1) {
@@ -38,8 +41,22 @@ class EUtente extends EPersona {
         }
         $this->numID = $n;
     }
+    */
     
     public function getEmail()    { return $this->email;    }
     public function getPassword() { return $this->password; }
     public function getID()       { return $this->numID;    }
+    
+    // Metodo di utilità per il lato Foundation
+    public function getStringaAttributi()   {
+        $s = "'".$this->getNome()."', ".
+             "'".$this->getCognome()."', ".
+             "'".$this->getDN()."', ".
+             "'".$this->getCF()."', ".
+             "'".$this->getSesso()."', ".
+             "'".$this->getEmail()."', ".
+             "'".$this->getPassword()."', ".
+             "'".$this->getID()."'";
+        return $s;
+    }
 }

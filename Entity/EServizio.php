@@ -51,5 +51,14 @@ class EServizio {
     public function getDurata()   {
         return $this->durata;
     }
+    
+    // Metodo di utilità per il lato Foundation
+    public function getStringaAttributi()   {
+        $s = "'".$this->getNomeServizio()."', ".
+             "'".$this->getDescrizione()."', ".
+             "'".$this->getSettore()."', ".
+             "'".$this->getDurata()."'";
+        return $s;
+    }
 
 }

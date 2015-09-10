@@ -12,7 +12,7 @@ and open the template in the editor.
     <body>
         <?php
         require_once 'includes/autoload.inc.php';
-
+        
             try {
                 $per = new EPersona("Michele", "Iessi", "6/11/1992", "SSIMHL92S06E243D", "m");
             } catch (Exception $exc) {
@@ -81,7 +81,8 @@ and open the template in the editor.
             foreach ($prof->getAgendaLavoro()->getBlocchi() as $blocco) {
                 echo "<br>".var_dump($blocco);
             }
-
+            
+        
         ?>
     </body>
 </html>

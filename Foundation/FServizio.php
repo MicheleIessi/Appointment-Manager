@@ -1,5 +1,5 @@
 <?php
 
-class FServizio {
+class FServizio extends Fdb     {
     //put your code here
 }

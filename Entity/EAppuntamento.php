@@ -83,4 +83,13 @@ class EAppuntamento {
         return $this->IDProfessionista;
     }
     
+    // Metodo di utilità per il lato Foundation
+    public function getStringaAttributi()   {
+        $s = "'".$this->getData()."', ".
+             "'".$this->getOrario()."', ".
+             "'".$this->getVisita()->nomeServizio."', ".        //nomeServizio è chiave nel db
+             "'".$this->getIDCliente()."', ".
+             "'".$this->getIDProfessionista()."'";
+        return $s;
+    }
 }

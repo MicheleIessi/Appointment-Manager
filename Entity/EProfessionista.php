@@ -6,8 +6,8 @@ class EProfessionista extends EUtente {
     private $orari;
     private $agendaLavoro;
         
-    public function __construct($n, $c, $dn, $cf, $s, $e, $p, &$so, $set, $or) {  // ricontrollare se va bene &$so
-        parent::__construct($n, $c, $dn, $cf, $s, $e, $p);
+    public function __construct($n, $c, $dn, $cf, $s, $e, $p, $id, &$so, $set, $or) {  // ricontrollare se va bene &$so
+        parent::__construct($n, $c, $dn, $cf, $s, $e, $p, $id);
         $this->setServiziOfferti($so);
         $this->setSettore($set);
         $this->setOrari($or);

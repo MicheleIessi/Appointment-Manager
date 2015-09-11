@@ -27,4 +27,11 @@ class Fdb {
         return $this->querydb($query);
     }
     
+    public function load($key)  {
+        $this->connessione= FConnectionDB::connetti();
+        $query = 'SELECT * FROM `'.$this->nomeTabella.'` WHERE `'.$this->nomeChiave.'`='.$key.';';
+        $risQuery = $this->querydb($query)->fetch_array(MYSQLI_NUM);     // Otteniamo un array con indici numerici
+        // Da qui in poi ogni metodo figlio si comporterà in modo diverso
+    }
+    
 }

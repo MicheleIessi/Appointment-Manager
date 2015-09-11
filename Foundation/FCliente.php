@@ -13,4 +13,6 @@ class FCliente extends Fdb  {
                 .'VALUES ('.$oggetto->getID().')';
         return $this->querydb($query);
     }
+    
+    //nessun metodo load per adesso dato che ECliente non ha ancora un'implementazione
 }

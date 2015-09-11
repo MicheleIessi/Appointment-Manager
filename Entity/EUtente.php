@@ -7,12 +7,17 @@ class EUtente extends EPersona {
     protected $numID;
     static $totID = 0;
     
-    public function __construct($n, $c, $dn, $cf, $s, $e, $p) {
+    public function __construct($n, $c, $dn, $cf, $s, $e, $p, $id) {
         parent::__construct($n, $c, $dn, $cf, $s);
         $this->setEmail($e);
         $this->setPassword($p);
-        EUtente::$totID++;
-        $this->numID=EUtente::$totID;
+        if($id==null)   {
+            EUtente::$totID++;
+            $this->numID=EUtente::$totID;   // Per istanziare nuovi oggetti
+        }
+        else    {
+            $this->numID=$id;       // Per istanziare oggetti già creati in precedenza senza incrementare $totID
+        }
     }
 
     public function setEmail($e) {

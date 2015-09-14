@@ -48,6 +48,22 @@ class FProfessionista extends Fdb {
         return $professionista;
     }
     
+    public function update($id,$s,$o,$key)  {      // Da testare
+        $arrayVariabili=  array (   `IDP`=>$id,
+                                    `settore`=>$s,
+                                    `orari`=>$o
+        );
+        $stringaValori='';
+        foreach ($arrayVariabili as $variabile) {
+            if($variabile!=null)    {
+                $stringaValori.=key($arrayVariabili)."='".$variabile."', ";
+            }
+        }
+        $stringaTotale=  substr($stringaValori, 0, sizeof($stringaValori)-2);
+        $query= 'UPDATE `professionisti` SET '.$stringaTotale.' WHERE `IDP`='.$key.';';
+        $this->connessione=  FConnectionDB::connetti();
+        $this->querydb($query);
+    }
     
     
     

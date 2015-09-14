@@ -22,7 +22,31 @@ class FUtente extends Fdb   {
         return $utente;
     }
     
+    public function update($n,$c,$dn,$cf,$s,$e,$p,$id,$key)  {      // Da testare
+        $arrayVariabili=  array (   `nome`=>$n,
+                                    `cognome`=>$c,
+                                    `dataNascita`=>$dn,
+                                    `codiceFiscale`=>$cf,
+                                    `sesso`=>$s,
+                                    `email`=>$e,
+                                    `password`=>$p,
+                                    `numID`=>$id
+        );
+        $stringaValori='';
+        foreach ($arrayVariabili as $variabile) {
+            if($variabile!=null)    {
+                $stringaValori.=key($arrayVariabili)."='".$variabile."', ";
+            }
+        }
+        $stringaTotale=  substr($stringaValori, 0, sizeof($stringaValori)-2);
+        $query= 'UPDATE `utenti` SET '.$stringaTotale.' WHERE `numID`='.$key.';';
+        $this->connessione=  FConnectionDB::connetti();
+        $this->querydb($query);
+    }
     
     
-    
+
+            
 }
+    
+ 

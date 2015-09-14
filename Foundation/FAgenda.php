@@ -16,7 +16,7 @@ class FAgenda {
         public function load($key)  {   // Da testare
             $this->connessione= FConnectionDB::connetti();
             $query = 'SELECT * FROM `appuntamenti` WHERE `'.$this->nomeChiave.'`='.$key.';';
-            $risQuery = $this->querydb($query)->fetch_all(MYSQLI_NUM);
+            $risQuery = $this->query($query)->fetch_all(MYSQLI_NUM);
             foreach ($risQuery as $app)    {
                 $d=$app[0];
                 $o=$app[1];
@@ -33,5 +33,13 @@ class FAgenda {
         $agenda= new EAgenda($appuntamento);
         return $agenda;
         }
+        
+        public function delete($key)    {
+            $this->connessione= FConnectionDB::connetti();
+            $query= 'DELETE * FROM `appuntamenti` WHERE `'.$this->nomeChiave.'`='.$key.';';
+            return $this->connessione->query($query);
+        }
+        
+        // Nessun metodo update, perché un'agenda è un insieme di appuntamenti e si usa il metodo update di FAppuntamenti
         
 }

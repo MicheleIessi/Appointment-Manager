@@ -13,7 +13,7 @@ class Fdb {
     public function querydb($query) { 
         $risultato= $this->connessione->query($query);
         if($risultato==false)   {
-            die('Errore nella composizione della query. ');
+            die('Errore, composizione della query errata o risultato nullo ');
         }
         return $risultato;
     }
@@ -32,6 +32,12 @@ class Fdb {
         $query = 'SELECT * FROM `'.$this->nomeTabella.'` WHERE `'.$this->nomeChiave.'`='.$key.';';
         $risQuery = $this->querydb($query)->fetch_array(MYSQLI_NUM);     // Otteniamo un array con indici numerici
         // Da qui in poi ogni metodo figlio si comporterà in modo diverso
+    }
+    
+    public function delete($key)    {
+        $this->connessione= FConnectionDB::connetti();
+        $query= 'DELETE * FROM `'.$this->nomeTabella.'` WHERE `'.$this->nomeChiave.'`='.$key.';';
+        return $this->querydb($query);
     }
     
 }

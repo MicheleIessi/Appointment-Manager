@@ -14,5 +14,7 @@ class FCliente extends Fdb  {
         return $this->querydb($query);
     }
     
-    //nessun metodo load per adesso dato che ECliente non ha ancora un'implementazione
+    // Nessun metodo load per adesso dato che ECliente non ha ancora un'implementazione
+    
+    // Nessun metodo update perchè la tabella 'clienti' contiene solo 'IDC'
 }

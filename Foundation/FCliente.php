@@ -11,7 +11,7 @@ class FCliente extends Fdb  {
     public function store($oggetto) {
         $query='INSERT INTO `'.$this->nomeTabella.'` '
                 .'VALUES ('.$oggetto->getID().')';
-        return $this->querydb($query);
+        parent::querydb($query);
     }
     
     // Nessun metodo load per adesso dato che ECliente non ha ancora un'implementazione

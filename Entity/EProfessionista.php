@@ -6,7 +6,7 @@ class EProfessionista extends EUtente {
     private $orari;
     private $agendaLavoro;
         
-    public function __construct($n, $c, $dn, $cf, $s, $e, $p, $id, &$so, $set, $or) {  // ricontrollare se va bene &$so
+    public function __construct($n, $c, $dn, $cf, $s, $e, $p, $id, $so, $set, $or) {  // ricontrollare se va bene &$so
         parent::__construct($n, $c, $dn, $cf, $s, $e, $p, $id);
         $this->setServiziOfferti($so);
         $this->setSettore($set);
@@ -44,7 +44,7 @@ class EProfessionista extends EUtente {
         $intervallo = explode('-', $this->orari);
         $i= array_search($intervallo[0], $this->agendaLavoro->getChiaviBlocchi());     // Ora inizio
         $f= array_search($intervallo[1], $this->agendaLavoro->getChiaviBlocchi());     // Ora fine
-        echo "<br>". $i . "<- inizio <br> ".$f."<- fine";
+        //echo "<br>". $i . "<- inizio <br> ".$f."<- fine";     DEBUG
         $ora = 0;
         
         foreach ($this->agendaLavoro->getBlocchi() as $blocco) {

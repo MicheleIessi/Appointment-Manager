@@ -15,7 +15,13 @@ class FConnectionDB {
         $this->database = $config['mysql']['database'];
     }
     
-    public static function connetti() {
+    public function connetti() {
+        global $config;
+        $this->host = $config['mysql']['host'];
+        $this->user = $config['mysql']['user'];
+        $this->password = $config['mysql']['password'];
+        $this->database = $config['mysql']['database'];
+
         $db = new mysqli($this->host,$this->user,$this->password,$this->database);
         if($db->connect_errno > 0) {
             die("Connessione non riuscita [" . $db->connect_error . "]");

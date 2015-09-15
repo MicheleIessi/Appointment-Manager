@@ -87,7 +87,7 @@ class EAppuntamento {
     public function getStringaAttributi()   {
         $s = "'".$this->getData()."', ".
              "'".$this->getOrario()."', ".
-             "'".$this->getVisita()->nomeServizio."', ".        //nomeServizio è chiave nel db
+             "'".$this->getVisita()->getNomeServizio()."', ".        //nomeServizio è chiave nel db
              "'".$this->getIDCliente()."', ".
              "'".$this->getIDProfessionista()."'";
         return $s;

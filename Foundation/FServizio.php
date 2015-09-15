@@ -9,29 +9,32 @@ class FServizio extends Fdb     {
     }
     
     public function load($key) {
-        parent::load($key);
-        $ns =   $risQuery[0];
-        $des =    $risQuery[1];
-        $s =    $risQuery[2];
-        $dur =    $risQuery[3];
+        $risQuery = parent::load($key);
+        $ns  = $risQuery[0];
+        $des = $risQuery[1];
+        $s   = $risQuery[2];
+        $dur = $risQuery[3];
         $servizio= new EServizio($ns,$des,$s,$dur);
         return $servizio;
     }
     
     public function update($ns,$des,$s,$dur,$key)  {      // Da testare
-        $arrayVariabili=  array (   `nomeServizio`=>$ns,
-                                    `descrizione`=>$des,
-                                    `settore`=>$s,
-                                    `durata`=>$dur
+        $arrayVariabili=  array (   '`nomeServizio`'=>$ns,
+                                    '`descrizione`'=>$des,
+                                    '`settore`'=>$s,
+                                    '`durata`'=>$dur
         );
         $stringaValori='';
+        $cont = 0;
+        $chiavi = array_keys($arrayVariabili);
         foreach ($arrayVariabili as $variabile) {
             if($variabile!=null)    {
-                $stringaValori.=key($arrayVariabili)."='".$variabile."', ";
+                $stringaValori.=$chiavi[$cont]."='".$variabile."', ";
+                $cont++;
             }
         }
-        $stringaTotale=  substr($stringaValori, 0, sizeof($stringaValori)-2);
-        $query= 'UPDATE `servizi` SET '.$stringaTotale.' WHERE `nomeServizio`='.$key.';';
+        $stringaTotale=  substr($stringaValori, 0, sizeof($stringaValori)-3);
+        $query= 'UPDATE `servizi` SET '.$stringaTotale.' WHERE `nomeServizio`="'.$key.'";';
         $this->connessione=  FConnectionDB::connetti();
         $this->querydb($query);
     }

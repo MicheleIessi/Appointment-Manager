@@ -23,55 +23,61 @@ class EAgenda {
         }
     }
     
+    /* Nell'agenda ad ogni blocco può essere associata una delle seguenti stringhe:
+       'L' (libero), 'O' (occupato), 'NA' (non disponibile). Un blocco 'L' può essere usato per 
+       l'inserimento di un appuntamento, un blocco 'O' è già occupato da un appuntamento,
+       un blocco 'NA' non è disponibile in quanto fuori dall'orario di lavoro del professionista
+    */
+    
     public function setBlocchi()    {       // Metodo per il riempimento dell'array blocchi; le chiavi sono gli orari
-        $this->blocchi['00:00'] = false;
-        $this->blocchi['00:30'] = false;
-        $this->blocchi['01:00'] = false;
-        $this->blocchi['01:30'] = false;
-        $this->blocchi['02:00'] = false;
-        $this->blocchi['02:30'] = false;
-        $this->blocchi['03:00'] = false;
-        $this->blocchi['03:30'] = false;
-        $this->blocchi['04:00'] = false;
-        $this->blocchi['04:30'] = false;
-        $this->blocchi['05:00'] = false;
-        $this->blocchi['05:30'] = false;
-        $this->blocchi['06:00'] = false;
-        $this->blocchi['06:30'] = false;
-        $this->blocchi['07:00'] = false;
-        $this->blocchi['07:30'] = false;
-        $this->blocchi['08:00'] = false;
-        $this->blocchi['08:30'] = false;
-        $this->blocchi['09:00'] = false;
-        $this->blocchi['09:30'] = false;
-        $this->blocchi['10:00'] = false;
-        $this->blocchi['10:30'] = false;
-        $this->blocchi['11:00'] = false;
-        $this->blocchi['11:30'] = false;
-        $this->blocchi['12:00'] = false;
-        $this->blocchi['12:30'] = false;
-        $this->blocchi['13:00'] = false;
-        $this->blocchi['13:30'] = false;
-        $this->blocchi['14:00'] = false;
-        $this->blocchi['14:30'] = false;
-        $this->blocchi['15:00'] = false;
-        $this->blocchi['15:30'] = false;
-        $this->blocchi['16:00'] = false;
-        $this->blocchi['16:30'] = false;
-        $this->blocchi['17:00'] = false;
-        $this->blocchi['17:30'] = false;
-        $this->blocchi['18:00'] = false;
-        $this->blocchi['18:30'] = false;
-        $this->blocchi['19:00'] = false;
-        $this->blocchi['19:30'] = false;
-        $this->blocchi['20:00'] = false;
-        $this->blocchi['20:30'] = false;
-        $this->blocchi['21:00'] = false;
-        $this->blocchi['21:30'] = false;
-        $this->blocchi['22:00'] = false;
-        $this->blocchi['22:30'] = false;
-        $this->blocchi['23:00'] = false;
-        $this->blocchi['23:30'] = false;
+        $this->blocchi['00:00'] = 'L';
+        $this->blocchi['00:30'] = 'L';
+        $this->blocchi['01:00'] = 'L';
+        $this->blocchi['01:30'] = 'L';
+        $this->blocchi['02:00'] = 'L';
+        $this->blocchi['02:30'] = 'L';
+        $this->blocchi['03:00'] = 'L';
+        $this->blocchi['03:30'] = 'L';
+        $this->blocchi['04:00'] = 'L';
+        $this->blocchi['04:30'] = 'L';
+        $this->blocchi['05:00'] = 'L';
+        $this->blocchi['05:30'] = 'L';
+        $this->blocchi['06:00'] = 'L';
+        $this->blocchi['06:30'] = 'L';
+        $this->blocchi['07:00'] = 'L';
+        $this->blocchi['07:30'] = 'L';
+        $this->blocchi['08:00'] = 'L';
+        $this->blocchi['08:30'] = 'L';
+        $this->blocchi['09:00'] = 'L';
+        $this->blocchi['09:30'] = 'L';
+        $this->blocchi['10:00'] = 'L';
+        $this->blocchi['10:30'] = 'L';
+        $this->blocchi['11:00'] = 'L';
+        $this->blocchi['11:30'] = 'L';
+        $this->blocchi['12:00'] = 'L';
+        $this->blocchi['12:30'] = 'L';
+        $this->blocchi['13:00'] = 'L';
+        $this->blocchi['13:30'] = 'L';
+        $this->blocchi['14:00'] = 'L';
+        $this->blocchi['14:30'] = 'L';
+        $this->blocchi['15:00'] = 'L';
+        $this->blocchi['15:30'] = 'L';
+        $this->blocchi['16:00'] = 'L';
+        $this->blocchi['16:30'] = 'L';
+        $this->blocchi['17:00'] = 'L';
+        $this->blocchi['17:30'] = 'L';
+        $this->blocchi['18:00'] = 'L';
+        $this->blocchi['18:30'] = 'L';
+        $this->blocchi['19:00'] = 'L';
+        $this->blocchi['19:30'] = 'L';
+        $this->blocchi['20:00'] = 'L';
+        $this->blocchi['20:30'] = 'L';
+        $this->blocchi['21:00'] = 'L';
+        $this->blocchi['21:30'] = 'L';
+        $this->blocchi['22:00'] = 'L';
+        $this->blocchi['22:30'] = 'L';
+        $this->blocchi['23:00'] = 'L';
+        $this->blocchi['23:30'] = 'L';
     }
     
     private function setChiaviBlocchi() {
@@ -103,7 +109,7 @@ class EAgenda {
     public function cambiaBlocco($ora, $valore) {
         if(is_int($ora)) {
             $cerca = $this->chiaviBlocchi[$ora];
-            $this->blocchi[$cerca] = $valore;   //valore è false o null
+            $this->blocchi[$cerca] = $valore;   // valore è 'O', 'L' o 'NA' -> inserire controllo
         }
         else if(is_string($ora)) {
             $this->blocchi[$ora] = $valore;
@@ -127,12 +133,12 @@ class EAgenda {
         $f= array_search($intervallo[1], $this->chiaviBlocchi);     // Ora fine
         
         for($ora=$i; $ora<$f; $ora++  )    {
-            if( $this->blocchi[ $this->chiaviBlocchi["$ora"] ] ==true )    {
+            if( $this->blocchi[ $this->chiaviBlocchi["$ora"] ] != 'L' )   {
                 throw new Exception ('Errore, uno o più blocchi occupati', 1);
             }
             else    {
                 for($ora=$i; $ora<$f; $ora++  )    {
-                    $this->blocchi[ $this->chiaviBlocchi["$ora"] ] = true;
+                    $this->blocchi[ $this->chiaviBlocchi["$ora"] ] = 'O';
                 }
             }
         }
@@ -144,7 +150,7 @@ class EAgenda {
         $f= array_search($intervallo[1], $this->chiaviBlocchi);     // Ora fine
         
         for($ora=$i; $ora<$f; $ora++  )    {
-            $this->blocchi[ $this->chiaviBlocchi["$ora"] ] = false;
+            $this->blocchi[ $this->chiaviBlocchi["$ora"] ] = 'L';
         }
     }
     

@@ -3,17 +3,17 @@
 class FAppuntamento extends Fdb  {
     
     public function __construct() {
-        $this->nomeTabella='appuntamenti';
-        $this->nomeChiave=['visita','IDC','IDP'];
-        $this->nomeClasseRitorno='EAppuntamento';
+        $this->_table='appuntamenti';
+        $this->_key=['visita','IDC','IDP'];
+        $this->_return_class='EAppuntamento';
     }
 
     public function load($key1,$key2,$key3) {
-        $this->connessione= FConnectionDB::connetti();
 
-        $query = 'SELECT * FROM `'.$this->nomeTabella.'` WHERE `'.$this->nomeChiave[0].'`="'.$key1.'" AND `'
-                                                                 .$this->nomeChiave[1].'`="'.$key2.'" AND `'
-                                                                 .$this->nomeChiave[2].'`="'.$key3.'";';
+
+        $query = 'SELECT * FROM `'.$this->_table.'` WHERE `'.$this->_key[0].'`="'.$key1.'" AND `'
+                                                                 .$this->_key[1].'`="'.$key2.'" AND `'
+                                                                 .$this->_key[2].'`="'.$key3.'";';
         //echo $query;      debug
         $risQuery = $this->querydb($query)->fetch_array(MYSQLI_NUM);
         

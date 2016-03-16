@@ -6,14 +6,13 @@
  * and open the template in the editor.
  */
 
-global $config;
-global $dbms;
-$dbms = 'mysql'; //nel caso cambiasse dbms
+$dbms = 'mysql';
 
-$config[$dbms]['user'] = 'root';
+
+$config[$dbms]['username'] = 'root';
 $config[$dbms]['password'] = '';
-$config[$dbms]['host'] = 'localhost';
-$config[$dbms]['database'] = 'appointmentmanagerdb';
+$config[$dbms]['hostname'] = 'localhost';
+$config[$dbms]['database'] = 'prova';
 
 $config['url'] = 'localhost/appointment-manager';
 
@@ -21,3 +20,5 @@ $config['smarty']['template_dir'] = 'templates/templates/';
 $config['smarty']['compile_dir'] = 'templates/templates_c/';
 $config['smarty']['config_dir'] = 'templates/configs/';
 $config['smarty']['cache_dir'] = 'templates/cache/';
+
+?>

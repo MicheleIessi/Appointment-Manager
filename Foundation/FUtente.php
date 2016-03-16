@@ -3,9 +3,10 @@
 class FUtente extends Fdb   {
     
     public function __construct() {
-        $this->nomeTabella = 'utenti';
-        $this->nomeChiave = 'numID';
-        $this->nomeClasseRitorno = 'EUtente';
+        $this->_table = 'utenti';
+        $this->_key = 'numID';
+        $this->_return_class = 'EUtente';
+        USingleton::getInstance('Fdb');
     }
     
     public function load($key) {

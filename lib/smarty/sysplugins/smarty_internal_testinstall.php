@@ -4,14 +4,14 @@
  * Test Smarty installation
  *
  * @package    Smarty
- * @subpackage Utilities
+ * @subpackage Utility
  * @author     Uwe Tews
  */
 /**
  * TestInstall class
  *
  * @package    Smarty
- * @subpackage Utilities
+ * @subpackage Utility
  */
 class Smarty_Internal_TestInstall
 {

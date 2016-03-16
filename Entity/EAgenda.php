@@ -79,7 +79,8 @@ class EAgenda {
         $this->blocchi['23:00'] = 'L';
         $this->blocchi['23:30'] = 'L';
     }
-    
+
+
     private function setChiaviBlocchi() {
         $this->chiaviBlocchi = array_keys($this->blocchi);
     }

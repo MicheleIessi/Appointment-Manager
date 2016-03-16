@@ -11,11 +11,10 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-        require_once 'includes/autoload.inc.php';
-        require_once 'includes/config.inc.php';
-        
+            require_once 'includes/autoload.inc.php';
+            require_once 'includes/config.inc.php';
 
-        
+            $con = new Fdb_prova();
         ?>
     </body>
 </html>

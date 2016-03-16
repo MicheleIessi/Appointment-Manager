@@ -63,9 +63,9 @@ class EPersona {
         $this->sesso = $s;
     }
     //metodi get
-    public function getNome()    { return $this->nome;              } 
-    public function getCognome() { return $this->cognome;           }
-    public function getDN()      { return $this->dataNascita;       }
-    public function getCF()      { return $this->codiceFiscale;     }
+    public function getNome()    { return $this->nome; } 
+    public function getCognome() { return $this->cognome; }
+    public function getDN()      { return $this->dataNascita; }
+    public function getCF()      { return $this->codiceFiscale; }
     public function getSesso()   { return strtoupper($this->sesso); }
 }

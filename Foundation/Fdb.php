@@ -7,55 +7,85 @@
  * Time: 09:51
  */
 
-class Fdb_prova {
-
-    private $_connection;               //Variabile di connessione al database
-    private $_result;                   //Variabile contenente il risultato dell'ultima query
-    protected $_table;                  //Variabile contenente il nome della tabella
-    protected $_key;                    //Variabile contenente la chiave della tabella
-    protected $_return_class;           //Variabile contenente il tipo di classe da restituire
-    protected $_auto_increment=false;   //Variabile booleana tabella con chiave automatica o no
+class Fdb {
+    /**
+     * @var PDO Variabile di connessione al database
+     */
+    protected $db;
+    private $result;                   //Variabile contenente il risultato dell'ultima query
+    protected $table;                  //Variabile contenente il nome della tabella
+    protected $primary_key;            //Key della tabella
+    protected $attributi;              //Variabile contenente gli attributi della tabella
+    protected $return_class;           //Variabile contenente il tipo di classe da restituire
+    protected $auto_increment=false;   //Variabile booleana tabella con chiave automatica o no
+    protected $bind;                   //Per i prepared statements
+    protected $bind_key;               //Per i prepared statements
 
     public function __construct() {
 
-        global $config;
-        global $dbms;
+        require_once("includes/config.inc.php");
 
-        $dsn = "$dbms:host={$config[$dbms]['hostname']};dbname={$config[$dbms]['database']}";
+        $dsn = "$dbms:host=".$config[$dbms]['hostname'].";dbname=".$config[$dbms]['database'];
+
         $user = $config[$dbms]['username'];
         $pass = $config[$dbms]['password'];
+        $attr = array(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $this->connect($dsn,$user,$pass);
-    }
-
-    public function connect($dsn,$user,$pass) {
         try {
-            $this->_connection = new PDO($dsn,$user,$pass);
-            $this->_connection->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-            $this->query('SET names \'utf8\'');
-            echo ('Connesso al database <br>');
+            $this->db = new PDO($dsn,$user,$pass,$attr);
+
+            echo "Connesso al db"."<br>";
         } catch(PDOException $e) {
-            $this->close();
             die("Impossibile connettersi al database: ".$e->getMessage()); }
     }
 
-    public function query($sql) {
-
-        $this->_result=$this->_connection->query($sql);
-        return $this->_result;
+    protected function inserisci($data) {
+        $query=$this->db->prepare("INSERT INTO ".$this->table.'('.$this->attributi.") VALUES (".$this->bind.")");
+        try {
+            $this->result = $query->execute($data);
+        } catch (PDOException $e) {
+            echo 'Error: '.$e->getMessage();
+        }
+        return $this->result;
     }
 
-    public function store($obj) {
-
-
-
-
-
-
+    protected function cancella($data) {
+        $query=$this->db->prepare("DELETE FROM ".$this->table." WHERE ".$this->primary_key."=".$this->bind_key);
+        try {
+            $this->result = $query->execute($data);
+            $rows = $query->rowCount();
+        } catch (PDOException $e) {
+            echo 'Error: '.$e->getMessage();
+        }
+        return $rows;
     }
 
-    public function close() {
+
+    protected function close() {
         $this->_connection = null;
+    }
+
+    protected function setParam($tabella,$chiavi,$bindings,$bindkey)
+    {
+        $this->table=$tabella;
+        $this->key=$chiavi;
+        $this->bind=$bindings;
+        $this->bind_key=$bindkey;
+    }
+
+    protected function cambiaChiaviArray($arr) {
+        $chiavi= explode(',',$this->bind);
+        $imax=count($arr);
+        for($i=0;$i<$imax;$i++) {
+            $arr[$chiavi[$i]] = $arr[$i];
+            unset($arr[$i]);
+        }
+        return $arr;
+    }
+
+    protected function getDb() {
+        if($this->db instanceof PDO)
+            return $this->db;
     }
 }
 ?>

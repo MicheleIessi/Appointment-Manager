@@ -19,12 +19,14 @@ class USingleton {
     }
 
     /** Restituisce l'istanza univoca della classe
-     * @param $class String La classe che si vuole istanziare
+     * @param $c String La classe che si vuole istanziare
      */
-    public static function getInstance($class) {
-        if(!isset(self::$instances[$class])) {
-            self::$instances[$class] = new $class;
+    public static function getInstance($c)
+    {
+        if( ! isset( self::$instances[$c] ) )
+        {
+            self::$instances[$c] = new $c;
         }
-        return self::$instances[$class];
+        return self::$instances[$c];
     }
 }

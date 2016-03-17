@@ -44,7 +44,7 @@ class EProfessionista extends EUtente {
         $intervallo = explode('-', $this->orari);
         $i= array_search($intervallo[0], $this->agendaLavoro->getChiaviBlocchi());     // Ora inizio
         $f= array_search($intervallo[1], $this->agendaLavoro->getChiaviBlocchi());     // Ora fine
-        echo "<br>". $i . "<- inizio <br> ".$f."<- fine";     DEBUG
+        echo "<br>". $i . "<- inizio <br> ".$f."<- fine";
         $ora = 0;
         
         foreach ($this->agendaLavoro->getBlocchi() as $blocco) {

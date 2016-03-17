@@ -5,6 +5,7 @@ class EAgenda {
     private $impegni=[];
     private $blocchi;
     private $chiaviBlocchi;     // contiene le chiavi dell'array $blocchi; serve nei metodi di modifica dei blocchi
+    private $ampiezza=30;
     
     // Costruttore
     public function __construct($i) {
@@ -24,9 +25,25 @@ class EAgenda {
     }
     
     public function setBlocchi()    {       // Metodo per il riempimento dell'array blocchi; le chiavi sono gli orari
-        $this->blocchi['00:00'] = false;
-        $this->blocchi['00:30'] = false;
-        $this->blocchi['01:00'] = false;
+
+         //durata del quanto di tempo
+        $blocchi=60/$this->ampiezza*24;
+
+        $settimana = array('lun'=> array(),
+                           'mar'=> array(),
+                           'mer'=> array(),
+                           'gio'=> array(),
+                           'ven'=> array(),
+                           'sab'=> array(),
+                           'dom'=> array());
+
+        foreach($settimana as $giorno) {
+            $giorno = array_fill(0,$blocchi,'NA');
+        }
+
+        $this->blocchi['00:00'] = false;//0
+        $this->blocchi['00:30'] = false;//1
+        $this->blocchi['01:00'] = false;//2
         $this->blocchi['01:30'] = false;
         $this->blocchi['02:00'] = false;
         $this->blocchi['02:30'] = false;
@@ -34,7 +51,7 @@ class EAgenda {
         $this->blocchi['03:30'] = false;
         $this->blocchi['04:00'] = false;
         $this->blocchi['04:30'] = false;
-        $this->blocchi['05:00'] = false;
+        $this->blocchi['05:00'] = false;//10
         $this->blocchi['05:30'] = false;
         $this->blocchi['06:00'] = false;
         $this->blocchi['06:30'] = false;
@@ -42,7 +59,7 @@ class EAgenda {
         $this->blocchi['07:30'] = false;
         $this->blocchi['08:00'] = false;
         $this->blocchi['08:30'] = false;
-        $this->blocchi['09:00'] = false;
+        $this->blocchi['09:00'] = false;//18
         $this->blocchi['09:30'] = false;
         $this->blocchi['10:00'] = false;
         $this->blocchi['10:30'] = false;
@@ -78,21 +95,21 @@ class EAgenda {
     private function setChiaviBlocchi() {
         $this->chiaviBlocchi = array_keys($this->blocchi);
     }
-    
+
     public function getImpegni()    {
         return $this->impegni;
         }
-        
+
     public function getBlocchi()    {
         return $this->blocchi;
     }
-    
+
     public function getChiaviBlocchi()      {
         return $this->chiaviBlocchi;
     }
-    
+
     public function aggiungiAppuntamento($a)    {       // Nota: lancia il metodo aggiungiBlocchi
-        if( !( is_a($a, 'EAppuntamento') ) )    {    
+        if( !( is_a($a, 'EAppuntamento') ) )    {
             throw new Exception('Variabile non valida', 1);
         }
         else {
@@ -100,7 +117,7 @@ class EAgenda {
             array_push($this->impegni, $a);
             }
     }
-    
+
     public function cambiaBlocco($ora, $valore) {
         if(is_int($ora)) {
             $cerca = $this->chiaviBlocchi[$ora];
@@ -115,8 +132,8 @@ class EAgenda {
     }
     
     public function rimuoviAppuntamento($a) {          // Nota: lancia il metodo eliminaBlocchi
-        unset( $this->impegni[ array_search($a, $impegni) ] );
-        eliminaBlocchi($a);
+        //unset( $this->impegni[ array_search($a, $impegni) ] );
+        //eliminaBlocchi($a);
         $temp=array_values($this->impegni);
         $this->impegni=$temp;
     }    

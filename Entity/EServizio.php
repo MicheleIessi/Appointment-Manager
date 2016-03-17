@@ -3,15 +3,16 @@
 class EServizio {
     
     // Attributi
-    private $nomeServizio=null;
-    private $descrizione=null;
-    private $settore=null;
+    private $nomeServizio;
+    private $descrizione;
+    private $settore;
     private $durata=0;
     
     /* L'attributo $durata è da intendere come unità da 30 minuti 
      * (vedi agenda) */
     
-    // Costruttore
+    // Costruttore di default
+
     public function __construct($nom,$des, $set, $dur)   {
         $this->setNomeServizio($nom);
         $this->setDescrizione($des);
@@ -59,6 +60,10 @@ class EServizio {
              "'".$this->getSettore()."', ".
              "'".$this->getDurata()."'";
         return $s;
+    }
+
+    public function getArrayAttributi() {
+        return array($this->nomeServizio,$this->descrizione,$this->settore,$this->durata);
     }
 
 }

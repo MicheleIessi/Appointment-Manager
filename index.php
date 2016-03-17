@@ -11,10 +11,14 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-            require_once 'includes/autoload.inc.php';
-            require_once 'includes/config.inc.php';
+        require_once 'includes/autoload.inc.php';
 
-            $con = new Fdb_prova();
+        $ser = new FServizio();
+        $es = new EServizio('Visita generica','Una visita generica senza esami particolari','Generale',1);
+        $ser->cancellaServizio($es);
+
+        $ser->inserisciServizio($es);
+
         ?>
     </body>
 </html>

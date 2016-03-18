@@ -3,15 +3,15 @@
 class FAppuntamento extends Fdb  {
     
     public function __construct() {
-        $this->_table='appuntamenti';
+        $this->table='appuntamenti';
         $this->_key=['visita','IDC','IDP'];
-        $this->_return_class='EAppuntamento';
+        $this->return_class='EAppuntamento';
     }
 
     public function load($key1,$key2,$key3) {
 
 
-        $query = 'SELECT * FROM `'.$this->_table.'` WHERE `'.$this->_key[0].'`="'.$key1.'" AND `'
+        $query = 'SELECT * FROM `'.$this->table.'` WHERE `'.$this->_key[0].'`="'.$key1.'" AND `'
                                                                  .$this->_key[1].'`="'.$key2.'" AND `'
                                                                  .$this->_key[2].'`="'.$key3.'";';
         //echo $query;      debug

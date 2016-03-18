@@ -3,11 +3,11 @@
 class EServizio {
     
     // Attributi
-    private $nomeServizio=null;
-    private $descrizione=null;
-    private $settore=null;
+    private $nomeServizio;
+    private $descrizione;
+    private $settore;
     private $durata=0;
-    
+
     // Costruttore
     public function __construct($nom,$des, $set, $dur)   {
         $this->setNomeServizio($nom);
@@ -50,12 +50,9 @@ class EServizio {
     }
     
     // Metodo di utilità per il lato Foundation
-    public function getStringaAttributi()   {
-        $s = "'".$this->getNomeServizio()."', ".
-             "'".$this->getDescrizione()."', ".
-             "'".$this->getSettore()."', ".
-             "'".$this->getDurata()."'";
-        return $s;
+
+    public function getArrayAttributi() {
+        return array($this->nomeServizio,$this->descrizione,$this->settore,$this->durata);
     }
 
 }

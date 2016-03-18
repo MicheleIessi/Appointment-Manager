@@ -3,14 +3,14 @@
 class FCliente extends Fdb  {
     
     public function __construct() {
-        $this->_table = 'clienti';
+        $this->table = 'clienti';
         $this->_key = 'IDC';
-        $this->_return_class = 'ECliente';
+        $this->return_class = 'ECliente';
+        USingleton::getInstance('Fdb');
     }
     
     public function store($oggetto) {
-        $query='INSERT INTO `'.$this->_table.'` '
-                .'VALUES ('.$oggetto->getID().')';
+
         //TODO
     }
     

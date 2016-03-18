@@ -8,7 +8,6 @@
 
 $dbms = 'mysql';
 
-
 $config[$dbms]['username'] = 'root';
 $config[$dbms]['password'] = '';
 $config[$dbms]['hostname'] = 'localhost';

@@ -17,6 +17,7 @@ and open the template in the editor.
             $eapp = new EAppuntamento(date('Y-m-d'),"00:00",$eser,"123456","456789");
             $app = new FAppuntamento();
             $app->inserisciAppuntamento($eapp);
+            $app->cancellaAppuntamento($eapp);
         ?>
     </body>
 </html>

@@ -63,7 +63,14 @@ class Fdb {
      * @return int il numero di rows coinvolte.
      */
     protected function cancella($data) {
-        $sql="DELETE FROM ".$this->table." WHERE ".$this->primary_key."=".$this->bind_key;
+        $sql="DELETE FROM $this->table WHERE";
+        $Primary = explode(',',$this->primary_key);
+        $BindKey = explode(',',$this->bind_key);
+        $imax=count($Primary);
+        for($i=0;$i<$imax;$i++) {
+            $sql.=" $Primary[$i] = $BindKey[$i] AND";
+        }
+        $sql = rtrim($sql,'AND');
         $query=self::$db->prepare($sql);
         $rows=0;
         try {
@@ -82,29 +89,24 @@ class Fdb {
      * @return int il numero di rows coinvolte.
      */
     protected function aggiorna($data) {
-        $i = 0;
+        $j = 0;
         $imax=count($data);
         $attr = explode(',',$this->attributi);
         $chiaviAttr = array_keys($data);
         $sql = "UPDATE $this->table SET ";
-        while($i<$imax) {
-            $sql.=" $attr[$i] = $chiaviAttr[$i],";
-            $i++;
+        while($j<$imax) {
+            $sql.=" $attr[$j] = $chiaviAttr[$j],";
+            $j++;
         }
         $sql = rtrim($sql,',');
-        $contaPrimary = count(explode(',',$this->primary_key));
-        if($contaPrimary>1) {
-            $Primary = explode(',',$this->primary_key);
-            $BindKey = explode(',',$this->bind_key);
-            $sql.=" WHERE $Primary[0] = $BindKey[0] AND";
-            for($j=1;$j<$contaPrimary;$j++) {
-                $sql.=" $Primary[$j] = $BindKey[$j] AND";
-            }
-            $sql = rtrim($sql,'AND');
+        $sql.=" WHERE";
+        $Primary = explode(',',$this->primary_key);
+        $BindKey = explode(',',$this->bind_key);
+        $imax=count($Primary);
+        for($i=0;$i<$imax;$i++) {
+            $sql.=" $Primary[$i] = $BindKey[$i] AND";
         }
-        else {
-            $sql .= " WHERE $this->primary_key = $this->bind_key";
-        }
+        $sql = rtrim($sql,'AND');
         echo $sql;
         $query = self::$db->prepare($sql);
         $rows=0;
@@ -118,7 +120,14 @@ class Fdb {
     }
 
     protected function carica($data) {
-        $sql="SELECT * FROM $this->table WHERE $this->primary_key = $this->bind_key";
+        $sql="SELECT * FROM $this->table WHERE ";
+        $Primary = explode(',',$this->primary_key);
+        $BindKey = explode(',',$this->bind_key);
+        $imax=count($Primary);
+        for($i=0;$i<$imax;$i++) {
+            $sql.=" $Primary[$i] = $BindKey[$i] AND";
+        }
+        $sql = rtrim($sql,'AND');
         $query=self::$db->prepare($sql);
         try {
             $query->execute($data);

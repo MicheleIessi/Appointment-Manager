@@ -91,5 +91,5 @@ class EAppuntamento {
              "'".$this->getIDCliente()."', ".
              "'".$this->getIDProfessionista()."'";
         return $s;
-    }
+    }  
 }

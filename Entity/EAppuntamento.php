@@ -32,7 +32,7 @@ class EAppuntamento {
     }
     
     public function setOrario($o)    {
-        $pattern = "#^(2[0-3]|[01][0-9]|[1-9]):([0-5][0-9])$#";
+        $pattern = "#^(2[0-3]|[01][0-9]|[1-9]):([0-5][0-9])$#";   // pattern da cambiare se $o è nella forma '18-20'
         $ore = explode("-", $o);
         foreach ($ore as $orario) {
             if(preg_match($pattern, $orario) != 1) {

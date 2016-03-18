@@ -7,7 +7,7 @@ require_once 'lib/smarty/Smarty.class.php';
  */
 
 
-class Presentation extends Smarty {
+class View extends Smarty {
     
     protected $url;
     

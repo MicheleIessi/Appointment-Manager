@@ -7,10 +7,16 @@ class EServizio {
     private $descrizione;
     private $settore;
     private $durata=0;
+<<<<<<< HEAD
 
     // Costruttore di default
 
     public function __construct($nom,$des,$set,$dur)   {
+=======
+    
+    // Costruttore
+    public function __construct($nom,$des, $set, $dur)   {
+>>>>>>> origin/master
         $this->setNomeServizio($nom);
         $this->setDescrizione($des);
         $this->setSettore($set);

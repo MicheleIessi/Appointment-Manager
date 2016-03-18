@@ -11,12 +11,9 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-        require_once 'includes/autoload.inc.php';
-
-        $ser = new FServizio();
-        $es = $ser->caricaServizio("Visita generica");
-        echo "<br>"."<br>"."<br>"."<br>";
-        var_dump($es);
+            require_once 'includes/autoload.inc.php';
+            require_once 'includes/config.inc.php';
+            
         ?>
     </body>
 </html>

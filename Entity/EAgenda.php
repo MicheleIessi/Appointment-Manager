@@ -78,7 +78,7 @@ class EAgenda {
         }
 
         public function eliminaAppuntamento($a) {           // ricontrollare
-                unset(array_search($a, $this->impegni));
+                unset($this->impegni[array_search($a, $this->impegni)]);
         }
 
 

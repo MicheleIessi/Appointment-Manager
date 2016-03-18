@@ -3,8 +3,8 @@
 class EAppuntamento {
     
     // Attributi
-    private $data;          // Stringa divisa da "/"
-    private $orario;        // Stringa di due orari divisi da "-"
+    private $data;          // Stringa divisa da "-"
+    private $orario;        // Stringa di due orari divisi da ":'"
     private $visita;        // E' un Servizio
     private $IDCliente;
     private $IDProfessionista;
@@ -24,7 +24,7 @@ class EAppuntamento {
     
     // Metodi (aggiungere controlli)
     public function setData($d)    {
-        $pattern = "#^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$#";
+        $pattern = "#^(\d{4})-(0[1-9]|1[0-2])-([1-9]|1[0-9]|2[0-9]|3[0-1])$#";
         if(preg_match($pattern, $d) != 1) {
             throw new Exception("Data non valida", 1);
         }
@@ -43,11 +43,9 @@ class EAppuntamento {
     }
     
     public function setVisita($v)    {
-        
         if (is_null($this->visita))     {
             $this->visita = new EServizio(null,null,null,0);    // Costruttore di default
         }
-        
         if( !( is_a($v, "EServizio")))    {    
             throw new Exception("Variabile non valida", 1);   }
         else    {
@@ -55,41 +53,16 @@ class EAppuntamento {
         }
     }
     
-    public function setIDCliente($IDC)    {
-        $this->IDCliente=$IDC;
-    }
-    
-    public function setIDProfessionista($IDP)   {
-        $this->IDProfessionista=$IDP;
-    }
-    
-    public function getData()   {
-        return $this->data;
-    }
-    
-    public function getOrario()   {
-        return $this->orario;
-    }
-    
-    public function getVisita()   {
-        return $this->visita;
-    }
-    
-    public function getIDCliente()  {
-        return $this->IDCliente;
-    }
-    
-    public function getIDProfessionista()   {
-        return $this->IDProfessionista;
-    }
+    public function setIDCliente($IDC) { $this->IDCliente=$IDC; }
+    public function setIDProfessionista($IDP) { $this->IDProfessionista=$IDP; }
+    public function getData() { return $this->data; }
+    public function getOrario() { return $this->orario; }
+    public function getVisita() { return $this->visita; }
+    public function getIDCliente() { return $this->IDCliente; }
+    public function getIDProfessionista() { return $this->IDProfessionista; }
     
     // Metodo di utilità per il lato Foundation
-    public function getStringaAttributi()   {
-        $s = "'".$this->getData()."', ".
-             "'".$this->getOrario()."', ".
-             "'".$this->getVisita()->getNomeServizio()."', ".        //nomeServizio è chiave nel db
-             "'".$this->getIDCliente()."', ".
-             "'".$this->getIDProfessionista()."'";
-        return $s;
+    public function getArrayAttributi() {
+        return array($this->IDProfessionista,$this->IDCliente,$this->data,$this->orario,$this->visita);
     }
 }

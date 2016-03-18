@@ -12,8 +12,11 @@ and open the template in the editor.
     <body>
         <?php
             require_once 'includes/autoload.inc.php';
-            require_once 'includes/config.inc.php';
-            
+            $ser = new FServizio();
+            $eser = $ser->caricaServizioDaDb("Visita generica");
+            $eapp = new EAppuntamento(date('Y-m-d'),"00:00",$eser,"123456","456789");
+            $app = new FAppuntamento();
+            $app->inserisciAppuntamento($eapp);
         ?>
     </body>
 </html>

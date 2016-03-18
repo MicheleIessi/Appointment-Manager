@@ -11,7 +11,7 @@ class Fdb {
     /**
      * @var PDO Variabile di connessione al database
      */
-    protected $db;
+    protected static $db;
     private $result;                   //Variabile contenente il risultato dell'ultima query
     protected $table;                  //Variabile contenente il nome della tabella
     protected $primary_key;            //Key della tabella
@@ -20,6 +20,7 @@ class Fdb {
     protected $auto_increment=false;   //Variabile booleana tabella con chiave automatica o no
     protected $bind;                   //Per i prepared statements
     protected $bind_key;               //Per i prepared statements
+    private static $set = false;
 
     public function __construct() {
         require_once 'includes/config.inc.php';
@@ -30,8 +31,9 @@ class Fdb {
         $user = $config[$dbms]['username'];
         $pass = $config[$dbms]['password'];
         $attr = array(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        self::$set=true;
         try {
-            $this->db = new PDO($dsn,$user,$pass,$attr);
+            self::$db = new PDO($dsn,$user,$pass,$attr);
             echo "Connesso al db"."<br>";
         } catch(PDOException $e) {
             die("Impossibile connettersi al database: ".$e->getMessage()); }
@@ -45,7 +47,7 @@ class Fdb {
      */
     protected function inserisci($data) {
         $sql="INSERT INTO ".$this->table.'('.$this->attributi.") VALUES (".$this->bind.")";
-        $query=$this->db->prepare($sql);
+        $query=self::$db->prepare($sql);
         try {
             $this->result = $query->execute($data);
         } catch (PDOException $e) {
@@ -62,7 +64,7 @@ class Fdb {
      */
     protected function cancella($data) {
         $sql="DELETE FROM ".$this->table." WHERE ".$this->primary_key."=".$this->bind_key;
-        $query=$this->db->prepare($sql);
+        $query=self::$db->prepare($sql);
         $rows=0;
         try {
             $this->result = $query->execute($data);
@@ -104,7 +106,7 @@ class Fdb {
             $sql .= " WHERE $this->primary_key = $this->bind_key";
         }
         echo $sql;
-        $query = $this->db->prepare($sql);
+        $query = self::$db->prepare($sql);
         $rows=0;
         try {
             $this->result = $query->execute($data);
@@ -116,11 +118,8 @@ class Fdb {
     }
 
     protected function carica($data) {
-
         $sql="SELECT * FROM $this->table WHERE $this->primary_key = $this->bind_key";
-        $query=$this->db->prepare($sql);
-
-
+        $query=self::$db->prepare($sql);
         try {
             $query->execute($data);
             $query->setFetchMode(PDO::FETCH_ASSOC);
@@ -131,8 +130,8 @@ class Fdb {
         return $this->result;
     }
 
-    protected function close() {
-        $this->_connection = null;
+    protected static function isOn() {
+        return self::$set;
     }
 
     protected function setParam($tabella,$chiavi,$bindings,$bindkey)
@@ -154,5 +153,11 @@ class Fdb {
         }
         return $arr;
     }
+
+    protected static function getDB() {
+        return self::$db;
+    }
 }
+
+
 ?>

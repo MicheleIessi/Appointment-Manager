@@ -17,40 +17,16 @@ class EServizio {
     }
     
     // Metodi
-    public function setNomeServizio($nom)    {
-        $this->nomeServizio=$nom;
-    }
-    
-    public function setDescrizione($des)    {
-        $this->descrizione=$des;
-    }
-    
-    public function setSettore($set)    {
-        $this->settore=$set;
-    }
-    
-    public function setDurata($dur)    {
-        $this->durata=$dur;
-    }
-    
-    public function getNomeServizio()   {
-        return $this->nomeServizio;
-    }
-    
-    public function getDescrizione()    {
-        return $this->descrizione;
-    }
-    
-    public function getSettore()    {
-        return $this->settore;
-    }
-    
-    public function getDurata()   {
-        return $this->durata;
-    }
-    
-    // Metodo di utilità per il lato Foundation
+    public function setNomeServizio($nom) { $this->nomeServizio=$nom; }
+    public function setDescrizione($des) { $this->descrizione=$des; }
+    public function setSettore($set) { $this->settore=$set; }
+    public function setDurata($dur) { $this->durata=$dur; }
+    public function getNomeServizio() { return $this->nomeServizio; }
+    public function getDescrizione() { return $this->descrizione; }
+    public function getSettore() { return $this->settore; }
+    public function getDurata() { return $this->durata; }
 
+    // Metodo di utilità per il lato Foundation
     public function getArrayAttributi() {
         return array($this->nomeServizio,$this->descrizione,$this->settore,$this->durata);
     }

@@ -14,15 +14,9 @@ and open the template in the editor.
         require_once 'includes/autoload.inc.php';
 
         $ser = new FServizio();
-        $es = new EServizio('Visita generica','Una visita generica senza esami particolari','Generale',1);
-        $ser->cancellaServizio($es);
-
-        $ser->inserisciServizio($es);
-
-        $es->setSettore("Cambio settore 3");
-        $es->setDurata(4);
-        $es->setDescrizione("Cambio pure la descrizione");
-        $ser->aggiornaServizio($es);
+        $es = $ser->caricaServizio("Visita generica");
+        echo "<br>"."<br>"."<br>"."<br>";
+        var_dump($es);
         ?>
     </body>
 </html>

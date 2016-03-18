@@ -3,7 +3,6 @@
 class FServizio extends Fdb     {
     
     public function __construct() {
-
         parent::__construct();
         $this->table = "servizi";
         $this->primary_key = 'nomeServizio';
@@ -12,8 +11,6 @@ class FServizio extends Fdb     {
         $this->bind = ':nomeServizio,:descrizione,:settore,:durata';
         $this->bind_key = ':nomeServizio';
     }
-
-
 
     public function inserisciServizio(EServizio $es) {
         $valori = $this->cambiaChiaviArray($es->getArrayAttributi());
@@ -47,7 +44,6 @@ class FServizio extends Fdb     {
     public function aggiornaServizio(Eservizio $es) {
         $this->setParam($this->table,$this->attributi,$this->bind,$this->bind_key);
         $valori = $this->cambiaChiaviArray($es->getArrayAttributi());
-        print_r($valori);
         try {
             if($this->aggiorna($valori) == 0) {
                 throw new PDOException("Impossibile modificare il servizio.");
@@ -57,4 +53,13 @@ class FServizio extends Fdb     {
         }
     }
 
+    public function caricaServizio($key) {
+        $this->setParam($this->table,$this->attributi,$this->bind,$this->bind_key);
+        $valori=array();
+        $valori[":$this->primary_key"] = $key;
+        $arraySer = $this->carica($valori);
+        $arraySer = array_values($arraySer);
+        $es = new $this->return_class($arraySer[0],$arraySer[1],$arraySer[2],$arraySer[3]);
+        return $es;
+    }
 }

@@ -7,13 +7,10 @@ class EServizio {
     private $descrizione;
     private $settore;
     private $durata=0;
-    
-    /* L'attributo $durata è da intendere come unità da 30 minuti 
-     * (vedi agenda) */
-    
+
     // Costruttore di default
 
-    public function __construct($nom,$des, $set, $dur)   {
+    public function __construct($nom,$des,$set,$dur)   {
         $this->setNomeServizio($nom);
         $this->setDescrizione($des);
         $this->setSettore($set);

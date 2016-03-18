@@ -6,7 +6,7 @@ class FUtente extends Fdb   {
         $this->table = 'utenti';
         $this->_key = 'numID';
         $this->return_class = 'EUtente';
-        USingleton::getInstance('Fdb');
+        $this->db = USingleton::getInstance('Fdb');
     }
 }
     

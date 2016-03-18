@@ -90,7 +90,20 @@ class Fdb {
             $i++;
         }
         $sql = rtrim($sql,',');
-        $sql.=" WHERE $this->primary_key = $this->bind_key";
+        $contaPrimary = count(explode(',',$this->primary_key));
+        if($contaPrimary>1) {
+            $Primary = explode(',',$this->primary_key);
+            $BindKey = explode(',',$this->bind_key);
+            $sql.=" WHERE $Primary[0] = $BindKey[0] AND";
+            for($j=1;$j<$contaPrimary;$j++) {
+                $sql.=" $Primary[$j] = $BindKey[$j] AND";
+            }
+            $sql = rtrim($sql,'AND');
+        }
+        else {
+            $sql .= " WHERE $this->primary_key = $this->bind_key";
+        }
+        echo $sql;
         $query = $this->db->prepare($sql);
         $rows=0;
         try {
@@ -102,6 +115,22 @@ class Fdb {
         return $rows;
     }
 
+    protected function carica($data) {
+
+        $sql="SELECT * FROM $this->table WHERE $this->primary_key = $this->bind_key";
+        $query=$this->db->prepare($sql);
+
+
+        try {
+            $query->execute($data);
+            $query->setFetchMode(PDO::FETCH_ASSOC);
+            $this->result = $query->fetch();
+        } catch (PDOException $e) {
+            echo 'Error: '.$e->getMessage();
+        }
+        return $this->result;
+    }
+
     protected function close() {
         $this->_connection = null;
     }
@@ -109,7 +138,7 @@ class Fdb {
     protected function setParam($tabella,$chiavi,$bindings,$bindkey)
     {
         $this->table=$tabella;
-        $this->key=$chiavi;
+        $this->attributi=$chiavi;
         $this->bind=$bindings;
         $this->bind_key=$bindkey;
     }

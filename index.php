@@ -19,6 +19,10 @@ and open the template in the editor.
 
         $ser->inserisciServizio($es);
 
+        $es->setSettore("Cambio settore 3");
+        $es->setDurata(4);
+        $es->setDescrizione("Cambio pure la descrizione");
+        $ser->aggiornaServizio($es);
         ?>
     </body>
 </html>

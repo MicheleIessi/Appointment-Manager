@@ -22,25 +22,30 @@ class Fdb {
     protected $bind_key;               //Per i prepared statements
 
     public function __construct() {
-
-        require_once("includes/config.inc.php");
-
+        require_once 'includes/config.inc.php';
+        /** @var string $dbms è la stringa che specifica il db che si usa nel file di configurazione */
+        /** @var string $config è il file di configurazione*/
+        /* ho scritto queste 2 righe perché l'ide mi diceva che erano variabili sconosciute */
         $dsn = "$dbms:host=".$config[$dbms]['hostname'].";dbname=".$config[$dbms]['database'];
-
         $user = $config[$dbms]['username'];
         $pass = $config[$dbms]['password'];
         $attr = array(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
         try {
             $this->db = new PDO($dsn,$user,$pass,$attr);
-
             echo "Connesso al db"."<br>";
         } catch(PDOException $e) {
             die("Impossibile connettersi al database: ".$e->getMessage()); }
     }
 
+    /** Il metodo 'inserisci' prende in input un array associativo con elementi del tipo {[:nomeAttributo]=>valore} e usa
+     * gli attributi degli oggetti Foundation che si estendono da Fdb per fare una query corretta di tipo INSERT in base
+     * ai bind e ai nomi di attributi corretti.
+     * @param $data array associativo usato per il funzionamento corretto dei prepared statements
+     * @return bool l'esito della query
+     */
     protected function inserisci($data) {
-        $query=$this->db->prepare("INSERT INTO ".$this->table.'('.$this->attributi.") VALUES (".$this->bind.")");
+        $sql="INSERT INTO ".$this->table.'('.$this->attributi.") VALUES (".$this->bind.")";
+        $query=$this->db->prepare($sql);
         try {
             $this->result = $query->execute($data);
         } catch (PDOException $e) {
@@ -49,8 +54,16 @@ class Fdb {
         return $this->result;
     }
 
+    /** Il metodo 'cancella' prende in input un array associativo con elementi del tipo {[:nomeAttributo]=>valore} e usa
+     * gli attributi degli oggetti Foundation che si estendono da Fdb per fare una query corretta di tipo DELETE in base
+     * ai bind e ai nomi di attributi corretti.
+     * @param $data array associativo usato per il funzionamento corretto dei prepared statements
+     * @return int il numero di rows coinvolte.
+     */
     protected function cancella($data) {
-        $query=$this->db->prepare("DELETE FROM ".$this->table." WHERE ".$this->primary_key."=".$this->bind_key);
+        $sql="DELETE FROM ".$this->table." WHERE ".$this->primary_key."=".$this->bind_key;
+        $query=$this->db->prepare($sql);
+        $rows=0;
         try {
             $this->result = $query->execute($data);
             $rows = $query->rowCount();
@@ -60,6 +73,34 @@ class Fdb {
         return $rows;
     }
 
+    /** Il metodo 'aggiorna' prende in input un array associativo con elementi del tipo {[:nomeAttributo]=>valore} e usa
+     * gli attributi degli oggetti Foundation che si estendono da Fdb per fare una query corretta di tipo UPDATE in base
+     * ai bind e nomi di attributi corretti.
+     * @param $data array associativo usato per il funzionamento corretto dei prepared statements
+     * @return int il numero di rows coinvolte.
+     */
+    protected function aggiorna($data) {
+        $i = 0;
+        $imax=count($data);
+        $attr = explode(',',$this->attributi);
+        $chiaviAttr = array_keys($data);
+        $sql = "UPDATE $this->table SET ";
+        while($i<$imax) {
+            $sql.=" $attr[$i] = $chiaviAttr[$i],";
+            $i++;
+        }
+        $sql = rtrim($sql,',');
+        $sql.=" WHERE $this->primary_key = $this->bind_key";
+        $query = $this->db->prepare($sql);
+        $rows=0;
+        try {
+            $this->result = $query->execute($data);
+            $rows = $query->rowCount();
+        } catch (PDOException $e) {
+            echo 'Error: '.$e->getMessage();
+        }
+        return $rows;
+    }
 
     protected function close() {
         $this->_connection = null;
@@ -73,19 +114,16 @@ class Fdb {
         $this->bind_key=$bindkey;
     }
 
+
+    // METODO DI SUPPORTO: cambia le chiavi dell'array passato nei bind della classe estesa da Fdb che chiama il metodo
     protected function cambiaChiaviArray($arr) {
-        $chiavi= explode(',',$this->bind);
-        $imax=count($arr);
+        $chiavi = explode(',',$this->bind);
+        $imax = count($arr);
         for($i=0;$i<$imax;$i++) {
             $arr[$chiavi[$i]] = $arr[$i];
             unset($arr[$i]);
         }
         return $arr;
-    }
-
-    protected function getDb() {
-        if($this->db instanceof PDO)
-            return $this->db;
     }
 }
 ?>

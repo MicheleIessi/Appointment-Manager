@@ -7,7 +7,7 @@ class FServizio extends Fdb     {
         parent::__construct();
         $this->table = "servizi";
         $this->primary_key = 'nomeServizio';
-        $this->attributi = 'nomeServizio, descrizione, settore, durata';
+        $this->attributi = 'nomeServizio,descrizione,settore,durata';
         $this->return_class = 'EServizio';
         $this->bind = ':nomeServizio,:descrizione,:settore,:durata';
         $this->bind_key = ':nomeServizio';
@@ -23,7 +23,7 @@ class FServizio extends Fdb     {
                 throw new PDOException("Servizio chiamato '" . $valori[':nomeServizio'] . "' già presente nel database."."<br>");
             }
             else
-                echo ("Servizio chiamato '".$valori[':nomeServizio']."'' aggiunto correttamente al database."."<br>");
+                echo ("Servizio chiamato '".$valori[':nomeServizio']."' aggiunto correttamente al database."."<br>");
         } catch(PDOException $e) {
             echo $e->getMessage();
         }
@@ -44,5 +44,17 @@ class FServizio extends Fdb     {
         }
     }
 
+    public function aggiornaServizio(Eservizio $es) {
+        $this->setParam($this->table,$this->attributi,$this->bind,$this->bind_key);
+        $valori = $this->cambiaChiaviArray($es->getArrayAttributi());
+        print_r($valori);
+        try {
+            if($this->aggiorna($valori) == 0) {
+                throw new PDOException("Impossibile modificare il servizio.");
+            }
+            } catch(PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
 
 }

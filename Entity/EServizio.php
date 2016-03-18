@@ -54,13 +54,6 @@ class EServizio {
     }
     
     // Metodo di utilità per il lato Foundation
-    public function getStringaAttributi()   {
-        $s = "'".$this->getNomeServizio()."', ".
-             "'".$this->getDescrizione()."', ".
-             "'".$this->getSettore()."', ".
-             "'".$this->getDurata()."'";
-        return $s;
-    }
 
     public function getArrayAttributi() {
         return array($this->nomeServizio,$this->descrizione,$this->settore,$this->durata);

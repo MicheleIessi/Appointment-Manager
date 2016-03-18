@@ -62,19 +62,7 @@ class EAppuntamento {
     public function getIDProfessionista() { return $this->IDProfessionista; }
     
     // Metodo di utilità per il lato Foundation
-<<<<<<< HEAD
-    public function getStringaAttributi()   {
-        $s = "'".$this->getData()."', ".
-             "'".$this->getOrario()."', ".
-             "'".$this->getVisita()->getNomeServizio()."', ".        //nomeServizio è chiave nel db
-             "'".$this->getIDCliente()."', ".
-             "'".$this->getIDProfessionista()."'";
-        return $s;
-    }  
-}
-=======
     public function getArrayAttributi() {
         return array($this->IDProfessionista,$this->IDCliente,$this->data,$this->orario,$this->visita);
     }
 }
->>>>>>> 7b67295ee6869ba739ae6fbcf06e57009f156c98

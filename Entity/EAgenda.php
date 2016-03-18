@@ -80,21 +80,9 @@ class EAgenda {
         public function eliminaAppuntamento($a) {           // ricontrollare
                 unset($this->impegni[array_search($a, $this->impegni)]);
         }
-<<<<<<< HEAD
-        array_push($this->impegni, $a);
-    }
-    
-    public function eliminaAppuntamento($a) {           // ricontrollare
-        unset(array_search($a, $this->impegni));
-    }
-
-    
-    
-=======
 
 
 
 
 
->>>>>>> 7b67295ee6869ba739ae6fbcf06e57009f156c98
 }

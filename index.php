@@ -11,14 +11,8 @@ and open the template in the editor.
         <title>prova</title>
     </head>
     <body>
-        <?php
-
-        require_once 'includes/autoload.inc.php';
-            $Fser = new FServizio();
-            $Eser = $Fser->caricaServizioDaDb("Visita specifica");
-            $Eser->setDurata(2);
-            $Fser->aggiornaServizio($Eser);
-        ?>
+        
+        
     </body>
 </html>
 

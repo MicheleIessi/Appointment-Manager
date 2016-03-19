@@ -81,8 +81,4 @@ class EAgenda {
                 unset($this->impegni[array_search($a, $this->impegni)]);
         }
 
-
-
-
-
 }

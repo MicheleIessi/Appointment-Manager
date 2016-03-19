@@ -14,15 +14,10 @@ and open the template in the editor.
         <?php
 
         require_once 'includes/autoload.inc.php';
-            $ser = new FServizio();
-            $eser = $ser->caricaServizioDaDb("Visita");
-            $Fapp = new FAppuntamento();
-            $app = $Fapp->caricaAppuntamentoDaDb("123456,222222,2016-03-19");
-            $eser->setNomeServizio("Prova");
-            $ser->aggiornaServizio($eser);
-            $app->setVisita($eser);
-            $app->setIDProfessionista("123457");
-            $Fapp->aggiornaAppuntamento($app);
+            $Fser = new FServizio();
+            $Eser = $Fser->caricaServizioDaDb("Visita specifica");
+            $Eser->setDurata(2);
+            $Fser->aggiornaServizio($Eser);
         ?>
     </body>
 </html>

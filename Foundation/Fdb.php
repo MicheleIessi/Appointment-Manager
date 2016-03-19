@@ -11,7 +11,7 @@ class Fdb {
     protected static $db;              //Variabile per la connessione al database
     private $result;                   //Variabile contenente il risultato dell'ultima query
     protected $table;                  //Variabile contenente il nome della tabella
-    protected $primary_key;            //Key della tabella
+    protected $primary_key;            //Variabile contenente le chiavi primarie della tabella
     protected $attributi;              //Variabile contenente gli attributi della tabella
     protected $return_class;           //Variabile contenente il tipo di classe da restituire
     protected $bind;                   //Per i prepared statements
@@ -104,13 +104,10 @@ class Fdb {
             $sql.=" $Primary[$i] = '".$BindOldKey[$i]."' AND";
         }
         $sql = rtrim($sql,'AND');
-        echo $sql."<br>";
         $query = self::$db->prepare($sql);
         $rows=0;
         try {
             $this->result = $query->execute($data);
-            var_dump($query->errorInfo());
-            $query->debugDumpParams();
             $rows = $query->rowCount();
         } catch (PDOException $e) {
             echo 'Error: '.$e->getMessage();

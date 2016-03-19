@@ -51,7 +51,7 @@ class FServizio extends Fdb {
                 throw new PDOException("Impossibile modificare il servizio.<br>");
             }
             else
-                echo "Servizio modificato correttamente.";
+                echo "Servizio modificato correttamente.<br>";
             } catch(PDOException $e) {
             echo $e->getMessage();
         }
@@ -63,6 +63,7 @@ class FServizio extends Fdb {
         $valori["$this->bind_key"] = $key;
         try {
             $arraySer = parent::carica($valori);
+            if(!is_array($arraySer)) throw new PDOException("Nessun servizio chiamato $key.<br>");
             $arraySer = array_values($arraySer);
             $this->old_keys = implode(',', $arraySer);
             $es = new $this->return_class($arraySer[0], $arraySer[1], $arraySer[2], $arraySer[3]);

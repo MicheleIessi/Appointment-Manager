@@ -58,7 +58,6 @@ class FAppuntamento extends Fdb  {
         }
     }
     public function caricaAppuntamentoDaDb($key) {
-
         parent::setParam($this->table,$this->attributi,$this->bind,$this->bind_key,$this->old_keys);
         $valori=explode(',',$key);
         $binding=explode(',',$this->bind_key);
@@ -71,10 +70,10 @@ class FAppuntamento extends Fdb  {
         $arrayApp = parent::carica($arr);
         $arrayApp = array_values($arrayApp);
         $fs=new FServizio();
-
         $servizio=$fs->caricaServizioDaDb($arrayApp[4]);
         $this->old_keys = implode(',',$arrayApp);
         $app = new $this->return_class($arrayApp[0],$arrayApp[1],$arrayApp[2],$arrayApp[3],$servizio);
+        echo "Appuntamento caricato correttamente <br>";
         return $app;
     }
 

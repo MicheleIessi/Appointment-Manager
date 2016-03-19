@@ -32,7 +32,7 @@ class EAppuntamento {
     }
     
     public function setOrario($o)    {
-        $pattern = "#^(2[0-3]|[01][0-9]|[1-9]):([0-5][0-9])$#";   // pattern da cambiare se $o è nella forma '18-20'
+        $pattern = "#^(2[0-3]|[01][0-9]|[1-9]):([0-5][0-9])$#";
         $ore = explode("-", $o);
         foreach ($ore as $orario) {
             if(preg_match($pattern, $orario) != 1) {
@@ -53,8 +53,21 @@ class EAppuntamento {
         }
     }
     
-    public function setIDCliente($IDC) { $this->IDCliente=$IDC; }
-    public function setIDProfessionista($IDP) { $this->IDProfessionista=$IDP; }
+    public function setIDCliente($IDC) {
+        $pattern = '#^([0-9]){1,6}$#';
+        if(preg_match($pattern, $IDC) != 1) {
+            throw new PDOException("ID Cliente non valido.");
+        }
+        $this->IDCliente = $IDC;
+    }
+
+    public function setIDProfessionista($IDP) {
+        $pattern = "#^[0-9]{1,6}$#";
+        if(preg_match($pattern, $IDP) != 1) {
+            throw new PDOException("ID Professionista non valido.");
+        }
+        $this->IDProfessionista=$IDP;
+    }
     public function getData() { return $this->data; }
     public function getOrario() { return $this->orario; }
     public function getVisita() { return $this->visita; }

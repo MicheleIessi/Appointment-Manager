@@ -9,16 +9,28 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <title>prova</title>
+        <link rel="stylesheet" href="css/jquery.weekcalendar.css" />
+
+        <script type="text/javascript" src="JS/jquery.min.js"></script>
+        <script type="text/javascript" src="JS/jquery-ui.js"></script>
+        <script type="text/javascript" src="JS/jquery.weekcalendar.js"></script>
+        <script type="text/javascript" src="JS/JIndex.js"></script>
+
+
+
+
     </head>
     <body>
-        <?php
 
-        require_once 'includes/autoload.inc.php';
-            $Fser = new FServizio();
-            $Eser = $Fser->caricaServizioDaDb("Visita specifica");
-            $Eser->setDurata(2);
-            $Fser->aggiornaServizio($Eser);
-        ?>
+        <div id="calendar">
+
+
+
+        </div>
+
+
+
+
     </body>
 </html>
 

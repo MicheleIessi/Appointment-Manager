@@ -19,7 +19,7 @@ class View extends Smarty {
         $this->setConfigDir($config['smarty']['config_dir']);           // directory dei configs
         $this->setCacheDir($config['smarty']['cache_dir']);             // directory della cache
         $this->url = $config['url'];                                    // url predefinito
-        
+
         $this->assign('url', $this->url);
         $this->caching = false;
     }

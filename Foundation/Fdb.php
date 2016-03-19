@@ -19,7 +19,7 @@ class Fdb {
     protected $old_keys;               //Per i prepared statements
     private static $set = false;       //Per assicurare che ci sia al massimo una connessione per volta
 
-    public function __construct() {
+    protected function __construct() {
         require_once 'includes/config.inc.php';
         /** @var string $dbms è la stringa che specifica il db che si usa nel file di configurazione */
         /** @var string $config è il file di configurazione*/

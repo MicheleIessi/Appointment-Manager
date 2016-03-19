@@ -12,13 +12,17 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-            require_once 'includes/autoload.inc.php';
+
+        require_once 'includes/autoload.inc.php';
             $ser = new FServizio();
-            $eser = $ser->caricaServizioDaDb("Visita generica");
-            $eapp = new EAppuntamento(date('Y-m-d'),"00:00",$eser,"123456","456789");
-            $app = new FAppuntamento();
-            $app->inserisciAppuntamento($eapp);
-            $app->cancellaAppuntamento($eapp);
+            $eser = $ser->caricaServizioDaDb("Visita");
+            $Fapp = new FAppuntamento();
+            $app = $Fapp->caricaAppuntamentoDaDb("123456,222222,2016-03-19");
+            $eser->setNomeServizio("Prova");
+            $ser->aggiornaServizio($eser);
+            $app->setVisita($eser);
+            $app->setIDProfessionista("123457");
+            $Fapp->aggiornaAppuntamento($app);
         ?>
     </body>
 </html>

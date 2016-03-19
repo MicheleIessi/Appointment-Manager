@@ -25,8 +25,8 @@ class EServizio {
     public function getDescrizione() { return $this->descrizione; }
     public function getSettore() { return $this->settore; }
     public function getDurata() { return $this->durata; }
-
     // Metodo di utilità per il lato Foundation
+
     public function getArrayAttributi() {
         return array($this->nomeServizio,$this->descrizione,$this->settore,$this->durata);
     }

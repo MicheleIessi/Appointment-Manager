@@ -14,19 +14,19 @@ class EAppuntamento {
     prima che venisse modificato     */
     
     // Costruttore
-    public function __construct($d, $o, $v, $IDC, $IDP) {
+    public function __construct($IDP,$IDC,$d,$o,$v) {
+        $this->setIDProfessionista($IDP);
+        $this->setIDCliente($IDC);
         $this->setData($d);
         $this->setOrario($o);
         $this->setVisita($v);
-        $this->setIDCliente($IDC);
-        $this->setIDProfessionista($IDP);
     }
     
     // Metodi (aggiungere controlli)
     public function setData($d)    {
         $pattern = "#^(\d{4})-(0[1-9]|1[0-2])-([1-9]|1[0-9]|2[0-9]|3[0-1])$#";
         if(preg_match($pattern, $d) != 1) {
-            throw new Exception("Data non valida", 1);
+            throw new PDOException("Data non valida", 1);
         }
         $this->data = $d;
     }
@@ -36,7 +36,7 @@ class EAppuntamento {
         $ore = explode("-", $o);
         foreach ($ore as $orario) {
             if(preg_match($pattern, $orario) != 1) {
-            throw new Exception("Orario non valido", 1);
+            throw new PDOException("Orario non valido: inserire un orario tra 00:00 e 23:59", 1);
             }
         }
         $this->orario = $o;
@@ -47,7 +47,7 @@ class EAppuntamento {
             $this->visita = new EServizio(null,null,null,0);    // Costruttore di default
         }
         if( !( is_a($v, "EServizio")))    {    
-            throw new Exception("Variabile non valida", 1);   }
+            throw new PDOException("Variabile non valida: deve essere un'istanza di EServizio, variabile di tipo ".gettype($v)." passata.", 1);   }
         else    {
         $this->visita=$v;   // Composizione 
         }

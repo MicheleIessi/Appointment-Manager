@@ -8,19 +8,16 @@
  */
 
 class Fdb {
-    /**
-     * @var PDO Variabile di connessione al database
-     */
-    protected static $db;
+    protected static $db;              //Variabile per la connessione al database
     private $result;                   //Variabile contenente il risultato dell'ultima query
     protected $table;                  //Variabile contenente il nome della tabella
     protected $primary_key;            //Key della tabella
     protected $attributi;              //Variabile contenente gli attributi della tabella
     protected $return_class;           //Variabile contenente il tipo di classe da restituire
-    protected $auto_increment=false;   //Variabile booleana tabella con chiave automatica o no
     protected $bind;                   //Per i prepared statements
     protected $bind_key;               //Per i prepared statements
-    private static $set = false;
+    protected $old_keys;               //Per i prepared statements
+    private static $set = false;       //Per assicurare che ci sia al massimo una connessione per volta
 
     public function __construct() {
         require_once 'includes/config.inc.php';
@@ -95,23 +92,25 @@ class Fdb {
         $chiaviAttr = array_keys($data);
         $sql = "UPDATE $this->table SET ";
         while($j<$imax) {
-            $sql.=" $attr[$j] = $chiaviAttr[$j],";
+            $sql.=" $attr[$j] = ".$chiaviAttr[$j].",";
             $j++;
         }
         $sql = rtrim($sql,',');
         $sql.=" WHERE";
         $Primary = explode(',',$this->primary_key);
-        $BindKey = explode(',',$this->bind_key);
+        $BindOldKey = explode(',',$this->old_keys);
         $imax=count($Primary);
         for($i=0;$i<$imax;$i++) {
-            $sql.=" $Primary[$i] = $BindKey[$i] AND";
+            $sql.=" $Primary[$i] = '".$BindOldKey[$i]."' AND";
         }
         $sql = rtrim($sql,'AND');
-        echo $sql;
+        echo $sql."<br>";
         $query = self::$db->prepare($sql);
         $rows=0;
         try {
             $this->result = $query->execute($data);
+            var_dump($query->errorInfo());
+            $query->debugDumpParams();
             $rows = $query->rowCount();
         } catch (PDOException $e) {
             echo 'Error: '.$e->getMessage();
@@ -119,6 +118,12 @@ class Fdb {
         return $rows;
     }
 
+    /** Il metodo 'carica' prende in input un array associativo con elementi del tipo {[:nomeAttributo]=>valore} e usa
+     * gli attributi degli oggetti Foundation che si estendono da Fdb per fare una query corretta di tipo SELECT in base
+     * ai bind e nomi di attributi corretti.
+     * @param $data array associativo usato per il funzionamento corretto dei prepared statements
+     * @return mixed array associativo che le classi Foundation useranno per creare oggetti Entity
+     */
     protected function carica($data) {
         $sql="SELECT * FROM $this->table WHERE ";
         $Primary = explode(',',$this->primary_key);
@@ -143,14 +148,13 @@ class Fdb {
         return self::$set;
     }
 
-    protected function setParam($tabella,$chiavi,$bindings,$bindkey)
-    {
+    protected function setParam($tabella,$chiavi,$bindings,$bindkey,$oldkey) {
         $this->table=$tabella;
         $this->attributi=$chiavi;
         $this->bind=$bindings;
         $this->bind_key=$bindkey;
+        $this->old_keys=$oldkey;
     }
-
 
     // METODO DI SUPPORTO: cambia le chiavi dell'array passato nei bind della classe estesa da Fdb che chiama il metodo
     protected function cambiaChiaviArray($arr) {
@@ -166,7 +170,9 @@ class Fdb {
     protected static function getDB() {
         return self::$db;
     }
+
+    protected function getOldKeys() {
+        return $this->old_keys;
+    }
 }
-
-
 ?>

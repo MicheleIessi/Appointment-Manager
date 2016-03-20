@@ -9,9 +9,9 @@ class EUtente {
     protected $sesso;
     protected $email;
     protected $password;
-    private static $totID = 1;
-    
-    public function __construct($n, $c, $dn, $cf, $s, $e, $p, $id) {
+
+    public function __construct($n, $c, $dn, $cf, $s, $e, $p,$numID=null) {
+        $this->setID($numID);
         $this->setNome($n);
         $this->setCognome($c);
         $this->setDataNascita($dn);
@@ -19,7 +19,6 @@ class EUtente {
         $this->setSesso($s);
         $this->setEmail($e);
         $this->setPassword($p);
-
     }
 
     public function setNome($n) {
@@ -78,9 +77,11 @@ class EUtente {
     }
     
     public function setID($n) {
-        $pattern = "#^[0-9]{1,6}#";
-        if(preg_match($pattern, $n) != 1) {
-            throw new Exception("ID non valido", 1);
+        if(!is_null($n)) {
+            $pattern = "#^[0-9]{1,6}#";
+            if (preg_match($pattern, $n) != 1) {
+                throw new Exception("ID non valido", 1);
+            }
         }
         $this->numID = $n;
     }
@@ -94,5 +95,8 @@ class EUtente {
     public function getID()             { return $this->numID; }
 
     // Metodo di utilità per il lato Foundation
-
+    public function getArrayAttributi() {
+        return array($this->numID,$this->nome,$this->cognome,$this->dataNascita,
+                     $this->codiceFiscale,$this->sesso,$this->email,$this->password);
+    }
 }

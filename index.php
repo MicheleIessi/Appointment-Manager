@@ -9,18 +9,29 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <title>prova</title>
-        <link rel="stylesheet" href="css/jquery.weekcalendar.css" />
-
+        <link rel="stylesheet" type="text/css" href="css/jquery.weekcalendar.css" />
         <script type="text/javascript" src="JS/jquery.min.js"></script>
         <script type="text/javascript" src="JS/jquery-ui.js"></script>
         <script type="text/javascript" src="JS/jquery.weekcalendar.js"></script>
         <script type="text/javascript" src="JS/JIndex.js"></script>
-
-
-
-
     </head>
     <body>
+    <?php
+
+        require_once('includes/autoload.inc.php');
+
+
+        $fu = new FUtente();
+        $utente = $fu->caricaUtenteDaDb('15');
+
+        echo $utente->getNome();
+
+
+
+
+
+    ?>
+
     </body>
 </html>
 

@@ -15,7 +15,7 @@ class FAppuntamento extends Fdb  {
     }
 
     public function inserisciAppuntamento(EAppuntamento $app) {
-        parent::setParam($this->table,$this->attributi,$this->bind,$this->bind_key,$this->old_keys);
+        $this->setParametri();
         $valori = parent::cambiaChiaviArray($app->getArrayAttributi());
         $valori[':visita'] = $valori[':visita']->getNomeServizio();
         try {
@@ -30,7 +30,7 @@ class FAppuntamento extends Fdb  {
     }
 
     public function cancellaAppuntamento(EAppuntamento $app) {
-        parent::setParam($this->table,$this->attributi,$this->bind,$this->bind_key,$this->old_keys);
+        $this->setParametri();
         $valori = parent::cambiaChiaviArray($app->getArrayAttributi());
         $valori[':visita'] = $valori[':visita']->getNomeServizio();
         try {
@@ -44,12 +44,12 @@ class FAppuntamento extends Fdb  {
     }
 
     public function aggiornaAppuntamento(EAppuntamento $app) {
-        parent::setParam($this->table,$this->attributi,$this->bind,$this->bind_key,$this->old_keys);
+        $this->setParametri();
         $valori = parent::cambiaChiaviArray($app->getArrayAttributi());
         $valori[':visita'] = $valori[':visita']->getNomeServizio();
         try {
             if(parent::aggiorna($valori) == 0) {
-                throw new PDOException("Impossibile modificare l'appuntamento.");
+                throw new PDOException("Impossibile modificare l'appuntamento.<br>");
             }
             else
                 echo "Appuntamento con ID Professionista: '" . $valori[':IDP'] . "', ID Cliente: '" . $valori[':IDC'] . "' in data " . $valori[':data'] . " modificato correttamente.";
@@ -57,8 +57,10 @@ class FAppuntamento extends Fdb  {
             echo $e->getMessage();
         }
     }
+
+
     public function caricaAppuntamentoDaDb($key) {
-        parent::setParam($this->table,$this->attributi,$this->bind,$this->bind_key,$this->old_keys);
+        $this->setParametri();
         $valori=explode(',',$key);
         $binding=explode(',',$this->bind_key);
         $i=0;
@@ -75,6 +77,11 @@ class FAppuntamento extends Fdb  {
         $app = new $this->return_class($arrayApp[0],$arrayApp[1],$arrayApp[2],$arrayApp[3],$servizio);
         echo "Appuntamento caricato correttamente <br>";
         return $app;
+    }
+
+
+    private function setParametri() {
+        parent::setParam($this->table,$this->attributi,$this->bind,$this->bind_key,$this->old_keys);
     }
 
 }

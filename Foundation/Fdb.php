@@ -153,6 +153,27 @@ class Fdb {
         $this->old_keys=$oldkey;
     }
 
+    protected function caricaConChiave($data,$chiave) {
+        $sql="SELECT * FROM $this->table WHERE ";
+        $chiaveArr = explode(',',$chiave);
+        $BindKey = array_keys($data);
+        $imax=count($BindKey);
+        for($i=0;$i<$imax;$i++) {
+            $sql.=" $chiaveArr[$i] = $BindKey[$i] AND";
+        }
+        $sql = rtrim($sql,'AND');
+        $query=self::$db->prepare($sql);
+        try {
+            $query->execute($data);
+            $query->setFetchMode(PDO::FETCH_ASSOC);
+            $this->result = $query->fetch();
+        } catch (PDOException $e) {
+            echo 'Error: '.$e->getMessage();
+        }
+        return $this->result;
+
+    }
+
     // METODO DI SUPPORTO: cambia le chiavi dell'array passato nei bind della classe estesa da Fdb che chiama il metodo
     protected function cambiaChiaviArray($arr) {
         $chiavi = explode(',',$this->bind);

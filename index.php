@@ -1,5 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
+<<<<<<< HEAD
 <head>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
   <title>Demo 4 - jQuery Week Calendar</title>
@@ -16,6 +17,21 @@
     margin: 0 0 1em;
     padding: 0.5em 0.5em 0;
   }
+=======
+    <head>
+        <meta charset="UTF-8">
+        <title>prova</title>
+        <link rel="stylesheet" type="text/css" href="css/jquery.weekcalendar.css" />
+        <script type="text/javascript" src="JS/jquery.min.js"></script>
+        <script type="text/javascript" src="JS/jquery-ui.js"></script>
+        <script type="text/javascript" src="JS/jquery.weekcalendar.js"></script>
+        <script type="text/javascript" src="JS/JIndex.js"></script>
+    </head>
+    <body>
+    <?php
+
+        require_once('includes/autoload.inc.php');
+>>>>>>> 6140b2a9297b1a29482f4fa145bc4b71520a7b73
 
   p.description {
     font-size: 0.8em;
@@ -24,6 +40,7 @@
     margin-right: 400px;
   }
 
+<<<<<<< HEAD
   #message {
     font-size: 0.7em;
     position: absolute;
@@ -62,6 +79,21 @@
   $(document).ready(function() {
     $('#calendar').weekCalendar({
       data: eventData,
+=======
+        $fu = new FUtente();
+        $utente = $fu->caricaUtenteDaDb('15');
+
+        echo $utente->getNome();
+
+
+
+
+
+    ?>
+
+    </body>
+</html>
+>>>>>>> 6140b2a9297b1a29482f4fa145bc4b71520a7b73
 
       timeslotsPerHour: 4,
       allowCalEventOverlap: false,

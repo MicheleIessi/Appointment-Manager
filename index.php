@@ -21,10 +21,15 @@ and open the template in the editor.
         require_once('includes/autoload.inc.php');
 
 
-        $fu = new FUtente();
-        $utente = $fu->caricaUtenteDaDb('15');
 
-        echo $utente->getNome();
+        $age = new EAgenda(array(),30);
+        $giorniDisponibile=array(
+            'lun'=>'00:00-1:00,14:00-18:00',
+            'mar'=>'00:00-8:00',
+            'mer'=>'07:00-15:00',
+            'gio'=>''
+        );
+        $age->setOrari($giorniDisponibile);
 
 
 

@@ -1,12 +1,12 @@
 <?php
 class EProfessionista extends EUtente {
 
-    private $serviziOfferti = [];
-    private $settore = [];
+    private $serviziOfferti = array();
+    private $settore;
     private $orari;
     private $agendaLavoro;
         
-    public function __construct($n, $c, $dn, $cf, $s, $e, $p, $id, $so, $set, $or) {  // ricontrollare se va bene &$so
+    public function __construct($n, $c, $dn, $cf, $s, $e, $p, $id, $so, $set, $or) {
         parent::__construct($n, $c, $dn, $cf, $s, $e, $p, $id);
         $this->setServiziOfferti($so);
         $this->setSettore($set);
@@ -14,23 +14,23 @@ class EProfessionista extends EUtente {
         $this->setAgendaLavoro();
     }
     
-    public function setServiziOfferti($so) {       // passaggio per riferimento
+    public function setServiziOfferti($so) {
         $this->serviziOfferti = [];
         foreach ($so as $servizio) {
-            array_push($this->serviziOfferti, $servizio);      //passaggio per riferimento
+            array_push($this->serviziOfferti, $servizio);
         }
     }
     
     public function setSettore($set) {
-        $this->settore = [];
+        $this->settore = array();
         foreach ($set as $value) {
             array_push($this->settore, $value);
         }
     }
     
     public function setOrari($or) {
-        $pattern = "#^(2[0-3]|[01][0-9]):([0-5][0-9])$#";
-        $ore = explode("-", $or);
+        $pattern = "#^((2[0-3]|[01][0-9]):([0-5][0-9])-(2[0-3]|[01][0-9]):([0-5][0-9]),?)+$#";
+        $ore = explode(",", $or);
         foreach ($ore as $orario) {
             if(preg_match($pattern, $orario) != 1) {
                 throw new Exception("Orario non valido", 1);

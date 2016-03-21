@@ -2,6 +2,9 @@
 
 class FUtente extends Fdb   {
 
+    private $login_key='email,password';
+    private $login_bind=':email,:password';
+
     public function __construct() {
         if(!parent::isOn())
             parent::__construct();
@@ -12,6 +15,7 @@ class FUtente extends Fdb   {
         $this->bind = ':numID,:nome,:cognome,:dataNascita,:codiceFiscale,:sesso,:email,:password';
         $this->bind_key = ':numID';
         $this->old_keys;
+
     }
 
     public function inserisciUtente(EUtente $u) {
@@ -94,6 +98,28 @@ class FUtente extends Fdb   {
         return $ute;
     }
 
+    /**
+     * @param $email
+     * @param $password
+     * @return EUtente
+     */
+    public function caricaUtenteDaLogin($email,$password) {
+        $this->setParametri();
+        $valori=array($email,$password);
+        $binding=explode(',',$this->login_bind);
+        $i=0;
+        $arr=array();
+        foreach($valori as $str) {
+            $arr["$binding[$i]"]=$str;
+            $i++;
+        }
+        $arrayUte=parent::caricaConChiave($arr,$this->login_key);
+        $arrayUte = array_values($arrayUte);
+        $ute = new $this->return_class($arrayUte[1],$arrayUte[2],$arrayUte[3],$arrayUte[4],
+            $arrayUte[5],$arrayUte[6],$arrayUte[7],$arrayUte[0]);
+        echo "Utente {$ute->getNome()} {$ute->getCognome()} ha effettuato correttamente il login.<br>";
+        return $ute;
+    }
 
 
 

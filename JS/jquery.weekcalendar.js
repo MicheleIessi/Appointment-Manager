@@ -202,7 +202,7 @@
          * should the calendar display freebusys ?
          * @type {boolean}
          */
-        displayFreeBusys: false,
+        displayFreeBusys: true,
         /**
          * read the id(s) for who the freebusy is available
          * @param {Object} calEvent the calEvent to read informations from.
@@ -216,7 +216,7 @@
          * the default freeBusy object, used to manage default state
          * @type {Object}
          */
-        defaultFreeBusy: {free: false},
+        defaultFreeBusy: {free: true},
         /**
          * function used to display the freeBusy element
          * @type {Function}

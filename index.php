@@ -61,7 +61,6 @@
   };
   $(document).ready(function() {
 
-
    var $calendar = $('#calendar');
    var id = 10;
 
@@ -199,6 +198,7 @@
       },
       data : function(start, end, callback) {
          callback(getEventData());
+<<<<<<< HEAD
       }
    });
 
@@ -342,6 +342,151 @@
       }).show();
    });
 
+=======
+      }
+   });
+
+   function resetForm($dialogContent) {
+      $dialogContent.find("input").val("");
+      $dialogContent.find("textarea").val("");
+   }
+
+   function getEventData() {
+      var year = new Date().getFullYear();
+      var month = new Date().getMonth();
+      var day = new Date().getDate();
+
+      return {
+         events : [
+            {
+               "id":1,
+               "start": new Date(year, month, day, 12),
+               "end": new Date(year, month, day, 13, 30),
+               "title":"Lunch with Mike"
+            },
+            {
+               "id":2,
+               "start": new Date(year, month, day, 14),
+               "end": new Date(year, month, day, 14, 45),
+               "title":"Dev Meeting"
+            },
+            {
+               "id":3,
+               "start": new Date(year, month, day + 1, 17),
+               "end": new Date(year, month, day + 1, 17, 45),
+               "title":"Hair cut"
+            },
+            {
+               "id":4,
+               "start": new Date(year, month, day - 1, 8),
+               "end": new Date(year, month, day - 1, 9, 30),
+               "title":"Team breakfast"
+            },
+            {
+               "id":5,
+               "start": new Date(year, month, day + 1, 14),
+               "end": new Date(year, month, day + 1, 15),
+               "title":"Product showcase"
+            },
+            {
+               "id":6,
+               "start": new Date(year, month, day, 10),
+               "end": new Date(year, month, day, 11),
+               "title":"I'm read-only",
+               readOnly : true
+            },
+            {
+               "id":7,
+               "start": new Date(year, month, day + 2, 17),
+               "end": new Date(year, month, day + 3, 9),
+               "title":"Multiday"
+            }
+         ]
+      };
+   }
+
+
+   /*
+    * Sets up the start and end time fields in the calendar event
+    * form for editing based on the calendar event being edited
+    */
+   function setupStartAndEndTimeFields($startTimeField, $endTimeField, calEvent, timeslotTimes) {
+
+      $startTimeField.empty();
+      $endTimeField.empty();
+
+      for (var i = 0; i < timeslotTimes.length; i++) {
+         var startTime = timeslotTimes[i].start;
+         var endTime = timeslotTimes[i].end;
+         var startSelected = "";
+         if (startTime.getTime() === calEvent.start.getTime()) {
+            startSelected = "selected=\"selected\"";
+         }
+         var endSelected = "";
+         if (endTime.getTime() === calEvent.end.getTime()) {
+            endSelected = "selected=\"selected\"";
+         }
+         $startTimeField.append("<option value=\"" + startTime + "\" " + startSelected + ">" + timeslotTimes[i].startFormatted + "</option>");
+         $endTimeField.append("<option value=\"" + endTime + "\" " + endSelected + ">" + timeslotTimes[i].endFormatted + "</option>");
+
+         $timestampsOfOptions.start[timeslotTimes[i].startFormatted] = startTime.getTime();
+         $timestampsOfOptions.end[timeslotTimes[i].endFormatted] = endTime.getTime();
+
+      }
+      $endTimeOptions = $endTimeField.find("option");
+      $startTimeField.trigger("change");
+   }
+
+   var $endTimeField = $("select[name='end']");
+   var $endTimeOptions = $endTimeField.find("option");
+   var $timestampsOfOptions = {start:[],end:[]};
+
+   //reduces the end time options to be only after the start time options.
+   $("select[name='start']").change(function() {
+      var startTime = $timestampsOfOptions.start[$(this).find(":selected").text()];
+      var currentEndTime = $endTimeField.find("option:selected").val();
+      $endTimeField.html(
+            $endTimeOptions.filter(function() {
+               return startTime < $timestampsOfOptions.end[$(this).text()];
+            })
+            );
+
+      var endTimeSelected = false;
+      $endTimeField.find("option").each(function() {
+         if ($(this).val() === currentEndTime) {
+            $(this).attr("selected", "selected");
+            endTimeSelected = true;
+            return false;
+         }
+      });
+
+      if (!endTimeSelected) {
+         //automatically select an end date 2 slots away.
+         $endTimeField.find("option:eq(1)").attr("selected", "selected");
+      }
+
+   });
+
+
+   var $about = $("#about");
+
+   $("#about_button").click(function() {
+      $about.dialog({
+         title: "About this calendar demo",
+         width: 600,
+         close: function() {
+            $about.dialog("destroy");
+            $about.hide();
+         },
+         buttons: {
+            close : function() {
+               $about.dialog("close");
+            }
+         }
+      }).show();
+   });
+
+>>>>>>> 32e96a87289b3d84a2bd41d730215cd43ae01984
 
 });
   </script>

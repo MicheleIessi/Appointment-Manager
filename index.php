@@ -61,7 +61,6 @@
   };
   $(document).ready(function() {
 
-
    var $calendar = $('#calendar');
    var id = 10;
 

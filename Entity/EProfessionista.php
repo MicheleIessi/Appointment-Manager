@@ -1,9 +1,14 @@
 <?php
+
+/**
+ * Class EProfessionista
+ */
 class EProfessionista extends EUtente {
 
     private $serviziOfferti = array();
     private $settore;
     private $orari;
+    /** @var  EAgenda */
     private $agendaLavoro;
         
     public function __construct($n, $c, $dn, $cf, $s, $e, $p, $id, $so, $set, $or) {
@@ -27,36 +32,27 @@ class EProfessionista extends EUtente {
             array_push($this->settore, $value);
         }
     }
-    
+    //$or è una stringa rappresentante un qualsiasi numero di range di orari nel formato hh:mm-hh:mm separati da virgole
     public function setOrari($or) {
         $pattern = "#^((2[0-3]|[01][0-9]):([0-5][0-9])-(2[0-3]|[01][0-9]):([0-5][0-9]),?)+$#";
         $ore = explode(",", $or);
         foreach ($ore as $orario) {
-            if(preg_match($pattern, $orario) != 1) {
-                throw new Exception("Orario non valido", 1);
+            if(preg_match($pattern, $orario) == 1) {
+
+
+
+
+
             }
+            else
+                throw new Exception("Orario non valido", 1);
         }
         $this->orari = $or;
     }
     
     public function setAgendaLavoro() {
-        $this->agendaLavoro = new EAgenda([]);
-        $intervallo = explode('-', $this->orari);
-        $i= array_search($intervallo[0], $this->agendaLavoro->getChiaviBlocchi());     // Ora inizio
-        $f= array_search($intervallo[1], $this->agendaLavoro->getChiaviBlocchi());     // Ora fine
-        echo "<br>". $i . "<- inizio <br> ".$f."<- fine";
-        $ora = 0;
-        
-        foreach ($this->agendaLavoro->getBlocchi() as $blocco) {
-            if($ora >= $i && $ora < $f) {
-                $this->agendaLavoro->cambiaBlocco($ora, false);
-            }
-            else {
-                $this->agendaLavoro->cambiaBlocco($ora, null);
-            }
-            $ora++;
 
-        }       
+
     }
     
     public function getServiziOfferti()     {
@@ -95,4 +91,12 @@ class EProfessionista extends EUtente {
             throw new Exception ("Servizio non presente", 2);
         }
     }
+    private function convertiOraInBlocco($ora) {
+        $arrayOra=explode(':',$ora);
+        $bloccoOra=($arrayOra[0]*60)/$this->agendaLavoro->getDurataBlocco();
+        $bloccoMinuti=($arrayOra[1]/$this->agendaLavoro->getDurataBlocco());
+        $blocco=$bloccoOra+$bloccoMinuti;
+        return $blocco;
+    }
+
 }

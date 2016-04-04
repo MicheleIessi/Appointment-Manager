@@ -1,5 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
+<<<<<<< HEAD
     <head>
         <meta charset='utf-8' />
         <link href='JS/fullcalendar-2.6.1/fullcalendar.css' rel='stylesheet' />
@@ -159,7 +160,6 @@
                     margin: 0;
                     vertical-align: middle;
             }
-
             #calendar {
                     float: right;
                     width: 900px;

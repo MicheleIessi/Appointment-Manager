@@ -1,354 +1,195 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
-<head>
-  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-  <title>Prova Calendario</title>
+    <head>
+        <meta charset='utf-8' />
+        <link href='JS/fullcalendar-2.6.1/fullcalendar.css' rel='stylesheet' />
+        <link href='JS/fullcalendar-2.6.1//fullcalendar.print.css' rel='stylesheet' media='print' />
+        <script src='JS/fullcalendar-2.6.1/lib/moment.min.js'></script>
+        <script src='JS/fullcalendar-2.6.1/lib/jquery.min.js'></script>
+        <script src='JS/fullcalendar-2.6.1/lib/jquery-ui.custom.min.js'></script>
+        <script src='JS/fullcalendar-2.6.1/fullcalendar.min.js'></script>
+        <script src='JS/fullcalendar-2.6.1/lang-all.js'></script>
+        <script>
 
-  <link rel='stylesheet' type='text/css' href='css/jquery-ui-1.8.11.custom.css' />
-  <link rel='stylesheet' type='text/css' href='css/jquery.weekcalendar.css' />
-  <style type='text/css'>
-  body {
-    font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
-    margin: 0;
-  }
-  h1 {
-    margin: 0 0 1em;
-    padding: 0.5em 0.5em 0;
-  }
-  p.description {
-    font-size: 0.8em;
-    padding: 1em;
-    top: 3.2em;
-    margin-right: 400px;
-  }
-  #message {
-    font-size: 0.7em;
-    position: absolute;
-    top: 1em;
-    right: 1em;
-    width: 350px;
-    display: none;
-    padding: 1em;
-    background: #ffc;
-    border: 1px solid #dda;
-  }
-  </style>
+            $(document).ready(function() {
 
-  <script type='text/javascript' src='JS/jquery-1.4.4.min.js'></script>
-  <script type='text/javascript' src='JS/jquery-ui-1.8.11.custom.min.js'></script>
 
-  <script type="text/javascript" src="JS/date.js"></script>
-  <script type='text/javascript' src='JS/jquery.weekcalendar.js'></script>
+                    /* initialize the external events
+                    -----------------------------------------------------------------*/
 
-  <script type='text/javascript'>
-      
-  var year = new Date().getFullYear();
-  var month = new Date().getMonth();
-  var day = new Date().getDate();
-  var eventData = {
-    events : [
-       {'id':1, 'start': new Date(year, month, day, 12), 'end': new Date(year, month, day, 13, 35),'title':'Lunch with Mike'},
-       {'id':2, 'start': new Date(year, month, day, 14), 'end': new Date(year, month, day, 14, 45),'title':'Dev Meeting'},
-       {'id':3, 'start': new Date(year, month, day + 1, 18), 'end': new Date(year, month, day + 1, 18, 45),'title':'Hair cut'},
-       {'id':4, 'start': new Date(year, month, day - 1, 8), 'end': new Date(year, month, day - 1, 9, 30),'title':'Team breakfast'},
-       {'id':5, 'start': new Date(year, month, day + 1, 14), 'end': new Date(year, month, day + 1, 16),'title':'Product showcase'},
-       {'id':5, 'start': new Date(year, month, day + 1, 15), 'end': new Date(year, month, day + 1, 17),'title':'Overlay event'}
-    ],
-    freebusys: [
-      {"start":"2016-05-03T00:00:00.000+10:00", "end":"2016-05-03T24:00:00.000+10:00", "free": false},
-      {"start":"2016-05-08T08:00:00.000+10:00", "end":"2016-05-09T24:00:00.000+10:00", "free": false}
-    ]
-  };
-  $(document).ready(function() {
+                    $('#external-events .fc-event').each(function() {
 
-   var $calendar = $('#calendar');
-   var id = 10;
+                            // store data so the calendar knows to render an event upon drop
+                            $(this).data('event', {
+                                    title: $.trim($(this).text()), // use the element's text as the event title
+                                    stick: true // maintain when user navigates (see docs on the renderEvent method)
+                            });
 
-   $calendar.weekCalendar({
-      displayOddEven:true,
-      timeslotsPerHour : 4,
-      allowCalEventOverlap : false,
-      overlapEventsSeparate: false,
-      firstDayOfWeek : 1,
-      businessHours :{start: 8, end: 18, limitDisplay: false },
-      daysToShow : 7,
-      switchDisplay: {'1 day': 1, '3 next days': 3, 'work week': 5, 'full week': 7},
-      title: function(daysToShow) {
-			return daysToShow == 1 ? '%date%' : '%start% - %end%';
-      },
-      height : function($calendar) {
-         return $(window).height() - $("h1").outerHeight() - 1;
-      },
-      eventRender : function(calEvent, $event) {
-         if (calEvent.end.getTime() < new Date().getTime()) {
-            $event.css("backgroundColor", "#aaa");
-            $event.find(".wc-time").css({
-               "backgroundColor" : "#999",
-               "border" : "1px solid #888"
+                            // make the event draggable using jQuery UI
+                            $(this).draggable({
+                                    zIndex: 999,
+                                    revert: true,      // will cause the event to go back to its
+                                    revertDuration: 0  //  original position after the drag
+                            });
+
+                    });
+
+
+                    /* initialize the calendar
+                    -----------------------------------------------------------------*/
+
+                    $('#calendar').fullCalendar({
+                        
+                            header: {
+                                    left: 'prev,next today',
+                                    center: 'title',
+                                    right: 'month,agendaWeek,agendaDay'
+                            },
+                            editable: true,
+                            droppable: true,    // this allows things to be dropped onto the calendar
+                            drop: function() {
+                                    // is the "remove after drop" checkbox checked?
+                                    if ($('#drop-remove').is(':checked')) {
+                                            // if so, remove the element from the "Draggable Events" list
+                                            $(this).remove();
+                                    }
+                            },
+                            firstDay: 1,
+                            defaultView: 'agendaWeek',
+                            
+                            views: {
+                                agenda: {
+                                allDaySlot: false,
+                                slotDuration: '00:10:00',
+                                slotLabelInterval: '01:00:00',
+                                slotEventOverlap: false
+                                }
+                            },
+                            
+                            nowIndicator: true,
+                            lang: 'it',
+                            timeFormat: 'H:mm',
+                            columnFormat: 'D dddd',
+                            titleFormat: 'D MMMM YYYY',
+                            displayEventTime: true,
+                            displayEventEnd: true,
+                            eventOverlap: false,
+                            defaultTimedEventDuration: '02:00:00',
+                            forceEventDuration: true,
+                            /*  
+        ---------------->   eventDataTransform da rivedere
+        ---------------->   vedere backgroundEvents ed eventConstraint per fissare gli orari disponibili 
+                            */
+                            eventDurationEditable: false,
+                            dragOpacity: .75,
+                            
+                            eventSources: [
+                            
+                                {   // array di eventi; forse meglio usare json
+                                    events: [
+                                        
+                                        {
+                                            id:"OrarioLavoro",
+                                            start: '08:00',
+                                            end: '20:00',
+                                            dow: [1,2,3,4,5],
+                                            rendering: 'background'
+                                        }
+                                        
+                                    ],
+                                    
+                                    // opzioni:
+                                    editable: false
+                                }
+                                
+                            // any other event sources...
+                            ]
+                            
+                            
+                            
+                    });
+
+
             });
-         }
-      },
-      draggable : function(calEvent, $event) {
-         return calEvent.readOnly != true;
-      },
-      resizable : function(calEvent, $event) {
-         return calEvent.readOnly != true;
-      },
-      eventNew : function(calEvent, $event) {
-         var $dialogContent = $("#event_edit_container");
-         resetForm($dialogContent);
-         var startField = $dialogContent.find("select[name='start']").val(calEvent.start);
-         var endField = $dialogContent.find("select[name='end']").val(calEvent.end);
-         var titleField = $dialogContent.find("input[name='title']");
-         var bodyField = $dialogContent.find("textarea[name='body']");
 
+        </script>
+        <style>
 
-         $dialogContent.dialog({
-            modal: true,
-            title: "New Calendar Event",
-            close: function() {
-               $dialogContent.dialog("destroy");
-               $dialogContent.hide();
-               $('#calendar').weekCalendar("removeUnsavedEvents");
-            },
-            buttons: {
-               save : function() {
-                  calEvent.id = id;
-                  id++;
-                  calEvent.start = new Date(startField.val());
-                  calEvent.end = new Date(endField.val());
-                  calEvent.title = titleField.val();
-                  calEvent.body = bodyField.val();
-
-                  $calendar.weekCalendar("removeUnsavedEvents");
-                  $calendar.weekCalendar("updateEvent", calEvent);
-                  $dialogContent.dialog("close");
-               },
-               cancel : function() {
-                  $dialogContent.dialog("close");
-               }
+            body {
+                    margin-top: 40px;
+                    text-align: center;
+                    font-size: 14px;
+                    font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
             }
-         }).show();
 
-         $dialogContent.find(".date_holder").text($calendar.weekCalendar("formatDate", calEvent.start));
-         setupStartAndEndTimeFields(startField, endField, calEvent, $calendar.weekCalendar("getTimeslotTimes", calEvent.start));
-
-      },
-      eventDrop : function(calEvent, $event) {
-        
-      },
-      eventResize : function(calEvent, $event) {
-      },
-      eventClick : function(calEvent, $event) {
-
-         if (calEvent.readOnly) {
-            return;
-         }
-
-         var $dialogContent = $("#event_edit_container");
-         resetForm($dialogContent);
-         var startField = $dialogContent.find("select[name='start']").val(calEvent.start);
-         var endField = $dialogContent.find("select[name='end']").val(calEvent.end);
-         var titleField = $dialogContent.find("input[name='title']").val(calEvent.title);
-         var bodyField = $dialogContent.find("textarea[name='body']");
-         bodyField.val(calEvent.body);
-
-         $dialogContent.dialog({
-            modal: true,
-            title: "Edit - " + calEvent.title,
-            close: function() {
-               $dialogContent.dialog("destroy");
-               $dialogContent.hide();
-               $('#calendar').weekCalendar("removeUnsavedEvents");
-            },
-            buttons: {
-               save : function() {
-
-                  calEvent.start = new Date(startField.val());
-                  calEvent.end = new Date(endField.val());
-                  calEvent.title = titleField.val();
-                  calEvent.body = bodyField.val();
-
-                  $calendar.weekCalendar("updateEvent", calEvent);
-                  $dialogContent.dialog("close");
-               },
-               "delete" : function() {
-                  $calendar.weekCalendar("removeEvent", calEvent.id);
-                  $dialogContent.dialog("close");
-               },
-               cancel : function() {
-                  $dialogContent.dialog("close");
-               }
+            #wrap {
+                    width: 1100px;
+                    margin: 0 auto;
             }
-         }).show();
 
-         var startField = $dialogContent.find("select[name='start']").val(calEvent.start);
-         var endField = $dialogContent.find("select[name='end']").val(calEvent.end);
-         $dialogContent.find(".date_holder").text($calendar.weekCalendar("formatDate", calEvent.start));
-         setupStartAndEndTimeFields(startField, endField, calEvent, $calendar.weekCalendar("getTimeslotTimes", calEvent.start));
-         $(window).resize().resize(); //fixes a bug in modal overlay size ??
-
-      },
-      eventMouseover : function(calEvent, $event) {
-      },
-      eventMouseout : function(calEvent, $event) {
-      },
-      noEvents : function() {
-
-      },
-      data : function(start, end, callback) {
-         callback(getEventData());
-      }
-   });
-
-   function resetForm($dialogContent) {
-      $dialogContent.find("input").val("");
-      $dialogContent.find("textarea").val("");
-   }
-
-   function getEventData() {
-      var year = new Date().getFullYear();
-      var month = new Date().getMonth();
-      var day = new Date().getDate();
-
-      return {
-         events : [
-            {
-               "id":1,
-               "start": new Date(year, month, day, 12),
-               "end": new Date(year, month, day, 13, 30),
-               "title":"Lunch with Mike"
-            },
-            {
-               "id":2,
-               "start": new Date(year, month, day, 14),
-               "end": new Date(year, month, day, 14, 45),
-               "title":"Dev Meeting"
-            },
-            {
-               "id":3,
-               "start": new Date(year, month, day + 1, 17),
-               "end": new Date(year, month, day + 1, 17, 45),
-               "title":"Hair cut"
-            },
-            {
-               "id":4,
-               "start": new Date(year, month, day - 1, 8),
-               "end": new Date(year, month, day - 1, 9, 30),
-               "title":"Team breakfast"
-            },
-            {
-               "id":5,
-               "start": new Date(year, month, day + 1, 14),
-               "end": new Date(year, month, day + 1, 15),
-               "title":"Product showcase"
-            },
-            {
-               "id":6,
-               "start": new Date(year, month, day, 10),
-               "end": new Date(year, month, day, 11),
-               "title":"I'm read-only",
-               readOnly : true
-            },
-            {
-               "id":7,
-               "start": new Date(year, month, day + 2, 17),
-               "end": new Date(year, month, day + 3, 9),
-               "title":"Multiday"
+            #external-events {
+                    float: left;
+                    width: 150px;
+                    padding: 0 10px;
+                    border: 1px solid #ccc;
+                    background: #eee;
+                    text-align: left;
             }
-         ]
-      };
-   }
 
-
-   /*
-    * Sets up the start and end time fields in the calendar event
-    * form for editing based on the calendar event being edited
-    */
-   function setupStartAndEndTimeFields($startTimeField, $endTimeField, calEvent, timeslotTimes) {
-
-      $startTimeField.empty();
-      $endTimeField.empty();
-
-      for (var i = 0; i < timeslotTimes.length; i++) {
-         var startTime = timeslotTimes[i].start;
-         var endTime = timeslotTimes[i].end;
-         var startSelected = "";
-         if (startTime.getTime() === calEvent.start.getTime()) {
-            startSelected = "selected=\"selected\"";
-         }
-         var endSelected = "";
-         if (endTime.getTime() === calEvent.end.getTime()) {
-            endSelected = "selected=\"selected\"";
-         }
-         $startTimeField.append("<option value=\"" + startTime + "\" " + startSelected + ">" + timeslotTimes[i].startFormatted + "</option>");
-         $endTimeField.append("<option value=\"" + endTime + "\" " + endSelected + ">" + timeslotTimes[i].endFormatted + "</option>");
-
-         $timestampsOfOptions.start[timeslotTimes[i].startFormatted] = startTime.getTime();
-         $timestampsOfOptions.end[timeslotTimes[i].endFormatted] = endTime.getTime();
-
-      }
-      $endTimeOptions = $endTimeField.find("option");
-      $startTimeField.trigger("change");
-   }
-
-   var $endTimeField = $("select[name='end']");
-   var $endTimeOptions = $endTimeField.find("option");
-   var $timestampsOfOptions = {start:[],end:[]};
-
-   //reduces the end time options to be only after the start time options.
-   $("select[name='start']").change(function() {
-      var startTime = $timestampsOfOptions.start[$(this).find(":selected").text()];
-      var currentEndTime = $endTimeField.find("option:selected").val();
-      $endTimeField.html(
-            $endTimeOptions.filter(function() {
-               return startTime < $timestampsOfOptions.end[$(this).text()];
-            })
-            );
-
-      var endTimeSelected = false;
-      $endTimeField.find("option").each(function() {
-         if ($(this).val() === currentEndTime) {
-            $(this).attr("selected", "selected");
-            endTimeSelected = true;
-            return false;
-         }
-      });
-
-      if (!endTimeSelected) {
-         //automatically select an end date 2 slots away.
-         $endTimeField.find("option:eq(1)").attr("selected", "selected");
-      }
-
-   });
-
-
-   var $about = $("#about");
-
-   $("#about_button").click(function() {
-      $about.dialog({
-         title: "About this calendar demo",
-         width: 600,
-         close: function() {
-            $about.dialog("destroy");
-            $about.hide();
-         },
-         buttons: {
-            close : function() {
-               $about.dialog("close");
+            #external-events h4 {
+                    font-size: 16px;
+                    margin-top: 0;
+                    padding-top: 1em;
             }
-         }
-      }).show();
-   });
 
+            #external-events .fc-event {
+                    margin: 10px 0;
+                    cursor: pointer;
+                    padding-left: 5px;
+            }
 
-});
-  </script>
-</head>
-<body>
-  <h1>Week Calendar Demo</h1>
+            #external-events p {
+                    margin: 1.5em 0;
+                    font-size: 11px;
+                    color: #666;
+                    
+            }
 
-  <div id="calendar"></div>
-  <div class="wc-full-height-column wc-column-freebusy wc-day-1" style="height: 1920px;"></div>
-</body>
+            #external-events p input {
+                    margin: 0;
+                    vertical-align: middle;
+            }
+
+            #calendar {
+                    float: right;
+                    width: 900px;
+            }
+
+            </style>
+
+    </head>
+    <body>
+	<div id='wrap'>
+
+		<div id='external-events'>
+			<h4>Draggable Events</h4>
+                        <!-- In seguito qui andrà inserito uno script che aggiunge dinamicamente gli eventi
+                             offerti dal professionista con le loro rispettive durate -->
+                        <div class='fc-event' data-duration='02:00'>My Event 1</div>
+			<div class='fc-event' data-duration='02:00'>My Event 2</div>
+			<div class='fc-event' data-duration='02:00'>My Event 3</div>
+			<div class='fc-event' data-duration='02:00'>My Event 4</div>
+			<div class='fc-event' data-duration='02:00'>My Event 5</div>
+			<p>
+				<input type='checkbox' id='drop-remove' />
+				<label for='drop-remove'>remove after drop</label>
+			</p>
+		</div>
+
+		<div id='calendar'></div>
+
+		<div style='clear:both'></div>
+
+	</div>
+    </body>
 </html>

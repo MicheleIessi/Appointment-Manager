@@ -51,6 +51,9 @@ class EAgenda {
         $this->settimana=$sett;
     }
 
+    /**
+     * @param array $a
+     */
     public function setOrari(array $a) {
         foreach($a as $giorno=>$orario) {
             $arr[$giorno] = explode(',',$orario);

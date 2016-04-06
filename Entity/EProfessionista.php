@@ -98,5 +98,4 @@ class EProfessionista extends EUtente {
         $blocco=$bloccoOra+$bloccoMinuti;
         return $blocco;
     }
-
 }

@@ -113,20 +113,26 @@ class FUtente extends Fdb   {
             $arr["$binding[$i]"]=$str;
             $i++;
         }
-        $arrayUte=parent::caricaConChiave($arr,$this->login_key);
-        $arrayUte = array_values($arrayUte);
-        $ute = new $this->return_class($arrayUte[1],$arrayUte[2],$arrayUte[3],$arrayUte[4],
-            $arrayUte[5],$arrayUte[6],$arrayUte[7],$arrayUte[0]);
-        echo "Utente {$ute->getNome()} {$ute->getCognome()} ha effettuato correttamente il login.<br>";
-        return $ute;
+        try {
+            $arrayUte = parent::caricaConChiave($arr, $this->login_key);
+            if($arrayUte == false) {
+                echo "Nessun risultato.<br>";
+            }
+            else {
+                $arrayUte = array_values($arrayUte);
+                $ute = new $this->return_class($arrayUte[1], $arrayUte[2], $arrayUte[3], $arrayUte[4],
+                    $arrayUte[5], $arrayUte[6], $arrayUte[7], $arrayUte[0]);
+                echo "Utente {$ute->getNome()} {$ute->getCognome()} ha effettuato correttamente il login.<br>";
+                return $ute;
+            }
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
     }
-
-
-
-
 
     private function setParametri() {
         parent::setParam($this->table,$this->attributi,$this->bind,$this->bind_key,$this->old_keys);
     }
+
 
 }

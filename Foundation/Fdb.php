@@ -153,6 +153,12 @@ class Fdb {
         $this->old_keys=$oldkey;
     }
 
+    /** Il metodo 'caricaConChiave' prende in input un array associativo con elementi del tipo [:nomeAttributo]=>valore
+     * e usa una stringa passata come chiave alternativa per effettuare una query di tipo SELECT al database
+     * @param $data
+     * @param $chiave
+     * @return mixed
+     */
     protected function caricaConChiave($data,$chiave) {
         $sql="SELECT * FROM $this->table WHERE ";
         $chiaveArr = explode(',',$chiave);
@@ -172,6 +178,24 @@ class Fdb {
         }
         return $this->result;
 
+    }
+
+    protected function inserisciGenerica($data,$table) {
+        $BindKey = array_keys($data);
+        $sql = "INSERT INTO $table VALUES (";
+        foreach($BindKey as $key) {
+            $sql.= "$key,";
+        }
+        $sql = rtrim($sql,',');
+        $sql.=")";
+        echo "$sql<br>";
+        $query = self::$db->prepare($sql);
+        try {
+            $this->result = $query->execute($data);
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+        return $this->result;
     }
 
     // METODO DI SUPPORTO: cambia le chiavi dell'array passato nei bind della classe estesa da Fdb che chiama il metodo

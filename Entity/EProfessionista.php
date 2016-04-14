@@ -10,6 +10,9 @@ class EProfessionista extends EUtente {
     private $orari;
     /** @var  EAgenda */
     private $agendaLavoro;
+
+
+
         
     public function __construct($n, $c, $dn, $cf, $s, $e, $p, $id, $so, $set, $or) {
         parent::__construct($n, $c, $dn, $cf, $s, $e, $p, $id);
@@ -20,17 +23,14 @@ class EProfessionista extends EUtente {
     }
     
     public function setServiziOfferti($so) {
-        $this->serviziOfferti = [];
+        $this->serviziOfferti = array();
         foreach ($so as $servizio) {
             array_push($this->serviziOfferti, $servizio);
         }
     }
     
     public function setSettore($set) {
-        $this->settore = array();
-        foreach ($set as $value) {
-            array_push($this->settore, $value);
-        }
+        $this->settore = $set;
     }
     //$or è una stringa rappresentante un qualsiasi numero di range di orari nel formato hh:mm-hh:mm separati da virgole
     public function setOrari($or) {
@@ -38,11 +38,7 @@ class EProfessionista extends EUtente {
         $ore = explode(",", $or);
         foreach ($ore as $orario) {
             if(preg_match($pattern, $orario) == 1) {
-
-
-
-
-
+                $this->orari = $or;
             }
             else
                 throw new Exception("Orario non valido", 1);
@@ -51,10 +47,12 @@ class EProfessionista extends EUtente {
     }
     
     public function setAgendaLavoro() {
-
-
+        //?
     }
-    
+
+    /**
+     * @return array EServizio
+     */
     public function getServiziOfferti()     {
         return $this->serviziOfferti;
     }
@@ -98,4 +96,17 @@ class EProfessionista extends EUtente {
         $blocco=$bloccoOra+$bloccoMinuti;
         return $blocco;
     }
+
+    public function getArrayAttributi() {
+        return array($this->numID,$this->settore,$this->orari);
+    }
+
+    public function getUtenteDaProfessionista() {
+        return new EUtente($this->getNome(),$this->getCognome(),$this->getDataNascita(),
+                           $this->getCodiceFiscale(),$this->getSesso(),$this->getEmail(),
+                           $this->getPassword(),$this->getID());
+    }
+
+
+
 }

@@ -79,9 +79,14 @@ class FAppuntamento extends Fdb  {
         return $app;
     }
 
+    public function caricaAppuntamentiProfessionista($idp) {
+        $this->setParametri();
+        parent::caricaConChiave($idp,'IDP');
+    }
 
     private function setParametri() {
         parent::setParam($this->table,$this->attributi,$this->bind,$this->bind_key,$this->old_keys);
     }
+
 
 }

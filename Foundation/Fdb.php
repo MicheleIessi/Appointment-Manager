@@ -177,9 +177,13 @@ class Fdb {
             echo 'Error: '.$e->getMessage();
         }
         return $this->result;
-
     }
 
+    /** La funzione inserisciGenerica effettua una query di tipo INSERT prendendo come input la tabella su cui farla
+     * @param $data
+     * @param $table
+     * @return bool
+     */
     protected function inserisciGenerica($data,$table) {
         $BindKey = array_keys($data);
         $sql = "INSERT INTO $table VALUES (";
@@ -198,6 +202,32 @@ class Fdb {
         return $this->result;
     }
 
+    /** La funzione inserisciGenerica effettua una query di tipo SELECT prendendo come input la tabella su cui farla
+     * @param $data
+     * @param $table
+     * @return bool
+     */
+    protected function caricaGenerica($data,$table,$chiavi) {
+        $sql="SELECT * FROM $table WHERE ";
+        $Primary = explode(',',$chiavi);
+        $BindKey = array_keys($data);
+        $imax=count($Primary);
+        for($i=0;$i<$imax;$i++) {
+            $sql.=" $Primary[$i] = $BindKey[$i] AND";
+        }
+        $sql = rtrim($sql,'AND');
+        echo "$sql<br>";
+        $query=self::$db->prepare($sql);
+        try {
+            $query->execute($data);
+            $query->setFetchMode(PDO::FETCH_ASSOC);
+            $this->result = $query->fetchAll();
+        } catch (PDOException $e) {
+            echo 'Error: '.$e->getMessage();
+        }
+        return $this->result;
+    }
+
     // METODO DI SUPPORTO: cambia le chiavi dell'array passato nei bind della classe estesa da Fdb che chiama il metodo
     protected function cambiaChiaviArray($arr) {
         $chiavi = explode(',',$this->bind);
@@ -207,10 +237,6 @@ class Fdb {
             unset($arr[$i]);
         }
         return $arr;
-    }
-
-    protected static function getDB() {
-        return self::$db;
     }
 
     protected function getOldKeys() {

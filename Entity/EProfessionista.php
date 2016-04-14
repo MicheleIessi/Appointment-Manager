@@ -19,7 +19,7 @@ class EProfessionista extends EUtente {
         $this->setServiziOfferti($so);
         $this->setSettore($set);
         $this->setOrari($or);
-        $this->setAgendaLavoro();
+        //$this->setAgendaLavoro();
     }
     
     public function setServiziOfferti($so) {

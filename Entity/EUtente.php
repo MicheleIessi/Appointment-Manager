@@ -38,7 +38,7 @@ class EUtente {
     }
 
     public function setDataNascita($dn) {
-        $pattern="#^(\d{4})-(0[1-9]|1[0-2])-([1-9]|1[0-9]|2[0-9]|3[0-1])$#";
+        $pattern="#^[0-9]{4}-[0-1][0-9]-[0-3][0-9]$#";
         if(preg_match($pattern,$dn) != 1) {
             throw new Exception("Data di nascita non valida");
         }
@@ -96,7 +96,7 @@ class EUtente {
 
     // Metodo di utilità per il lato Foundation
     public function getArrayAttributi() {
-        return array($this->numID,$this->nome,$this->cognome,$this->dataNascita,
-                     $this->codiceFiscale,$this->sesso,$this->email,$this->password);
+        return array($this->nome,$this->cognome,$this->dataNascita,$this->codiceFiscale,
+                        $this->sesso,$this->email,$this->password,$this->numID);
     }
 }

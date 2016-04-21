@@ -20,11 +20,11 @@ class Fdb {
     private static $set = false;       //Per assicurare che ci sia al massimo una connessione per volta
 
     protected function __construct() {
-        require_once 'includes/config.inc.php';
+        require 'includes/config.inc.php';
         /** @var string $dbms è la stringa che specifica il db che si usa nel file di configurazione */
         /** @var string $config è il file di configurazione*/
         /* ho scritto queste 2 righe perché l'ide mi diceva che erano variabili sconosciute */
-        $dsn = "$dbms:host=".$config[$dbms]['hostname'].";dbname=".$config[$dbms]['database'];
+        echo $dsn = "$dbms:host=".$config[$dbms]['hostname'].";dbname=".$config[$dbms]['database'];
         $user = $config[$dbms]['username'];
         $pass = $config[$dbms]['password'];
         $attr = array(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

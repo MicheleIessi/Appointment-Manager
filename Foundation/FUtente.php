@@ -92,8 +92,8 @@ class FUtente extends Fdb   {
         }
         $arrayUte = parent::carica($arr);
         $arrayUte = array_values($arrayUte);
-        $ute = new $this->return_class($arrayUte[1],$arrayUte[2],$arrayUte[3],$arrayUte[4],
-                                       $arrayUte[5],$arrayUte[6],$arrayUte[7],$arrayUte[0]);
+        $ute = new $this->return_class($arrayUte[1],$arrayUte[2],$arrayUte[3],$arrayUte[4],$arrayUte[5],
+                                       $arrayUte[6],$arrayUte[7],$arrayUte[0]);
         echo "Utente {$ute->getNome()} {$ute->getCognome()} caricato correttamente.<br>";
         return $ute;
     }

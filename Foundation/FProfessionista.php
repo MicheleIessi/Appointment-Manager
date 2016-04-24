@@ -1,5 +1,6 @@
 <?php
-
+require('Fdb.php');
+require('FUtente.php');
 class FProfessionista extends Fdb {
     
     public function __construct() {
@@ -99,10 +100,3 @@ class FProfessionista extends Fdb {
         }
         return $arraySer;
     }
-
-
-
-    private function setParametri() {
-        parent::setParam($this->table,$this->attributi,$this->bind,$this->bind_key,$this->old_keys);
-    }
-}

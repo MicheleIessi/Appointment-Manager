@@ -34,7 +34,7 @@ class EProfessionista extends EUtente {
     }
     //$or è una stringa rappresentante un qualsiasi numero di range di orari nel formato hh:mm-hh:mm separati da virgole
     public function setOrari($or) {
-        $pattern = "#^((2[0-3]|[01][0-9]):([0-5][0-9])-(2[0-3]|[01][0-9]):([0-5][0-9]),?)+$#";
+        $pattern = "#^(([0-23]|[01][0-9]):([0-5][0-9])-([0-23]|[01][0-9]):([0-5][0-9]),?)+$#";
         $ore = explode(",", $or);
         foreach ($ore as $orario) {
             if(preg_match($pattern, $orario) == 1) {

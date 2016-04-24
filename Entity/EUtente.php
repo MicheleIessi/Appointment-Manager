@@ -96,7 +96,7 @@ class EUtente {
 
     // Metodo di utilità per il lato Foundation
     public function getArrayAttributi() {
-        return array($this->numID,$this->nome,$this->cognome,$this->dataNascita,
-                     $this->codiceFiscale,$this->sesso,$this->email,$this->password);
+        return array($this->nome,$this->cognome,$this->dataNascita,$this->codiceFiscale,
+                        $this->sesso,$this->email,$this->password,$this->numID);
     }
 }

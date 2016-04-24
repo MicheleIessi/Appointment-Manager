@@ -11,13 +11,13 @@ $dbms = 'mysql';
 $config[$dbms]['username'] = 'root';
 $config[$dbms]['password'] = '';
 $config[$dbms]['hostname'] = 'localhost';
-$config[$dbms]['database'] = 'prova';
+$config[$dbms]['database'] = 'menagement';
 
 $config['url'] = 'localhost/appointment-manager';
 
-$config['smarty']['template_dir'] = 'templates/templates/';
-$config['smarty']['compile_dir'] = 'templates/templates_c/';
-$config['smarty']['config_dir'] = 'templates/configs/';
-$config['smarty']['cache_dir'] = 'templates/cache/';
+$config['smarty']['template_dir'] = 'templates/';
+$config['smarty']['compile_dir'] = 'lib/smarty/templates_c/';
+$config['smarty']['config_dir'] = '';
+$config['smarty']['cache_dir'] = '';
 
 ?>

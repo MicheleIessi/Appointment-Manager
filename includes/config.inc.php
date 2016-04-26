@@ -11,7 +11,7 @@ $dbms = 'mysql';
 $config[$dbms]['username'] = 'root';
 $config[$dbms]['password'] = '';
 $config[$dbms]['hostname'] = 'localhost';
-$config[$dbms]['database'] = 'menagement';
+$config[$dbms]['database'] = 'prova';
 
 $config['url'] = 'localhost/appointment-manager';
 

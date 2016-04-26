@@ -101,3 +101,4 @@ class FProfessionista extends Fdb {
         parent::setParam($this->table,$this->attributi,$this->bind,$this->bind_key,$this->old_keys);
     }
 }
+

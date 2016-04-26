@@ -1,8 +1,6 @@
 <?php
-require('Fdb.php');
-require('FUtente.php');
 class FProfessionista extends Fdb {
-    
+
     public function __construct() {
         if(!parent::isOn())
             parent::__construct();
@@ -14,7 +12,6 @@ class FProfessionista extends Fdb {
         $this->bind_key=':IDP';
         $this->old_keys;
     }
-
     /** Il metodo inserisciProfessionista cerca di inserire un oggetto della classe EProfessionista nel Database.
      * Se il professionista non è già presente nel database come utente, provvede ad aggiungerlo. Inoltre, aggiunge
      * qualsiasi Servizio che il professionista offre nel database (se non già presente) e provvede al join tra
@@ -57,7 +54,6 @@ class FProfessionista extends Fdb {
             echo $e->getMessage();
         }
     }
-
     /**
      * @param $key
      * @return EProfessionista
@@ -73,13 +69,11 @@ class FProfessionista extends Fdb {
         $settore = $risultato['settore'];
         $orario = $risultato['orari'];
         $serviziOfferti = $this->ricavaServiziOfferti($key);
-
         $prof = new EProfessionista($utente->getNome(),$utente->getCognome(),$utente->getDataNascita(),
-                                    $utente->getCodiceFiscale(),$utente->getSesso(),$utente->getEmail(),
-                                    $utente->getPassword(),$key,$serviziOfferti,$settore,$orario);
+            $utente->getCodiceFiscale(),$utente->getSesso(),$utente->getEmail(),
+            $utente->getPassword(),$key,$serviziOfferti,$settore,$orario);
         return $prof;
     }
-
     /** deve trovare tutti i servizi offerti da un professionista e restituire un array che li contiene
      * 1. query su serviziofferti con IDP come chiave x
      * 2. per ogni risultato trovato, query su servizi per prendere le altre informazioni x
@@ -100,3 +94,10 @@ class FProfessionista extends Fdb {
         }
         return $arraySer;
     }
+
+
+
+    private function setParametri() {
+        parent::setParam($this->table,$this->attributi,$this->bind,$this->bind_key,$this->old_keys);
+    }
+}

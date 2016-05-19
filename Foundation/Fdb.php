@@ -24,14 +24,13 @@ class Fdb {
         /** @var string $dbms è la stringa che specifica il db che si usa nel file di configurazione */
         /** @var string $config è il file di configurazione*/
         /* ho scritto queste 2 righe perché l'ide mi diceva che erano variabili sconosciute */
-        echo $dsn = "$dbms:host=".$config[$dbms]['hostname'].";dbname=".$config[$dbms]['database'];
+        $dsn = "$dbms:host=".$config[$dbms]['hostname'].";dbname=".$config[$dbms]['database'];
         $user = $config[$dbms]['username'];
         $pass = $config[$dbms]['password'];
         $attr = array(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         self::$set=true;
         try {
             self::$db = new PDO($dsn,$user,$pass,$attr);
-            echo "Connesso al db"."<br>";
         } catch(PDOException $e) {
             die("Impossibile connettersi al database: ".$e->getMessage()); }
     }

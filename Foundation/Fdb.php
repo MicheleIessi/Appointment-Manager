@@ -171,7 +171,7 @@ class Fdb {
         try {
             $query->execute($data);
             $query->setFetchMode(PDO::FETCH_ASSOC);
-            $this->result = $query->fetch();
+            $this->result = $query->fetchAll();
         } catch (PDOException $e) {
             echo 'Error: '.$e->getMessage();
         }
@@ -201,7 +201,7 @@ class Fdb {
         return $this->result;
     }
 
-    /** La funzione inserisciGenerica effettua una query di tipo SELECT prendendo come input la tabella su cui farla
+    /** La funzione caricaGenerica effettua una query di tipo SELECT prendendo come input la tabella su cui farla
      * @param $data
      * @param $table
      * @return bool

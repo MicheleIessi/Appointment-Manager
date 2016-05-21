@@ -28,8 +28,8 @@
             });
             /* initialize the calendar
              -----------------------------------------------------------------*/
+            var zone = "01:00";
             $('#calendar').fullCalendar({
-
                 header: {
                     left: 'prev,next today',
                     center: 'title',
@@ -144,7 +144,23 @@
             width: 900px;
         }
     </style>
+    <script>
+        $.ajax({
+            url: 'Control/CProcessaCalendar.php',
+            type: 'POST',
+            id: 1,
+            data: 'type=fetch',
+            async: false,
+            success: function(response){
+                json_events = response;
+            }
+        });
+        $('#calendar').fullCalendar({
+            events: JSON.parse(json_events)
+        });
 
+
+    </script>
 </head>
 <body>
 <div id='wrap'>

@@ -1,33 +1,80 @@
-<?php
-require_once('includes/autoload.inc.php');
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+    <meta charset='utf-8' />
+    <link href='JS/fullcalendar-2.6.1/fullcalendar.css' rel='stylesheet' />
+    <link href='JS/fullcalendar-2.6.1/fullcalendar.print.css' rel='stylesheet' media='print' />
+    <script src='JS/fullcalendar-2.6.1/lib/moment.min.js'></script>
+    <script src='JS/fullcalendar-2.6.1/lib/jquery.min.js'></script>
+    <script src='JS/fullcalendar-2.6.1/lib/jquery-ui.custom.min.js'></script>
+    <script src='JS/fullcalendar-2.6.1/fullcalendar.min.js'></script>
+    <script src='JS/fullcalendar-2.6.1/lang-all.js'></script>
+    <script>
+        $(document).ready(function() {
+            $('#calendar').fullCalendar({
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,agendaWeek,agendaDay'
+                },
+                editable: true,
+                droppable: true,    // this allows things to be dropped onto the calendar
+                drop: function() {
+                    // is the "remove after drop" checkbox checked?
+                    if ($('#drop-remove').is(':checked')) {
+                        // if so, remove the element from the "Draggable Events" list
+                        $(this).remove();
+                    }
+                },
 
-$age = new EAgenda(array(),30);
-$giorniDisponibile=array(
-    'lun'=>'00:00-1:00,14:00-18:00',
-    'mar'=>'00:00-8:00',
-    'mer'=>'07:00-15:00',
-    'gio'=>''
-);
-$age->setOrari($giorniDisponibile);
 
-//$fute = new FUtente();
-//$ute = new EUtente("Utente","Cognome","2016-04-14","ABCDEF92S06E243D","m","cacciucacciu@cacciu.com","blablabla");
-//
-//$set = new EServizio("ServizioProf","des","settore",1);
-//
-//$pro = new EProfessionista($ute->getNome(),$ute->getCognome(),$ute->getDataNascita(),
-//                           $ute->getCodiceFiscale(),$ute->getSesso(),$ute->getEmail(),
-//                           $ute->getPassword(),null,array($set),"settore","08:00-10:00");
-//
-//$ute2 = $pro->getUtenteDaProfessionista();
-//
-//$fpro = new FProfessionista();
-//$fpro->inserisciProfessionista($pro);
+                firstDay: 1,
+                defaultView: 'agendaWeek',
+
+                views: {
+                    agenda: {
+                        allDaySlot: false,
+                        slotDuration: '00:10:00',
+                        slotLabelInterval: '01:00:00',
+                        slotEventOverlap: false
+                    }
+                },
+
+                nowIndicator: true,
+                lang: 'it',
+                timeFormat: 'H:mm',
+                columnFormat: 'dddd D',
+                titleFormat: 'D MMMM YYYY',
+                displayEventTime: true,
+                displayEventEnd: true,
+                eventOverlap: false,
+                defaultTimedEventDuration: '01:00:00',
+                forceEventDuration: true,
+                eventDurationEditable: false,
+                dragOpacity: .75,
+                events: {
+                    url: 'Control/CProcessaCalendar.php',
+                    type: 'POST',
+                    data: {
+                        type: 'fetch',
+                        id: 1
+                    },
+                    error: function() {
+                        alert('there was an error while fetching events!');
+                    }
+                }
+
+            });
+        })
+    </script>
+</head>
+<body>
+<div id='calendar'></div>
+<div id='external-events'>
+    <h4>Draggable Events</h4>
+    <div class='fc-event'>New Event</div>
+</div>
 
 
-$fpro = new FProfessionista();
-$prof = $fpro->caricaProfessionistaDaDB(20);
-
-var_dump($prof);
-
-?>
+</body>
+</html>

@@ -81,7 +81,9 @@ class FAppuntamento extends Fdb  {
 
     public function caricaAppuntamentiProfessionista($idp) {
         $this->setParametri();
-        parent::caricaConChiave($idp,'IDP');
+        $valori=array();
+        $valori[':IDP']=$idp;
+        return parent::caricaConChiave($valori,'IDP');
     }
 
     private function setParametri() {

@@ -5,7 +5,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+global $config;
 $dbms = 'mysql';
 
 $config[$dbms]['username'] = 'root';
@@ -15,9 +15,9 @@ $config[$dbms]['database'] = 'prova';
 
 $config['url'] = 'localhost/appointment-manager';
 
-$config['smarty']['template_dir'] = 'templates/';
-$config['smarty']['compile_dir'] = 'lib/smarty/templates_c/';
-$config['smarty']['config_dir'] = '';
-$config['smarty']['cache_dir'] = '';
+$config['smarty']['template_dir'] = 'templates/templates';
+$config['smarty']['compile_dir'] = 'templates/templates_c';
+$config['smarty']['config_dir'] = 'templates/configs';
+$config['smarty']['cache_dir'] = 'templates/cache';
 
 ?>

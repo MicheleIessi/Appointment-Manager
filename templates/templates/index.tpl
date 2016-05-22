@@ -1,33 +1,3 @@
-<?php /* Smarty version 3.1.27, created on 2016-05-19 17:14:42
-         compiled from "E:\DocumentRoot\appointment-manager\templates\index.tpl" */ ?>
-<?php
-/*%%SmartyHeaderCode:16820573dd8624a20c9_18014938%%*/
-if(!defined('SMARTY_DIR')) exit('no direct access allowed');
-$_valid = $_smarty_tpl->decodeProperties(array (
-  'file_dependency' => 
-  array (
-    'adae7728a5732148d877e661916fa29c2dfccae3' => 
-    array (
-      0 => 'E:\\DocumentRoot\\appointment-manager\\templates\\index.tpl',
-      1 => 1461677251,
-      2 => 'file',
-    ),
-  ),
-  'nocache_hash' => '16820573dd8624a20c9_18014938',
-  'variables' => 
-  array (
-    'elenco' => 0,
-  ),
-  'has_nocache_code' => false,
-  'version' => '3.1.27',
-  'unifunc' => 'content_573dd8629eb737_93963588',
-),false);
-/*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_573dd8629eb737_93963588')) {
-function content_573dd8629eb737_93963588 ($_smarty_tpl) {
-
-$_smarty_tpl->properties['nocache_hash'] = '16820573dd8624a20c9_18014938';
-?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -47,7 +17,7 @@ $_smarty_tpl->properties['nocache_hash'] = '16820573dd8624a20c9_18014938';
       <tbody>
         <tr>
           <td style="width: 333px; height: 29px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <a href="View/login.php">
+            <a href="../../View/login.php">
               Login o Registrazione</a></td>
           <td style="width: 33%; height: 29px; text-align: center;">Cerca</td>
           <td style="text-align: center;">About</td>
@@ -61,14 +31,10 @@ $_smarty_tpl->properties['nocache_hash'] = '16820573dd8624a20c9_18014938';
       border="1" cellspacing="0">
       <tbody>
         <tr>
-          <td style="width: 500px; height: 180px; text-align: left; vertical-align: top;"><?php echo $_smarty_tpl->tpl_vars['elenco']->value;?>
-
+          <td style="width: 500px; height: 180px; text-align: left; vertical-align: top;">{$elenco}
             </td>
         </tr>
       </tbody>
     </table>
   </body>
 </html>
-<?php }
-}
-?>

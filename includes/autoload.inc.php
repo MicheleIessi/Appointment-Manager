@@ -5,10 +5,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-function __autoload($class_name) {
+function myAutoload($class_name) {
     switch ($class_name[0]) {
-        case 'P':
-            require_once('Presentation/' . $class_name . '.php');
+        case 'V':
+            require_once('View/' . $class_name . '.php');
             break;
         case 'F':
             require_once('Foundation/' . $class_name . '.php');
@@ -21,8 +21,11 @@ function __autoload($class_name) {
             break;
         case 'U':
             require_once('Foundation/Utility/' . $class_name . '.php');
-
     }
 }
 
-
+define('SMARTY_SPL_AUTOLOAD',1);
+spl_autoload_register('myAutoload');
+require('lib/smarty/Smarty.class.php');
+require_once('lib/smarty/Autoloader.php');
+Smarty_Autoloader::register();

@@ -5,7 +5,6 @@
  * and open the template in the editor.
  */
 
-
 class View extends Smarty {
     
     protected $url;

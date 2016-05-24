@@ -1,13 +1,14 @@
 <?php
 
-class VIndex extends View {
+class VLogin extends View {
 
-    private $template = 'indexMic.tpl';
+    private $template = 'login.tpl';
 
     public function __construct() {
         parent::__construct();
         $this->setTemplate($this->template);
     }
+
 
 
 }

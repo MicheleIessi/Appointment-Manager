@@ -3,7 +3,6 @@
 <head>
     <meta charset='utf-8' />
     <link href='JS/fullcalendar-2.6.1/fullcalendar.css' rel='stylesheet' />
-    <link href='JS/fullcalendar-2.6.1/fullcalendar.print.css' rel='stylesheet' media='print' />
     <script src='JS/fullcalendar-2.6.1/lib/moment.min.js'></script>
     <script src='JS/fullcalendar-2.6.1/lib/jquery.min.js'></script>
     <script src='JS/fullcalendar-2.6.1/lib/jquery-ui.custom.min.js'></script>

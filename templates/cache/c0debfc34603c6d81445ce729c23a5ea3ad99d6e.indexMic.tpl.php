@@ -1,5 +1,5 @@
 <?php
-/*%%SmartyHeaderCode:6730574383198bffb1_60043553%%*/
+/*%%SmartyHeaderCode:9055747295e241767_86889676%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -7,22 +7,26 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'c0debfc34603c6d81445ce729c23a5ea3ad99d6e' => 
     array (
       0 => 'templates\\templates\\indexMic.tpl',
-      1 => 1464024507,
+      1 => 1464281434,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '6730574383198bffb1_60043553',
+  'nocache_hash' => '9055747295e241767_86889676',
   'tpl_function' => 
   array (
   ),
+  'variables' => 
+  array (
+    'content' => 0,
+  ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_57438319a27224_54477253',
+  'unifunc' => 'content_5747295e30eab3_30686446',
   'cache_lifetime' => 3600,
 ),true);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_57438319a27224_54477253')) {
-function content_57438319a27224_54477253 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_5747295e30eab3_30686446')) {
+function content_5747295e30eab3_30686446 ($_smarty_tpl) {
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
@@ -34,74 +38,15 @@ function content_57438319a27224_54477253 ($_smarty_tpl) {
     <script src='JS/fullcalendar-2.6.1/lib/jquery-ui.custom.min.js'></script>
     <script src='JS/fullcalendar-2.6.1/fullcalendar.min.js'></script>
     <script src='JS/fullcalendar-2.6.1/lang-all.js'></script>
-    <script>
-        $(document).ready(function() {
-            var professionista =
-                    $('#calendar').fullCalendar({
-                        header: {
-                            left: 'prev,next today',
-                            center: 'title',
-                            right: 'month,agendaWeek,agendaDay'
-                        },
-                        editable: true,
-                        droppable: true,    // this allows things to be dropped onto the calendar
-                        drop: function() {
-                            // is the "remove after drop" checkbox checked?
-                            if ($('#drop-remove').is(':checked')) {
-                                // if so, remove the element from the "Draggable Events" list
-                                $(this).remove();
-                            }
-                        },
-
-
-                        firstDay: 1,
-                        defaultView: 'agendaWeek',
-
-                        views: {
-                            agenda: {
-                                allDaySlot: false,
-                                slotDuration: '00:10:00',
-                                slotLabelInterval: '01:00:00',
-                                slotEventOverlap: false
-                            }
-                        },
-
-                        nowIndicator: true,
-                        lang: 'it',
-                        timeFormat: 'H:mm',
-                        columnFormat: 'dddd D',
-                        titleFormat: 'D MMMM YYYY',
-                        displayEventTime: true,
-                        displayEventEnd: true,
-                        eventOverlap: false,
-                        defaultTimedEventDuration: '01:00:00',
-                        forceEventDuration: true,
-                        eventDurationEditable: false,
-                        dragOpacity: .75,
-                        events: {
-                            url: 'Control/CProcessaCalendar.php',
-                            type: 'POST',
-                            data: {
-                                type: 'fetch',
-                                id: 1
-                            },
-                            error: function() {
-                                alert('there was an error while fetching events!');
-                            }
-                        }
-
-                    });
-        })
-    </script>
 </head>
 <body>
-<div id='calendar'></div>
-<div id='external-events'>
-    <h4>Draggable Events</h4>
-    <div class='fc-event'>New Event</div>
+<div id='content'>
+    <br />
+<b>Notice</b>:  Undefined index: content in <b>E:\DocumentRoot\appointment-manager\templates\templates_c\c0debfc34603c6d81445ce729c23a5ea3ad99d6e_0.file.indexMic.tpl.cache.php</b> on line <b>54</b><br />
+<br />
+<b>Notice</b>:  Trying to get property of non-object in <b>E:\DocumentRoot\appointment-manager\templates\templates_c\c0debfc34603c6d81445ce729c23a5ea3ad99d6e_0.file.indexMic.tpl.cache.php</b> on line <b>54</b><br />
+
 </div>
-
-
 </body>
 </html><?php }
 }

@@ -17,7 +17,7 @@ function myAutoload($class_name) {
             require_once('Entity/' . $class_name . '.php');
             break;
         case 'C':
-            require_once('Controller/' . $class_name . '.php');
+            require_once('Control/' . $class_name . '.php');
             break;
         case 'U':
             require_once('Foundation/Utility/' . $class_name . '.php');

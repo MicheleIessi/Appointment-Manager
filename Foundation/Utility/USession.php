@@ -32,4 +32,8 @@ class USession {
             return false;
         }
     }
+    function fineSessione() {
+        unset($_SESSION);
+        session_destroy();
+    }
 }

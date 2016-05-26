@@ -10,7 +10,6 @@
     <script src='JS/fullcalendar-2.6.1/lang-all.js'></script>
     <script>
         $(document).ready(function() {
-            var professionista =
                     $('#calendar').fullCalendar({
                         header: {
                             left: 'prev,next today',

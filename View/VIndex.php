@@ -1,13 +1,27 @@
 <?php
 
 class VIndex extends View {
+//provo a seguire le orme di bookstore
 
-    private $template = 'indexMic.tpl';
+    private $main_content = "";
 
-    public function __construct() {
-        parent::__construct();
-        $this->setTemplate($this->template);
+    private $main_button=array();
+
+    private $side_content = "";
+
+    private $side_button=array();
+
+    private $layout = 'home_default.tpl';
+
+    public function setContent($content) {
+        $this->main_content = $content;
     }
 
+    public function mostraPagina() {
+
+        $this->assign('content',$this->main_content);
+        $this->display('home_default.tpl');
+
+    }
 
 }

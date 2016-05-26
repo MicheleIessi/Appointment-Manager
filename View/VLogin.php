@@ -9,6 +9,4 @@ class VLogin extends View {
         $this->setTemplate($this->template);
     }
 
-
-
 }

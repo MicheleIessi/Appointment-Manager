@@ -1,4 +1,6 @@
 <?php
 require_once('includes/autoload.inc.php');
 
-$ind = new VLogin();
+
+$ind = new CIndex();
+$ind->impostaPagina();

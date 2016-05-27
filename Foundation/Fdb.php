@@ -204,6 +204,7 @@ class Fdb {
     /** La funzione caricaGenerica effettua una query di tipo SELECT prendendo come input la tabella su cui farla
      * @param $data
      * @param $table
+     * @param $chiavi
      * @return bool
      */
     protected function caricaGenerica($data,$table,$chiavi) {
@@ -222,6 +223,23 @@ class Fdb {
             $query->setFetchMode(PDO::FETCH_ASSOC);
             $this->result = $query->fetchAll();
         } catch (PDOException $e) {
+            echo 'Error: '.$e->getMessage();
+        }
+        return $this->result;
+    }
+
+    /**La funzione caricaTutte effettua una query di tipo SELECT * in una tabella in input
+     * @param $table
+     * @return array
+     */
+    protected function caricaTutte($table) {
+        $sql="SELECT * FROM $table";
+        $query=self::$db->prepare($sql);
+        try {
+            $query->execute();
+            $query->setFetchMode(PDO::FETCH_ASSOC);
+            $this->result=$query->fetchAll();
+        } catch(PDOException $e) {
             echo 'Error: '.$e->getMessage();
         }
         return $this->result;

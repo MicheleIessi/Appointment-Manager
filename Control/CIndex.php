@@ -16,14 +16,17 @@
 class CIndex {
 
     public function impostaPagina() {
-        $log = 1;
+        $log = -1;
         $sessione = new USession();
-        $log=$sessione->getValore('tipoUtente');
-        if($log===false)
-            $log=1;
+        $log = $sessione->getValore('tipoUtente');
+        if($log===false) {
+            $log=-1;    //a questo punto del programma in questo commit, bisogna fare controlli per il login
+        }
         $VIndex = new VIndex();
         $content = $this->smista($log);
         $VIndex->setContent($content);
+        if($log==-1)
+            $VIndex->impostaPaginaOspite();
         $VIndex->mostraPagina();
     }
 
@@ -35,7 +38,7 @@ class CIndex {
                 $CReg = new CRegistrazione();
                 return $CReg->smista();
             case 'login':
-                $CLog = USingleton::getInstance('CLogin');
+                $CLog = new CLogin();
                 return $CLog->smista();
             case 'calendario':
                 if($log > 0 && isset($_REQUEST['idp'])) { //gestire l'errore se non c'è idp?
@@ -43,6 +46,8 @@ class CIndex {
                     $idp=$_REQUEST['idp'];
                     setcookie('lastCalendar',$idp);
                     $sessione->impostaValore('tipo','cliente'); //solo per provare
+                    $fpro = new FProfessionista();
+                    $view->impostaDivProfessionisti($fpro->caricaProfessionisti());
                     return $cal->smista();
                 }
                 else return $view->fetch('forbidden.tpl');

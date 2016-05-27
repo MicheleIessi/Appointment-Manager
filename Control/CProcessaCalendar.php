@@ -2,7 +2,6 @@
 require_once('includes/autoload.inc.php');
 $type = $_REQUEST['type'];
 
-
 if($type == 'fetch') {
     $id=$_COOKIE['lastCalendar'];
     $fapp = new FAppuntamento();

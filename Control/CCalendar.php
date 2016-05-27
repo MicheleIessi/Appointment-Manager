@@ -22,6 +22,14 @@ class CCalendar {
         }
     }
 
+    public function getServiziProf($idp) {
+
+
+
+    }
+
+
+
     public function setIDP($idp) {
         self::$idp = $idp;
     }

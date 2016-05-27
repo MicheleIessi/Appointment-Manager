@@ -43,6 +43,8 @@ class CLogin {
         }
         }
 
-
+    public function smista() {
+        echo "ciao";
+    }
 }
 

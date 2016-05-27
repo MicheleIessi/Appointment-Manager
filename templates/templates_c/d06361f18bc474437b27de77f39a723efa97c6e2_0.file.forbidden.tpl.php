@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-05-26 18:57:36
+<?php /* Smarty version 3.1.27, created on 2016-05-27 22:40:54
          compiled from "templates\templates\forbidden.tpl" */ ?>
 <?php
-/*%%SmartyHeaderCode:2029357472b00ca5569_15368352%%*/
+/*%%SmartyHeaderCode:180135748b0d6081b59_08734182%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,22 +9,24 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'd06361f18bc474437b27de77f39a723efa97c6e2' => 
     array (
       0 => 'templates\\templates\\forbidden.tpl',
-      1 => 1464279495,
+      1 => 1464381576,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '2029357472b00ca5569_15368352',
+  'nocache_hash' => '180135748b0d6081b59_08734182',
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_57472b00cbdad6_49625137',
+  'unifunc' => 'content_5748b0d60c1508_87515672',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_57472b00cbdad6_49625137')) {
-function content_57472b00cbdad6_49625137 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_5748b0d60c1508_87515672')) {
+function content_5748b0d60c1508_87515672 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '2029357472b00ca5569_15368352';
+$_smarty_tpl->properties['nocache_hash'] = '180135748b0d6081b59_08734182';
 ?>
-<title>Permesso negato</title>
-<div id="forbiddenAccess"><p>Solo gli utenti registrati possono accedere a questo contenuto.</p></div><?php }
+<div class="forbiddenAccess">
+    <h3 class="forbiddenTitle">ERRORE</h3>
+    <p class="forbittenText">Solo gli utenti registrati possono accedere a questo contenuto.</p>
+</div><?php }
 }
 ?>

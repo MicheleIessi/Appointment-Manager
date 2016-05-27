@@ -95,7 +95,24 @@ class FProfessionista extends Fdb {
         return $arraySer;
     }
 
-
+    /** La funzione caricaProfessionisti carica TUTTI i professionisti dal db e ritorna un array di array associativi
+     * del tipo: 0=> [ 'nome'=>'x', 'cognome'=>'y', 'id'=>'z' ],1=>... e così via.
+     * @return array
+     */
+    public function caricaProfessionisti() {
+        $result = parent::caricaTutte($this->table);
+        $fute = new FUtente();
+        $res = array();
+        foreach($result as $prof) {
+            $pro = array();
+            $ute = $fute->caricaUtenteDaDb($prof['IDP']);
+            $pro['nome']=$ute->getNome();
+            $pro['cognome']=$ute->getCognome();
+            $pro['id']=$ute->getID();
+            array_push($res,$pro);
+        }
+        return $res;
+    }
 
     private function setParametri() {
         parent::setParam($this->table,$this->attributi,$this->bind,$this->bind_key,$this->old_keys);

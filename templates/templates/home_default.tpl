@@ -13,8 +13,20 @@
         <title>{$title}</title>
     </head>
     <body>
+    <!-- BANNER -->
     {$banner}
-    <div class ="mainButtons"></div>
+    <!-- MAIN BUTTONS -->
+    <div class="wrapper">
+        <div class ="mainButtons">
+            {foreach $mainButtons as $button}
+                {if $button['testo'] eq 'Login' or $button['testo'] eq 'Registrati' }
+                    <a class='buttonElem logRegElem' href="{$button['link']}">{$button['testo']}</a>
+                {else}
+                <a class='buttonElem' href="{$button['link']}">{$button['testo']}</a>
+                {/if}
+            {/foreach}
+        </div>
+    </div>
     <div class ="main">
         <!-- MAIN CONTENT -->
         <div id='content'>

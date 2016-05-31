@@ -20,4 +20,8 @@ $config['smarty']['compile_dir'] = 'templates/templates_c';
 $config['smarty']['config_dir'] = 'templates/configs';
 $config['smarty']['cache_dir'] = 'templates/cache';
 
+
+$config['home'][0]=array('testo'=>'chi siamo','link'=>'?controller=info&action=informazioni');
+$config['home'][1]=array('testo'=>'contatti','link'=>'?controller=info&action=contatti');
+
 ?>

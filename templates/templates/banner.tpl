@@ -1,1 +1,1 @@
-<div class="banner"></div>
+<div class="banner">APPOINTMENT MANAGER</div>

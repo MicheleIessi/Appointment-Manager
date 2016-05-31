@@ -25,7 +25,6 @@ class CCalendar {
     public function getServiziProf($idp) {
 
 
-
     }
 
 

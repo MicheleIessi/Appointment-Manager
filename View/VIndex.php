@@ -17,10 +17,11 @@ class VIndex extends View {
     }
 
     public function mostraPagina() {
+        $this->loadButtons();
         $this->assign('banner',$this->getBanner());
         $this->assign('main_content',$this->main_content);
+        $this->assign('mainButtons',$this->main_button);
         $this->assign('sideButton',$this->side_button);
-        $this->assign('content',$this->main_content);
         $this->assign('right_content',$this->side_content);
         $this->display('home_default.tpl');
     }
@@ -33,11 +34,11 @@ class VIndex extends View {
         $this->side_button=$buttons;
     }
 
-    public function aggiungiTastiLogin() {
-        $VReg = new VRegistrazione();
-        $VReg->setLayout('default');
-        $modulo_login = $VReg->processaTemplate();
-        $this->side_content.=$modulo_login;
+    public function aggiungiTastiLogin() {// devo fare in modo che il login si aggiunga ai main buttons
+        $loginReg = array();
+        $loginReg[]=array('testo'=>'Login','link'=>'#');
+        $loginReg[]=array('testo'=>'Registrati','link'=>'#');
+        $this->main_button=array_merge($this->main_button,$loginReg);
     }
 
     public function impostaPaginaOspite() {
@@ -73,7 +74,12 @@ class VIndex extends View {
         return $this->fetch('banner.tpl');
     }
 
-    public function getButtons() {
-        //popolare $main_button con i bottoni del tipo,'chi siamo','contattaci' ecc che si vedranno in ogni schermata in alto
+    public function loadButtons() {
+        global $config;
+        $buttons = array();
+        foreach($config['home'] as $button) {
+            $buttons[]=$button;
+        }
+        $this->main_button = array_merge($this->main_button,$buttons);
     }
 }

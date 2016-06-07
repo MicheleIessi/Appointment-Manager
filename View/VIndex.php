@@ -36,8 +36,8 @@ class VIndex extends View {
 
     public function aggiungiTastiLogin() {// devo fare in modo che il login si aggiunga ai main buttons
         $loginReg = array();
-        $loginReg[]=array('testo'=>'Login','link'=>'#');
-        $loginReg[]=array('testo'=>'Registrati','link'=>'#');
+        $loginReg[]=array('testo'=>'Login','link'=>'#loginmodal');
+        $loginReg[]=array('testo'=>'Registrati','link'=>'#registrazionemodal');
         $this->main_button=array_merge($this->main_button,$loginReg);
     }
 

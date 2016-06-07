@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-05-28 18:53:40
+<?php /* Smarty version 3.1.27, created on 2016-06-07 23:29:36
          compiled from "templates\templates\home_default.tpl" */ ?>
 <?php
-/*%%SmartyHeaderCode:101975749cd14925b39_39096402%%*/
+/*%%SmartyHeaderCode:2833057573cc052fea5_86927802%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,35 +9,37 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '719c8c86eb39ad4b1205c70c52407faf7158578e' => 
     array (
       0 => 'templates\\templates\\home_default.tpl',
-      1 => 1464454416,
+      1 => 1465334975,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '101975749cd14925b39_39096402',
+  'nocache_hash' => '2833057573cc052fea5_86927802',
   'variables' => 
   array (
     'title' => 0,
     'banner' => 0,
     'mainButtons' => 0,
     'button' => 0,
+    'nolog' => 0,
     'main_content' => 0,
     'right_content' => 0,
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_5749cd149a8100_20418872',
+  'unifunc' => 'content_57573cc05bd1e0_41554010',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_5749cd149a8100_20418872')) {
-function content_5749cd149a8100_20418872 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_57573cc05bd1e0_41554010')) {
+function content_57573cc05bd1e0_41554010 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '101975749cd14925b39_39096402';
+$_smarty_tpl->properties['nocache_hash'] = '2833057573cc052fea5_86927802';
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
     <head>
-        <link href='JS/fullcalendar-2.6.1/fullcalendar.css' rel='stylesheet' />
-        <link href='View/css/prova.css' rel="stylesheet" />
+        <link type="text/css" rel='stylesheet' href='JS/fullcalendar-2.6.1/fullcalendar.css' />
+        <link type="text/css" rel="stylesheet" href='View/css/prova.css' />
+        <link type="text/css" rel="stylesheet" href="View/css/login.css" />
         <?php echo '<script'; ?>
  type="text/javascript" src='JS/fullcalendar-2.6.1/lib/moment.min.js'><?php echo '</script'; ?>
 >
@@ -58,6 +60,9 @@ $_smarty_tpl->properties['nocache_hash'] = '101975749cd14925b39_39096402';
 >
         <?php echo '<script'; ?>
  type="text/javascript" src="JS/jquery.leanModal.min.js"><?php echo '</script'; ?>
+>
+        <?php echo '<script'; ?>
+ type="text/javascript" src="JS/JLogin.js"><?php echo '</script'; ?>
 >
         <title><?php echo $_smarty_tpl->tpl_vars['title']->value;?>
 </title>
@@ -81,8 +86,9 @@ $_smarty_tpl->tpl_vars['button']->_loop = true;
 $foreach_button_Sav = $_smarty_tpl->tpl_vars['button'];
 ?>
                 <?php if ($_smarty_tpl->tpl_vars['button']->value['testo'] == 'Login' || $_smarty_tpl->tpl_vars['button']->value['testo'] == 'Registrati') {?>
-                    <a class='buttonElem logRegElem' href="<?php echo $_smarty_tpl->tpl_vars['button']->value['link'];?>
-"><?php echo $_smarty_tpl->tpl_vars['button']->value['testo'];?>
+                    <?php $_smarty_tpl->tpl_vars['nolog'] = new Smarty_Variable(true, null, 0);?>
+                    <a class='buttonElem' rel="leanModal" href="<?php echo $_smarty_tpl->tpl_vars['button']->value['link'];?>
+" id="modaltrigger"><?php echo $_smarty_tpl->tpl_vars['button']->value['testo'];?>
 </a>
                 <?php } else { ?>
                 <a class='buttonElem' href="<?php echo $_smarty_tpl->tpl_vars['button']->value['link'];?>
@@ -95,6 +101,66 @@ $_smarty_tpl->tpl_vars['button'] = $foreach_button_Sav;
 ?>
         </div>
     </div>
+    <?php if ($_smarty_tpl->tpl_vars['nolog']->value) {?> <!-- L'utente corrente non è loggato o non è registrato. Sono quindi presenti i div relativi a login e registrazione con leanmodal-->
+        <div id="loginmodal">
+            <div id="signup-ct">
+                <div id="signup-header">
+                    <h2>Login Utente</h2>
+                    <p>Sei già iscritto? Effettua il login.</p>
+                    <a class="modal_close" href="#"></a>
+                </div>
+                <form action="phpperlogin">
+                    <div class="txt-fld">
+                        <label for="">Email</label>
+                        <input id="" name="" type="text">
+                    </div>
+                    <div class="txt-fld">
+                        <label for="">Password</label>
+                        <input id="" name="" type="password">
+
+                    </div>
+                    <div class="btn-fld">
+                        <button type="submit">Login »</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div id="registrazionemodal">
+            <div id="signup-ct">
+                <div id="signup-header">
+                    <h2>Creazione account</h2>
+                    <p>&Egrave; facile e veloce.</p>
+                    <a class="modal_close" href="#"></a>
+                </div>
+                <form action="phpperregistrazione">
+                    <div class="txt-fld">
+                        <label for="">Nome</label>
+                        <input id="" name="" type="text">
+                    </div>
+                    <div class="txt-fld">
+                        <label for="">Cognome</label>
+                        <input id="" name="" type="text">
+                    </div>
+                    <div class="txt-fld">
+                        <label for="">Email</label>
+                        <input id="EmailReg" name="EmailReg" type="text">
+                    </div>
+                    <div class="txt-fld">
+                        <label for="">Data di nascita</label>
+                        <input id="" name="" type="date">
+                    </div>
+                    <div class="txt-fld">
+                        <label for="">Password</label>
+                        <input id="" name="" type="password">
+
+                    </div>
+                    <div class="btn-fld">
+                        <button type="submit">Registrati »</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    <?php }?>
     <div class ="main">
         <!-- MAIN CONTENT -->
         <div id='content'>

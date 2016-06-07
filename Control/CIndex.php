@@ -25,8 +25,12 @@ class CIndex {
         $VIndex = new VIndex();
         $content = $this->smista($log);
         $VIndex->setContent($content);
-        if($log==-1)
+        if($log==-1)//-1=non loggato
             $VIndex->impostaPaginaOspite();
+        else if($log==0)//0=utente
+            /* qualcosa */;
+        else if($log==1)//professionista/admin?
+            ;
         $VIndex->mostraPagina();
     }
 

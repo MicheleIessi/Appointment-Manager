@@ -143,7 +143,7 @@
             float: right;
             width: 900px;
         }
-    </style>
+    </style>    // CSS
     <script>
         $.ajax({
             url: 'Control/CProcessaCalendar.php',

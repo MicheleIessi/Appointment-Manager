@@ -19,8 +19,9 @@ class CIndex {
         $log = -1;
         $sessione = new USession();
         $log = $sessione->getValore('tipoUtente');
+        $log = $sessione->getValore('idUtente');
         if($log===false) {
-            $log=-1;    //a questo punto del programma in questo commit, bisogna fare controlli per il login
+            $log=1;    //a questo punto del programma in questo commit, bisogna fare controlli per il login
         }
         $VIndex = new VIndex();
         $content = $this->smista($log);
@@ -30,7 +31,7 @@ class CIndex {
         else if($log==0)//0=utente
             /* qualcosa */;
         else if($log==1)//professionista/admin?
-            ;
+            $VIndex->impostaPaginaRegistrato();
         $VIndex->mostraPagina();
     }
 
@@ -44,6 +45,14 @@ class CIndex {
             case 'login':
                 $CLog = new CLogin();
                 return $CLog->smista();
+            case 'lista':
+                if($log > 0) {
+                    $sessione->impostaValore('tipo','cliente'); //solo per provare
+
+                    $cal = new CCalendar();
+                    return $cal->smista();
+                }
+            else return $view->fetch('forbidden.tpl');
             case 'calendario':
                 if($log > 0 && isset($_REQUEST['idp'])) { //gestire l'errore se non c'è idp?
                     $cal = new CCalendar();

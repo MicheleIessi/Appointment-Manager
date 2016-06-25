@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-06-24 18:35:25
+<?php /* Smarty version 3.1.27, created on 2016-06-25 20:09:46
          compiled from "templates\templates\home_default.tpl" */ ?>
 <?php
-/*%%SmartyHeaderCode:16392576d614d408171_36915890%%*/
+/*%%SmartyHeaderCode:8234576ec8eab23c19_24021294%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,12 +9,12 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '719c8c86eb39ad4b1205c70c52407faf7158578e' => 
     array (
       0 => 'templates\\templates\\home_default.tpl',
-      1 => 1466780836,
+      1 => 1466878182,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '16392576d614d408171_36915890',
-  'variables' =>
+  'nocache_hash' => '8234576ec8eab23c19_24021294',
+  'variables' => 
   array (
     'title' => 0,
     'banner' => 0,
@@ -26,13 +26,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_576d614d456c84_77717531',
+  'unifunc' => 'content_576ec8eab95e02_59491920',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_576d614d456c84_77717531')) {
-function content_576d614d456c84_77717531 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_576ec8eab95e02_59491920')) {
+function content_576ec8eab95e02_59491920 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '16392576d614d408171_36915890';
+$_smarty_tpl->properties['nocache_hash'] = '8234576ec8eab23c19_24021294';
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
@@ -40,6 +40,7 @@ $_smarty_tpl->properties['nocache_hash'] = '16392576d614d408171_36915890';
         <link type="text/css" rel='stylesheet' href='JS/fullcalendar-2.6.1/fullcalendar.css' />
         <link type="text/css" rel="stylesheet" href='View/css/prova.css' />
         <link type="text/css" rel="stylesheet" href="View/css/login.css" />
+        <link type="text/css" rel="stylesheet" href="View/css/paginaUtente.css" />
         <?php echo '<script'; ?>
  type="text/javascript" src='JS/fullcalendar-2.6.1/lib/moment.min.js'><?php echo '</script'; ?>
 >

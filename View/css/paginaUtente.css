@@ -71,6 +71,7 @@ div {
 }
 
 .datiUtente {
+    text-align: left;
     margin-bottom: 10px;
     margin-left: 280px;
     margin-right: auto;

@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-06-24 18:35:25
+<?php /* Smarty version 3.1.27, created on 2016-06-25 20:04:14
          compiled from "templates\templates\home_default_content.tpl" */ ?>
 <?php
-/*%%SmartyHeaderCode:2042576d614d3a2838_58134756%%*/
+/*%%SmartyHeaderCode:17787576ec79ecd1e44_95835439%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,20 +9,20 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '65f390a344c243660a9118c685019da4fc138b3a' => 
     array (
       0 => 'templates\\templates\\home_default_content.tpl',
-      1 => 1466780836,
+      1 => 1466876138,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '2042576d614d3a2838_58134756',
+  'nocache_hash' => '17787576ec79ecd1e44_95835439',
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_576d614d3dd2d2_90959850',
+  'unifunc' => 'content_576ec79ed04fc3_36113100',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_576d614d3dd2d2_90959850')) {
-function content_576d614d3dd2d2_90959850 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_576ec79ed04fc3_36113100')) {
+function content_576ec79ed04fc3_36113100 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '2042576d614d3a2838_58134756';
+$_smarty_tpl->properties['nocache_hash'] = '17787576ec79ecd1e44_95835439';
 ?>
 <p>Contenuto di default</p>
 <a href="?controller=calendario&idp=1">Clicca per il calendario</a>

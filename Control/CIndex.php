@@ -68,8 +68,10 @@ class CIndex {
                 else return $view->fetch('forbidden.tpl');
                 
             case 'paginaUtente':
+                $idUtente = $_REQUEST['id'];
                 $CPagU = new CUtente();
-                return $CPagU->smista();
+                $sessione->impostaValore('tipo','cliente'); //solo per provare
+                return $CPagU->smista($idUtente);
                 
             default:
                 return $view->fetch('home_default_content.tpl');

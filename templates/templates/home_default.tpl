@@ -4,6 +4,7 @@
         <link type="text/css" rel='stylesheet' href='JS/fullcalendar-2.6.1/fullcalendar.css' />
         <link type="text/css" rel="stylesheet" href='View/css/prova.css' />
         <link type="text/css" rel="stylesheet" href="View/css/login.css" />
+        <link type="text/css" rel="stylesheet" href="View/css/paginaUtente.css" />
         <script type="text/javascript" src='JS/fullcalendar-2.6.1/lib/moment.min.js'></script>
         <script type="text/javascript" src='JS/fullcalendar-2.6.1/lib/jquery.min.js'></script>
         <script type="text/javascript" src='JS/fullcalendar-2.6.1/lib/jquery-ui.custom.min.js'></script>

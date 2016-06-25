@@ -25,9 +25,9 @@ class View extends Smarty {
         return false;
     }
 
-    public function getAction() {
-        if(isset($_REQUEST['action']))
-            return $_REQUEST['action'];
+    public function getTask() {
+        if(isset($_REQUEST['task']))
+            return $_REQUEST['task'];
         return false;
     }
 
@@ -36,12 +36,12 @@ class View extends Smarty {
             unset($_REQUEST['controller']);
     }
 
-    public function unsetAction() {
-        if(isset($_REQUEST['action']))
-            unset($_REQUEST['action']);
+    public function unsetTask() {
+        if(isset($_REQUEST['task']))
+            unset($_REQUEST['task']);
     }
 
-    public function setDataIntoTemplate($reference, $data) {
+    public function setData($reference, $data) {
         $this->assign($reference, $data);
     }
 }

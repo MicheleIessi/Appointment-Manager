@@ -6,7 +6,7 @@ class VIndex extends View {
 
     private $main_button=array();
 
-    private $side_content = "";
+    private $side_content = '';
 
     private $side_button=array();
 
@@ -17,6 +17,7 @@ class VIndex extends View {
     }
 
     public function mostraPagina() {
+        $this->assign('title','Appointment Manager');
         $this->loadButtons();
         $this->assign('banner',$this->getBanner());
         $this->assign('main_content',$this->main_content);
@@ -48,12 +49,18 @@ class VIndex extends View {
         $this->assign('right_content',$this->side_content);
     }
 
+    public function aggiungiTastiLoggato() {
+        $logBut = array();
+        $logBut[]=array('testo'=>'Profilo','link'=>'#profilo');
+        $logBut[]=array('testo'=>'Logout','link'=>'#logout');
+        $this->main_button=array_merge($this->main_button,$logBut);
+    }
 
     public function impostaPaginaRegistrato() {
+        $this->aggiungiTastiLoggato();
         $this->assign('title','Appointment Manager');
         $this->assign('main_content',$this->main_content);
         $this->assign('right_content',$this->side_content);
-        $this->aggiungiTastoLogout();
     }
 
     public function impostaDivProfessionisti($professionisti) { //professionisti è un array associativo contenente l'id dei professionisti nel db
@@ -81,5 +88,6 @@ class VIndex extends View {
             $buttons[]=$button;
         }
         $this->main_button = array_merge($this->main_button,$buttons);
+
     }
 }

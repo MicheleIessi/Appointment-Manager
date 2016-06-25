@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-06-07 23:29:36
+<?php /* Smarty version 3.1.27, created on 2016-06-24 12:29:06
          compiled from "templates\templates\home_default.tpl" */ ?>
 <?php
-/*%%SmartyHeaderCode:2833057573cc052fea5_86927802%%*/
+/*%%SmartyHeaderCode:5645576d0b72011f51_93708583%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,11 +9,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '719c8c86eb39ad4b1205c70c52407faf7158578e' => 
     array (
       0 => 'templates\\templates\\home_default.tpl',
-      1 => 1465334975,
+      1 => 1466764144,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '2833057573cc052fea5_86927802',
+  'nocache_hash' => '5645576d0b72011f51_93708583',
   'variables' => 
   array (
     'title' => 0,
@@ -26,13 +26,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_57573cc05bd1e0_41554010',
+  'unifunc' => 'content_576d0b720d0875_97650114',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_57573cc05bd1e0_41554010')) {
-function content_57573cc05bd1e0_41554010 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_576d0b720d0875_97650114')) {
+function content_576d0b720d0875_97650114 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '2833057573cc052fea5_86927802';
+$_smarty_tpl->properties['nocache_hash'] = '5645576d0b72011f51_93708583';
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
@@ -72,6 +72,7 @@ $_smarty_tpl->properties['nocache_hash'] = '2833057573cc052fea5_86927802';
     <?php echo $_smarty_tpl->tpl_vars['banner']->value;?>
 
     <!-- MAIN BUTTONS -->
+    <?php $_smarty_tpl->tpl_vars['nolog'] = new Smarty_Variable(false, null, 0);?>
     <div class="wrapper">
         <div class ="mainButtons">
             <?php
@@ -163,15 +164,17 @@ $_smarty_tpl->tpl_vars['button'] = $foreach_button_Sav;
     <?php }?>
     <div class ="main">
         <!-- MAIN CONTENT -->
-        <div id='content'>
+        <div class='content'>
             <?php echo $_smarty_tpl->tpl_vars['main_content']->value;?>
 
         </div>
         <!-- SIDE CONTENT -->
-        <div class="side_content">
-            <?php echo $_smarty_tpl->tpl_vars['right_content']->value;?>
+        <?php if ($_smarty_tpl->tpl_vars['right_content']->value) {?>
+            <div class="side_content">
+                <?php echo $_smarty_tpl->tpl_vars['right_content']->value;?>
 
-        </div>
+            </div>
+        <?php }?>
         </div>
     </body>
 </html><?php }

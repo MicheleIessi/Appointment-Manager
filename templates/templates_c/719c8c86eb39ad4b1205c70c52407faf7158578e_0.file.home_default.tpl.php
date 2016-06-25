@@ -14,7 +14,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     ),
   ),
   'nocache_hash' => '16392576d614d408171_36915890',
-  'variables' => 
+  'variables' =>
   array (
     'title' => 0,
     'banner' => 0,
@@ -72,6 +72,7 @@ $_smarty_tpl->properties['nocache_hash'] = '16392576d614d408171_36915890';
     <?php echo $_smarty_tpl->tpl_vars['banner']->value;?>
 
     <!-- MAIN BUTTONS -->
+    <?php $_smarty_tpl->tpl_vars['nolog'] = new Smarty_Variable(false, null, 0);?>
     <div class="wrapper">
         <div class ="mainButtons">
             <?php
@@ -163,15 +164,17 @@ $_smarty_tpl->tpl_vars['button'] = $foreach_button_Sav;
     <?php }?>
     <div class ="main">
         <!-- MAIN CONTENT -->
-        <div id='content'>
+        <div class='content'>
             <?php echo $_smarty_tpl->tpl_vars['main_content']->value;?>
 
         </div>
         <!-- SIDE CONTENT -->
-        <div class="side_content">
-            <?php echo $_smarty_tpl->tpl_vars['right_content']->value;?>
+        <?php if ($_smarty_tpl->tpl_vars['right_content']->value) {?>
+            <div class="side_content">
+                <?php echo $_smarty_tpl->tpl_vars['right_content']->value;?>
 
-        </div>
+            </div>
+        <?php }?>
         </div>
     </body>
 </html><?php }

@@ -1,19 +1,27 @@
 #calendar {
-    max-width: 100%;
-    max-height: inherit;
+    margin: 30px;
+    max-width: 1000px;
+    max-height: 600px;
 }
 #main {
-    width:100%;
+    width: 100%;
     overflow:hidden;
 }
 
-#content {
-    width:80%;
+.content {
     float:left;
+    min-width: 80%;
+    min-height: 480px;
+}
+
+.content:only-child {
+    width: 100%
 }
 
 .side_content {
-    margin-left: 81%;
+    float:left;
+    min-width: 20%;
+    min-height: 480px;
 }
 
 .forbiddenAccess {
@@ -86,9 +94,41 @@ a.buttonElem:hover {
     float:right;
 }
 
+.profList {
+    border: 1px solid lightblue;
+    border-radius: 10px;
+    margin: 3px;
+    justify-content: center;
+    align-items: center;
+    min-width: 150px;
+}
 
+.profLink {
+    font-weight: 100;
+    font-family: "Lucida Grande", Helvetica, Arial, Verdana, sans-serif;
+    color: lightblue;
+}
+.profLink:link,:visited {
+    text-decoration: none;
+}
 
+.profLink:hover {
 
+}
+
+.profWrapper {
+    height: auto;
+    width: auto;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.profContainer {
+
+    max-width: 500px;
+    min-height: 400px;
+}
 
 
 

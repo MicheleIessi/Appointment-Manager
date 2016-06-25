@@ -25,6 +25,7 @@ function content_576d614d3dd2d2_90959850 ($_smarty_tpl) {
 $_smarty_tpl->properties['nocache_hash'] = '2042576d614d3a2838_58134756';
 ?>
 <p>Contenuto di default</p>
-<a href="?controller=calendario&idp=1">Clicca per il calendario</a><?php }
+<a href="?controller=calendario&idp=1">Clicca per il calendario</a>
+<a href="?controller=lista&task=lista">Clicca per la lista</a><?php }
 }
 ?>

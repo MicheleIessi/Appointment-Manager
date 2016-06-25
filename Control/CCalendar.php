@@ -15,6 +15,9 @@ class CCalendar {
         $tipoUtente = $sessione->getValore('tipo'); //normale o professionista
         if($tipoUtente == 'cliente') {
             $VCal = new VCalendar();
+            $FPro = new FProfessionista();
+            $arrPro = $FPro->caricaProfessionisti();
+            $VCal->setData('prof',$arrPro);
             return $VCal->processaTemplate();
         }
         else {

@@ -18,6 +18,7 @@
     <!-- BANNER -->
     {$banner}
     <!-- MAIN BUTTONS -->
+    {$nolog = false}
     <div class="wrapper">
         <div class ="mainButtons">
             {foreach $mainButtons as $button}
@@ -92,13 +93,15 @@
     {/if}
     <div class ="main">
         <!-- MAIN CONTENT -->
-        <div id='content'>
+        <div class='content'>
             {$main_content}
         </div>
         <!-- SIDE CONTENT -->
-        <div class="side_content">
-            {$right_content}
-        </div>
+        {if $right_content}
+            <div class="side_content">
+                {$right_content}
+            </div>
+        {/if}
         </div>
     </body>
 </html>

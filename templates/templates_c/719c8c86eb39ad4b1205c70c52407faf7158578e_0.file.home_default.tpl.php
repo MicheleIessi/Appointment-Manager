@@ -2,7 +2,6 @@
          compiled from "templates\templates\home_default.tpl" */ ?>
 <?php
 /*%%SmartyHeaderCode:16392576d614d408171_36915890%%*/
->>>>>>> 0a22b79e69ba1fa5311e70b330d72b88ffb8041c
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 

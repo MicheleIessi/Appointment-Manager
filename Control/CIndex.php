@@ -38,12 +38,15 @@ class CIndex {
         $view = new VIndex();
         $sessione = new USession();
         switch($view->getController()) {
+            
             case 'registrazione':
                 $CReg = new CRegistrazione();
                 return $CReg->smista();
+                
             case 'login':
                 $CLog = new CLogin();
                 return $CLog->smista();
+                
             case 'calendario':
                 if($log > 0 && isset($_REQUEST['idp'])) { //gestire l'errore se non c'è idp?
                     $cal = new CCalendar();
@@ -55,6 +58,11 @@ class CIndex {
                     return $cal->smista();
                 }
                 else return $view->fetch('forbidden.tpl');
+                
+            case 'paginaUtente':
+                $CPagU = new CUtente();
+                return $CPagU->smista();
+                
             default:
                 return $view->fetch('home_default_content.tpl');
         }

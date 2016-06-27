@@ -5,7 +5,7 @@ class FServizio extends Fdb {
     public function __construct() {
         if(!parent::isOn())
             parent::__construct();
-        $this->table = "servizi";
+        $this->table = "servizio";
         $this->primary_key = 'nomeServizio';
         $this->attributi = 'nomeServizio,descrizione,settore,durata';
         $this->return_class = 'EServizio';
@@ -67,7 +67,6 @@ class FServizio extends Fdb {
             $arraySer = array_values($arraySer);
             $this->old_keys = implode(',', $arraySer);
             $es = new $this->return_class($arraySer[0], $arraySer[1], $arraySer[2], $arraySer[3]);
-            echo "Servizio ".$es->getNomeServizio()." creato correttamente<br>";
             return $es;
         } catch(PDOException $e) {
             echo $e->getMessage();

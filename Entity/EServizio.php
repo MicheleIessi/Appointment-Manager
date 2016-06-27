@@ -6,7 +6,7 @@ class EServizio {
     private $nomeServizio;
     private $descrizione;
     private $settore;
-    private $durata=0;
+    private $durata;
 
     // Costruttore
     public function __construct($nom,$des, $set, $dur)   {
@@ -20,7 +20,16 @@ class EServizio {
     public function setNomeServizio($nom) { $this->nomeServizio=$nom; }
     public function setDescrizione($des) { $this->descrizione=$des; }
     public function setSettore($set) { $this->settore=$set; }
-    public function setDurata($dur) { $this->durata=$dur; }
+
+    public function setDurata($dur) {
+        $pattern = "#^([2][0-3]|[01][0-9]):([0-5][0-9]):([0-5][0-9])$#";
+        if(preg_match($pattern, $dur) == 1) {
+            $this->durata = $dur;
+        }
+        else
+            echo "Durata del servizio non valida";
+    }
+
     public function getNomeServizio() { return $this->nomeServizio; }
     public function getDescrizione() { return $this->descrizione; }
     public function getSettore() { return $this->settore; }

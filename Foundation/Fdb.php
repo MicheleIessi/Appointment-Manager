@@ -42,7 +42,20 @@ class Fdb {
      * @return bool l'esito della query
      */
     protected function inserisci($data) {
-        $sql="INSERT INTO ".$this->table.'('.$this->attributi.") VALUES (".$this->bind.")";
+        $BindKey = array_keys($data);
+        $attributi = explode(',',$this->attributi);
+        $sql = "INSERT INTO $this->table (";
+        foreach($attributi as $attr) {
+            $sql.= "$attr,";
+            }
+        $sql = rtrim($sql,',');
+        $sql.= ") VALUES (";
+        foreach($BindKey as $key) {
+            $sql.= "$key,";
+        }
+        $sql = rtrim($sql,',');
+        $sql.=")";
+        //echo $sql;
         $query=self::$db->prepare($sql);
         try {
             $this->result = $query->execute($data);
@@ -103,6 +116,7 @@ class Fdb {
             $sql.=" $Primary[$i] = '".$BindOldKey[$i]."' AND";
         }
         $sql = rtrim($sql,'AND');
+        //echo $sql;
         $query = self::$db->prepare($sql);
         $rows=0;
         try {
@@ -205,7 +219,7 @@ class Fdb {
      * @param $data
      * @param $table
      * @param $chiavi
-     * @return bool
+     * @return mixed
      */
     protected function caricaGenerica($data,$table,$chiavi) {
         $sql="SELECT * FROM $table WHERE ";
@@ -216,7 +230,6 @@ class Fdb {
             $sql.=" $Primary[$i] = $BindKey[$i] AND";
         }
         $sql = rtrim($sql,'AND');
-        echo "$sql<br>";
         $query=self::$db->prepare($sql);
         try {
             $query->execute($data);

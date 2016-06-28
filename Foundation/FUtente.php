@@ -8,7 +8,7 @@ class FUtente extends Fdb   {
     public function __construct() {
         if(!parent::isOn())
             parent::__construct();
-        $this->table = 'utenti';
+        $this->table = 'utente';
         $this->primary_key = 'numID';
         $this->attributi = 'numID,nome,cognome,dataNascita,codiceFiscale,sesso,email,password';
         $this->return_class = 'EUtente';

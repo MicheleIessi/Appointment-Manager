@@ -16,4 +16,7 @@ class VCalendar extends View {
         $this->layout = $layout;
     }
 
+    public function getColonnaServizi() {
+        return $this->fetch('colonna_servizi.tpl');
+    }
 }

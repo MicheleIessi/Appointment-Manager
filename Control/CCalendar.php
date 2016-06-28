@@ -16,8 +16,10 @@ class CCalendar {
         if($tipoUtente == 'cliente') {
             $VCal = new VCalendar();
             $FPro = new FProfessionista();
-            $arrPro = $FPro->caricaProfessionisti();
-            $VCal->setData('prof',$arrPro);
+            $arrayProf = $FPro->caricaProfessionisti();
+            $arrayLink = $this->getArrayPerLink($arrayProf);
+            $VCal->setData('prof',$arrayLink);
+
             return $VCal->processaTemplate();
         }
         else {
@@ -27,10 +29,35 @@ class CCalendar {
 
     public function getServiziProf($idp) {
 
-
+        $FProf = new FProfessionista();
+        $servProf = $FProf->ricavaServiziOfferti($idp);
+        $VCal = new VCalendar();
+        $servizi = array();
+        foreach($servProf as $servizio) {
+            $arraySer = array();
+            $arraySer['nome'] = $servizio->getNomeServizio();
+            $arraySer['descrizione'] = $servizio->getDescrizione();
+            $arraySer['settore'] = $servizio->getSettore();
+            $arraySer['durata'] = $servizio->getDurata();
+            array_push($servizi,$arraySer);
+        }
+        $VCal->setData('servizi',$servizi);
+        return $VCal->getColonnaServizi();
     }
 
 
+    private function getArrayPerLink($arrayProf) {
+
+        $arrayLink = array();
+        foreach($arrayProf as $professionista) {
+            $profLink = array();
+            $profLink['id'] = $professionista->getID();
+            $profLink['nome'] = $professionista->getNome();
+            $profLink['cognome'] = $professionista->getCognome();
+            array_push($arrayLink,$profLink);
+        }
+        return $arrayLink;
+    }
 
     public function setIDP($idp) {
         self::$idp = $idp;

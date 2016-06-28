@@ -36,7 +36,6 @@ class FAgenda extends Fdb {
         $risultato = array();
         if( sizeof($res =  parent::caricaConChiave($valori,'IDP')) != 0  ) {
             $FSer = new FServizio();
-            $i=1;
             foreach ($res as $appuntamento) {
                 //Scompatto l'array $appuntamento, creo l'oggetto EServizio e metto tutto dentro $risultato
                 $chiaveServizio = $appuntamento['visita'];
@@ -51,7 +50,6 @@ class FAgenda extends Fdb {
                 $app = new EAppuntamento($IDProf,$IDCliente,$dataApp,$orarioApp,$servizio,$IDApp);
 
                 array_push($risultato, $app);
-                $i++;
             }
         }
         else {

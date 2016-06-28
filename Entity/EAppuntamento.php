@@ -72,6 +72,9 @@ class EAppuntamento {
     public function getIDAppuntamento() { return $this->IDAppuntamento; }
     public function getData() { return $this->data; }
     public function getOrario() { return $this->orarioInizio; }
+    /**
+     * @return EServizio
+     */
     public function getVisita() { return $this->visita; }
     public function getIDCliente() { return $this->IDCliente; }
     public function getIDProfessionista() { return $this->IDProfessionista; }

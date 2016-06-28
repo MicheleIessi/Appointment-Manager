@@ -8,7 +8,7 @@ class FCliente extends Fdb  {
         $this->return_class = 'ECliente';
         USingleton::getInstance('Fdb');
     }
-    
+
     public function store($oggetto) {
 
         //TODO

@@ -14,32 +14,37 @@
 
 
 class CIndex {
+    /**
+     * @var VIndex
+     */
+    private $VIndex;
 
     public function impostaPagina() {
+        $this->VIndex = new VIndex();
         $log = -1;
         $sessione = new USession();
-        $log = $sessione->getValore('tipoUtente');
         $log = $sessione->getValore('idUtente');
+        $sessione->impostaValore('tipo','cliente');
         if($log===false) {
             $log=1;    //a questo punto del programma in questo commit, bisogna fare controlli per il login
         }
-        $VIndex = new VIndex();
+        $this->VIndex = new VIndex();
         $content = $this->smista($log);
-        $VIndex->setContent($content);
+        $this->VIndex->setContent($content);
+
+
         if($log==-1)//-1=non loggato
-            $VIndex->impostaPaginaOspite();
+            $this->VIndex->impostaPaginaOspite();
         else if($log==0)//0=utente
             /* qualcosa */;
         else if($log==1)//professionista/admin?
-            $VIndex->impostaPaginaRegistrato();
-        $VIndex->mostraPagina();
+            $this->VIndex->impostaPaginaRegistrato();
+        $this->VIndex->mostraPagina();
     }
 
     public function smista($log) {
-        $view = new VIndex();
         $sessione = new USession();
-        switch($view->getController()) {
-            
+        switch($this->VIndex->getController()) {
             case 'registrazione':
                 $CReg = new CRegistrazione();
                 return $CReg->smista();
@@ -54,18 +59,21 @@ class CIndex {
                     $cal = new CCalendar();
                     return $cal->smista();
                 }
-            else return $view->fetch('forbidden.tpl');
+            else return $this->VIndex->fetch('forbidden.tpl');
             case 'calendario':
-                if($log > 0 && isset($_REQUEST['idp'])) { //gestire l'errore se non c'è idp?
-                    $cal = new CCalendar();
-                    $idp=$_REQUEST['idp'];
-                    setcookie('lastCalendar',$idp);
-                    $sessione->impostaValore('tipo','cliente'); //solo per provare
-                    $fpro = new FProfessionista();
-                    $view->impostaDivProfessionisti($fpro->caricaProfessionisti());
-                    return $cal->smista();
+                if($sessione->getValore('tipo') == 'cliente') {
+                    if($log > 0 && isset($_REQUEST['idp'])) { //gestire l'errore se non c'è idp?
+                        $idp = $_REQUEST['idp'];
+                        setcookie('lastCalendar', $idp);
+                        $cal = new CCalendar();
+                        $this->VIndex->setSideContent($cal->getServiziProf($idp));
+                        return $cal->smista();
+                    }
                 }
-                else return $view->fetch('forbidden.tpl');
+                else if($sessione->getValore('tipo') == 'professionista') {
+                    ;//
+                }
+                return $this->VIndex->fetch('forbidden.tpl');
                 
             case 'paginaUtente':
                 $idUtente = $_REQUEST['id'];
@@ -74,7 +82,7 @@ class CIndex {
                 return $CPagU->smista($idUtente);
                 
             default:
-                return $view->fetch('home_default_content.tpl');
+                return $this->VIndex->fetch('home_default_content.tpl');
         }
     }
 }

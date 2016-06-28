@@ -91,22 +91,6 @@ class FAppuntamento extends Fdb  {
         return $app;
     }
 
-    public function caricaAppuntamentiProfessionista($idp) {
-        $this->setParametri();
-        $valori=array();
-        $valori[':IDP']=$idp;
-        $res =  parent::caricaConChiave($valori,'IDP');
-        $risultato = array();
-        foreach($res as $appuntamento) {
-            $fs=new FServizio();
-            $servizio=$fs->caricaServizioDaDb($appuntamento['visita']);
-            $app = new $this->return_class($appuntamento['IDP'],$appuntamento['IDC'],$appuntamento['data'],
-                                           $appuntamento['orarioInizio'],$servizio,$appuntamento['IDApp']);
-            array_push($risultato,$app);
-        }
-        return $risultato;
-    }
-
     private function setParametri() {
         parent::setParam($this->table,$this->attributi,$this->bind,$this->bind_key,$this->old_keys);
     }

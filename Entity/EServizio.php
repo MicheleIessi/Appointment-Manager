@@ -22,12 +22,11 @@ class EServizio {
     public function setSettore($set) { $this->settore=$set; }
 
     public function setDurata($dur) {
-        $pattern = "#^([2][0-3]|[01][0-9]):([0-5][0-9]):([0-5][0-9])$#";
-        if(preg_match($pattern, $dur) == 1) {
+        $pattern = "#^([2][0-3]|[01][0-9]|[0-9]):([0-5][0-9]):([0-5][0-9])$#";
+        if(preg_match($pattern, $dur) === 1)
             $this->durata = $dur;
-        }
         else
-            echo "Durata del servizio non valida";
+            echo "Durata del servizio non valida.<br>";
     }
 
     public function getNomeServizio() { return $this->nomeServizio; }

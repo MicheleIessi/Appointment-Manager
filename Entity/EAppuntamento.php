@@ -46,9 +46,6 @@ class EAppuntamento {
     }
     
     public function setVisita($v)    {
-        if (is_null($this->visita))     {
-            $this->visita = new EServizio(null,null,null,0);    // Costruttore di default
-        }
         if(!(is_a($v, "EServizio")))    {
             throw new PDOException("Variabile non valida: deve essere un'istanza di EServizio, variabile di tipo ".gettype($v)." passata.");
         }

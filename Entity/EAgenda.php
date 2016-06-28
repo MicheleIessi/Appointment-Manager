@@ -1,21 +1,24 @@
 <?php
 class EAgenda {
     // Attributi
-    private $impegni;        // è un array di EAppuntamento
     private $IDProfessionista;
+    private $impegni = array();        // è un array di EAppuntamento
 
 
     public function __construct($i=array(),$id) {
-        $this->setImpegni($i);
-        $this->setIDProfessionista($id);
-
+        try {
+            $this->setIDProfessionista($id);
+            $this->setImpegni($i);
+        } catch(Exception $e) {
+            echo $e->getMessage();
+        }
     }
 
     // Metodi
     public function setImpegni($i) {
         foreach ($i as $appuntamenti) {
             if( !( is_a($appuntamenti, "EAppuntamento") ) )    {
-                throw new Exception("Variabile non valida", 1);
+                throw new Exception("Impossibile inserire nell'agenda un oggetto non di tipo EAppuntamento.<br>", 1);
             }
             $this->aggiungiAppuntamento($appuntamenti);
         }

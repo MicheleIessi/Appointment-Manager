@@ -1,43 +1,68 @@
 <?php
 
-class FAgenda {
-    
-        private $connessione;
-        private $nomeChiave;
-        private $nomeClasseRitorno;
-        
-        public function __construct() {
-            $this->nomeChiave='IDP';
-            $this->nomeClasseRitorno='EAgenda';
-        }
-        
-        public function load($key)  {   // Da testare
-            $this->connessione= FConnectionDB::connetti();
-            $query = 'SELECT * FROM `appuntamenti` WHERE `'.$this->nomeChiave.'`="'.$key.'";';
-            $appuntamento=[];
-            $risQuery = $this->connessione->query($query)->fetch_all(MYSQLI_NUM);
-            foreach ($risQuery as $app)    {
-                $d=$app[0];
-                $o=$app[1];
-            
-                $temp=$this->connessione->query('SELECT * FROM `servizi` WHERE `nomeServizio`="'.$app[2].'";')->fetch_array(MYSQLI_NUM);
-                $v=new EServizio($temp[0], $temp[1], $temp[2], $temp[3]);  // E' un servizio
-            
-                $idc=$app[3];
-                $idp=$app[4];
-            
-                array_push($appuntamento, new EAppuntamento($d,$o,$v,$idc,$idp));
+class FAgenda extends Fdb {
+
+    public function __construct() {
+        if(!parent::isOn())
+            parent::__construct();
+        $this->table = 'appuntamento';
+        $this->primary_key = 'IDP';
+        $this->attributi = 'IDApp,IDP,IDC,data,orarioInizio,visita';
+        $this->return_class = 'EAgenda';
+        $this->bind = ':IDApp,:IDP,:IDC,:data,:orarioInizio,:visita';
+        $this->bind_key = ':IDP';
+        $this->old_keys;
+    }
+
+    /** Il metodo pubblico caricaAgenda crea un oggetto EAgenda prendendo come parametro un ID con il quale verrà
+     * effettuata una chiamata al metodo caricaAppuntamentiProfessionista per trovare tutti gli impegni corrispondenti
+     * all'id.
+     * @param $idp int l'id del professionista
+     * @return EAgenda l'agenda del professionista con id $idp
+     */
+    public function caricaAgenda($idp) {
+        $appuntamenti = $this->caricaAppuntamentiProfessionista($idp);
+        return new $this->return_class($appuntamenti,$idp);
+    }
+
+    /** Il metodo privato caricaAppuntamentiProfessionista viene chiamato da caricaAgenda per creare un array di oggetti
+     * EAppuntamento rappresentanti l'insieme degli impegni di un professionista
+     * @param $idp int l'id del professionista
+     * @return array l'array di oggetti EAppuntamento
+     */
+    private function caricaAppuntamentiProfessionista($idp) {
+        $this->setParametri();
+        $valori[':IDP']=$idp;
+        $risultato = array();
+        if( sizeof($res =  parent::caricaConChiave($valori,'IDP')) != 0  ) {
+            $FSer = new FServizio();
+            $i=1;
+            foreach ($res as $appuntamento) {
+                //Scompatto l'array $appuntamento, creo l'oggetto EServizio e metto tutto dentro $risultato
+                $chiaveServizio = $appuntamento['visita'];
+                $IDProf = $appuntamento['IDP'];
+                $IDCliente = $appuntamento['IDC'];
+                $dataApp = $appuntamento['data'];
+                $orarioApp = $appuntamento['orarioInizio'];
+                $servizio = $FSer->caricaServizioDaDb($chiaveServizio);
+
+                $IDApp = $appuntamento['IDApp'];
+
+                $app = new EAppuntamento($IDProf,$IDCliente,$dataApp,$orarioApp,$servizio,$IDApp);
+
+                array_push($risultato, $app);
+                $i++;
             }
-        $agenda= new EAgenda($appuntamento);
-        return $agenda;
         }
-        
-        public function delete($key)    {
-            $this->connessione= FConnectionDB::connetti();
-            $query= 'DELETE FROM `appuntamenti` WHERE `'.$this->nomeChiave.'`='.$key.';';
-            return $this->connessione->query($query);
+        else {
+            echo "Professionista con ID $idp non trovato.<br>";
         }
-        
-        // Nessun metodo update, perché un'agenda è un insieme di appuntamenti e si usa il metodo update di FAppuntamenti
-        
+        return $risultato;
+    }
+
+    private function setParametri() {
+        parent::setParam($this->table,$this->primary_key,$this->attributi,$this->bind_key,$this->old_keys);
+    }
+
+
 }

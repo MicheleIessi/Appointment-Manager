@@ -2,15 +2,24 @@
 require_once('includes/autoload.inc.php');
 $type = $_REQUEST['type'];
 $sessione = new USession();
+$id=$_COOKIE['lastCalendar'];
+$events = array();
+/* QUI CARICO GLI ORARI IN CUI IL PROFESSIONISTA NON E' DISPONIBILE E LI INSERISCO SOTTO FORMA DI EVENTI BACKGROUND */
+$FPro = new FProfessionista();
+$EPro = $FPro->caricaProfessionistaDaDB(1);
+$impegni = $EPro->getOrariLavorativi();
+$arrBackground = generaEventiOrari($impegni);
+foreach($arrBackground as $giorno) {
+    array_push($events,$giorno);
+}
 
 if($type == 'fetch') {
-    $id=$_COOKIE['lastCalendar'];
-    $fapp = new FAgenda();
-    $agenda = $fapp->caricaAgenda($id);
+    $fage = new FAgenda();
+    $agenda = $fage->caricaAgenda($id);
     $impegni = $agenda->getImpegni();
-    $events = array();
     $tipo = $sessione->getValore('tipo');
     $FUte = new FUtente();
+
     foreach($impegni as $appuntamento) {
         $evento = array();
         //attributi che non dipendono dal tipo di utente che ha richiesto il calendario
@@ -64,4 +73,57 @@ function processa($inizio,$durata) {
     $inizioConvertito->add($durataConvertita);
     $fineConvertita = $inizioConvertito->format('Y-m-d H:i:s');
     return $fineConvertita;
+}
+
+
+/*
+ *
+ *  DA 00:00 AL PRIMO ORARIO DEL GIORNO
+ *  DALLA FINE DEL PRIMO ORARIO DEL GIORNO ALL'INIZIO DEL SECONDO ORARIO
+ *  COSì VIA FINO A 00:00
+ *
+ */
+function generaEventiOrari($arrayOrari) {
+    $orariConvertiti = array();
+    $i=0;   //rappresenta il giorno della settimana
+    foreach($arrayOrari as $giorno) {
+        $orari = explode(',', $giorno);
+        // devo prendere gli intervalli a due a due e fare la stessa cosa praticamente
+        $numeroIntervalli = count($orari);
+        //inserisco il primo evento background
+        $primoOrario = explode('-',$orari[0]);
+        $primoEvento = creaEventoBackground('00:00:00',$primoOrario[0],$i);
+        array_push($orariConvertiti, $primoEvento);
+        //inserisco gli eventi intermedi
+        for ($k=0; $k < $numeroIntervalli-1; $k++) {
+            $intervallo1 = explode('-',$orari[$k]);
+            $intervallo2 = explode('-',$orari[$k+1]);
+            $inizio = $intervallo1[1];
+            $fine = $intervallo2[0];
+            $eventoInMezzo = creaEventoBackground($inizio,$fine,$i);
+            array_push($orariConvertiti, $eventoInMezzo);
+        }
+
+        $ultimoOrario = explode('-',$orari[$numeroIntervalli-1]);
+        $intervallo2 = $ultimoOrario[1];
+        $ultimoEvento = creaEventoBackground($intervallo2,'24:00:00',$i);
+        array_push($orariConvertiti,$ultimoEvento);
+        $i++;
+    }
+    return $orariConvertiti;
+}
+
+function creaEventoBackground($inizio,$fine,$giorno) {
+
+    $singoloEvento['id'] = "NonDisponibile";
+    $singoloEvento['title'] = "";
+    $singoloEvento['start'] = $inizio;
+    $singoloEvento['end'] = $fine;
+    $singoloEvento['rendering'] = 'background';
+    $singoloEvento['allDay'] = "";
+    $singoloEvento['editable'] = false;
+    $singoloEvento['color'] = '#f04124';
+    $singoloEvento['dow'] = [$giorno];
+
+    return $singoloEvento;
 }

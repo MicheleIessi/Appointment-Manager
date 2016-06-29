@@ -6,13 +6,13 @@
 
 
 #wrapServizi {
-    justify-content: center;
     display: flex;
     margin-top: 30px;
 }
 #external-events {
+    position: absolute;
     float: left;
-    width: 150px;
+    width: 15%;
     padding: 0 10px;
     border: 1px solid #ccc;
     background: #eee;

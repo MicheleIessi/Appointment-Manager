@@ -25,12 +25,6 @@ $(document).ready(function() {
             center: 'title',
             right: 'month,agendaWeek,agendaDay'
         },
-        eventRender: function(event, element) {
-            element.append( "<span class='closeon'>X</span>" );
-            element.find(".closeon").click(function() {
-                $('#calendar').fullCalendar('removeEvents',event._id);
-            });
-        },
         editable: true,
         droppable: true,    // this allows things to be dropped onto the calendar
         drop: function() {
@@ -42,7 +36,7 @@ $(document).ready(function() {
         },
 
 
-        firstDay: 1,
+        firstDay: 0,
         defaultView: 'agendaWeek',
 
         views: {

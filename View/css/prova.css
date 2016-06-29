@@ -1,3 +1,7 @@
+#calendar {
+    width: auto;
+    height: auto;
+}
 #main {
     width: 100%;
     overflow:hidden;
@@ -5,7 +9,7 @@
 
 .content {
     float:left;
-    min-width: 80%;
+    max-width: 80%;
     min-height: 480px;
 }
 
@@ -124,9 +128,3 @@ a.buttonElem:hover {
     max-width: 500px;
     min-height: 400px;
 }
-
-
-
-
-
-

@@ -3,8 +3,9 @@
 class EAppuntamento {
     
     // Attributi
+    private $IDAppuntamento;
     private $data;          // Stringa divisa da "-"
-    private $orario;        // Stringa di due orari divisi da ":'"
+    private $orarioInizio;        // Stringa
     private $visita;        // E' un Servizio
     private $IDCliente;
     private $IDProfessionista;
@@ -14,15 +15,20 @@ class EAppuntamento {
     prima che venisse modificato     */
     
     // Costruttore
-    public function __construct($IDP,$IDC,$d,$o,$v) {
+    public function __construct($IDP,$IDC,$d,$o,$v,$IDApp=0) {
         $this->setIDProfessionista($IDP);
         $this->setIDCliente($IDC);
         $this->setData($d);
-        $this->setOrario($o);
+        $this->setOrarioInizio($o);
         $this->setVisita($v);
+        $this->setIDAppuntamento($IDApp);
     }
     
     // Metodi (aggiungere controlli)
+    public function setIDAppuntamento($IDApp) {
+        $this->IDAppuntamento = $IDApp;
+    }
+
     public function setData($d)    {
         $pattern = "#^(\d{4})-(0[1-9]|1[0-2])-([1-9]|1[0-9]|2[0-9]|3[0-1])$#";
         if(preg_match($pattern, $d) != 1) {
@@ -31,25 +37,20 @@ class EAppuntamento {
         $this->data = $d;
     }
     
-    public function setOrario($o)    {
-        $pattern = "#^(2[0-3]|[01][0-9]|[1-9]):([0-5][0-9])$#";
-        $ore = explode("-", $o);
-        foreach ($ore as $orario) {
-            if(preg_match($pattern, $orario) != 1) {
-            throw new PDOException("Orario non valido: inserire un orario tra 00:00 e 23:59", 1);
-            }
+    public function setOrarioInizio($o)    {
+        $pattern = "#^(2[0-3]|[01][0-9]|[1-9]):([0-5][0-9]):([0-5][0-9])#";
+        if(preg_match($pattern, $o) != 1) {
+            throw new PDOException("Orario non valido: inserire un orario tra 00:00:00 e 23:59:59");
         }
-        $this->orario = $o;
+        $this->orarioInizio = $o;
     }
     
     public function setVisita($v)    {
-        if (is_null($this->visita))     {
-            $this->visita = new EServizio(null,null,null,0);    // Costruttore di default
+        if(!(is_a($v, "EServizio")))    {
+            throw new PDOException("Variabile non valida: deve essere un'istanza di EServizio, variabile di tipo ".gettype($v)." passata.");
         }
-        if( !( is_a($v, "EServizio")))    {    
-            throw new PDOException("Variabile non valida: deve essere un'istanza di EServizio, variabile di tipo ".gettype($v)." passata.", 1);   }
-        else    {
-        $this->visita=$v;   // Composizione 
+        else {
+            $this->visita=$v;   // Composizione
         }
     }
     
@@ -68,14 +69,22 @@ class EAppuntamento {
         }
         $this->IDProfessionista=$IDP;
     }
+    public function getIDAppuntamento() { return $this->IDAppuntamento; }
     public function getData() { return $this->data; }
-    public function getOrario() { return $this->orario; }
+    public function getOrario() { return $this->orarioInizio; }
+    /**
+     * @return EServizio
+     */
     public function getVisita() { return $this->visita; }
     public function getIDCliente() { return $this->IDCliente; }
     public function getIDProfessionista() { return $this->IDProfessionista; }
     
     // Metodo di utilità per il lato Foundation
     public function getArrayAttributi() {
-        return array($this->IDProfessionista,$this->IDCliente,$this->data,$this->orario,$this->visita);
+        if($this->IDAppuntamento !==0 )
+            return array($this->IDAppuntamento,$this->IDProfessionista,$this->IDCliente,$this->data,$this->orarioInizio,$this->visita);
+        else
+            return array($this->IDProfessionista,$this->IDCliente,$this->data,$this->orarioInizio,$this->visita);
+
     }
 }

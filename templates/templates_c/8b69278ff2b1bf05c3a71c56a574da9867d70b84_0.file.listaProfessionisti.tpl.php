@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-06-26 00:22:51
+<?php /* Smarty version 3.1.27, created on 2016-06-28 22:42:15
          compiled from "templates\templates\listaProfessionisti.tpl" */ ?>
 <?php
-/*%%SmartyHeaderCode:12122576f043b55f112_40658135%%*/
+/*%%SmartyHeaderCode:195755772e127ebb5c1_12724289%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,11 +9,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '8b69278ff2b1bf05c3a71c56a574da9867d70b84' => 
     array (
       0 => 'templates\\templates\\listaProfessionisti.tpl',
-      1 => 1466876138,
+      1 => 1466873153,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '12122576f043b55f112_40658135',
+  'nocache_hash' => '195755772e127ebb5c1_12724289',
   'variables' => 
   array (
     'prof' => 0,
@@ -21,13 +21,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_576f043b5a7206_47036878',
+  'unifunc' => 'content_5772e1289cdc75_31525551',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_576f043b5a7206_47036878')) {
-function content_576f043b5a7206_47036878 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_5772e1289cdc75_31525551')) {
+function content_5772e1289cdc75_31525551 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '12122576f043b55f112_40658135';
+$_smarty_tpl->properties['nocache_hash'] = '195755772e127ebb5c1_12724289';
 ?>
 <div class="profWrapper">
     <div class="profContainer">

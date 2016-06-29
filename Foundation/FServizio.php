@@ -5,7 +5,7 @@ class FServizio extends Fdb {
     public function __construct() {
         if(!parent::isOn())
             parent::__construct();
-        $this->table = "servizi";
+        $this->table = "servizio";
         $this->primary_key = 'nomeServizio';
         $this->attributi = 'nomeServizio,descrizione,settore,durata';
         $this->return_class = 'EServizio';
@@ -58,20 +58,19 @@ class FServizio extends Fdb {
     }
 
     public function caricaServizioDaDb($key) {
+        $es = false;
         parent::setParam($this->table,$this->attributi,$this->bind,$this->bind_key,$this->old_keys);
         $valori=array();
         $valori["$this->bind_key"] = $key;
         try {
             $arraySer = parent::carica($valori);
             if(!is_array($arraySer)) throw new PDOException("Nessun servizio chiamato $key.<br>");
-            $arraySer = array_values($arraySer);
             $this->old_keys = implode(',', $arraySer);
-            $es = new $this->return_class($arraySer[0], $arraySer[1], $arraySer[2], $arraySer[3]);
-            echo "Servizio ".$es->getNomeServizio()." creato correttamente<br>";
-            return $es;
+            $es = new $this->return_class($arraySer['nomeServizio'], $arraySer['descrizione'], $arraySer['settore'], $arraySer['durata']);
         } catch(PDOException $e) {
             echo $e->getMessage();
         }
+        return $es;
     }
 
 }

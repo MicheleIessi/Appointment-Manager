@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-06-26 12:50:37
+<?php /* Smarty version 3.1.27, created on 2016-06-26 17:36:22
          compiled from "templates\templates\home_default.tpl" */ ?>
 <?php
-/*%%SmartyHeaderCode:10718576fb37d30ed49_04085655%%*/
+/*%%SmartyHeaderCode:10421576ff67616f8e4_81773133%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,11 +9,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '719c8c86eb39ad4b1205c70c52407faf7158578e' => 
     array (
       0 => 'templates\\templates\\home_default.tpl',
-      1 => 1466938167,
+      1 => 1466955376,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '10718576fb37d30ed49_04085655',
+  'nocache_hash' => '10421576ff67616f8e4_81773133',
   'variables' => 
   array (
     'title' => 0,
@@ -26,17 +26,18 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_576fb37d381ba9_88555467',
+  'unifunc' => 'content_576ff6761f4014_92460175',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_576fb37d381ba9_88555467')) {
-function content_576fb37d381ba9_88555467 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_576ff6761f4014_92460175')) {
+function content_576ff6761f4014_92460175 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '10718576fb37d30ed49_04085655';
+$_smarty_tpl->properties['nocache_hash'] = '10421576ff67616f8e4_81773133';
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
     <head>
+        <link type="text/css" rel="stylesheet" href="View/css/calendario.css" />
         <link type="text/css" rel='stylesheet' href='JS/fullcalendar-2.6.1/fullcalendar.css' />
         <link type="text/css" rel="stylesheet" href='View/css/prova.css' />
         <link type="text/css" rel="stylesheet" href="View/css/login.css" />

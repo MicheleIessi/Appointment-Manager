@@ -4,11 +4,11 @@ class FProfessionista extends Fdb {
     public function __construct() {
         if(!parent::isOn())
             parent::__construct();
-        $this->table='professionisti';
+        $this->table='professionista';
         $this->primary_key='IDP';
-        $this->attributi='IDP,settore,orari';
+        $this->attributi='IDP,settore,orarioLun,orarioMar,orarioMer,orarioGio,orarioVen,orarioSab,orarioDom';
         $this->return_class='EProfessionista';
-        $this->bind=':IDP,:settore,:orari';
+        $this->bind=':IDP,:settore,:orarioLun,:orarioMar,:orarioMer,:orarioGio,:orarioVen,:orarioSab,:orarioDom';
         $this->bind_key=':IDP';
         $this->old_keys;
     }
@@ -23,7 +23,7 @@ class FProfessionista extends Fdb {
         $ute = $pro->getUtenteDaProfessionista();
         $fute = new FUtente();
         $ute2 = $fute->caricaUtenteDaLogin($ute->getEmail(),$ute->getPassword()); # cerco di trovare l'utente corrispondente al professionista che si vuole inserire
-        if(is_null($ute2)) {
+        if(!$ute2) {
             # l'utente non è già nel db
             $fute->inserisciUtente($ute);
         }
@@ -31,13 +31,13 @@ class FProfessionista extends Fdb {
         $pro->setID($id);
         $this->setParametri();
         $valori = parent::cambiaChiaviArray($pro->getArrayAttributi());
+        var_dump($valori);
         try {
             if(parent::inserisci($valori) == 0) {
                 throw new PDOException("Professionista già presente nel Database.<br>");
             }
             else {
                 echo("Professionista aggiunto correttamente al database.<br>");
-                /* I SERVIZI ANDREBBERO COLLEGATI E AGGIUNTI QUI DENTRO */
                 $servizi = $pro->getServiziOfferti();
                 $fser = new FServizio();
                 /** @var EServizio $servizio */
@@ -67,12 +67,45 @@ class FProfessionista extends Fdb {
         $risultato = parent::carica($valori);
         //risultato è un array del tipo IDP=>a,settore=>b,orari=>c
         $settore = $risultato['settore'];
-        $orario = $risultato['orari'];
+        // a questo punto bisogna creare l'array associativo degli orari
+        $orario=array();
+        $orario['lun']=$risultato['orarioLun'];
+        $orario['mar']=$risultato['orarioMar'];
+        $orario['mer']=$risultato['orarioMer'];
+        $orario['gio']=$risultato['orarioGio'];
+        $orario['ven']=$risultato['orarioVen'];
+        $orario['sab']=$risultato['orarioSab'];
+        $orario['dom']=$risultato['orarioDom'];
         $serviziOfferti = $this->ricavaServiziOfferti($key);
         $prof = new EProfessionista($utente->getNome(),$utente->getCognome(),$utente->getDataNascita(),
             $utente->getCodiceFiscale(),$utente->getSesso(),$utente->getEmail(),
             $utente->getPassword(),$key,$serviziOfferti,$settore,$orario);
         return $prof;
+    }
+
+    /** Il metodo aggiornaProfessionista cerca di modificare una ennupla della tabella professionista prendendo come
+     * input un oggetto di tipo EProfessionista. L'oggetto di tipo EProfessionista passato come parametro deve avere
+     * un id valido, cioè deve essere stato creato con l'id di un professionista conosciuto O creato tramite la
+     * funzione caricaProfessionistaDaDB avente come parametro l'id del professionista.
+     * @param EProfessionista $EPro
+     */
+    public function aggiornaProfessionista(EProfessionista $EPro) {
+
+        if($EPro->getID()) {
+            $id = $EPro->getID();
+            $this->setParametri();
+            $this->old_keys = $id;
+            $valori = parent::cambiaChiaviArray($EPro->getArrayAttributi());
+
+            if(parent::aggiorna($valori) != 0) {
+                echo "Professionista con ID $id modificato correttamente.<br>";
+            }
+            else
+                echo "Professionista con ID $id non esistente o impossibile da modificare.<br>";
+        }
+        else
+            echo "Professionista non presente nel database.<br>";
+
     }
     /** deve trovare tutti i servizi offerti da un professionista e restituire un array che li contiene
      * 1. query su serviziofferti con IDP come chiave x
@@ -82,7 +115,7 @@ class FProfessionista extends Fdb {
      * @param $key string la chiave del professionista
      * @return mixed
      */
-    private function ricavaServiziOfferti($key) {
+    public function ricavaServiziOfferti($key) {
         $valori = array();
         $valori[$this->bind_key] = $key;
         $result = parent::caricaGenerica($valori,"serviziOfferti","IDP");
@@ -95,23 +128,17 @@ class FProfessionista extends Fdb {
         return $arraySer;
     }
 
-    /** La funzione caricaProfessionisti carica TUTTI i professionisti dal db e ritorna un array di array associativi
-     * del tipo: 0=> [ 'nome'=>'x', 'cognome'=>'y', 'id'=>'z' ],1=>... e così via.
+    /** La funzione caricaProfessionisti carica TUTTI i professionisti dal db e ritorna un array di oggetti EProfessionista
      * @return array
      */
     public function caricaProfessionisti() {
         $result = parent::caricaTutte($this->table);
-        $fute = new FUtente();
-        $res = array();
+        $arrPro = array();
         foreach($result as $prof) {
-            $pro = array();
-            $ute = $fute->caricaUtenteDaDb($prof['IDP']);
-            $pro['nome']=$ute->getNome();
-            $pro['cognome']=$ute->getCognome();
-            $pro['id']=$ute->getID();
-            array_push($res,$pro);
+            $profElem = $this->caricaProfessionistaDaDB($prof['IDP']);
+            array_push($arrPro,$profElem);
         }
-        return $res;
+        return $arrPro;
     }
 
     private function setParametri() {

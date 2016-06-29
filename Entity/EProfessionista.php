@@ -7,19 +7,14 @@ class EProfessionista extends EUtente {
 
     private $serviziOfferti = array();
     private $settore;
-    private $orari;
-    /** @var  EAgenda */
-    private $agendaLavoro;
+    private $orariLavorativi = array();
 
 
-
-        
     public function __construct($n, $c, $dn, $cf, $s, $e, $p, $id, $so, $set, $or) {
         parent::__construct($n, $c, $dn, $cf, $s, $e, $p, $id);
         $this->setServiziOfferti($so);
         $this->setSettore($set);
-        $this->setOrari($or);
-        //$this->setAgendaLavoro();
+        $this->setOrariLavorativi($or);
     }
     
     public function setServiziOfferti($so) {
@@ -32,24 +27,32 @@ class EProfessionista extends EUtente {
     public function setSettore($set) {
         $this->settore = $set;
     }
-    //$or è una stringa rappresentante un qualsiasi numero di range di orari nel formato hh:mm-hh:mm separati da virgole
-    public function setOrari($or) {
-        $pattern = "#^(([0-23]|[01][0-9]):([0-5][0-9])-([0-23]|[01][0-9]):([0-5][0-9]),?)+$#";
-        $ore = explode(",", $or);
-        foreach ($ore as $orario) {
-            if(preg_match($pattern, $orario) == 1) {
-                $this->orari = $or;
-            }
-            else
-                throw new Exception("Orario non valido", 1);
+
+    /**
+     * setOrariLavorativi fa in modo che un array associativo del tipo 'lun'=>'aa:bb:cc-xx:yy:zz','mar'=>...
+     * venga inserito nel professionista per determinare gli orari in cui egli accetta appuntamenti
+     * @param $or
+     */
+    public function setOrariLavorativi($or) {
+        if($this->esaminaOrariLavorativi($or)) {
+            $this->orariLavorativi = $or;
         }
-        $this->orari = $or;
-    }
-    
-    public function setAgendaLavoro() {
-        //?
     }
 
+    public function modificaGiornoLavorativo($giorno,$orario) {
+        $chiaviRichieste = array('lun','mar','mer','gio','ven','sab','dom');
+        if(array_search($giorno,$chiaviRichieste) != false) {
+
+            $pattern = "#^(([2][0-3]|[01][0-9]):([0-5][0-9]):([0-5][0-9])-([2][0-3]|[01][0-9]):([0-5][0-9]):([0-5][0-9]),?)+$#";
+            if(preg_match($pattern,$orario) == 1) {
+                $this->orariLavorativi[$giorno] = $orario;
+            }
+            else
+                echo "Formato orario non valido.<br>";
+        }
+        else
+            echo "Giorno non valido.<br>";
+    }
     /**
      * @return array EServizio
      */
@@ -61,44 +64,28 @@ class EProfessionista extends EUtente {
         return $this->settore;
     }
     
-    public function getOrari()  {
-        return $this->orari;
+    public function getOrariLavorativi()  {
+        return $this->orariLavorativi;
     }
-    
-    public function getAgendaLavoro()   {
-        return $this->agendaLavoro;
-    }
-    
+
     public function aggiungiServizio($so) {
         array_push($this->serviziOfferti, $so);
     }
-    
-    public function aggiungiSettore($set) {
-        if(count($this->settore) > 3) {
-            throw new Exception("Limite settori raggiunto", 2);
-        }
-        array_push($this->settore, $set);
-    }
-    
+
     public function rimuoviServizio($so) {
         if(($key = array_search($so, $this->serviziOfferti)) !== false) {
             unset($this->serviziOfferti[$key]);
             $this->serviziOfferti = array_values($this->serviziOfferti);
         }
         else {
-            throw new Exception ("Servizio non presente", 2);
+            throw new Exception ("Servizio non presente");
         }
-    }
-    private function convertiOraInBlocco($ora) {
-        $arrayOra=explode(':',$ora);
-        $bloccoOra=($arrayOra[0]*60)/$this->agendaLavoro->getDurataBlocco();
-        $bloccoMinuti=($arrayOra[1]/$this->agendaLavoro->getDurataBlocco());
-        $blocco=$bloccoOra+$bloccoMinuti;
-        return $blocco;
     }
 
     public function getArrayAttributi() {
-        return array($this->numID,$this->settore,$this->orari);
+        return array($this->numID,$this->settore,$this->orariLavorativi['lun'],$this->orariLavorativi['mar'],
+                     $this->orariLavorativi['mer'],$this->orariLavorativi['gio'],$this->orariLavorativi['ven'],
+                     $this->orariLavorativi['sab'],$this->orariLavorativi['dom']);
     }
 
     public function getUtenteDaProfessionista() {
@@ -107,6 +94,34 @@ class EProfessionista extends EUtente {
                            $this->getPassword(),$this->getID());
     }
 
+    /**Gli orari lavorativi devono essere rappresentati da un array associativo del tipo 'lun'=>'aa:bb:cc-xx:yy:zz','mar'=>...
+     * @param $orari
+     * @return bool
+     */
+    public function esaminaOrariLavorativi($orari) {
 
+        $esito = false;
+        if(is_array($orari)) {
 
+            $chiaviRichieste = array('lun','mar','mer','gio','ven','sab','dom');
+            if(count(array_intersect_key(array_flip($chiaviRichieste),$orari)) === count($chiaviRichieste)) {//vuol dire che ci sono tutti i giorni
+
+                $pattern = "#^(([2][0-3]|[01][0-9]):([0-5][0-9]):([0-5][0-9])-([2][0-3]|[01][0-9]):([0-5][0-9]):([0-5][0-9]),?)+$#";
+                $i = 0;
+                foreach($orari as $giorno) {
+                    if(preg_match($pattern,$giorno) != 1) {
+                        echo "Formato orario non valido per il giorno $chiaviRichieste[$i]";
+                        return false;
+                    }
+                    $i++;
+                }
+                $esito = true;
+            }
+            else
+                echo "Mancano alcune chiavi nell'orario.<br>";
+        }
+        else
+            echo "Il parametro passato non è un array di orari valido.";
+        return $esito;
+    }
 }

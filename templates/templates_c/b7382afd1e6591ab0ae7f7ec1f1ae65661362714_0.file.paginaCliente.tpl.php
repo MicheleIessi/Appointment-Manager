@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-06-26 01:27:53
+<?php /* Smarty version 3.1.27, created on 2016-06-26 01:41:20
          compiled from "templates\templates\paginaCliente.tpl" */ ?>
 <?php
-/*%%SmartyHeaderCode:24261576f1379161bb0_46106425%%*/
+/*%%SmartyHeaderCode:4122576f16a0b192c9_20013317%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,11 +9,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'b7382afd1e6591ab0ae7f7ec1f1ae65661362714' => 
     array (
       0 => 'templates\\templates\\paginaCliente.tpl',
-      1 => 1466891463,
+      1 => 1466898065,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '24261576f1379161bb0_46106425',
+  'nocache_hash' => '4122576f16a0b192c9_20013317',
   'variables' => 
   array (
     'nomeUtente' => 0,
@@ -27,13 +27,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_576f13791a3a76_85984147',
+  'unifunc' => 'content_576f16a0b6fd90_31130751',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_576f13791a3a76_85984147')) {
-function content_576f13791a3a76_85984147 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_576f16a0b6fd90_31130751')) {
+function content_576f16a0b6fd90_31130751 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '24261576f1379161bb0_46106425';
+$_smarty_tpl->properties['nocache_hash'] = '4122576f16a0b192c9_20013317';
 ?>
 
 <div class='userContainer'>
@@ -65,7 +65,9 @@ $_smarty_tpl->properties['nocache_hash'] = '24261576f1379161bb0_46106425';
     </div>
 
     <div class="Calendario">
-        <a href="?controller=calendario&idp=1">Prenota un appuntamento! Clicca per aprire l'agenda di 'Mario Rossi'</a>
+        <a href="?controller=calendario&idp=<?php echo $_smarty_tpl->tpl_vars['numID']->value;?>
+">Prenota un appuntamento! Clicca per aprire l'agenda di <?php echo $_smarty_tpl->tpl_vars['nomeUtente']->value;?>
+</a>
     </div>
     
 </div>

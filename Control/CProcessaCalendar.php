@@ -35,6 +35,22 @@ if($type == 'fetch') {
         }
         array_push($events,$evento);
     }
+    
+    /*  La struttura dei JSON events è la seguente: 
+     *  
+     *  events[ 
+     *          id:    'aaa',
+     *          title: 'bbb',
+     *          start: 'ccc',
+     *          editable: false,
+     *          allDay: /
+     *        ]
+     * 
+     *     In verità ci sono delle differenze nel caso in cui si è un cliente o un professionista: 
+     *     il cliente ad esempio non dovrebbe poter vedere il titolo degli appuntamenti del professionista,
+     *     inoltre ha il valore editable posto a false; al contrario il professionista avrà editable=true
+     */
+    
     echo json_encode($events);
 }
 

@@ -20,7 +20,7 @@
     </div>
 
     <div class="Calendario">
-        <a href="?controller=calendario&idp=1">Prenota un appuntamento! Clicca per aprire l'agenda di 'Mario Rossi'</a>
+        <a href="?controller=calendario&idp={$numID}">Prenota un appuntamento! Clicca per aprire l'agenda di {$nomeUtente}</a>
     </div>
     
 </div>

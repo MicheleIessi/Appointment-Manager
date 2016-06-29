@@ -13,8 +13,9 @@ class CUtente {
                 $ECli= $FCli->caricaUtenteDaDb($id);
 
                 $this->processaUtente($VCli, $ECli);
+                
+                
                 return $VCli->impostaPaginaCliente();
-            break;
         
             case 'professionista':
                 $VPro= new VProfessionista();
@@ -33,10 +34,9 @@ class CUtente {
                  * in modo tale che gli orari del professionista siano visibili sulla sua pagina   
                 */
                 
-                $this->processaOrari($EPro);
+                //$this->processaOrari($EPro);
                 
                 return $VPro->impostaPaginaProfessionista();    // DEVO ANCORA FARE IL TEMPLATE!!!
-            break;
 
             default:
                 break;
@@ -58,17 +58,8 @@ class CUtente {
                 
     }
     
-    public function processaOrari($EPro)    {
+    public function cronologiaAppuntamentiCliente($VCli, $ECli)    {
+        $FPro = new FProfessionista();
         
-        $orariArray= explode(",", $EPro->getOrari());   // ora dovrebbe essere un array
-                
-        $VPro->setData('lun', $orariArray[0]);
-        $VPro->setData('mar', $orariArray[1]);
-        $VPro->setData('mer', $orariArray[2]);
-        $VPro->setData('gio', $orariArray[3]);
-        $VPro->setData('ven', $orariArray[4]);
-        $VPro->setData('sab', $orariArray[5]);
-        $VPro->setData('dom', $orariArray[6]);
-    
     }
 }

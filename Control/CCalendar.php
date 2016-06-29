@@ -13,7 +13,7 @@ class CCalendar {
     public function smista() {
         $sessione = new USession();
         $tipoUtente = $sessione->getValore('tipo'); //normale o professionista
-        if($tipoUtente == 'cliente') {
+        if($tipoUtente == 'cliente'||$tipoUtente == 'professionista') {
             $VCal = new VCalendar();
             $FPro = new FProfessionista();
             $arrayProf = $FPro->caricaProfessionisti();

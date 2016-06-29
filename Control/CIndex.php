@@ -24,7 +24,7 @@ class CIndex {
         $log = -1;
         $sessione = new USession();
         $log = $sessione->getValore('idUtente');
-        $sessione->impostaValore('tipo','cliente');
+        $sessione->impostaValore('tipo','professionista');
         if($log===false) {
             $log=1;    //a questo punto del programma in questo commit, bisogna fare controlli per il login
         }
@@ -71,7 +71,11 @@ class CIndex {
                     }
                 }
                 else if($sessione->getValore('tipo') == 'professionista') {
-                    ;//
+                    $idp = $_REQUEST['idp'];
+                    setcookie('lastCalendar', $idp);
+                    $cal = new CCalendar();
+                    $this->VIndex->setSideContent($cal->getServiziProf($idp));
+                    return $cal->smista();
                 }
                 return $this->VIndex->fetch('forbidden.tpl');
                 

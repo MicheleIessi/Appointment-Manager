@@ -6,10 +6,13 @@ class VCalendar extends View {
 
     public function processaTemplate() {
         $view = new VIndex();
-        if($view->getTask() == 'lista') {
-            return $this->fetch('listaProfessionisti.tpl');
+        $task = $view->getTask();
+        switch($task) {
+            case 'lista':
+                return $this->fetch('listaProfessionisti.tpl');
+            default:
+                return $this->fetch('calendario_'.$this->layout.'.tpl');
         }
-        return $this->fetch('calendario_'.$this->layout.'.tpl');
     }
 
     public function setLayout($layout) {

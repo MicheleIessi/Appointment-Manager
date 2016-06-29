@@ -95,12 +95,12 @@
     {/if}
     <div class ="main">
         <!-- MAIN CONTENT -->
-        <div class='content'>
+        <div class='content inline-content'>
             {$main_content}
         </div>
         <!-- SIDE CONTENT -->
         {if $right_content}
-            <div class="side_content">
+            <div class="side_content inline-content">
                 {$right_content}
             </div>
         {/if}

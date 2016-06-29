@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-06-26 17:36:22
+<?php /* Smarty version 3.1.27, created on 2016-06-29 02:15:27
          compiled from "templates\templates\home_default.tpl" */ ?>
 <?php
-/*%%SmartyHeaderCode:10421576ff67616f8e4_81773133%%*/
+/*%%SmartyHeaderCode:182565773131fcd5341_38372208%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,11 +9,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '719c8c86eb39ad4b1205c70c52407faf7158578e' => 
     array (
       0 => 'templates\\templates\\home_default.tpl',
-      1 => 1466955376,
+      1 => 1467159225,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '10421576ff67616f8e4_81773133',
+  'nocache_hash' => '182565773131fcd5341_38372208',
   'variables' => 
   array (
     'title' => 0,
@@ -26,13 +26,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_576ff6761f4014_92460175',
+  'unifunc' => 'content_5773131fd68398_97411000',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_576ff6761f4014_92460175')) {
-function content_576ff6761f4014_92460175 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_5773131fd68398_97411000')) {
+function content_5773131fd68398_97411000 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '10421576ff67616f8e4_81773133';
+$_smarty_tpl->properties['nocache_hash'] = '182565773131fcd5341_38372208';
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
@@ -166,13 +166,13 @@ $_smarty_tpl->tpl_vars['button'] = $foreach_button_Sav;
     <?php }?>
     <div class ="main">
         <!-- MAIN CONTENT -->
-        <div class='content'>
+        <div class='content inline-content'>
             <?php echo $_smarty_tpl->tpl_vars['main_content']->value;?>
 
         </div>
         <!-- SIDE CONTENT -->
         <?php if ($_smarty_tpl->tpl_vars['right_content']->value) {?>
-            <div class="side_content">
+            <div class="side_content inline-content">
                 <?php echo $_smarty_tpl->tpl_vars['right_content']->value;?>
 
             </div>

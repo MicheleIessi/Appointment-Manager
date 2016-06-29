@@ -36,9 +36,6 @@ class FCliente extends Fdb  {
                 array_push($risultato, $app);
             }
         }
-        else {
-            echo "Nessun appuntamento trovato per il cliente con id $idc.<br>";
-        }
         return $risultato;
     }
 

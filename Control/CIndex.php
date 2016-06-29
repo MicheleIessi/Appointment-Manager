@@ -85,6 +85,9 @@ class CIndex {
                 $sessione->impostaValore('tipo','cliente'); //solo per provare
                 return $CPagU->smista($idUtente);
                 
+            case 'modificaCliente':
+                return $this->VIndex->fetch('modificaCliente.tpl');     // solo per provare, ancora da fare i controlli
+                
             case 'paginaProfessionista':
                 $idProfessionista = $_REQUEST['id'];
                 $CPagP = new CUtente();

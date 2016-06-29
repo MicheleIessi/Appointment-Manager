@@ -7,23 +7,29 @@ class CUtente {
         $tipoUtente = $sessione->getValore('tipo'); //cliente o professionista
         
         switch ($tipoUtente) {
-            case 'cliente': 
+            case 'cliente':
+                
                 $VCli= new VCliente;
                 $FCli= new FUtente();
                 $ECli= $FCli->caricaUtenteDaDb($id);
 
                 $this->processaUtente($VCli, $ECli);
                 
+                $VCli->setData('cronologia', $this->cronologiaAppuntamentiCliente($id));
                 
                 return $VCli->impostaPaginaCliente();
         
             case 'professionista':
+                
                 $VPro= new VProfessionista();
                 $FPro= new FProfessionista();
                 $EPro= $FPro->caricaProfessionistaDaDB($id);
 
                 $this->processaUtente($VPro, $EPro);
                 $VPro->setData('settore', $EPro->getSettore());      // Sempre se vogliamo tenerlo
+                $VPro->setData('orariLavorativi',$EPro->getOrariLavorativi());
+                $VPro->setData('serviziOfferti', $EPro->getServiziOfferti());
+                $VPro->setData('serviziOfferti', $this->serviziProfessionista($EPro));
                 
                 /* Se prendo gli orari lavorativi del professionista, e li rendo un array, posso costruire una 
                 stringa del tipo 
@@ -36,7 +42,7 @@ class CUtente {
                 
                 //$this->processaOrari($EPro);
                 
-                return $VPro->impostaPaginaProfessionista();    // DEVO ANCORA FARE IL TEMPLATE!!!
+                return $VPro->impostaPaginaProfessionista();
 
             default:
                 break;
@@ -58,8 +64,58 @@ class CUtente {
                 
     }
     
-    public function cronologiaAppuntamentiCliente($VCli, $ECli)    {
-        $FPro = new FProfessionista();
+    public function cronologiaAppuntamentiCliente($id)    {
+        
+        $FCli= new FCliente();
+        $arrayApp= $FCli->getAppuntamenti($id);      //array di oggetti EAppuntamento
+        $arrayCronologia = array();
+        $FUte= new FUtente();
+        foreach ($arrayApp as $appuntamento) {
+            $EUte= $FUte->caricaUtenteDaDb($appuntamento->getIDProfessionista());
+            $nomeProf = $EUte->getNome() . " " . $EUte->getCognome();
+            $idProf = $EUte->getID();
+            $nomeSer = $appuntamento->getVisita()->getNomeServizio();
+            $data = $appuntamento->getData();
+            $orario = $appuntamento->getOrario();
+            $rigaCronologia = array(
+                'data'     => $data,
+                'orario'   => $orario,
+                'nomeServ' => $nomeSer,                
+                'nomeProf' => $nomeProf,
+                'idProf'   => $idProf
+            );
+            
+            array_push($arrayCronologia,$rigaCronologia);
+            
+        }
+        return $arrayCronologia;
+    }
+    
+    public function serviziProfessionista(EProfessionista $EPro) {
+        $serviziOfferti= $EPro->getServiziOfferti();
+        $arrayServizi= array();
+        
+        foreach ($serviziOfferti as $ser) {
+            
+            $nomeSer= $ser->getNomeServizio();
+            $settore= $ser->getSettore();
+            $durata= $ser->getDurata();
+            $descrizione= $ser->getDescrizione();
+            
+            $servizio= array(
+                'nomeServizio'  =>  $nomeSer,
+                'settore'       =>  $settore,
+                'durata'        =>  $durata,
+                'descrizione'   =>  $descrizione
+            );
+            
+            array_push($arrayServizi,$servizio);
+            
+        }
+        
+        return $arrayServizi;
         
     }
+    
+    
 }

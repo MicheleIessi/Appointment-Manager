@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-06-25 20:09:46
+<?php /* Smarty version 3.1.27, created on 2016-06-26 12:50:37
          compiled from "templates\templates\home_default.tpl" */ ?>
 <?php
-/*%%SmartyHeaderCode:8234576ec8eab23c19_24021294%%*/
+/*%%SmartyHeaderCode:10718576fb37d30ed49_04085655%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,11 +9,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '719c8c86eb39ad4b1205c70c52407faf7158578e' => 
     array (
       0 => 'templates\\templates\\home_default.tpl',
-      1 => 1466878182,
+      1 => 1466938167,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '8234576ec8eab23c19_24021294',
+  'nocache_hash' => '10718576fb37d30ed49_04085655',
   'variables' => 
   array (
     'title' => 0,
@@ -26,13 +26,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_576ec8eab95e02_59491920',
+  'unifunc' => 'content_576fb37d381ba9_88555467',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_576ec8eab95e02_59491920')) {
-function content_576ec8eab95e02_59491920 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_576fb37d381ba9_88555467')) {
+function content_576fb37d381ba9_88555467 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '8234576ec8eab23c19_24021294';
+$_smarty_tpl->properties['nocache_hash'] = '10718576fb37d30ed49_04085655';
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
@@ -40,7 +40,8 @@ $_smarty_tpl->properties['nocache_hash'] = '8234576ec8eab23c19_24021294';
         <link type="text/css" rel='stylesheet' href='JS/fullcalendar-2.6.1/fullcalendar.css' />
         <link type="text/css" rel="stylesheet" href='View/css/prova.css' />
         <link type="text/css" rel="stylesheet" href="View/css/login.css" />
-        <link type="text/css" rel="stylesheet" href="View/css/paginaUtente.css" />
+        <link type="text/css" rel="stylesheet" href="View/css/paginaCliente.css" />
+        <link type="text/css" rel="stylesheet" href="View/css/paginaProfessionista.css" />
         <?php echo '<script'; ?>
  type="text/javascript" src='JS/fullcalendar-2.6.1/lib/moment.min.js'><?php echo '</script'; ?>
 >

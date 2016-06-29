@@ -49,7 +49,7 @@ class CIndex {
                 return $CLog->smista();
             case 'lista':
                 if($log > 0) {
-                    $sessione->impostaValore('tipo','cliente'); //solo per provare
+                    $sessione->impostaValore('tipo','professionista'); //solo per provare
 
                     $cal = new CCalendar();
                     return $cal->smista();
@@ -67,11 +67,17 @@ class CIndex {
                 }
                 else return $view->fetch('forbidden.tpl');
                 
-            case 'paginaUtente':
+            case 'paginaCliente':
                 $idUtente = $_REQUEST['id'];
                 $CPagU = new CUtente();
                 $sessione->impostaValore('tipo','cliente'); //solo per provare
                 return $CPagU->smista($idUtente);
+                
+            case 'paginaProfessionista':
+                $idProfessionista = $_REQUEST['id'];
+                $CPagP = new CUtente();
+                $sessione->impostaValore('tipo', 'professionista');
+                return $CPagP->smista($idProfessionista);
                 
             default:
                 return $view->fetch('home_default_content.tpl');

@@ -5,7 +5,7 @@
         </p>
         {foreach $prof as $professionista}
             <div class="profList">
-                <a class="profLink" href="?controller=calendario&idp={$professionista['id']}">{$professionista['nome']} {$professionista['cognome']}</a>
+                <a class="profLink" href="?controller=paginaProfessionista&id={$professionista['id']}">{$professionista['nome']} {$professionista['cognome']}</a>
             </div>
         {/foreach}
     </div>

@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-07-01 12:17:06
+<?php /* Smarty version 3.1.27, created on 2016-07-01 20:40:11
          compiled from "templates\templates\home_default.tpl" */ ?>
 <?php
-/*%%SmartyHeaderCode:1631557764322b45a28_15137358%%*/
+/*%%SmartyHeaderCode:182605776b90b695310_42257917%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,11 +9,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '719c8c86eb39ad4b1205c70c52407faf7158578e' => 
     array (
       0 => 'templates\\templates\\home_default.tpl',
-      1 => 1467367873,
+      1 => 1467398407,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '1631557764322b45a28_15137358',
+  'nocache_hash' => '182605776b90b695310_42257917',
   'variables' => 
   array (
     'title' => 0,
@@ -26,22 +26,22 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_57764322d4e277_64576661',
+  'unifunc' => 'content_5776b90b71fd08_56428066',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_57764322d4e277_64576661')) {
-function content_57764322d4e277_64576661 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_5776b90b71fd08_56428066')) {
+function content_5776b90b71fd08_56428066 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '1631557764322b45a28_15137358';
+$_smarty_tpl->properties['nocache_hash'] = '182605776b90b695310_42257917';
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
     <head>
-        <link type="text/css" rel="stylesheet" href="View/css/calendario.css" />
         <link type="text/css" rel='stylesheet' href='JS/fullcalendar-2.6.1/fullcalendar.css' />
         <link type="text/css" rel="stylesheet" href='View/css/prova.css' />
         <link type="text/css" rel="stylesheet" href="View/css/login.css" />
-        
+        <link type="text/css" rel="stylesheet" href="View/css/calendario.css" />
+
         <?php echo '<script'; ?>
  type="text/javascript" src='JS/fullcalendar-2.6.1/lib/moment.min.js'><?php echo '</script'; ?>
 >

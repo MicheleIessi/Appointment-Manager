@@ -22,13 +22,13 @@ class FAppuntamento extends Fdb  {
         $chiaveDaCercare = 'IDP,IDC,data';
         try {
             if(parent::caricaConChiave($valoriDaCercare,$chiaveDaCercare) != false) {
-                throw new PDOException("Appuntamento già presente nel database."); //sarebbe meglio mettere un return che simboleggia il risultato
+                return false; //sarebbe meglio mettere un return che simboleggia il risultato
             }
             else {
                 if (parent::inserisci($valori) == 0) {
                     throw new PDOException("Il cliente con id ".$valori[':IDC']." non esiste.<br>");
                 } else
-                    echo("Appuntamento aggiunto correttamente al database." . "<br>");
+                    return true;
             }
         } catch(PDOException $e) {
             echo $e->getMessage();

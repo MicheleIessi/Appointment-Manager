@@ -1,28 +1,53 @@
+<link type="text/css" rel="stylesheet" href="View/css/paginaCliente.css" />
 
-<div class='userContainer'>
+<div title="contenitoreUtente"id='contenitoreUtente'>
     
-    <h1>{$nomeUtente}</h1>
-    
-    <div class="immagine">
-        qui dentro ci andrà la foto dell'utente (se vogliamo implementare il caricamento della foto)
-    </div>
+            
 
-    <div class="datiUtente">
-        <ul>
-            <li>ID Utente: {$numID} </li> <br />
-            <li>Nome: {$nome} </li>
-            <li>Cognome: {$cognome} </li>
-            <li>Data di nascita: {$dataNascita} </li>
-            <li>Sesso: {$sesso} </li>
-            <li>Codice fiscale: {$codiceFiscale} </li>
-            <li>Email:{$email} </li>
-        </ul>
-    </div>
+            <h2>Pagina Cliente - ID Utente: {$numID} </h2>
 
-    <div class="Calendario">
-        <a href="?controller=calendario&idp={$numID}">Prenota un appuntamento! Clicca per aprire l'agenda di {$nomeUtente}</a>
-    </div>
-    
-</div>
+            <div title="immagine" id="immagine">
+                Carica Immagine
+            </div>
+
+            <div title="datiUtente" id="datiUtente">
+                
+                <ul>
+                    <li>Nome: {$nome} </li>
+                    <li>Cognome: {$cognome} </li>
+                    <li>Data di nascita: {$dataNascita} </li>
+                    <li>Sesso: {$sesso} </li>
+                    <li>Codice fiscale: {$codiceFiscale} </li>
+                    <li>Email: {$email} </li>
+                    <br><br>Altre informazioni...
+                </ul>
+                
+            </div>
+            
+            
+                <h3>Cronologia Appuntamenti </h3>
+                <table id="pastAppTable">
+                    <tr id="chiavi">
+                        <td>Data</td> 
+                        <td>Orario</td> 
+                        <td>Servizio</td> 
+                        <td>Professionista</td>
+                    </tr>
+                    
+                    {foreach $cronologia as $app} 
+                        <tr>
+                            <td>{$app['data']}</td>
+                            <td>{$app['orario']}</td>
+                            <td>{$app['nomeServ']}</td>
+                            <td><a href=?controller=paginaProfessionista&id={$app['idProf']} >{$app['nomeProf']} </a></td>
+                        </tr>
+                    {/foreach}
+                    
+                    <a href=?controller=modificaCliente id="modifica"><button>Modifica informazioni</button></a>
+                    
+                </table>
+            
+
+        </div>
 
 

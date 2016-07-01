@@ -1,60 +1,33 @@
 
-.userContainer {
-    background-image: -webkit-linear-gradient(270deg,rgb(230,233,233) 0%,rgb(216,221,221) 100%);
-    background-image: linear-gradient(270deg,rgb(230,233,233) 0%,rgb(216,221,221) 100%);
-    -webkit-font-smoothing: antialiased;
-
-    padding-bottom: 20px;
-    padding-left: 50px ;
-    padding-right: 20px ;
-    padding-top: 10px;
-
-    max-width: auto;
-    height:auto;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 16px;
-    line-height: 10px;
-    color: #545454;
-    background-color: inherit;
-}
-
-h1, h2, h3, h4, h5, h6 {
-    color: black;
-    font-weight: auto; 
-    line-height: 50px;
-    text-align: left;
-}
-
-a {
-    color: #0083e8; 
-}
-
-img {
-    -webkit-animation: colorize 2s cubic-bezier(0, 0, .78, .36) 1;
-    animation: colorize 2s cubic-bezier(0, 0, .78, .36) 1;
-    background: transparent;
-    border: 10px solid rgba(0, 0, 0, 0.12);
+#contenitoreUtente {
+    
+    position: absolute;
+    
+    background-color: aliceblue;
+    
+    height: auto;
+    width: 1291px;
+    
+    border: 1px solid black; 
     border-radius: 4px;
-    display: block;
-    margin: 1.3em auto;
-    max-width: 95%;
-}
-
-p {
+    border-color: black;
     line-height: normal;
-    color: black;
+    
+    padding-bottom: 20px;
+    padding-left: 20px ;
+    padding-right: 20px ;
+    padding-top: 20px;
+    
 }
 
-div {
-  ;
-}
-
-.immagine  {
+#immagine {
+    
     float: left;
-    margin-bottom: 10px;
-    margin-left: 0px;
-    margin-right: 10px;
-    margin-top: 0px;
+    
+    margin-bottom: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
 
     padding-bottom: 20px ;
     padding-left: 20px;
@@ -63,45 +36,116 @@ div {
 
     width: 200px;
     height: 250px;
-    border: 2px solid black; 
-    border-radius: 10px;
+    
+    border: 1px solid black; 
+    border-radius: 4px;
     border-color: black;
     background-color: white;
     line-height: normal;
+    
+    
 }
 
-.datiUtente {
-    text-align: left;
-    margin-bottom: 10px;
+#datiUtente {
+    
+    margin-bottom: 20px;
     margin-left: 280px;
-    margin-right: auto;
-    margin-top: 10px;
-
+    margin-right: 20px;
+    margin-top: 38px;
+    
     padding-bottom: 20px ;
     padding-left: 20px;
     padding-right: 20px;
     padding-top: 20px;
 
     width: auto;
+    min-width: 500px;
     height: 250px;
-    border: 2px solid black; 
-    border-radius: 10px;
+    
+    border: 1px solid black; 
+    border-radius: 4px;
     border-color: black;
     background-color: white;
-    line-height: normal;
+    
 }
 
-.Calendario {
+#pastApp {
+    
+    text-align:initial;
+    
+    margin-bottom: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+    
     padding-bottom: 20px ;
     padding-left: 20px;
     padding-right: 20px;
-    padding-top: 20px;
+    padding-top: 0px;
 
     width: auto;
+    min-width: 500px;
     height: auto;
-    border: 2px solid black; 
-    border-radius: 10px;
+    
+    background-color: inherit;
+}
+
+table   {
+    
+    float: left;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    margin-left: 20px;
+    table-layout: fixed;
+    
+    border: 1px solid black;
+    border-radius: 4px;
     border-color: black;
+    border-collapse: separate;
+    border-spacing: 0px;
+    
     background-color: white;
-    line-height: normal;
+}
+
+td  {
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+tr {
+    
+}
+
+tr:hover {
+    background-color: cornflowerblue;
+}
+
+tr[id=chiavi]:hover {
+    background-color: inherit;
+}
+
+#chiavi {
+    font-weight: bold;
+}
+
+h2 {
+    padding-left: 20px;
+}
+
+h3 {
+    padding-left: 20px;
+}
+
+button  {
+    float: right;
+    margin-right: 20px;
+    font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    background: cornflowerblue;
+    border: 1px solid darkgray;
+    width: auto;
+    overflow: visible;
+    font-size: 1.4em;
+    color: #FFF;
+    cursor: pointer;
+    padding: 7px 10px;  border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; font-weight: bold; text-shadow: 0 1px 0 rgba(0,0,0,0.4);
 }

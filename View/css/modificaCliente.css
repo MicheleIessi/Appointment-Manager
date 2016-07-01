@@ -1,0 +1,56 @@
+
+table {
+    float: left;
+    
+    padding-bottom: 20px;
+    padding-top: 20px;
+    padding-left: 0px;
+    padding-right: 20px;
+    
+    margin-bottom: 20px;
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-right: 20px;
+    
+    background-color: inherit;
+}
+
+td {
+    text-align: justify;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 0px;
+    padding-right: 20px;
+}
+
+#submit {
+    font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    background: cornflowerblue;
+    border: 1px solid darkgray;
+    width: auto;
+    overflow: visible;
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
+    padding: 7px 10px;  border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; font-weight: bold; text-shadow: 0 1px 0 rgba(0,0,0,0.4);
+    
+}
+
+#contenitoreForm {
+    position: absolute;
+    
+    background-color: whitesmoke;
+    
+    height: auto;
+    width: auto;
+    
+    border: 1px solid black; 
+    border-radius: 4px;
+    border-color: black;
+    line-height: normal;
+    
+    padding-bottom: 20px;
+    padding-left: 20px ;
+    padding-right: 20px ;
+    padding-top: 20px;
+}

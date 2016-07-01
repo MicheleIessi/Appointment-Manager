@@ -44,7 +44,8 @@ $_smarty_tpl->tpl_vars['servizio']->_loop = true;
 $foreach_servizio_Sav = $_smarty_tpl->tpl_vars['servizio'];
 ?>
 
-            <div class='fc-event' data-duration="<?php echo $_smarty_tpl->tpl_vars['servizio']->value['durata'];?>
+            <div class='fc-event' data-event='{"title":"<?php echo $_smarty_tpl->tpl_vars['servizio']->value['nome'];?>
+"}' data-duration="<?php echo $_smarty_tpl->tpl_vars['servizio']->value['durata'];?>
 "><?php echo $_smarty_tpl->tpl_vars['servizio']->value['nome'];?>
 </div>
 
@@ -53,7 +54,12 @@ $_smarty_tpl->tpl_vars['servizio'] = $foreach_servizio_Sav;
 }
 ?>
 
+
     </div>
+    <div id="buttonDiv">
+        <button id="aggiunta" value="Prenota">Prenotati</button>
+    </div>
+
 </div><?php }
 }
 ?>

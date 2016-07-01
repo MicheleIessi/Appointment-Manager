@@ -24,7 +24,8 @@ class CIndex {
         $log = -1;
         $sessione = new USession();
         $log = $sessione->getValore('idUtente');
-        $sessione->impostaValore('tipo','professionista');
+        $sessione->impostaValore('idUtente',3);
+        $sessione->impostaValore('tipo','cliente');
         if($log===false) {
             $log=1;    //a questo punto del programma in questo commit, bisogna fare controlli per il login
         }
@@ -61,24 +62,28 @@ class CIndex {
                 }
             else return $this->VIndex->fetch('forbidden.tpl');
             case 'calendario':
-                if($sessione->getValore('tipo') == 'cliente') {
-                    if($log > 0 && isset($_REQUEST['idp'])) { //gestire l'errore se non c'è idp?
-                        $idp = $_REQUEST['idp'];
-                        setcookie('lastCalendar', $idp);
-                        $cal = new CCalendar();
-                        $this->VIndex->setSideContent($cal->getServiziProf($idp));
-                        return $cal->smista();
+                if($log > 0) {
+                    if (isset($_REQUEST['idp']) && is_numeric($_REQUEST['idp'])) {
+                        if ($sessione->getValore('tipo') == 'cliente') {
+                            $idp = $_REQUEST['idp'];
+                            setcookie('lastCalendar', $idp);
+                            $cal = new CCalendar();
+                            $this->VIndex->setSideContent($cal->getServiziProf($idp));
+                            return $cal->smista();
+
+                        } else if ($sessione->getValore('tipo') == 'professionista') {
+                            $idp = $_REQUEST['idp'];
+                            $sessione->impostaValore('idCalendario', $idp);
+                            $cal = new CCalendar();
+                            $this->VIndex->setSideContent($cal->getServiziProf($idp));
+                            return $cal->smista();
+                        }
                     }
-                }
-                else if($sessione->getValore('tipo') == 'professionista') {
-                    $idp = $_REQUEST['idp'];
-                    setcookie('lastCalendar', $idp);
-                    $cal = new CCalendar();
-                    $this->VIndex->setSideContent($cal->getServiziProf($idp));
-                    return $cal->smista();
-                }
+                    else
+                        return $this->VIndex->fetch('professionistaNonTrovato.tpl');
+                    }
                 return $this->VIndex->fetch('forbidden.tpl');
-                
+
             case 'paginaCliente':
                 $idUtente = $_REQUEST['id'];
                 $CPagU = new CUtente();

@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-07-01 20:40:11
+<?php /* Smarty version 3.1.27, created on 2016-07-01 18:49:13
          compiled from "templates\templates\home_default.tpl" */ ?>
 <?php
-/*%%SmartyHeaderCode:182605776b90b695310_42257917%%*/
+/*%%SmartyHeaderCode:987357769f095d2954_14745758%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,12 +9,12 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '719c8c86eb39ad4b1205c70c52407faf7158578e' => 
     array (
       0 => 'templates\\templates\\home_default.tpl',
-      1 => 1467398407,
+      1 => 1467388965,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '182605776b90b695310_42257917',
-  'variables' => 
+  'nocache_hash' => '987357769f095d2954_14745758',
+  'variables' =>
   array (
     'title' => 0,
     'banner' => 0,
@@ -26,13 +26,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_5776b90b71fd08_56428066',
+  'unifunc' => 'content_57769f09614220_55173698',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_5776b90b71fd08_56428066')) {
-function content_5776b90b71fd08_56428066 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_57769f09614220_55173698')) {
+function content_57769f09614220_55173698 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '182605776b90b695310_42257917';
+$_smarty_tpl->properties['nocache_hash'] = '987357769f095d2954_14745758';
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
@@ -62,6 +62,9 @@ $_smarty_tpl->properties['nocache_hash'] = '182605776b90b695310_42257917';
 >
         <?php echo '<script'; ?>
  type="text/javascript" src="JS/jquery.leanModal.min.js"><?php echo '</script'; ?>
+>
+        <?php echo '<script'; ?>
+ type="text/javascript" src="JS/jquery.validate.js"><?php echo '</script'; ?>
 >
         <?php echo '<script'; ?>
  type="text/javascript" src="JS/JLogin.js"><?php echo '</script'; ?>

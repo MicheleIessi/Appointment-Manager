@@ -13,6 +13,7 @@
         <script type="text/javascript" src='JS/fullcalendar-2.6.1/lang-all.js'></script>
         <script type="text/javascript" src='JS/JCalendar.js'></script>
         <script type="text/javascript" src="JS/jquery.leanModal.min.js"></script>
+        <script type="text/javascript" src="JS/jquery.validate.js"></script>
         <script type="text/javascript" src="JS/JLogin.js"></script>
         <title>{$title}</title>
     </head>

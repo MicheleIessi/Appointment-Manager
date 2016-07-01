@@ -1,53 +1,56 @@
 <link type="text/css" rel="stylesheet" href="View/css/modificaCliente.css" />
 
+<script type="text/javascript" src='JS/dateITA.js'></script>
+<script type="text/javascript" src='JS/modificaCliente.js'></script>
 
 <div id="contenitoreForm">
-        
-        <h1>Modifica informazioni</h1>
-        
-        <form name="modificaCliente" action="modificaCliente.php" method="post">
-            
-            <table>
-                    <tr>
-                        <td>Nome</td>
-                        <td> <input type="text" id="nome" required></td>
-                    </tr>
 
-                    <tr>
-                        <td>Cognome</td>
-                        <td> <input type="text" id="cognome" required></td>
-                    </tr>
+    <h1>Modifica informazioni</h1>
 
-                    <tr>
-                        <td>Data di nascita</td>
-                        <td> <input type=date id="dataNascita" required></td>
-                    </tr>
+    <form name="modificaCliente" id="modificaCliente" method="post" action="controllaForm.php">
 
-                    <tr>
-                        <td>Sesso</td>
-                        <td> M<input type="radio" id="maschio"> F<input type="radio" id="femmina"></td>
-                    </tr>
+        <table>
 
-                    <tr>
-                        <td>Email</td>
-                        <td> <input type="text" id="email" required></td>
-                    </tr>
+            <tr>
+                <td>Nome</td>
+                <td> <input type="text" name="nome" id="nome" ></td>
+            </tr>
 
-                    <tr>
-                        <td>Password</td>
-                        <td> <input type="password" id="password1" required></td>
-                    </tr>
+            <tr>
+                <td>Cognome</td>
+                <td> <input type="text" name="cognome" id="cognome" ></td>
+            </tr>
 
-                    <tr>
-                        <td>Conferma Password</td>
-                        <td> <input type="password" id="password2" required></td>
-                    </tr>
+            <tr>
+                <td>Data di nascita</td>
+                <td> <input type=date name="dataNascita" id="dataNascita" ></td>
+            </tr>
 
-                    <tr>
-                        <td><input type=submit id="submit" value="Applica cambiamenti"><td/>
-                    </tr>
+            <tr>
+                <td>Sesso</td>
+                <td> M<input type="radio" name="sesso" id="maschio" value="M" checked> F<input type="radio" name="sesso" id="femmina" value="F"></td>
+            </tr>
 
-                </table>
+            <tr>
+                <td>Email</td>
+                <td> <input type="text" name="email" id="email" ></td>
+            </tr>
 
-        </form>
-    </div>
+            <tr>
+                <td>Password</td>
+                <td> <input type="password" name="password1" id="password1" ></td>
+            </tr>
+
+            <tr>
+                <td>Conferma Password</td>
+                <td> <input type="password" name="password2" id="password2" ></td>
+            </tr>
+
+            <tr>
+                <td><input type="submit" value=" INVIA "><td/>
+            </tr>
+
+        </table>
+
+    </form>
+</div>

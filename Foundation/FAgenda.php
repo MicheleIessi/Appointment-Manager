@@ -52,9 +52,6 @@ class FAgenda extends Fdb {
                 array_push($risultato, $app);
             }
         }
-        else {
-            echo "Professionista con ID $idp non trovato.<br>";
-        }
         return $risultato;
     }
 

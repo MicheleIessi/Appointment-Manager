@@ -50,7 +50,7 @@ $(document).ready(function() {
 
         nowIndicator: true,
         lang: 'it',
-        timeFormat: 'H:mm',
+        timeFormat: 'H:mm:ss',
         columnFormat: 'dddd D',
         titleFormat: 'D MMMM YYYY',
         displayEventTime: true,
@@ -69,6 +69,33 @@ $(document).ready(function() {
             error: function() {
                 alert('there was an error while fetching events!');
             }
+        },
+        eventReceive: function(event) {
+            var title = event.title;
+            var start = event.start.format("YYYY-MM-DD[T]HH:MM:SS");
+
+            var decisione = confirm('Sei sicuro di voler effettuare la prenotazione per '+title+'?');
+            if ( decisione == true) { // aggiungo l'appuntamento al database
+                $.ajax({
+                    url: 'Control/CProcessaCalendar.php',
+                    data: 'type=new&servizio=' + title + '&orarioInizio=' + start,
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function (response) {
+                        event.id = response.idAppuntamento;
+                        $('#calendar').fullCalendar('updateEvent', event);
+                        alert(response);
+                    },
+                    error: function (e) {
+                        console.log(e.responseText);
+                    }
+                });
+                $('#calendar').fullCalendar('updateEvent', event);
+            }
+            else
+                $('#calendar').fullCalendar('removeEvents',event._id);
         }
+
+
     });
 });

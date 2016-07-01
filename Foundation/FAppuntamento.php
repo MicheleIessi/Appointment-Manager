@@ -18,7 +18,7 @@ class FAppuntamento extends Fdb  {
         $this->setParametriInserimento();
         $valori = parent::cambiaChiaviArray($app->getArrayAttributi());
         $valori[':visita'] = $valori[':visita']->getNomeServizio();
-        $valoriDaCercare = array_slice($valori,0,3,true);
+        $valoriDaCercare = array_slice($valori,1,3,true);
         $chiaveDaCercare = 'IDP,IDC,data';
         try {
             if(parent::caricaConChiave($valoriDaCercare,$chiaveDaCercare) != false) {
@@ -96,8 +96,8 @@ class FAppuntamento extends Fdb  {
     }
 
     private function setParametriInserimento() {
-        $alt_attr="IDP,IDC,data,orarioInizio,visita";
-        $alt_bind=":IDP,:IDC,:data,:orarioInizio,:visita";
+        $alt_attr="IDApp,IDP,IDC,data,orarioInizio,visita";
+        $alt_bind=":IDApp,:IDP,:IDC,:data,:orarioInizio,:visita";
         $alt_keys=":IDP,:IDC,:data";
         parent::setParam($this->table,$alt_attr,$alt_bind,$alt_keys,$this->old_keys);
     }

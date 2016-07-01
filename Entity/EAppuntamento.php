@@ -15,7 +15,7 @@ class EAppuntamento {
     prima che venisse modificato     */
     
     // Costruttore
-    public function __construct($IDP,$IDC,$d,$o,$v,$IDApp=0) {
+    public function __construct($IDP,$IDC,$d,$o,$v,$IDApp='DEFAULT') {
         $this->setIDProfessionista($IDP);
         $this->setIDCliente($IDC);
         $this->setData($d);
@@ -30,7 +30,7 @@ class EAppuntamento {
     }
 
     public function setData($d)    {
-        $pattern = "#^(\d{4})-(0[1-9]|1[0-2])-([1-9]|1[0-9]|2[0-9]|3[0-1])$#";
+        $pattern = "#^(\d{4})-(0[1-9]|1[0-2])-(0[1-9]|1[0-9]|2[0-9]|3[0-1])$#";
         if(preg_match($pattern, $d) != 1) {
             throw new PDOException("Data non valida", 1);
         }

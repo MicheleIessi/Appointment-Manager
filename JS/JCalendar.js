@@ -84,7 +84,6 @@ $(document).ready(function() {
                     success: function (response) {
                         event.id = response.idAppuntamento;
                         $('#calendar').fullCalendar('updateEvent', event);
-                        alert(response);
                     },
                     error: function (e) {
                         console.log(e.responseText);

@@ -1,7 +1,10 @@
 <link type="text/css" rel="stylesheet" href="View/css/modificaCliente.css" />
+<link type="text/css" rel="stylesheet" href="View/css/jquery-ui.css" />
 
-<script type="text/javascript" src='JS/dateITA.js'></script>
+<script type="text/javascript" src='JS/validation/dateITA.js'></script>
 <script type="text/javascript" src='JS/modificaCliente.js'></script>
+<script type="text/javascript" src='JS/jquery-ui/jquery-ui.min.js'></script>
+<script type="text/javascript" src='JS/jquery-ui/datepicker-it.js'></script>
 
 <div id="contenitoreForm">
 
@@ -23,7 +26,7 @@
 
             <tr>
                 <td>Data di nascita</td>
-                <td> <input type=date name="dataNascita" id="dataNascita" ></td>
+                <td> <input type=text name="dataNascita" id="datepicker" ></td>
             </tr>
 
             <tr>

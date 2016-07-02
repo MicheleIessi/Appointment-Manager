@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-07-02 14:46:24
+<?php /* Smarty version 3.1.27, created on 2016-07-02 15:51:20
          compiled from "templates\templates\modificaCliente.tpl" */ ?>
 <?php
-/*%%SmartyHeaderCode:236885777b7a0403696_08636338%%*/
+/*%%SmartyHeaderCode:15695777c6d83148d0_69199778%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,20 +9,20 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '5224934330f8f1606fddd55cad86b060ef8cc00a' => 
     array (
       0 => 'templates\\templates\\modificaCliente.tpl',
-      1 => 1467463575,
+      1 => 1467467133,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '236885777b7a0403696_08636338',
+  'nocache_hash' => '15695777c6d83148d0_69199778',
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_5777b7a04387b5_60485209',
+  'unifunc' => 'content_5777c6d834d8c5_20220529',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_5777b7a04387b5_60485209')) {
-function content_5777b7a04387b5_60485209 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_5777c6d834d8c5_20220529')) {
+function content_5777c6d834d8c5_20220529 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '236885777b7a0403696_08636338';
+$_smarty_tpl->properties['nocache_hash'] = '15695777c6d83148d0_69199778';
 ?>
 <link type="text/css" rel="stylesheet" href="View/css/modificaCliente.css" />
 <link type="text/css" rel="stylesheet" href="View/css/jquery-ui.css" />
@@ -34,17 +34,17 @@ $_smarty_tpl->properties['nocache_hash'] = '236885777b7a0403696_08636338';
  type="text/javascript" src='JS/modificaCliente.js'><?php echo '</script'; ?>
 >
 <?php echo '<script'; ?>
- type="text/javascript" src='JS/jquery-ui.min.js'><?php echo '</script'; ?>
+ type="text/javascript" src='JS/jquery-ui/jquery-ui.min.js'><?php echo '</script'; ?>
 >
 <?php echo '<script'; ?>
- type="text/javascript" src='JS/datepicker-it.js'><?php echo '</script'; ?>
+ type="text/javascript" src='JS/jquery-ui/datepicker-it.js'><?php echo '</script'; ?>
 >
 
 <div id="contenitoreForm">
 
     <h1>Modifica informazioni</h1>
 
-    <form name="modificaCliente" id="modificaCliente" method="post" action="controllaForm.php">
+    <form name="modificaCliente" autocomplete="off" id="modificaCliente" method="post" action="controllaForm.php">
 
         <table>
 
@@ -61,6 +61,11 @@ $_smarty_tpl->properties['nocache_hash'] = '236885777b7a0403696_08636338';
             <tr>
                 <td>Data di nascita</td>
                 <td> <input type=text name="dataNascita" id="datepicker" ></td>
+            </tr>
+            
+            <tr>
+                <td>Codice fiscale</td>
+                <td> <input type=text name="codiceFiscale" id="codiceFiscale" ></td>
             </tr>
 
             <tr>

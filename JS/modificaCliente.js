@@ -11,17 +11,37 @@ $(document).ready( function()   {
         {
             nome:  {
                 required: true,
-                noNumeri: true
+                noNumeri: true,
+                maxlength:20
             },
             
             cognome:  {
                 required: true,
-                noNumeri:true
+                noNumeri:true,
+                maxlength:20
             },
             
             dataNascita:  {
                 required: true,
                 formatoData: true
+            },
+            
+            codiceFiscale:  {
+                required: true,
+                formatoCodiceFiscale: true,
+                remote: {
+                    
+                    onfocusout: true,
+                    url: "controllaEsistenza.php",
+                    type: "post",
+                    data: {
+                        tipo: 'codiceFiscale',
+                        valore: function() {
+                            return $('#codiceFiscale').val();
+                            
+                        }
+                    }
+                }
             },
             
             sesso:  {
@@ -31,11 +51,27 @@ $(document).ready( function()   {
             email:  {
                 required: true,
                 email: true,
-                controllaEmail: true
+                controllaEmail: true,
+                maxlength: 40,
+                remote: {
+                    
+                    onfocusout: true,
+                    url: "controllaEsistenza.php",
+                    type: "post",
+                    data: {
+                        tipo: 'email',
+                        valore: function() {
+                            return $('#email').val();
+                        
+                        }
+                    }
+                }
             },
             
             password1:  {
-                required: true
+                required: true,
+                minlength:8,
+                maxlength:20
             },
             
             password2:  {
@@ -47,15 +83,22 @@ $(document).ready( function()   {
         messages:
         {
             nome:  {
-                required: "   Inserisci il tuo nome"
+                required: "   Inserisci il tuo nome",
+                maxlength: "   Massimo 20 caratteri"
             },
             
             cognome:  {
-                required: "   Inserisci il tuo cognome"
+                required: "   Inserisci il tuo cognome",
+                maxlength: "   Massimo 20 caratteri"
             },
             
             dataNascita:  {
                 required: "   Inserisci la tua data di nascita"
+            },
+            
+            codiceFiscale:  {
+                required: "   Inserisci il tuo codice fiscale",
+                remote: "   Codice fiscale già presente, modificare"
             },
             
             sesso:  {
@@ -64,11 +107,15 @@ $(document).ready( function()   {
             
             email:  {
                 required: "   Inserisci il tuo indirizzo email",
-                email: "   Non rispetta il giusto formato per una mail"
+                email: "   Non rispetta il giusto formato per una mail",
+                remote: "   Email già presente, modificare",
+                maxlength: "   Massimo 40 caratteri"
             },
             
             password1:  {
-                required: "   Campo richiesto"
+                required: "   Campo richiesto",
+                minlength: "   Minimo 8 caratteri",
+                maxlength: "   Massimo 20 caratteri"
             },
             
             password2:  {
@@ -101,5 +148,10 @@ $.validator.addMethod("formatoData", function(value, element) {
     
 }, "   Non rispetta il giusto formato per una data");
 
+$.validator.addMethod("formatoCodiceFiscale", function(value, element) {
+ 
+    return this.optional( element ) || /^[A-Z]{6}[0-9]{2}[ABCDEHLMPRST]{1}[0-9]{2}([A-Z]{1}[0-9]{3})[A-Z]{1}$/.test( value );
+    
+}, "   Non rispetta il giusto formato per un codice fiscale");
 
 

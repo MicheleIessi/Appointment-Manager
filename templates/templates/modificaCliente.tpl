@@ -10,7 +10,7 @@
 
     <h1>Modifica informazioni</h1>
 
-    <form name="modificaCliente" id="modificaCliente" method="post" action="controllaForm.php">
+    <form name="modificaCliente" autocomplete="off" id="modificaCliente" method="post" action="controllaForm.php">
 
         <table>
 
@@ -27,6 +27,11 @@
             <tr>
                 <td>Data di nascita</td>
                 <td> <input type=text name="dataNascita" id="datepicker" ></td>
+            </tr>
+            
+            <tr>
+                <td>Codice fiscale</td>
+                <td> <input type=text name="codiceFiscale" id="codiceFiscale" ></td>
             </tr>
 
             <tr>

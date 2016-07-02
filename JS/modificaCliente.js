@@ -97,7 +97,7 @@ $.validator.addMethod("controllaEmail", function(value, element) {
 
 $.validator.addMethod("formatoData", function(value, element) {
  
-    return this.optional( element ) || /^([0-9]{2})([0-9]{2})([0-9]{4})/.test( value );
+    return this.optional( element ) || /^[0-9]{2}\/[0-9]{2}\/[0-9]{4}$/.test( value );
     
 }, "  Non rispetta il giusto formato per una data");
 

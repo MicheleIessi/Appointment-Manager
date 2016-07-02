@@ -261,8 +261,6 @@ class Fdb {
     // METODO DI SUPPORTO: cambia le chiavi dell'array passato nei bind della classe estesa da Fdb che chiama il metodo
     protected function cambiaChiaviArray($arr) {
         $chiavi = explode(',',$this->bind);
-        echo $this->bind. "<br>";
-        var_dump($chiavi);
         $imax = count($arr);
         for($i=0;$i<$imax;$i++) {
             $arr[$chiavi[$i]] = $arr[$i];

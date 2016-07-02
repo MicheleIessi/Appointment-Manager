@@ -45,6 +45,11 @@ class CCalendar {
         return $VCal->getColonnaServizi();
     }
 
+    public function getColonnaProfessionista() {
+        $VCal = new VCalendar();
+        return $VCal->fetch('colonnaCancellazione.tpl');
+    }
+
 
     private function getArrayPerLink($arrayProf) {
 

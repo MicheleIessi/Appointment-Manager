@@ -14,7 +14,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     ),
   ),
   'nocache_hash' => '706357744990057f89_16115119',
-  'variables' => 
+  'variables' =>
   array (
     'servizi' => 0,
     'servizio' => 0,
@@ -43,23 +43,15 @@ foreach ($_from as $_smarty_tpl->tpl_vars['servizio']->value) {
 $_smarty_tpl->tpl_vars['servizio']->_loop = true;
 $foreach_servizio_Sav = $_smarty_tpl->tpl_vars['servizio'];
 ?>
-
             <div class='fc-event' data-event='{"title":"<?php echo $_smarty_tpl->tpl_vars['servizio']->value['nome'];?>
 "}' data-duration="<?php echo $_smarty_tpl->tpl_vars['servizio']->value['durata'];?>
 "><?php echo $_smarty_tpl->tpl_vars['servizio']->value['nome'];?>
 </div>
-
         <?php
 $_smarty_tpl->tpl_vars['servizio'] = $foreach_servizio_Sav;
 }
 ?>
-
-
     </div>
-    <div id="buttonDiv">
-        <button id="aggiunta" value="Prenota">Prenotati</button>
-    </div>
-
 </div><?php }
 }
 ?>

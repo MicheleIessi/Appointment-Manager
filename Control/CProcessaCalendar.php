@@ -1,7 +1,7 @@
 <?php
 require_once('includes/autoload.inc.php');
 
-$type = $_REQUEST['type'];
+$type = $_POST['type'];
 $sessione = new USession();
 $idUtente = $sessione->getValore('idUtente');
 $idProf = $sessione->getValore('idCalendario');
@@ -14,6 +14,7 @@ $FUte = new FUtente();
 $FAge = new FAgenda();
 $FSer = new FServizio();
 $FApp = new FAppuntamento();
+$FCli = new FCliente();
 
 /* QUI CARICO GLI ORARI IN CUI IL PROFESSIONISTA NON E' DISPONIBILE E LI INSERISCO SOTTO FORMA DI EVENTI BACKGROUND */
 $EPro = $FPro->caricaProfessionistaDaDB($idProf);
@@ -29,27 +30,45 @@ switch($type) {
         $impegni = $agenda->getImpegni();
         $tipo = $sessione->getValore('tipo');
         foreach ($impegni as $appuntamento) {
-        $evento = array();
+            /* @var $appuntamento EAppuntamento */
+            $evento = array();
                 //attributi che non dipendono dal tipo di utente che ha richiesto il calendario
             $evento['id'] = $appuntamento->getIDAppuntamento();
             $evento['start'] = $appuntamento->getData()." ".$appuntamento->getOrario();
             $durata = $appuntamento->getVisita()->getDurata();
             $evento['end'] = processa($evento['start'], $durata);
             $evento['allDay'] = "";
-            $evento['editable'] = false; //questo poi dovrà cambiare in base all'id dell'utente che lo sta guardando:
-                //se è il proprietario del calendario dovrà essere true
-                //attributi che dipendono dal tipo di utente che ha richiesto il calendario
+            $evento['editable'] = false;
             if ($tipo == 'cliente') {
-                $evento['title'] = "Orario già prenotato";
-                $evento['color'] = '#777777';
-                }
-            else if ($tipo == 'professionista') {
                 $idCliente = $appuntamento->getIDCliente();
-                $utente = $FUte->caricaUtenteDaDb($idCliente);
-                $nomeUtente = $utente->getNome();
-                $cognomeUtente = $utente->getCognome();
-                $evento['title'] = "{$appuntamento->getVisita()->getNomeServizio()} con $nomeUtente $cognomeUtente";
+                if($idCliente == $idUtente) {
+                    $evento['title'] = "{$appuntamento->getVisita()->getNomeServizio()} con te";
+                    $evento['backgroundColor'] = '#ADFF7E';
+                    $evento['textColor'] = '#000000';
+                    $evento['borderColor'] = '#31DA17';
+                    $evento['editable']=true;
                 }
+                else {
+                    $evento['title'] = 'Orario già prenotato';
+                    $evento['color'] = '#AAAAAA';
+                    $evento['textColor'] = '#FFFFFF';
+                }
+            }
+            else if ($tipo == 'professionista') {
+                if($idUtente == $idProf) {
+                    $idCliente = $appuntamento->getIDCliente();
+                    $utente = $FUte->caricaUtenteDaDb($idCliente);
+                    $nomeUtente = $utente->getNome();
+                    $cognomeUtente = $utente->getCognome();
+                    $evento['title'] = "{$appuntamento->getVisita()->getNomeServizio()} con $nomeUtente $cognomeUtente";
+                    $evento['editable'] = true;
+                }
+                else {
+                    $evento['title'] = 'Orario già prenotato';
+                    $evento['color'] = '#AAAAAA';
+                    $evento['textColor'] = '#FFFFFF';
+                }
+            }
 
             array_push($events, $evento);
         }
@@ -57,25 +76,40 @@ switch($type) {
     }
     break;
     /* INSERIMENTO NUOVO APPUNTAMENTO */
+    /* il cliente può inserire un appuntamento solo se non ha già 3 appuntamenti prenotati
+    /* in giorni futuri con lo stesso professionista */
     case 'new': {
-
+        $risultato = array();
         $inizio = explode('T',$_POST['orarioInizio']);
         $data = $inizio[0];
-        $orarioInizio = $inizio[1];
-        $title = $_POST['servizio'];//nome del servizio
-        $ESer = $FSer->caricaServizioDaDb($title);
-        $IDC = $idUtente;
-        $IDP = $idProf;
 
+        $arr = $FCli->getAppuntamentiFuturi($idUtente);
 
-        $appuntamento = new EAppuntamento($IDP,$IDC,$data,$orarioInizio,$ESer);
-        $FApp->inserisciAppuntamento($appuntamento);
-        $IDApp = $FApp->getLastID();
+        if(sizeof($arr) < 3) {
 
+            $orarioInizio = $inizio[1];
+            $title = $_POST['servizio'];//nome del servizio
+            $ESer = $FSer->caricaServizioDaDb($title);
 
-    
-        echo json_encode(array('status'=>'success','idAppuntamento'=>$IDApp));
-
+            $appuntamento = new EAppuntamento($idProf, $idUtente, $data, $orarioInizio, $ESer);
+            $FApp->inserisciAppuntamento($appuntamento);
+            $IDApp = $FApp->getLastID();
+            if($IDApp == 0) {
+                $risultato['stato'] = 'errore';
+                $risultato['messaggio'] = 'Si può effettuare una prenotazione per giorno con lo stesso professionista';
+            }
+            else {
+                $EApp = $FApp->caricaAppuntamentoDaDb($IDApp);
+                $risultato['stato'] = 'successo';
+                $risultato['messaggio'] = 'Appuntamento aggiunto correttamente per il giorno '.$EApp->getData().' alle ore '.$EApp->getOrario().'.';
+                $risultato['idAppuntamento'] = $IDApp;
+            }
+        }
+        else {
+            $risultato['stato'] = 'errore';
+            $risultato['messaggio'] = 'Non si possono avere più di 3 prenotazioni attive con lo stesso professionista';
+        }
+        echo json_encode($risultato);
     }
 }
 
@@ -138,7 +172,7 @@ function creaEventoBackground($inizio,$fine,$giorno) {
     $singoloEvento['rendering'] = 'background';
     $singoloEvento['allDay'] = "";
     $singoloEvento['editable'] = false;
-    $singoloEvento['color'] = '#f04124';
+    $singoloEvento['color'] = '#FF9999';
     $singoloEvento['dow'] = [$giorno];
 
     return $singoloEvento;

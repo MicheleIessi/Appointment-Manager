@@ -39,6 +39,21 @@ class FCliente extends Fdb  {
         return $risultato;
     }
 
+    public function getAppuntamentiFuturi($idc) {
+        $appuntamenti = $this->getAppuntamenti($idc);
+        $appFuturi = array();
+        foreach($appuntamenti as $app) {
+            /* @var $app EAppuntamento */
+            $dataString = $app->getData()." ".$app->getOrario();
+            $data = new DateTime($dataString);
+            $orarioAttuale = new DateTime();
+            if($data > $orarioAttuale) {
+                array_push($appFuturi,$app);
+            }
+        }
+        return $appFuturi;
+    }
+
     private function setParametri() {
         parent::setParam($this->table,$this->primary_key,$this->attributi,$this->bind_key,$this->old_keys);
     }

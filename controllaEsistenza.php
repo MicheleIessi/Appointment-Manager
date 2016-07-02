@@ -1,6 +1,8 @@
 <?php
-// Processo la chiamata Ajax
+
 require_once 'includes/autoload.inc.php';
+
+// Processo la chiamata Ajax
 
 $FUte = new FUtente();
 $tipo = $_REQUEST['tipo'];

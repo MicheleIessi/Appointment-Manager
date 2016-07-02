@@ -5,9 +5,9 @@ $(document).ready( function()   {
         $( "#datepicker" ).datepicker();                                        // in modo tale che rispetti il formato
     });                                                                         // e abbia la lingua
     
-    $("#modificaCliente").validate(    {
+    $("#modificaCliente").validate(    {        // Validazione form usando jquery validate
         
-        rules:
+        rules:          // Queste sono le regole che devono essere verificate per i singoli campi delle form
         {
             nome:  {
                 required: true,
@@ -80,7 +80,7 @@ $(document).ready( function()   {
             }
         },
         
-        messages:
+        messages:       // Questi sono i messaggi di errore nel caso in cui uno dei campi non rispetta le rules
         {
             nome:  {
                 required: "   Inserisci il tuo nome",
@@ -128,6 +128,8 @@ $(document).ready( function()   {
     
 }
 );
+
+// Queste sono funzioni per fare dei controlli particolari; vengono usate tra le rules
 
 $.validator.addMethod("noNumeri", function(value, element) {
  

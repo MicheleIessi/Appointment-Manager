@@ -1,10 +1,44 @@
-<link type="text/css" rel="stylesheet" href="View/css/modificaCliente.css" />
+<?php /* Smarty version 3.1.27, created on 2016-07-02 17:50:28
+         compiled from "templates\templates\modificaUtente.tpl" */ ?>
+<?php
+/*%%SmartyHeaderCode:175585777e2c4bafe93_07551835%%*/
+if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+$_valid = $_smarty_tpl->decodeProperties(array (
+  'file_dependency' => 
+  array (
+    '05a01b745cd17305ca60a9462d4294f439c63ccd' => 
+    array (
+      0 => 'templates\\templates\\modificaUtente.tpl',
+      1 => 1467474483,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '175585777e2c4bafe93_07551835',
+  'has_nocache_code' => false,
+  'version' => '3.1.27',
+  'unifunc' => 'content_5777e2c4bef679_75527476',
+),false);
+/*/%%SmartyHeaderCode%%*/
+if ($_valid && !is_callable('content_5777e2c4bef679_75527476')) {
+function content_5777e2c4bef679_75527476 ($_smarty_tpl) {
+
+$_smarty_tpl->properties['nocache_hash'] = '175585777e2c4bafe93_07551835';
+?>
+<link type="text/css" rel="stylesheet" href="View/css/modificaUtente.css" />
 <link type="text/css" rel="stylesheet" href="View/css/jquery-ui.css" />
 
-<script type="text/javascript" src='JS/validation/dateITA.js'></script>
-<script type="text/javascript" src='JS/modificaCliente.js'></script>
-<script type="text/javascript" src='JS/jquery-ui/jquery-ui.min.js'></script>
-<script type="text/javascript" src='JS/jquery-ui/datepicker-it.js'></script>
+<?php echo '<script'; ?>
+ type="text/javascript" src='JS/validation/dateITA.js'><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ type="text/javascript" src='JS/modificaUtente.js'><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ type="text/javascript" src='JS/jquery-ui/jquery-ui.min.js'><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ type="text/javascript" src='JS/jquery-ui/datepicker-it.js'><?php echo '</script'; ?>
+>
 
 <div id="contenitoreForm">
 
@@ -61,4 +95,6 @@
         </table>
 
     </form>
-</div>
+</div><?php }
+}
+?>

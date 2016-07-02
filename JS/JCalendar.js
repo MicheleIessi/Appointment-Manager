@@ -1,7 +1,15 @@
 $(document).ready(function() {
 
-    /* RENDE DRAGGABILI GLI EVENTI */
-
+    $('.cestinoNascosto').hide();
+    $('#mostraCestino').click(function() {
+        $('.cestinoNascosto').show();
+        $('#mostraCestino').hide();
+        alert('Trascina un appuntamento sul cestino per eliminarlo dall\'agenda');
+    });
+    $('#fineModifica').click(function() {
+        $('.cestinoNascosto').hide();
+        $('#mostraCestino').show();
+    });
 
     $('#calendar').fullCalendar({
         header: {
@@ -89,6 +97,7 @@ $(document).ready(function() {
                     dataType: "json",
                     success: function (response) {
                         if(response.stato == 'successo') {
+                            alert('Appuntamento aggiunto con successo');
                             document.location.reload(true);
                         }
                         else if (response.stato == 'errore') {
@@ -105,9 +114,13 @@ $(document).ready(function() {
             }
             else
                 $('#calendar').fullCalendar('removeEvents',event._id);
+        },
+        eventDrop: function(event, delta, revertFunc, jsEvent, ui, view) {
+            if(!isEventOverDiv(jsEvent.clientX, jsEvent.clientY))
+                revertFunc();
         }
     });
-
+    /* RENDE DRAGGABILI GLI EVENTI */
     $('#external-events .fc-event').each(function() {
 
         // store data so the calendar knows to render an event upon drop
@@ -125,4 +138,26 @@ $(document).ready(function() {
 
     });
 
+});
+
+
+var isEventOverDiv = function(x, y) {
+
+    var cestino = $('#cestino');
+    var offset = cestino.offset();
+    offset.right = cestino.width() + offset.left;
+    offset.bottom = cestino.height() + offset.top;
+
+    // Compare
+    if (x >= offset.left && y >= offset.top && x <= offset.right && y <= offset.bottom) {
+        return true;
+    }
+    return false;
+};
+
+$('#cestino').droppable({
+    accept: 'fc-event',
+    drop: function(event, ui) {
+        alert('droppato sul cestino');
+    }
 });

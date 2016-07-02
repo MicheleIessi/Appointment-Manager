@@ -39,15 +39,16 @@ class FCliente extends Fdb  {
         return $risultato;
     }
 
-    public function getAppuntamentiFuturi($idc) {
+    public function getAppuntamentiFuturi($idc,$idp) {
         $appuntamenti = $this->getAppuntamenti($idc);
         $appFuturi = array();
         foreach($appuntamenti as $app) {
             /* @var $app EAppuntamento */
+            $id = $app->getIDProfessionista();
             $dataString = $app->getData()." ".$app->getOrario();
             $data = new DateTime($dataString);
             $orarioAttuale = new DateTime();
-            if($data > $orarioAttuale) {
+            if($data > $orarioAttuale && $id==$idp) {
                 array_push($appFuturi,$app);
             }
         }

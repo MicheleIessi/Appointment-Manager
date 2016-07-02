@@ -83,7 +83,7 @@ switch($type) {
         $inizio = explode('T',$_POST['orarioInizio']);
         $data = $inizio[0];
 
-        $arr = $FCli->getAppuntamentiFuturi($idUtente);
+        $arr = $FCli->getAppuntamentiFuturi($idUtente,$idProf);
 
         if(sizeof($arr) < 3) {
 
@@ -111,7 +111,24 @@ switch($type) {
         }
         echo json_encode($risultato);
     }
+    break;
+    /* CANCELLAZIONE APPUNTAMENTO */
+    case 'delete': {
+        $idAppuntamento = $_REQUEST['idApp'];
+        $risultato = array();
+        $esito = $FApp->cancellaAppuntamento($idAppuntamento);
+        if ($esito == true) {
+            $risultato['stato'] = 'successo';
+            $risultato['messaggio'] = 'Appuntamento cancellato con successo';
+        } else {
+            $risultato['stato'] = 'errore';
+            $risultato['messaggio'] = 'Impossibile cancellare l\'appuntamento';
+        }
+        echo json_encode($risultato);
+    }
+    break;
 }
+
 
 function processa($inizio,$durata) {
     $parti = array_map(function($num) {

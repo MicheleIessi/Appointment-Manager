@@ -41,8 +41,9 @@ class FAppuntamento extends Fdb  {
         try {
             if (parent::cancella($valori) == 0) {
                 throw new PDOException("Appuntamento con ID $key non presente nel database.");
-            } else
-                echo("Appuntamento con ID $key rimosso con successo.");
+            } else {
+                return true;
+            }
         } catch(PDOException $e) {
             echo $e->getMessage();
         }

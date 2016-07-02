@@ -10,18 +10,20 @@
 }
 
 #wrapServizi {
+    position: fixed;
     height: auto;
     width: auto;
     margin-top: 30px;
-    top: 100px;
+    top: 120px;
     margin-left: 10px;
+    z-index: 0;
 }
 
 #external-events {
     float: left;
     width: 230px;
     height:auto;
-    padding: 0 10px;
+    padding: 0 10px 10px 10px;
     border: 1px solid #ccc;
     background: #eee;
     text-align: left;
@@ -77,4 +79,45 @@
     font-size: 10px;
     cursor: pointer;
     background-color: #FFF
+}
+
+#cestino {
+    width: 230px;
+    height: auto;
+    float: left;
+    clear: both;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-top:none;
+    background: #eee;
+}
+
+#immCestino {
+    display: block;
+    margin:auto;
+    padding: 10px;
+    max-width:100px;
+    max-height:100px;
+    width: auto;
+    height: auto;
+}
+
+#mostraCestino {
+    display:block;
+    margin:auto;
+}
+
+#fineModifica {
+    display:block;
+    margin:auto;
+}
+
+#bottoneCestino {
+    width: inherit;
+    background-color:inherit;
+}
+
+button {
+    float:none;
+    cursor: pointer;
 }

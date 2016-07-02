@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-06-30 00:20:00
+<?php /* Smarty version 3.1.27, created on 2016-07-02 12:53:13
          compiled from "templates\templates\colonna_servizi.tpl" */ ?>
 <?php
-/*%%SmartyHeaderCode:706357744990057f89_16115119%%*/
+/*%%SmartyHeaderCode:3014557779d1925e770_85774337%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,25 +9,25 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '1281743a12198de32af4628fdff664925b2551df' => 
     array (
       0 => 'templates\\templates\\colonna_servizi.tpl',
-      1 => 1467238628,
+      1 => 1467456790,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '706357744990057f89_16115119',
-  'variables' =>
+  'nocache_hash' => '3014557779d1925e770_85774337',
+  'variables' => 
   array (
     'servizi' => 0,
     'servizio' => 0,
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_577449900c4987_89889088',
+  'unifunc' => 'content_57779d192d2ef1_91483016',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_577449900c4987_89889088')) {
-function content_577449900c4987_89889088 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_57779d192d2ef1_91483016')) {
+function content_57779d192d2ef1_91483016 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '706357744990057f89_16115119';
+$_smarty_tpl->properties['nocache_hash'] = '3014557779d1925e770_85774337';
 ?>
 <div id='wrapServizi'>
     <div id='external-events'>
@@ -51,7 +51,18 @@ $foreach_servizio_Sav = $_smarty_tpl->tpl_vars['servizio'];
 $_smarty_tpl->tpl_vars['servizio'] = $foreach_servizio_Sav;
 }
 ?>
+        <div id='bottoneCestino'>
+            <button id="mostraCestino">Modifica appuntamenti</button>
+        </div>
+
     </div>
+    <div class="cestinoNascosto">
+        <div id='cestino'>
+            <img id='immCestino' src="img/trash-512.png"/>
+            <button id="fineModifica">Ho finito</button>
+        </div>
+    </div>
+
 </div><?php }
 }
 ?>

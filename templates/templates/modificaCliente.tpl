@@ -3,8 +3,8 @@
 
 <script type="text/javascript" src='JS/validation/dateITA.js'></script>
 <script type="text/javascript" src='JS/modificaCliente.js'></script>
-<script type="text/javascript" src='JS/jquery-ui.min.js'></script>
-<script type="text/javascript" src='JS/datepicker-it.js'></script>
+<script type="text/javascript" src='JS/jquery-ui/jquery-ui.min.js'></script>
+<script type="text/javascript" src='JS/jquery-ui/datepicker-it.js'></script>
 
 <div id="contenitoreForm">
 

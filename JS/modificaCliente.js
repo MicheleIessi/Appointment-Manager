@@ -1,9 +1,9 @@
 $(document).ready( function()   {
     
-    $(function() {
-        $.datepicker.setDefaults( $.datepicker.regional[ "it" ] );
-        $( "#datepicker" ).datepicker();
-    });
+    $(function() {                                                              // settaggio di datapicker; tramite
+        $.datepicker.setDefaults( $.datepicker.regional[ "it" ] );              // datapicker.regional["it"] si setta
+        $( "#datepicker" ).datepicker();                                        // in modo tale che rispetti il formato
+    });                                                                         // e abbia la lingua
     
     $("#modificaCliente").validate(    {
         
@@ -47,33 +47,33 @@ $(document).ready( function()   {
         messages:
         {
             nome:  {
-                required: "  Inserisci il tuo nome"
+                required: "   Inserisci il tuo nome"
             },
             
             cognome:  {
-                required: "  Inserisci il tuo cognome"
+                required: "   Inserisci il tuo cognome"
             },
             
             dataNascita:  {
-                required: "  Inserisci la tua data di nascita"
+                required: "   Inserisci la tua data di nascita"
             },
             
             sesso:  {
-                required: "  Campo richiesto"
+                required: "   Campo richiesto"
             },
             
             email:  {
-                required: "  Inserisci il tuo indirizzo email",
-                email: "  Non rispetta il giusto formato per una mail"
+                required: "   Inserisci il tuo indirizzo email",
+                email: "   Non rispetta il giusto formato per una mail"
             },
             
             password1:  {
-                required: "  Campo richiesto"
+                required: "   Campo richiesto"
             },
             
             password2:  {
-                required: "  Campo richiesto",
-                equalTo: "  Conferma password errato"
+                required: "   Campo richiesto",
+                equalTo: "   Conferma password errato"
             }
         }
     }
@@ -86,20 +86,20 @@ $.validator.addMethod("noNumeri", function(value, element) {
  
     return this.optional( element ) || /^[ a-zA-zèéò'àù]+$/.test( value );
     
-}, "  Questo campo non può contenere numeri o caratteri speciali"); 
+}, "   Questo campo non può contenere numeri o caratteri speciali"); 
 
 
 $.validator.addMethod("controllaEmail", function(value, element) {
  
     return this.optional( element ) || /^([a-zA-z0-9.]{3,})@([a-zA-z0-9.]+)\.([a-zA-Z]{2,4})/.test( value );
     
-}, "  Non rispetta il giusto formato per una mail");
+}, "   Non rispetta il giusto formato per una mail");
 
 $.validator.addMethod("formatoData", function(value, element) {
  
     return this.optional( element ) || /^[0-9]{2}\/[0-9]{2}\/[0-9]{4}$/.test( value );
     
-}, "  Non rispetta il giusto formato per una data");
+}, "   Non rispetta il giusto formato per una data");
 
 
 

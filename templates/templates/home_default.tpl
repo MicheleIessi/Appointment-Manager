@@ -13,7 +13,7 @@
         <script type="text/javascript" src='JS/JCalendar.js'></script>
         <script type="text/javascript" src="JS/jquery.leanModal.min.js"></script>
         <script type="text/javascript" src="JS/validation/jquery.validate.js"></script>
-        <script type="text/javascript" src="JS/JLogin.js"></script>
+        <script type="text/javascript" src="JS/JLogReg.js"></script>
         <title>{$title}</title>
     </head>
     <body>
@@ -44,11 +44,11 @@
                 <form id="logform">
                     <div class="txt-fld">
                         <label for="">Email</label>
-                        <input id="mail" name="mail" type="text">
+                        <input id="mail" name="email" type="text">
                     </div>
                     <div class="txt-fld">
                         <label for="">Password</label>
-                        <input id="pwd" name="pwd" type="password">
+                        <input id="pwd" name="password" type="password">
 
                     </div>
                     <div class="btn-fld">

@@ -21,11 +21,11 @@ class CIndex {
 
     public function impostaPagina() {
         $this->VIndex = new VIndex();
-        $log = -1;
+        
         $sessione = new USession();
         $log = $sessione->getValore('idUtente');
-        $sessione->impostaValore('idUtente',3);
-        $sessione->impostaValore('tipo','cliente');
+        //$sessione->impostaValore('idUtente',3);
+        //$sessione->impostaValore('tipo','cliente');
         if($log===false) {
             $log=-1;    //a questo punto del programma in questo commit, bisogna fare controlli per il login
         }

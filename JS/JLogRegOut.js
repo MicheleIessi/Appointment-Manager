@@ -9,7 +9,7 @@ function log_out(){
             method : "post",
             data : {uscita :true},
             success:function(){
-              location.reload();}
+              location.href="index.php";}
             });
               }      
     }

@@ -14,8 +14,7 @@
         <script type="text/javascript" src='JS/JCalendar.js'></script>
         <script type="text/javascript" src="JS/jquery.leanModal.min.js"></script>
         <script type="text/javascript" src="JS/validation/jquery.validate.js"></script>
-        <script type="text/javascript" src="JS/JLogReg.js"></script>
-        <script type="text/javascript" src="JS/JLogin.js"></script>
+        <script type="text/javascript" src="JS/JLogRegOut.js"></script>
         <title>{$title}</title>
     </head>
     <body>

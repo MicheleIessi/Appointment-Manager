@@ -24,7 +24,8 @@ class CIndex {
         $log = -1;
         $sessione = new USession();
         $log = $sessione->getValore('idUtente');
-        $sessione->impostaValore('tipo','professionista');
+        $sessione->impostaValore('idUtente',3);
+        $sessione->impostaValore('tipo','cliente');
         if($log===false) {
             $log=-1;    //a questo punto del programma in questo commit, bisogna fare controlli per il login
         }
@@ -37,7 +38,7 @@ class CIndex {
             $this->VIndex->impostaPaginaOspite();
         else if($log==0)//0=utente
             /* qualcosa */;
-        else if($log==1)//professionista/admin?
+        else if($log>0)//professionista/admin?
             $this->VIndex->impostaPaginaRegistrato();
         $this->VIndex->mostraPagina();
     }
@@ -61,38 +62,47 @@ class CIndex {
                 }
             else return $this->VIndex->fetch('forbidden.tpl');
             case 'calendario':
-                if($sessione->getValore('tipo') == 'cliente') {
-                    if($log > 0 && isset($_REQUEST['idp'])) { //gestire l'errore se non c'è idp?
-                        $idp = $_REQUEST['idp'];
-                        setcookie('lastCalendar', $idp);
-                        $cal = new CCalendar();
-                        $this->VIndex->setSideContent($cal->getServiziProf($idp));
-                        return $cal->smista();
+                if($log > 0) {
+                    $FPro = new FProfessionista();
+                    $profDisponibili = $FPro->caricaProfessionisti();
+                    $idDisponibili = array();
+                    foreach($profDisponibili as $professionista) {
+                        /* @var $professionista EProfessionista */
+                        array_push($idDisponibili,$professionista->getID());
                     }
-                }
-                else if($sessione->getValore('tipo') == 'professionista') {
-                    $idp = $_REQUEST['idp'];
-                    setcookie('lastCalendar', $idp);
-                    $cal = new CCalendar();
-                    $this->VIndex->setSideContent($cal->getServiziProf($idp));
-                    return $cal->smista();
-                }
+                    if (isset($_REQUEST['idp']) && is_numeric($_REQUEST['idp']) && array_search($_REQUEST['idp'],$idDisponibili)!==false) {
+                        $idp = $_REQUEST['idp'];
+                        $sessione->impostaValore('idCalendario',$idp);
+                        $cal = new CCalendar();
+
+                        if ($sessione->getValore('tipo') == 'professionista') {
+                            $this->VIndex->setSideContent($cal->getColonnaProfessionista());
+                            return $cal->smista();
+                        }
+                        else if ($sessione->getValore('tipo') == 'cliente') {
+                            $this->VIndex->setSideContent($cal->getServiziProf($idp));
+                            return $cal->smista();
+                        }
+                    }
+                    else
+                        return $this->VIndex->fetch('professionistaNonTrovato.tpl');
+                    }
                 return $this->VIndex->fetch('forbidden.tpl');
-                
+
             case 'paginaCliente':
                 $idUtente = $_REQUEST['id'];
                 $CPagU = new CUtente();
                 $sessione->impostaValore('tipo','cliente'); //solo per provare
                 return $CPagU->smista($idUtente);
                 
-            case 'modificaCliente':
-                return $this->VIndex->fetch('modificaCliente.tpl');     // solo per provare, ancora da fare i controlli
-                
             case 'paginaProfessionista':
                 $idProfessionista = $_REQUEST['id'];
                 $CPagP = new CUtente();
                 $sessione->impostaValore('tipo', 'professionista');
                 return $CPagP->smista($idProfessionista);
+                
+            case 'modificaUtente':
+                return $this->VIndex->fetch('modificaUtente.tpl');     // solo per provare, ancora da fare i controlli
                 
             default:
                 return $this->VIndex->fetch('home_default_content.tpl');

@@ -129,6 +129,34 @@ class FUtente extends Fdb   {
         }
     }
 
+    /**
+     * @param $chiave
+     * @param $valore
+     * @return bool
+     */
+    public function controllaEsistenza($chiave, $valore) {
+        $this->setParametri();
+        $valori = array();
+        $esito = false;
+        if($chiave == 'email') {
+            $valore = strtolower($valore);
+            $valori[':email'] = $valore;
+        }
+        else if($chiave == 'codiceFiscale') {
+            $valore = strtoupper($valore);
+            $valori[':codiceFiscale'] = $valore;
+        }
+        try {
+            if(parent::caricaConChiave($valori, $chiave) == false) // non c'è
+                $esito = false;
+            else
+                $esito = true;
+        } catch(PDOException $e) {
+            echo $e->getMessage();
+        }
+        return $esito;
+    }
+
     private function setParametri() {
         parent::setParam($this->table,$this->attributi,$this->bind,$this->bind_key,$this->old_keys);
     }

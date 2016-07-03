@@ -1,67 +1,134 @@
 <?php
 require_once('includes/autoload.inc.php');
-$type = $_REQUEST['type'];
+
+$type = $_POST['type'];
 $sessione = new USession();
-$id=$_COOKIE['lastCalendar'];
+$idUtente = $sessione->getValore('idUtente');
+$idProf = $sessione->getValore('idCalendario');
 $events = array();
-/* QUI CARICO GLI ORARI IN CUI IL PROFESSIONISTA NON E' DISPONIBILE E LI INSERISCO SOTTO FORMA DI EVENTI BACKGROUND */
+
+/* INIZIALIZZO ISTANZE DEGLI OGGETTI CHE MI SERVIRANNO */
+
 $FPro = new FProfessionista();
-$EPro = $FPro->caricaProfessionistaDaDB(1);
+$FUte = new FUtente();
+$FAge = new FAgenda();
+$FSer = new FServizio();
+$FApp = new FAppuntamento();
+$FCli = new FCliente();
+
+/* QUI CARICO GLI ORARI IN CUI IL PROFESSIONISTA NON E' DISPONIBILE E LI INSERISCO SOTTO FORMA DI EVENTI BACKGROUND */
+$EPro = $FPro->caricaProfessionistaDaDB($idProf);
 $impegni = $EPro->getOrariLavorativi();
 $arrBackground = generaEventiOrari($impegni);
 foreach($arrBackground as $giorno) {
     array_push($events,$giorno);
 }
+switch($type) {
+    /* FETCH DEGLI APPUNTAMENTI GIA' PRESENTI NEL DATABASE */
+    case 'fetch': {
+        $agenda = $FAge->caricaAgenda($idProf);
+        $impegni = $agenda->getImpegni();
+        $tipo = $sessione->getValore('tipo');
+        foreach ($impegni as $appuntamento) {
+            /* @var $appuntamento EAppuntamento */
+            $evento = array();
+                //attributi che non dipendono dal tipo di utente che ha richiesto il calendario
+            $evento['id'] = $appuntamento->getIDAppuntamento();
+            $evento['start'] = $appuntamento->getData()." ".$appuntamento->getOrario();
+            $durata = $appuntamento->getVisita()->getDurata();
+            $evento['end'] = processa($evento['start'], $durata);
+            $evento['allDay'] = "";
+            $evento['editable'] = false;
+            if ($tipo == 'cliente') {
+                $idCliente = $appuntamento->getIDCliente();
+                if($idCliente == $idUtente) {
+                    $evento['title'] = "{$appuntamento->getVisita()->getNomeServizio()} con te";
+                    $evento['backgroundColor'] = '#ADFF7E';
+                    $evento['textColor'] = '#000000';
+                    $evento['borderColor'] = '#31DA17';
+                    $evento['editable']=true;
+                }
+                else {
+                    $evento['title'] = 'Orario già prenotato';
+                    $evento['color'] = '#AAAAAA';
+                    $evento['textColor'] = '#FFFFFF';
+                }
+            }
+            else if ($tipo == 'professionista') {
+                if($idUtente == $idProf) {
+                    $idCliente = $appuntamento->getIDCliente();
+                    $utente = $FUte->caricaUtenteDaDb($idCliente);
+                    $nomeUtente = $utente->getNome();
+                    $cognomeUtente = $utente->getCognome();
+                    $evento['title'] = "{$appuntamento->getVisita()->getNomeServizio()} con $nomeUtente $cognomeUtente";
+                    $evento['editable'] = true;
+                }
+                else {
+                    $evento['title'] = 'Orario già prenotato';
+                    $evento['color'] = '#AAAAAA';
+                    $evento['textColor'] = '#FFFFFF';
+                }
+            }
 
-if($type == 'fetch') {
-    $fage = new FAgenda();
-    $agenda = $fage->caricaAgenda($id);
-    $impegni = $agenda->getImpegni();
-    $tipo = $sessione->getValore('tipo');
-    $FUte = new FUtente();
-
-    foreach($impegni as $appuntamento) {
-        $evento = array();
-        //attributi che non dipendono dal tipo di utente che ha richiesto il calendario
-        $evento['id']=$appuntamento->getIDAppuntamento();
-        $evento['start']=$appuntamento->getData()." ".$appuntamento->getOrario();
-        $durata = $appuntamento->getVisita()->getDurata();
-        $evento['end']=processa($evento['start'],$durata);
-        $evento['allDay']="";
-        $evento['editable']=false; //questo poi dovrà cambiare in base all'id dell'utente che lo sta guardando:
-                                   //se è il proprietario del calendario dovrà essere true
-        //attributi che dipendono dal tipo di utente che ha richiesto il calendario
-        if($tipo == 'cliente') {
-            $evento['title'] = "Orario già prenotato";
-            $evento['color'] = '#777777';
+            array_push($events, $evento);
         }
-        else if($tipo == 'professionista') {
-            $idCliente = $appuntamento->getIDCliente();
-            $utente = $FUte->caricaUtenteDaDb($idCliente);
-            $nomeUtente = $utente->getNome();
-            $cognomeUtente = $utente->getCognome();
-            $evento['title'] = "{$appuntamento->getVisita()->getNomeServizio()} con $nomeUtente $cognomeUtente";
-        }
-        array_push($events,$evento);
+        echo json_encode($events);
     }
-    
-    /*  La struttura dei JSON events è la seguente: 
-     *  
-     *  events[ 
-     *          id:    'aaa',
-     *          title: 'bbb',
-     *          start: 'ccc',
-     *          editable: false,
-     *          allDay: /
-     *        ]
-     * 
-     *     In verità ci sono delle differenze nel caso in cui si è un cliente o un professionista: 
-     *     il cliente ad esempio non dovrebbe poter vedere il titolo degli appuntamenti del professionista,
-     *     inoltre ha il valore editable posto a false; al contrario il professionista avrà editable=true
-     */
-    
-    echo json_encode($events);
+    break;
+    /* INSERIMENTO NUOVO APPUNTAMENTO */
+    /* il cliente può inserire un appuntamento solo se non ha già 3 appuntamenti prenotati
+    /* in giorni futuri con lo stesso professionista */
+    case 'new': {
+        $risultato = array();
+        $inizio = explode('T',$_POST['orarioInizio']);
+        $data = $inizio[0];
+
+        $arr = $FCli->getAppuntamentiFuturi($idUtente,$idProf);
+
+        if(sizeof($arr) < 3) {
+
+            $orarioInizio = $inizio[1];
+            $title = $_POST['servizio'];//nome del servizio
+            $ESer = $FSer->caricaServizioDaDb($title);
+
+            $appuntamento = new EAppuntamento($idProf, $idUtente, $data, $orarioInizio, $ESer);
+            $FApp->inserisciAppuntamento($appuntamento);
+            $IDApp = $FApp->getLastID();
+            if($IDApp == 0) {
+                $risultato['stato'] = 'errore';
+                $risultato['messaggio'] = 'Si può effettuare una prenotazione per giorno con lo stesso professionista';
+            }
+            else {
+                $EApp = $FApp->caricaAppuntamentoDaDb($IDApp);
+                $risultato['stato'] = 'successo';
+                $risultato['messaggio'] = 'Appuntamento aggiunto correttamente per il giorno '.$EApp->getData().' alle ore '.$EApp->getOrario().'.';
+                $risultato['idAppuntamento'] = $IDApp;
+            }
+        }
+        else {
+            $risultato['stato'] = 'errore';
+            $risultato['messaggio'] = 'Non si possono avere più di 3 prenotazioni attive con lo stesso professionista';
+        }
+        echo json_encode($risultato);
+    }
+    break;
+    /* CANCELLAZIONE APPUNTAMENTO */
+    case 'delete': {
+        $idAppuntamento = $_REQUEST['idApp'];
+        $risultato = array();
+        $esito = $FApp->cancellaAppuntamento($idAppuntamento);
+        if ($esito == true) {
+            $risultato['stato'] = 'successo';
+            $risultato['messaggio'] = 'Appuntamento cancellato con successo';
+        } else {
+            $risultato['stato'] = 'errore';
+            $risultato['messaggio'] = 'Impossibile cancellare l\'appuntamento';
+        }
+        echo json_encode($risultato);
+    }
+    break;
 }
+
 
 function processa($inizio,$durata) {
     $parti = array_map(function($num) {
@@ -122,7 +189,7 @@ function creaEventoBackground($inizio,$fine,$giorno) {
     $singoloEvento['rendering'] = 'background';
     $singoloEvento['allDay'] = "";
     $singoloEvento['editable'] = false;
-    $singoloEvento['color'] = '#f04124';
+    $singoloEvento['color'] = '#FF9999';
     $singoloEvento['dow'] = [$giorno];
 
     return $singoloEvento;

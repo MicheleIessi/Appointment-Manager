@@ -272,5 +272,9 @@ class Fdb {
     protected function getOldKeys() {
         return $this->old_keys;
     }
+
+    public function getLastID() {
+        return self::$db->lastInsertId();
+    }
 }
 ?>

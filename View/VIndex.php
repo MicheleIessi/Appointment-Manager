@@ -51,7 +51,13 @@ class VIndex extends View {
 
     public function aggiungiTastiLoggato() {
         $logBut = array();
-        $logBut[]=array('testo'=>'Profilo','link'=>'#profilo');
+        $sessione = new USession();
+        $tipo = $sessione->getValore('tipo');
+        $id = $sessione->getValore('idUtente');
+        if($tipo =='cliente')
+            $logBut[]=array('testo'=>'Profilo','link'=>'?controller=paginaCliente&id='.$id);
+        else
+            $logBut[]=array('testo'=>'Profilo','link'=>'?controller=paginaProfessionista&id='.$id);
         $logBut[]=array('testo'=>'Logout','link'=>'#logout');
         $this->main_button=array_merge($this->main_button,$logBut);
     }

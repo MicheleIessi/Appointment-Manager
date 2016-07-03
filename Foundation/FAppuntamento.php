@@ -18,17 +18,17 @@ class FAppuntamento extends Fdb  {
         $this->setParametriInserimento();
         $valori = parent::cambiaChiaviArray($app->getArrayAttributi());
         $valori[':visita'] = $valori[':visita']->getNomeServizio();
-        $valoriDaCercare = array_slice($valori,0,3,true);
+        $valoriDaCercare = array_slice($valori,1,3,true);
         $chiaveDaCercare = 'IDP,IDC,data';
         try {
             if(parent::caricaConChiave($valoriDaCercare,$chiaveDaCercare) != false) {
-                throw new PDOException("Appuntamento già presente nel database."); //sarebbe meglio mettere un return che simboleggia il risultato
+                return false; //sarebbe meglio mettere un return che simboleggia il risultato
             }
             else {
                 if (parent::inserisci($valori) == 0) {
                     throw new PDOException("Il cliente con id ".$valori[':IDC']." non esiste.<br>");
                 } else
-                    echo("Appuntamento aggiunto correttamente al database." . "<br>");
+                    return true;
             }
         } catch(PDOException $e) {
             echo $e->getMessage();
@@ -41,8 +41,9 @@ class FAppuntamento extends Fdb  {
         try {
             if (parent::cancella($valori) == 0) {
                 throw new PDOException("Appuntamento con ID $key non presente nel database.");
-            } else
-                echo("Appuntamento con ID $key rimosso con successo.");
+            } else {
+                return true;
+            }
         } catch(PDOException $e) {
             echo $e->getMessage();
         }
@@ -96,8 +97,8 @@ class FAppuntamento extends Fdb  {
     }
 
     private function setParametriInserimento() {
-        $alt_attr="IDP,IDC,data,orarioInizio,visita";
-        $alt_bind=":IDP,:IDC,:data,:orarioInizio,:visita";
+        $alt_attr="IDApp,IDP,IDC,data,orarioInizio,visita";
+        $alt_bind=":IDApp,:IDP,:IDC,:data,:orarioInizio,:visita";
         $alt_keys=":IDP,:IDC,:data";
         parent::setParam($this->table,$alt_attr,$alt_bind,$alt_keys,$this->old_keys);
     }

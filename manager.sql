@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 28, 2016 at 01:32 AM
+-- Generation Time: Jul 01, 2016 at 12:06 PM
 -- Server version: 10.1.10-MariaDB
 -- PHP Version: 5.6.19
 
@@ -43,7 +43,16 @@ INSERT INTO `appuntamento` (`IDApp`, `IDP`, `IDC`, `data`, `orarioInizio`, `visi
 (9, 1, 2, '2016-06-28', '18:00:00', 'Visita specifica'),
 (11, 20, 15, '2016-06-29', '10:00:00', 'nome'),
 (22, 20, 15, '2016-06-27', '15:00:00', 'nome'),
-(32, 1, 3, '2016-06-28', '14:00:00', 'nome');
+(32, 1, 3, '2016-06-28', '14:00:00', 'nome'),
+(33, 1, 3, '2016-06-30', '12:00:00', 'Visita specifica'),
+(34, 20, 2, '2016-06-30', '08:06:00', 'Visita specifica'),
+(35, 20, 2, '2016-06-30', '10:06:00', 'ServizioProf'),
+(36, 20, 2, '2016-07-01', '08:07:00', 'ServizioProf'),
+(37, 20, 2, '2016-07-02', '08:07:00', 'ServizioProf'),
+(41, 1, 2, '2016-06-29', '08:06:00', 'Nome Servizio'),
+(42, 1, 2, '2016-06-30', '08:06:00', 'Visita specifica'),
+(43, 1, 2, '2016-07-01', '08:07:00', 'Nome Servizio'),
+(44, 1, 2, '2016-06-27', '11:06:00', 'Nome Servizio');
 
 -- --------------------------------------------------------
 
@@ -87,7 +96,7 @@ CREATE TABLE `professionista` (
 --
 
 INSERT INTO `professionista` (`IDP`, `settore`, `orarioLun`, `orarioMar`, `orarioMer`, `orarioGio`, `orarioVen`, `orarioSab`, `orarioDom`) VALUES
-(1, 'settore cambiato', '08:00:00-13:00:00,14:00:00-18:00:00', '08:00:00-13:00:00,14:00:00-18:00:00', '08:00:00-13:00:00,14:00:00-18:00:00', '08:00:00-13:00:00,14:00:00-18:00:00', '08:00:00-13:00:00,14:00:00-18:00:00', '08:00:00-13:00:00,14:00:00-18:00:00', '08:00:00-13:00:00,14:00:00-18:00:00'),
+(1, 'settore cambiato', '09:00:00-13:00:00,14:00:00-18:00:00', '08:00:00-13:00:00,14:00:00-18:00:00', '08:00:00-13:00:00,14:00:00-18:00:00', '08:00:00-13:00:00,14:00:00-18:00:00', '08:00:00-13:00:00,14:00:00-18:00:00', '08:00:00-13:00:00,14:00:00-18:00:00', '08:00:00-13:00:00,14:00:00-18:00:00'),
 (4, 'settore1', '08:00:00-13:00:00,14:00:00-18:00:00', '08:00:00-13:00:00,14:00:00-18:00:00', '08:00:00-13:00:00,14:00:00-18:00:00', '08:00:00-13:00:00,14:00:00-18:00:00', '08:00:00-13:00:00,14:00:00-18:00:00', '08:00:00-13:00:00,14:00:00-18:00:00', '08:00:00-13:00:00,14:00:00-18:00:00'),
 (20, 'settore2', '08:00:00-13:00:00,14:00:00-18:00:00', '08:00:00-13:00:00,14:00:00-18:00:00', '08:00:00-13:00:00,14:00:00-18:00:00', '08:00:00-13:00:00,14:00:00-18:00:00', '08:00:00-13:00:00,14:00:00-18:00:00', '08:00:00-13:00:00,14:00:00-18:00:00', '08:00:00-13:00:00,14:00:00-18:00:00'),
 (21, 'settore', '00:00:00-23:59:59', '00:00:00-23:59:59', '00:00:00-23:59:59', '00:00:00-23:59:59', '00:00:00-23:59:59', '00:00:00-23:59:59', '00:00:00-23:59:59');
@@ -162,8 +171,8 @@ CREATE TABLE `utente` (
 
 INSERT INTO `utente` (`numID`, `nome`, `cognome`, `dataNascita`, `codiceFiscale`, `sesso`, `email`, `password`) VALUES
 (1, 'Willy', 'TheCacciu', '2016-03-08', 'SSIMHL92S06E243D', 'm', 'iessimichele@gmail.com', 'provaprova'),
-(2, 'nome2', 'cognome2', '2016-03-16', 'ABCDEFGHIJKLMNOP', 'm', 'prova@prova.com', 'password2'),
-(3, 'Willy', 'Cacciu', '2014-03-15', 'WILLYDEDOGDABEST', 'm', 'willy@bau.com', 'baubau'),
+(2, 'nome', 'cognome', '2016-03-16', 'ABCDEF92S06E243D', 'm', 'prova@prova.com', 'password2'),
+(3, 'Willy', 'Cacciu', '2014-03-15', 'WILLYN92S06E243D', 'm', 'willy@bau.com', 'baubau10'),
 (4, 'Willy', 'TheCacciu', '2016-03-08', 'SSIDVD93R20E243Q', 'm', 'blablaciao@google.com', 'provaprova'),
 (15, 'nome', 'cognome', '2016-03-20', 'ASDASD00A87A123A', 'M', 'ciaociao@live.it', 'nuova pass'),
 (20, 'Utente', 'Cognome', '2016-04-14', 'ABCDEF92S06E243D', 'm', 'cacciucacciu@cacciu.com', 'blablabla'),
@@ -221,7 +230,7 @@ ALTER TABLE `utente`
 -- AUTO_INCREMENT for table `appuntamento`
 --
 ALTER TABLE `appuntamento`
-  MODIFY `IDApp` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `IDApp` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 --
 -- AUTO_INCREMENT for table `utente`
 --

@@ -41,7 +41,7 @@
                     <p>Sei già iscritto? Effettua il login.</p>
                     <a class="modal_close" href="#"></a>
                 </div>
-                <form >
+                <form id="logform">
                     <div class="txt-fld">
                         <label for="">Email</label>
                         <input id="mail" name="mail" type="text">

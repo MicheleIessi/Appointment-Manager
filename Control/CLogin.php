@@ -9,13 +9,13 @@ require_once('includes/autoload.inc.php');
 //QUESTIONI DI SICUREZZA: in questo modo non è possibile accedere direttamente al file senza passare dei parametri tramite post
 class CLogin {
 
-    public function processaLogin() {
+    public function processaLogin($utente){
         $sessione = new USession();
-        if(!$sessione->getValore('id')) {
-            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                if (isset($_POST['btnLogin'])) {
-                    $mail = $_POST['email'];
-                    $pass = $_POST['password'];
+        //if(!$sessione->getValore('id')) {
+            //if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+              //  if (isset($_POST['btnLogin'])) {
+                    //$mail = $_POST['email'];
+                    //$pass = $_POST['password'];
 
                     /**
                      * GESTIRE IL LOGIN:
@@ -27,20 +27,20 @@ class CLogin {
                      *    connesso e creare una sessione
                      */
 
-                    $fute = new FUtente();
-                    $utente = $fute->caricaUtenteDaLogin($mail, $pass);
-                    if($utente!=false) { //è stato trovato un utente con mail e pass giuste
-                        $sessione->impostaValore('id',$utente->getID());
-                    }
+                    //$fute = new FUtente();
+                    //$utente = $fute->caricaUtenteDaLogin($mail, $pass);
+                    //if($utente!=false) { //è stato trovato un utente con mail e pass giuste
+                        $sessione->impostaValore('idUtente',$utente->getID());
+                  //  }
 
 
-                    }
+                   // }
 
-                }
-            }
-        else {
+               // }
+      //      }
+      //  else {
             //utente già loggato
-        }
+      //  }
         }
 
     public function smista() {

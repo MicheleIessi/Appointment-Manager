@@ -4,11 +4,14 @@ $(document).ready(function() {
     $('#mostraCestino').click(function() {
         $('.cestinoNascosto').show();
         $('#mostraCestino').hide();
-        alert('Trascina un appuntamento sul cestino per eliminarlo dall\'agenda');
+        var dettagli = $('#dettagli');
+        dettagli.text('Trascina un appuntamento sul cestino per eliminarlo');
+        dettagli.css('color','cornflowerblue');
     });
     $('#fineModifica').click(function() {
         $('.cestinoNascosto').hide();
         $('#mostraCestino').show();
+        $('#dettagli').text("");
     });
 
     $('#calendar').fullCalendar({
@@ -19,13 +22,6 @@ $(document).ready(function() {
         },
         editable: true,
         droppable: true,    // this allows things to be dropped onto the calendar
-        drop: function() {
-            // is the "remove after drop" checkbox checked?
-            if ($('#drop-remove').is(':checked')) {
-                // if so, remove the element from the "Draggable Events" list
-                $(this).remove();
-            }
-        },
         eventConstraint: {
             start: moment().format('YYYY-MM-DD[T]H:mm:ss'),
             end: '2100-01-01' // hard coded goodness unfortunately
@@ -96,13 +92,16 @@ $(document).ready(function() {
                     },
                     dataType: "json",
                     success: function (response) {
+                        var dettagli = $('#dettagli');
                         if(response.stato == 'successo') {
-                            alert('Appuntamento aggiunto con successo');
-                            document.location.reload(true);
+                            dettagli.css('color','green');
+                            dettagli.text(response.messaggio);
+                            window.setTimeout(function(){document.location.reload()},3000)
                         }
                         else if (response.stato == 'errore') {
                             $('#calendar').fullCalendar('removeEvents',event._id);
-                            alert(response.messaggio);
+                            dettagli.css('color','red');
+                            dettagli.text(response.messaggio);
                         }
                         console.log(response);
                     },
@@ -116,9 +115,55 @@ $(document).ready(function() {
                 $('#calendar').fullCalendar('removeEvents',event._id);
         },
         eventDrop: function(event, delta, revertFunc, jsEvent, ui, view) {
-            if(!isEventOverDiv(jsEvent.clientX, jsEvent.clientY))
+            var dettagli = $('#dettagli');
+            if(!isEventOverDiv(jsEvent.clientX, jsEvent.clientY)) {
+                dettagli.css('color', 'red');
+                dettagli.text('Non si possono modificare appuntamenti già presi. Cancellalo e riesegui la prenotazione.');
                 revertFunc();
+            }
+        },
+        eventDragStop: function(event,jsEvent) {
+            var trashEl = $('#calendarTrash');
+            var ofs = trashEl.offset();
+            var x1 = ofs.left;
+            var x2 = ofs.left + trashEl.outerWidth(true);
+            var y1 = ofs.top;
+            var y2 = ofs.top + trashEl.outerHeight(true);
+            var idApp = event.id;
+            if (jsEvent.pageX >= x1 && jsEvent.pageX<= x2 && jsEvent.pageY>= y1 && jsEvent.pageY <= y2) {
+                var decisione = confirm('Sei sicuro di voler annullare questo appuntamento?');
+                if(decisione) {
+                    var motivazione = prompt("Inserire la motivazione:","Nessuna motivazione");
+                    $.ajax({
+                        url: 'Control/CProcessaCalendar.php',
+                        type: 'POST',
+                        data: {
+                            idApp: idApp,
+                            type: 'delete',
+                            motivo: motivazione
+                        },
+                        dataType: "json",
+                        success: function (response) {
+                            if (response.stato == 'successo') {
+                                var dettagli = $('#dettagli');
+                                dettagli.text(response.messaggio);
+                                dettagli.css('color','green');
+                                $('#calendar').fullCalendar('removeEvents', event._id);
+                            }
+                            else if (response.stato == 'errore') {
+                                alert(response.messaggio);
+                            }
+                        },
+                        error: function (e) {
+                            alert('ERRORE:' + e.responseText);
+                        }
+
+                    });
+                }
+            }
         }
+
+
     });
     /* RENDE DRAGGABILI GLI EVENTI */
     $('#external-events .fc-event').each(function() {
@@ -136,14 +181,22 @@ $(document).ready(function() {
             revertDuration: 10  //  original position after the drag
         });
 
+
     });
 
+    $('#cestino').droppable({
+        tolerance: 'pointer',
+        accept: '#calendar .fc-event',
+        drop: function(event, ui) {
+            alert('droppato sul cestino');
+        }
+    });
 });
 
 
 var isEventOverDiv = function(x, y) {
 
-    var cestino = $('#cestino');
+    var cestino = $('#calendarTrash');
     var offset = cestino.offset();
     offset.right = cestino.width() + offset.left;
     offset.bottom = cestino.height() + offset.top;
@@ -154,10 +207,3 @@ var isEventOverDiv = function(x, y) {
     }
     return false;
 };
-
-$('#cestino').droppable({
-    accept: 'fc-event',
-    drop: function(event, ui) {
-        alert('droppato sul cestino');
-    }
-});

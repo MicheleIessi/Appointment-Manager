@@ -5,7 +5,7 @@ $(document).ready( function()   {
         $( "#datepicker" ).datepicker();                                        // in modo tale che rispetti il formato
     });                                                                         // e abbia la lingua
     
-    $("#modificaCliente").validate(    {        // Validazione form usando jquery validate
+    $("#modificaUtente").validate(    {        // Validazione form usando jquery validate
         
         rules:          // Queste sono le regole che devono essere verificate per i singoli campi delle form
         {
@@ -16,7 +16,7 @@ $(document).ready( function()   {
             },
             
             cognome:  {
-                required: true,
+                required:true,
                 noNumeri:true,
                 maxlength:20
             },
@@ -133,14 +133,14 @@ $(document).ready( function()   {
 
 $.validator.addMethod("noNumeri", function(value, element) {
  
-    return this.optional( element ) || /^[ a-zA-zèéò'àù]+$/.test( value );
+    return this.optional( element ) || /^[ a-zA-Zèéòì'àù]+$/.test( value );
     
 }, "   Questo campo non può contenere numeri o caratteri speciali"); 
 
 
 $.validator.addMethod("controllaEmail", function(value, element) {
  
-    return this.optional( element ) || /^([a-zA-z0-9.]{3,})@([a-zA-z0-9.]+)\.([a-zA-Z]{2,4})/.test( value );
+    return this.optional( element ) || /^([a-zA-Z0-9.]{3,})@([a-zA-z0-9.]+)\.([a-zA-Z]{2,4})/.test( value );
     
 }, "   Non rispetta il giusto formato per una mail");
 

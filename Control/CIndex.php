@@ -24,7 +24,7 @@ class CIndex {
         $log = -1;
         $sessione = new USession();
         $log = $sessione->getValore('idUtente');
-        $sessione->impostaValore('idUtente',3);
+        $sessione->impostaValore('idUtente',15);
         $sessione->impostaValore('tipo','cliente');
         if($log===false) {
             $log=1;    //a questo punto del programma in questo commit, bisogna fare controlli per il login
@@ -90,22 +90,42 @@ class CIndex {
                 return $this->VIndex->fetch('forbidden.tpl');
 
             case 'paginaCliente':
-                $idUtente = $_REQUEST['id'];
-                $CPagU = new CUtente();
-                $sessione->impostaValore('tipo','cliente'); //solo per provare
-                return $CPagU->smista($idUtente);
+                if (isset($_REQUEST['id']) && is_numeric($_REQUEST['id'])) {
+                    $CPagU = new CUtente();
+                    $idUtente = $_REQUEST['id'];
+                    if($CPagU->controllaProfessionista($idUtente) == 'cliente') {
+                        $sessione->impostaValore('tipo','cliente'); //solo per provare
+                        return $CPagU->smista($idUtente);
+                    }
+                    else {
+                        return $this->VIndex->fetch('errore.tpl');
+                    }
+                    
+                }
                 
             case 'paginaProfessionista':
-                $idProfessionista = $_REQUEST['id'];
-                $CPagP = new CUtente();
-                $sessione->impostaValore('tipo', 'professionista');
-                return $CPagP->smista($idProfessionista);
+                if (isset($_REQUEST['id']) && is_numeric($_REQUEST['id'])) {
+                    $CPagU = new CUtente();
+                    $idProfessionista = $_REQUEST['id'];
+                    if($CPagU->controllaProfessionista($idProfessionista) == 'professionista') {
+                        $sessione->impostaValore('tipo', 'professionista');
+                        return $CPagU->smista($idProfessionista);
+                    }
+                    else {
+                        return $this->VIndex->fetch('errore.tpl');
+                    }
+
+                }
                 
             case 'modificaUtente':
+                $messaggio = $sessione->getValore('messaggioErrore');
+                $this->VIndex->setData('messaggio', $messaggio);
+                $sessione->cancellaValore('messaggioErrore');
                 return $this->VIndex->fetch('modificaUtente.tpl');     // solo per provare, ancora da fare i controlli
                 
             default:
                 return $this->VIndex->fetch('home_default_content.tpl');
         }
     }
+    
 }

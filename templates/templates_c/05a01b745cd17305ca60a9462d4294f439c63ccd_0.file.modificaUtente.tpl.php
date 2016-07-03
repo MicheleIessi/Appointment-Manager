@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-07-02 17:50:28
+<?php /* Smarty version 3.1.27, created on 2016-07-02 19:44:15
          compiled from "templates\templates\modificaUtente.tpl" */ ?>
 <?php
-/*%%SmartyHeaderCode:175585777e2c4bafe93_07551835%%*/
+/*%%SmartyHeaderCode:233435777fd6ff1d7f2_54188279%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,20 +9,24 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '05a01b745cd17305ca60a9462d4294f439c63ccd' => 
     array (
       0 => 'templates\\templates\\modificaUtente.tpl',
-      1 => 1467474483,
+      1 => 1467480964,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '175585777e2c4bafe93_07551835',
+  'nocache_hash' => '233435777fd6ff1d7f2_54188279',
+  'variables' => 
+  array (
+    'messaggio' => 0,
+  ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_5777e2c4bef679_75527476',
+  'unifunc' => 'content_5777fd7001f740_99919302',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_5777e2c4bef679_75527476')) {
-function content_5777e2c4bef679_75527476 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_5777fd7001f740_99919302')) {
+function content_5777fd7001f740_99919302 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '175585777e2c4bafe93_07551835';
+$_smarty_tpl->properties['nocache_hash'] = '233435777fd6ff1d7f2_54188279';
 ?>
 <link type="text/css" rel="stylesheet" href="View/css/modificaUtente.css" />
 <link type="text/css" rel="stylesheet" href="View/css/jquery-ui.css" />
@@ -44,7 +48,7 @@ $_smarty_tpl->properties['nocache_hash'] = '175585777e2c4bafe93_07551835';
 
     <h1>Modifica informazioni</h1>
 
-    <form name="modificaCliente" autocomplete="off" id="modificaCliente" method="post" action="controllaForm.php">
+    <form name="modificaUtente" id="modificaUtente" method="post" action="modificaUtente.php">
 
         <table>
 
@@ -93,8 +97,14 @@ $_smarty_tpl->properties['nocache_hash'] = '175585777e2c4bafe93_07551835';
             </tr>
 
         </table>
-
+            
     </form>
+    
+    <?php if ($_smarty_tpl->tpl_vars['messaggio']->value) {?>
+        <label><?php echo $_smarty_tpl->tpl_vars['messaggio']->value;?>
+</label>
+    <?php }?>
+
 </div><?php }
 }
 ?>

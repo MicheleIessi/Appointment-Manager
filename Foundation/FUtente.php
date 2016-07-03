@@ -59,15 +59,10 @@ class FUtente extends Fdb   {
     public function aggiornaUtente(EUtente $u) {
         $this->setParametri();
         try {
-            $codFis=$u->getCodiceFiscale();
-            $cod[':codiceFiscale'] = $codFis;
-            $risultato = parent::caricaConChiave($cod,'codiceFiscale');
-            $id = $risultato['numID'];
-            $u->setID($id);
             $valori = parent::cambiaChiaviArray($u->getArrayAttributi());
-            $this->old_keys=$id;
+            $this->old_keys = $u->getID();
             if(parent::aggiorna($valori) == 0) {
-                throw new PDOException("Impossibile modificare l'utente.<br>");
+                throw new Exception("Modifica utente fallita: non hai apportato modifiche.");
             }
             else
                 echo "Utente {$u->getNome()} {$valori[':cognome']} aggiunto correttamente al database.<br>";
@@ -139,8 +134,8 @@ class FUtente extends Fdb   {
         $valori = array();
         $esito = false;
         if($chiave == 'email') {
-            $valore = strtolower($valore);
-            $valori[':email'] = $valore;
+            $mail = strtolower($valore);
+            $valori[':email'] = $mail;
         }
         else if($chiave == 'codiceFiscale') {
             $valore = strtoupper($valore);

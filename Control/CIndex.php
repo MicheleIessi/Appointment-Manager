@@ -98,14 +98,14 @@ class CIndex {
                 $sessione->impostaValore('tipo','cliente'); //solo per provare
                 return $CPagU->smista($idUtente);
                 
-            case 'modificaCliente':
-                return $this->VIndex->fetch('modificaCliente.tpl');     // solo per provare, ancora da fare i controlli
-                
             case 'paginaProfessionista':
                 $idProfessionista = $_REQUEST['id'];
                 $CPagP = new CUtente();
                 $sessione->impostaValore('tipo', 'professionista');
                 return $CPagP->smista($idProfessionista);
+                
+            case 'modificaUtente':
+                return $this->VIndex->fetch('modificaUtente.tpl');     // solo per provare, ancora da fare i controlli
                 
             default:
                 return $this->VIndex->fetch('home_default_content.tpl');

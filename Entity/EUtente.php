@@ -19,14 +19,14 @@ class EUtente {
         $this->setPassword($p);
     }
     public function setNome($n) {
-        $pattern="#^[a-zA-Z ]{1,30}$#";
+        $pattern="#^[a-zA-Z \']{1,20}$#";
         if(preg_match($pattern,$n) != 1) {
             throw new Exception("Nome non valido");
         }
         $this->nome = $n;
     }
     public function setCognome($c) {
-        $pattern="#^[a-zA-Z\' ]{1,30}$#";
+        $pattern="#^[a-zA-Z\' ]{1,20}$#";
         if(preg_match($pattern,$c) != 1) {
             throw new Exception("Cognome non valido");
         }
@@ -54,7 +54,7 @@ class EUtente {
         $this->sesso=$s;
     }
     public function setEmail($e) {
-        $pattern = "#^[a-zA-Z0-9]{1,20}@[a-zA-Z]{1,10}\.[a-zA-Z]{1,5}$#";
+        $pattern = "#^[a-zA-Z0-9]{1,25}@[a-zA-Z]{1,10}\.[a-zA-Z]{1,5}$#";
         if (preg_match($pattern, $e) != 1) {
             throw new Exception("E-Mail non valida", 1);
         }

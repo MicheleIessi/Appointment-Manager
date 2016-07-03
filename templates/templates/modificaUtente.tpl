@@ -1,8 +1,8 @@
-<link type="text/css" rel="stylesheet" href="View/css/modificaCliente.css" />
+<link type="text/css" rel="stylesheet" href="View/css/modificaUtente.css" />
 <link type="text/css" rel="stylesheet" href="View/css/jquery-ui.css" />
 
 <script type="text/javascript" src='JS/validation/dateITA.js'></script>
-<script type="text/javascript" src='JS/modificaCliente.js'></script>
+<script type="text/javascript" src='JS/modificaUtente.js'></script>
 <script type="text/javascript" src='JS/jquery-ui/jquery-ui.min.js'></script>
 <script type="text/javascript" src='JS/jquery-ui/datepicker-it.js'></script>
 
@@ -10,7 +10,7 @@
 
     <h1>Modifica informazioni</h1>
 
-    <form name="modificaCliente" id="modificaCliente" method="post" action="controllaForm.php">
+    <form name="modificaUtente" autocomplete="off" id="modificaUtente" method="post" action="modificaUtente.php">
 
         <table>
 
@@ -27,6 +27,11 @@
             <tr>
                 <td>Data di nascita</td>
                 <td> <input type=text name="dataNascita" id="datepicker" ></td>
+            </tr>
+            
+            <tr>
+                <td>Codice fiscale</td>
+                <td> <input type=text name="codiceFiscale" id="codiceFiscale" ></td>
             </tr>
 
             <tr>

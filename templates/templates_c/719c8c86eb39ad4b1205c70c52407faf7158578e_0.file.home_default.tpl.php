@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-07-02 15:07:01
+<?php /* Smarty version 3.1.27, created on 2016-07-02 15:46:48
          compiled from "templates\templates\home_default.tpl" */ ?>
 <?php
-/*%%SmartyHeaderCode:298735777bc756172f4_29118507%%*/
+/*%%SmartyHeaderCode:169835777c5c8b08507_60498738%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,12 +9,12 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '719c8c86eb39ad4b1205c70c52407faf7158578e' => 
     array (
       0 => 'templates\\templates\\home_default.tpl',
-      1 => 1467463795,
+      1 => 1467467207,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '298735777bc756172f4_29118507',
-  'variables' =>
+  'nocache_hash' => '169835777c5c8b08507_60498738',
+  'variables' => 
   array (
     'title' => 0,
     'banner' => 0,
@@ -26,13 +26,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_5777bc75685365_82724455',
+  'unifunc' => 'content_5777c5c8b93063_30760188',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_5777bc75685365_82724455')) {
-function content_5777bc75685365_82724455 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_5777c5c8b93063_30760188')) {
+function content_5777c5c8b93063_30760188 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '298735777bc756172f4_29118507';
+$_smarty_tpl->properties['nocache_hash'] = '169835777c5c8b08507_60498738';
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
@@ -40,15 +40,19 @@ $_smarty_tpl->properties['nocache_hash'] = '298735777bc756172f4_29118507';
         <link type="text/css" rel='stylesheet' href='JS/fullcalendar-2.6.1/fullcalendar.css' />
         <link type="text/css" rel="stylesheet" href='View/css/prova.css' />
         <link type="text/css" rel="stylesheet" href="View/css/login.css" />
+        <link type="text/css" rel="stylesheet" href="View/css/calendario.css" />
 
-        <?php echo '<script'; ?>
- type="text/javascript" src='JS/fullcalendar-2.6.1/lib/moment.min.js'><?php echo '</script'; ?>
->
         <?php echo '<script'; ?>
  type="text/javascript" src='JS/fullcalendar-2.6.1/lib/jquery.min.js'><?php echo '</script'; ?>
 >
         <?php echo '<script'; ?>
- type="text/javascript" src='JS/fullcalendar-2.6.1/lib/jquery-ui.custom.min.js'><?php echo '</script'; ?>
+ type="text/javascript" src="JS/validation/jquery.validate.js"><?php echo '</script'; ?>
+>
+        <?php echo '<script'; ?>
+ type="text/javascript" src='JS/jquery-ui/jquery-ui.min.js'><?php echo '</script'; ?>
+>
+        <?php echo '<script'; ?>
+ type="text/javascript" src='JS/fullcalendar-2.6.1/lib/moment.min.js'><?php echo '</script'; ?>
 >
         <?php echo '<script'; ?>
  type="text/javascript" src='JS/fullcalendar-2.6.1/fullcalendar.min.js'><?php echo '</script'; ?>
@@ -61,9 +65,6 @@ $_smarty_tpl->properties['nocache_hash'] = '298735777bc756172f4_29118507';
 >
         <?php echo '<script'; ?>
  type="text/javascript" src="JS/jquery.leanModal.min.js"><?php echo '</script'; ?>
->
-        <?php echo '<script'; ?>
- type="text/javascript" src="JS/validation/jquery.validate.js"><?php echo '</script'; ?>
 >
         <?php echo '<script'; ?>
  type="text/javascript" src="JS/JLogin.js"><?php echo '</script'; ?>

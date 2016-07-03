@@ -24,8 +24,8 @@ class CIndex {
         $log = -1;
         $sessione = new USession();
         $log = $sessione->getValore('idUtente');
-        $sessione->impostaValore('idUtente',3);
-        $sessione->impostaValore('tipo','cliente');
+        $sessione->impostaValore('idUtente',1);
+        $sessione->impostaValore('tipo','professionista');
         if($log===false) {
             $log=1;    //a questo punto del programma in questo commit, bisogna fare controlli per il login
         }
@@ -76,7 +76,10 @@ class CIndex {
                         $cal = new CCalendar();
 
                         if ($sessione->getValore('tipo') == 'professionista') {
-                            $this->VIndex->setSideContent($cal->getColonnaProfessionista());
+                            if($sessione->getValore('idUtente') == $idp)
+                                $this->VIndex->setSideContent($cal->getColonnaProfessionista());
+                            else
+                                $this->VIndex->setSideContent($cal->getColonnaInformazioni());
                             return $cal->smista();
                         }
                         else if ($sessione->getValore('tipo') == 'cliente') {

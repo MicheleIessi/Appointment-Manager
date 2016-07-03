@@ -20,6 +20,12 @@ $config['smarty']['compile_dir'] = 'templates/templates_c';
 $config['smarty']['config_dir'] = 'templates/configs';
 $config['smarty']['cache_dir'] = 'templates/cache';
 
+$config['smtp']['host'] = "smtp.gmail.com";
+$config['smtp']['port'] = "587";
+$config['smtp']['smtpauth'] = true;
+$config['smtp']['username'] = "progettoappointmentmanager@gmail.com";
+$config['smtp']['password'] =  "progetto123";
+
 
 $config['home'][0]=array('testo'=>'chi siamo','link'=>'?controller=info&action=informazioni');
 $config['home'][1]=array('testo'=>'contatti','link'=>'?controller=info&action=contatti');

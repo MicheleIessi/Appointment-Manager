@@ -33,7 +33,7 @@ class EUtente {
         $this->cognome = $c;
     }
     public function setDataNascita($dn) {
-        $pattern="#^([0-9]{4})-(0[1-9]|1[0-2])-([0-9][1-9]|1[0-9]|2[0-9]|3[0-1])$#";
+        $pattern="#^([0-9]{4})-(0[1-9]|1[0-2])-(0[1-9]|1[0-9]|2[0-9]|3[0-1])$#";
         if(preg_match($pattern,$dn) != 1) {
             throw new Exception("Data di nascita non valida");
         }

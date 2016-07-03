@@ -1,6 +1,4 @@
 <div id='wrapServizi'>
-    <p>Stai guardando la tua agenda</p>
-    <p id="dettagli"></p>
     <div id='external-events'>
         <div id='bottoneCestino'>
             <button id="mostraCestino">Modifica appuntamenti</button>

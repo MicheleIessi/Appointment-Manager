@@ -1,9 +1,19 @@
 $(function(){
-
-    $("a[rel*=leanModal]").leanModal();
+    $("a[rel*=leanModal]").leanModal();    
 });
 
-
+function log_out(){
+    var uscita=confirm("confermi di uscire?");
+    if(uscita){
+    $.ajax({url: "Logout.php",
+            method : "post",
+            data : {uscita :true},
+            success:function(){
+              location.reload();}
+            });
+              }      
+    }
+    
 function log_var(){
   $("#logform").validate({
       rules :{     

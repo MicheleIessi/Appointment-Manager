@@ -30,7 +30,9 @@ class CCalendar {
     public function getServiziProf($idp) {
 
         $FProf = new FProfessionista();
-        $servProf = $FProf->ricavaServiziOfferti($idp);
+        $EProf = $FProf->caricaProfessionistaDaDB($idp);
+        $nomeProf = $EProf->getNome()." ".$EProf->getCognome();
+        $servProf = $EProf->getServiziOfferti();
         $VCal = new VCalendar();
         $servizi = array();
         foreach($servProf as $servizio) {
@@ -41,6 +43,7 @@ class CCalendar {
             $arraySer['durata'] = $servizio->getDurata();
             array_push($servizi,$arraySer);
         }
+        $VCal->setData('nomeProf',$nomeProf);
         $VCal->setData('servizi',$servizi);
         return $VCal->getColonnaServizi();
     }
@@ -48,6 +51,11 @@ class CCalendar {
     public function getColonnaProfessionista() {
         $VCal = new VCalendar();
         return $VCal->fetch('colonnaCancellazione.tpl');
+    }
+
+    public function getColonnaInformazioni() {
+        $VCal = new VCalendar();
+        return $VCal->fetch('colonnaInformazioni.tpl');
     }
 
 
@@ -62,14 +70,6 @@ class CCalendar {
             array_push($arrayLink,$profLink);
         }
         return $arrayLink;
-    }
-
-    public function setIDP($idp) {
-        self::$idp = $idp;
-    }
-
-    public function getIDP() {
-        return self::$idp;
     }
 
 }

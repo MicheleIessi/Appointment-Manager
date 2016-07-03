@@ -5,6 +5,7 @@ $type = $_POST['type'];
 $sessione = new USession();
 $idUtente = $sessione->getValore('idUtente');
 $idProf = $sessione->getValore('idCalendario');
+$tipo = $sessione->getValore('tipo');
 $events = array();
 
 /* INIZIALIZZO ISTANZE DEGLI OGGETTI CHE MI SERVIRANNO */
@@ -15,6 +16,7 @@ $FAge = new FAgenda();
 $FSer = new FServizio();
 $FApp = new FAppuntamento();
 $FCli = new FCliente();
+$UMail = new UMail();
 
 /* QUI CARICO GLI ORARI IN CUI IL PROFESSIONISTA NON E' DISPONIBILE E LI INSERISCO SOTTO FORMA DI EVENTI BACKGROUND */
 $EPro = $FPro->caricaProfessionistaDaDB($idProf);
@@ -28,7 +30,6 @@ switch($type) {
     case 'fetch': {
         $agenda = $FAge->caricaAgenda($idProf);
         $impegni = $agenda->getImpegni();
-        $tipo = $sessione->getValore('tipo');
         foreach ($impegni as $appuntamento) {
             /* @var $appuntamento EAppuntamento */
             $evento = array();
@@ -46,7 +47,12 @@ switch($type) {
                     $evento['backgroundColor'] = '#ADFF7E';
                     $evento['textColor'] = '#000000';
                     $evento['borderColor'] = '#31DA17';
-                    $evento['editable']=true;
+                    $dueGiorni = new DateTime();
+                    $dueGiorni->modify('+2 day');
+                    $dataApp = new DateTime($appuntamento->getData()." ".$appuntamento->getOrario());
+                    if($dataApp > $dueGiorni) {
+                        $evento['editable'] = true;
+                    }
                 }
                 else {
                     $evento['title'] = 'Orario già prenotato';
@@ -115,10 +121,38 @@ switch($type) {
     /* CANCELLAZIONE APPUNTAMENTO */
     case 'delete': {
         $idAppuntamento = $_REQUEST['idApp'];
+        $motivazione = $_REQUEST['motivo'];
         $risultato = array();
+        $app = $FApp->caricaAppuntamentoDaDb($idAppuntamento);
+        $idp = $app->getIDProfessionista();
+        $idc = $app->getIDCliente();
         $esito = $FApp->cancellaAppuntamento($idAppuntamento);
+        $EPro = $FPro->caricaProfessionistaDaDB($idp);
+        $ECli = $FUte->caricaUtenteDaDb($idc);
+        $nomePro = $EPro->getNome()." ".$EPro->getCognome();
+        $nomeCli = $ECli->getNome()." ".$ECli->getCognome();
+        $mailPro = $EPro->getEmail();
+        $mailCli = $ECli->getEmail();
         if ($esito == true) {
-            $risultato['stato'] = 'successo';
+            if($tipo == 'cliente') {
+
+                $oggetto = "Cancellazione appuntamento n° ".$app->getIDAppuntamento().".";
+                $corpo = "Gentile $nomePro, la informiamo che l'utente $nomeCli ($mailCli) ha cancellato la"
+                            ." sua prenotazione per il giorno ".$app->getData()." delle ore ".$app->getOrario().
+                            ". Motivazione: '$motivazione'.";
+                $UMail->inviaMail($mailPro,$nomePro,$oggetto,$corpo);
+            }
+            else if($tipo == 'professionista') {
+
+                $oggetto = "Cancellazione appuntamento del giorno ".$app->getData()." delle ore ".$app->getOrario().".";
+                $corpo = "Gentile $nomeCli, la informiamo che il professionista $nomePro ($mailPro) ha cancellato la"
+                        ." sua prenotazione per il giorno ".$app->getData()." delle ore ".$app->getOrario().
+                        ". Motivazione: '$motivazione'.";
+                $UMail->inviaMail($mailCli,$nomeCli,$oggetto,$corpo);
+
+            }
+
+                $risultato['stato'] = 'successo';
             $risultato['messaggio'] = 'Appuntamento cancellato con successo';
         } else {
             $risultato['stato'] = 'errore';

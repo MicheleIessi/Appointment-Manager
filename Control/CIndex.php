@@ -76,7 +76,10 @@ class CIndex {
                         $cal = new CCalendar();
 
                         if ($sessione->getValore('tipo') == 'professionista') {
-                            $this->VIndex->setSideContent($cal->getColonnaProfessionista());
+                            if($sessione->getValore('idUtente') == $idp)
+                                $this->VIndex->setSideContent($cal->getColonnaProfessionista());
+                            else
+                                $this->VIndex->setSideContent($cal->getColonnaInformazioni());
                             return $cal->smista();
                         }
                         else if ($sessione->getValore('tipo') == 'cliente') {

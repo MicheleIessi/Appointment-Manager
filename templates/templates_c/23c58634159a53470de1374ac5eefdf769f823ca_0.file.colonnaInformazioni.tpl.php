@@ -1,32 +1,30 @@
-<?php /* Smarty version 3.1.27, created on 2016-07-03 19:03:10
-         compiled from "templates\templates\colonnaCancellazione.tpl" */ ?>
+<?php /* Smarty version 3.1.27, created on 2016-07-02 17:50:32
+         compiled from "templates\templates\colonnaInformazioni.tpl" */ ?>
 <?php
-/*%%SmartyHeaderCode:235305779454e25ab26_87370090%%*/
+/*%%SmartyHeaderCode:19675777e2c8edfc71_48672419%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
-    '6db30c6b8a5a3d4607ecde3402a5d2c87535d6c9' => 
+    '23c58634159a53470de1374ac5eefdf769f823ca' => 
     array (
-      0 => 'templates\\templates\\colonnaCancellazione.tpl',
-      1 => 1467475198,
+      0 => 'templates\\templates\\colonnaInformazioni.tpl',
+      1 => 1467474566,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '235305779454e25ab26_87370090',
+  'nocache_hash' => '19675777e2c8edfc71_48672419',
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_5779454e7c1641_60088914',
+  'unifunc' => 'content_5777e2c8f1fda1_55687765',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_5779454e7c1641_60088914')) {
-function content_5779454e7c1641_60088914 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_5777e2c8f1fda1_55687765')) {
+function content_5777e2c8f1fda1_55687765 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '235305779454e25ab26_87370090';
+$_smarty_tpl->properties['nocache_hash'] = '19675777e2c8edfc71_48672419';
 ?>
 <div id='wrapServizi'>
-    <p>Stai guardando la tua agenda</p>
-    <p id="dettagli"></p>
     <div id='external-events'>
         <div id='bottoneCestino'>
             <button id="mostraCestino">Modifica appuntamenti</button>

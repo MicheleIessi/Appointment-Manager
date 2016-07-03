@@ -41,18 +41,18 @@
                     <p>Sei già iscritto? Effettua il login.</p>
                     <a class="modal_close" href="#"></a>
                 </div>
-                <form action="phpperlogin">
+                <form >
                     <div class="txt-fld">
                         <label for="">Email</label>
-                        <input id="" name="" type="text">
+                        <input id="mail" name="mail" type="text">
                     </div>
                     <div class="txt-fld">
                         <label for="">Password</label>
-                        <input id="" name="" type="password">
+                        <input id="pwd" name="pwd" type="password">
 
                     </div>
                     <div class="btn-fld">
-                        <button type="submit">Login »</button>
+                        <button id="lgbtn" type="button">Login »</button>
                     </div>
                 </form>
             </div>

@@ -23,6 +23,13 @@ class UMail {
         $this->mail->Password = $config['smtp']['password'];
         $this->mail->CharSet = 'utf-8';
         $this->mail->setFrom($config['smtp']['username'],'Appointment Manager');
+        $this->mail->SMTPOptions = array(
+        'ssl' => array(
+            'verify_peer' => false,
+            'verify_peer_name' => false,
+            'allow_self_signed' => true
+        )
+    );
     }
 
     public function inviaMail($mailDest,$nomeDest,$oggetto,$corpoMail,$html=false)

@@ -21,14 +21,14 @@ class CIndex {
 
     public function impostaPagina() {
         $this->VIndex = new VIndex();
-        $log = -1;
         $sessione = new USession();
         $log = $sessione->getValore('idUtente');
-        $sessione->impostaValore('idUtente',1);
-        $sessione->impostaValore('tipo','professionista');
+//        $sessione->impostaValore('idUtente',15);
+//        $sessione->impostaValore('tipo','cliente');
         if($log===false) {
-            $log=1;    //a questo punto del programma in questo commit, bisogna fare controlli per il login
+            $log=-1;    //a questo punto del programma in questo commit, bisogna fare controlli per il login
         }
+
         $this->VIndex = new VIndex();
         $content = $this->smista($log);
         $this->VIndex->setContent($content);
@@ -36,9 +36,9 @@ class CIndex {
 
         if($log==-1)//-1=non loggato
             $this->VIndex->impostaPaginaOspite();
-        else if($log==0)//0=utente
+        else if($log==0)//0=admin
             /* qualcosa */;
-        else if($log>0)//professionista/admin?
+        else if($log>0)//professionista/utente
             $this->VIndex->impostaPaginaRegistrato();
         $this->VIndex->mostraPagina();
     }
@@ -125,7 +125,9 @@ class CIndex {
                 $this->VIndex->setData('messaggio', $messaggio);
                 $sessione->cancellaValore('messaggioErrore');
                 return $this->VIndex->fetch('modificaUtente.tpl');     // solo per provare, ancora da fare i controlli
-                
+
+
+
             default:
                 return $this->VIndex->fetch('home_default_content.tpl');
         }

@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-07-04 13:16:24
+<?php /* Smarty version 3.1.27, created on 2016-07-04 15:35:45
          compiled from "templates\templates\home_default.tpl" */ ?>
 <?php
-/*%%SmartyHeaderCode:12820577a4588c6dd12_56414585%%*/
+/*%%SmartyHeaderCode:23516577a6631577e95_89347251%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,12 +9,12 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '719c8c86eb39ad4b1205c70c52407faf7158578e' => 
     array (
       0 => 'templates\\templates\\home_default.tpl',
-      1 => 1467630968,
+      1 => 1467639328,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '12820577a4588c6dd12_56414585',
-  'variables' => 
+  'nocache_hash' => '23516577a6631577e95_89347251',
+  'variables' =>
   array (
     'title' => 0,
     'banner' => 0,
@@ -26,13 +26,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_577a4588cdc419_84268609',
+  'unifunc' => 'content_577a6631628280_04309991',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_577a4588cdc419_84268609')) {
-function content_577a4588cdc419_84268609 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_577a6631628280_04309991')) {
+function content_577a6631628280_04309991 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '12820577a4588c6dd12_56414585';
+$_smarty_tpl->properties['nocache_hash'] = '23516577a6631577e95_89347251';
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
@@ -97,9 +97,15 @@ $foreach_button_Sav = $_smarty_tpl->tpl_vars['button'];
 " id="modaltrigger"><?php echo $_smarty_tpl->tpl_vars['button']->value['testo'];?>
 </a>
                 <?php } else { ?>
-                <a class='buttonElem' href="<?php echo $_smarty_tpl->tpl_vars['button']->value['link'];?>
+                    <?php if ($_smarty_tpl->tpl_vars['button']->value['testo'] == 'Logout') {?>
+                        <a class='buttonElem' id="bottoneLogout" href="<?php echo $_smarty_tpl->tpl_vars['button']->value['link'];?>
 "><?php echo $_smarty_tpl->tpl_vars['button']->value['testo'];?>
 </a>
+                    <?php } else { ?>
+                        <a class='buttonElem' href="<?php echo $_smarty_tpl->tpl_vars['button']->value['link'];?>
+"><?php echo $_smarty_tpl->tpl_vars['button']->value['testo'];?>
+</a>
+                    <?php }?>
                 <?php }?>
             <?php
 $_smarty_tpl->tpl_vars['button'] = $foreach_button_Sav;
@@ -115,18 +121,26 @@ $_smarty_tpl->tpl_vars['button'] = $foreach_button_Sav;
                     <p>Sei già iscritto? Effettua il login.</p>
                     <a class="modal_close" href="#"></a>
                 </div>
-                <form action="phpperlogin">
-                    <div class="txt-fld">
-                        <label for="">Email</label>
-                        <input id="" name="" type="text">
-                    </div>
-                    <div class="txt-fld">
-                        <label for="">Password</label>
-                        <input id="" name="" type="password">
+                <form id='loginForm' method='post' action="Control/Ajax/ALogin.php?task=login">
+                    <table>
+                        <tr class="tableElem">
+                            <td class="desc">Email</td>
+                            <td><div class="txt-fld">
+                                    <input type="text" name="email" id="email" >
+                                </div>
+                            </td>
+                        </tr>
 
-                    </div>
+                        <tr class="tableElem">
+                            <td class="desc">Password</td>
+                            <td><div class="txt-fld">
+                                    <input type="password" name="pass" id="pass" >
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
                     <div class="btn-fld">
-                        <button type="submit">Login »</button>
+                        <button id="bottoneLogin">Login »</button>
                     </div>
                 </form>
             </div>

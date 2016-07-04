@@ -60,14 +60,14 @@ pre { display: block; font-size: 1.2em; color: #17516E;font-family: "Courier", "
 
 #test p { color: #666; text-shadow: none; }
 
-#signup-header { background: url(img/hd-bg.png);  border-bottom: 1px solid #CCC; border-top-left-radius: 5px; -moz-border-radius-topleft: 5px; -webkit-border-top-left-radius: 5px; border-top-right-radius: 5px; -moz-border-radius-topright: 5px; -webkit-border-top-right-radius: 5px; }
+#signup-header { background: url(img/hd-bg.png); text-align: center; border-bottom: 1px solid #CCC; border-top-left-radius: 5px; -moz-border-radius-topleft: 5px; -webkit-border-top-left-radius: 5px; border-top-right-radius: 5px; -moz-border-radius-topright: 5px; -webkit-border-top-right-radius: 5px; }
 
 #signup-header  h2 { color: #444; font-size: 2em; font-weight: 500; margin-bottom: 3px; text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5); }
 #signup-header  p { color: #444; font-size: 1.3em; margin: 0; text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5); text-shadow: none; }
 
-.txt-fld { position: relative; width: 364px; padding: 14px 20px; border-bottom: 1px solid #EEE; text-align: right; }
+.txt-fld { position: relative; padding: 14px 20px; }
 .btn-fld { width: 254px; overflow: hidden; padding: 12px 20px 12px 130px; }
-.txt-fld label { display: block; float: left; width: 90px; color: #222; font-size: 1.3em; text-align: left;  }
+.txt-fld label { display: block; color: red; font-size: 10px; text-align: left;  }
 .txt-fld input { width: 244px; padding: 3px; border-radius: 4px; -moz-border-radius: 4px; -webkit-border-radius: 4px; font-size: 1.2em; color: #222; background: #F7F7F7; font-family: "Helvetica Neue"; outline: none; border-top: 1px solid #CCC; border-left: 1px solid #CCC; border-right: 1px solid #E7E6E6; border-bottom: 1px solid #E7E6E6; }
 .txt-fld input.good_input { background: #DEF5E1 url(img/good.png) 236px center no-repeat; }
 .txt-fld input.error_input { background: #FDE0E0; }
@@ -76,6 +76,10 @@ pre { display: block; font-size: 1.2em; color: #17516E;font-family: "Courier", "
 p.error { position: absolute; bottom: 48px; right: 20px; width: 262px; color: #FFF; font-size: 1.1em; padding-bottom: 5px; background: url(img/error-arw.png) 20px bottom no-repeat; text-align: left; margin: 0; text-shadow: none; }
 p.error span { display: inline-block; background: #D43636; padding: 6px; border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px;  }
 .txt-fld input:focus, .txt-fld textarea:focus { background-color: #FAF9DC; }
+
+.desc {
+    text-align: center;
+}
 
 button {
     float: right;

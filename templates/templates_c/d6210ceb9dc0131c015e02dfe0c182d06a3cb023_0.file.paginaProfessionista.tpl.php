@@ -164,10 +164,23 @@ $_smarty_tpl->tpl_vars['servizio'] = $foreach_servizio_Sav;
                 
         </table>
     </div>
+<<<<<<< HEAD
     
     <a href="?controller=calendario&idp=<?php echo $_smarty_tpl->tpl_vars['numID']->value;?>
 "><button id="Calendario">Prenota un appuntamento! Clicca per aprire l'agenda di <?php echo $_smarty_tpl->tpl_vars['nomeUtente']->value;?>
 </button></a>
+=======
+
+    <?php if ($_smarty_tpl->tpl_vars['modifica']->value) {?>
+        <a href=?controller=modificaUtente id="modifica"><button>Modifica informazioni</button></a>
+    <?php }?>
+
+    <div title="Calendario" id="Calendario">
+        <a href="?controller=calendario&idp=<?php echo $_smarty_tpl->tpl_vars['numID']->value;?>
+"><button>Prenota un appuntamento! Clicca per aprire l'agenda di <?php echo $_smarty_tpl->tpl_vars['nomeUtente']->value;?>
+</button></a>
+    </div>
+>>>>>>> a26cb3001772cf7ba63d1ddb5f4d79ed5ed24146
 
 </div><?php }
 }

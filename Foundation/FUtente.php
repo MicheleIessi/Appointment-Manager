@@ -64,11 +64,10 @@ class FUtente extends Fdb   {
             if(parent::aggiorna($valori) == 0) {
                 throw new Exception("Modifica utente fallita: non hai apportato modifiche.");
             }
-            else
-                echo "Utente {$u->getNome()} {$valori[':cognome']} aggiunto correttamente al database.<br>";
         } catch(PDOException $e) {
             echo $e->getMessage();
         }
+        return true;
     }
 
     /**

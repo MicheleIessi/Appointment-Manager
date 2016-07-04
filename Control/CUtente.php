@@ -117,5 +117,25 @@ class CUtente {
         
     }
     
+    /**
+     * La funzione controllaProfessionista vede se l'id passato è l'id di un professionista.
+     * @param type $id l'id da controllare
+     * @return boolean true se l'id appartiene a un professionista, false altrimenti
+     */
+    public function controllaProfessionista($id) {
+        $FPro = new FProfessionista();
+        $profDisponibili = $FPro->caricaProfessionisti();
+        $idDisponibili = array();
+        foreach($profDisponibili as $professionista) {
+            /* @var $professionista EProfessionista */
+            array_push($idDisponibili,$professionista->getID());
+        }
+        $esito = 'cliente';
+        if(array_search($id, $idDisponibili) !== false) {
+            $esito = 'professionista';
+        }
+        return $esito;
+    }
+
     
 }

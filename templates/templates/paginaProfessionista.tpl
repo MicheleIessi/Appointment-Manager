@@ -85,9 +85,13 @@
                 
         </table>
     </div>
+
+    {if $modifica}
+        <a href=?controller=modificaUtente id="modifica"><button>Modifica informazioni</button></a>
+    {/if}
                 
     <div title="Calendario" id="Calendario">
-        <a href="?controller=calendario&idp={$numID}"><button>Prenota un appuntamento! Clicca per aprire l'agenda di {$nomeUtente}<button/></a>
+        <a href="?controller=calendario&idp={$numID}"><button>Prenota un appuntamento! Clicca per aprire l'agenda di {$nomeUtente}</button></a>
     </div>
 
 </div>

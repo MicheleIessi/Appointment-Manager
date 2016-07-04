@@ -1,10 +1,5 @@
 <?php
 
-/*
- * Controlli lato server sulla form modificaUtente: in realtà tutti i controlli vengono effettuati quando
- * vengono chiamati i metodi set di EUtente
-*/
-
 require_once 'includes/autoload.inc.php';
 
 $sessione= new USession();
@@ -96,3 +91,7 @@ function dataItaToISO($data) {
     $dataISO= $anno."-".$mese."-".$giorno;
     return $dataISO;
 }
+ 
+ $CUte= new CUtente();
+ $CUte->controllaForm();
+ 

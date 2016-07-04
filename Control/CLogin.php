@@ -1,51 +1,60 @@
 <?php
 require_once('includes/autoload.inc.php');
-/**
- * Created by PhpStorm.
- * User: Michele Iessi
- * Date: 24/05/2016
- * Time: 21:14
- */
-//QUESTIONI DI SICUREZZA: in questo modo non è possibile accedere direttamente al file senza passare dei parametri tramite post
+
+
 class CLogin {
 
-    public function processaLogin($utente){
-        $sessione = new USession();
-        //if(!$sessione->getValore('id')) {
-            //if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-              //  if (isset($_POST['btnLogin'])) {
-                    //$mail = $_POST['email'];
-                    //$pass = $_POST['password'];
+    public function smista($task) {
 
-                    /**
-                     * GESTIRE IL LOGIN:
-                     * 1. vedere se la mail è presente nel db
-                     *    -> se non c'è, scrivere un messaggio che informa di questo (ajax?)
-                     * 2. se la mail è presente, vedere se la password associata all'utente è giusta
-                     *    -> se non lo è, scrivere un messaggio di errore
-                     * 3. se la mail è presente e la pass associata è corretta, verificare se l'utente ha scelto di rimanere
-                     *    connesso e creare una sessione
-                     */
-
-                    //$fute = new FUtente();
-                    //$utente = $fute->caricaUtenteDaLogin($mail, $pass);
-                    //if($utente!=false) { //è stato trovato un utente con mail e pass giuste
-                        $sessione->impostaValore('idUtente',$utente->getID());
-                        
-                        //  }
-
-
-                   // }
-
-               // }
-      //      }
-      //  else {
-            //utente già loggato
-      //  }
+        switch($task) {
+            case 'login': {
+                $this->processaLogin();
+                header('Location: /appointment-manager/index.php');
+            } break;
+            case 'logout': {
+                $this->logout();
+            } break;
+            case 'controllaEsistenzaMail': {
+                return $this->controllaMail();
+            }
+            case 'reg': {
+                //registrazione
+            }
         }
+    }
 
-    public function smista() {
-        echo "ciao";
+
+
+    public function processaLogin() {
+
+        $sessione = new USession();
+
+        if(!$sessione->getValore('idUtente') == -1) {
+            $mail = $_REQUEST['email'];
+            $pass = $_POST['pass'];
+            $fute = new FUtente();
+            $utente = $fute->caricaUtenteDaLogin($mail, $pass);
+            if($utente!=false) { //è stato trovato un utente con mail e pass giuste
+                $id = $utente->getID();
+                $sessione->impostaValore('idUtente',$id);
+                $CUte = new CUtente();
+                $tipo = $CUte->controllaProfessionista($id);
+                $sessione->impostaValore('tipo',$tipo);
+            }
+        }
+    }
+
+    private function controllaMail() {
+        $mail = trim($_REQUEST['email']);
+        $FUte = new FUtente();
+        $esito = $FUte->controllaEsistenza('email',$mail);
+
+        return json_encode($esito);
+
+    }
+    private function logout() {
+        $sessione = new USession();
+        $sessione->fineSessione();
     }
 }
 

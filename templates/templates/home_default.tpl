@@ -5,6 +5,7 @@
         <link type="text/css" rel="stylesheet" href='View/css/prova.css' />
         <link type="text/css" rel="stylesheet" href="View/css/login.css" />
         <link type="text/css" rel="stylesheet" href="View/css/calendario.css" />
+
         <script type="text/javascript" src='JS/fullcalendar-2.6.1/lib/jquery.min.js'></script>
         <script type="text/javascript" src="JS/validation/jquery.validate.js"></script>
         <script type="text/javascript" src='JS/jquery-ui/jquery-ui.min.js'></script>
@@ -12,10 +13,8 @@
         <script type="text/javascript" src='JS/fullcalendar-2.6.1/fullcalendar.min.js'></script>
         <script type="text/javascript" src='JS/fullcalendar-2.6.1/lang-all.js'></script>
         <script type="text/javascript" src='JS/JCalendar.js'></script>
-        <script type="text/javascript" src="JS/validation/jquery.validate.js"></script>
-        <script type="text/javascript" src="JS/JLogRegOut.js"></script>
         <script type="text/javascript" src="JS/jquery.leanModal.min.js"></script>
-        <script type="text/javascript" src="JS/jquery-ui/datepicker-it.js"></script>
+        <script type="text/javascript" src="JS/JLogin.js"></script>
         <title>{$title}</title>
     </head>
     <body>
@@ -30,46 +29,62 @@
                     {$nolog = true}
                     <a class='buttonElem' rel="leanModal" href="{$button['link']}" id="modaltrigger">{$button['testo']}</a>
                 {else}
-                <a class='buttonElem' href="{$button['link']}">{$button['testo']}</a>
+                    {if $button['testo'] eq 'Logout'}
+                        <a class='buttonElem' id="bottoneLogout" href="{$button['link']}">{$button['testo']}</a>
+                    {else}
+                        <a class='buttonElem' href="{$button['link']}">{$button['testo']}</a>
+                    {/if}
                 {/if}
             {/foreach}
         </div>
     </div>
     {if $nolog} <!-- L'utente corrente non è loggato o non è registrato. Sono quindi presenti i div relativi a login e registrazione con leanmodal-->
         <div id="loginmodal">
-                <div id="signin-header">
+            <div id="signup-ct">
+                <div id="signup-header">
                     <h2>Login Utente</h2>
                     <p>Sei già iscritto? Effettua il login.</p>
+                    <a class="modal_close" href="#"></a>
                 </div>
-                <form id="logform">
-                    <div class="txt-fld">
-                        <label for="">Email</label>
-                        <input id="mail" name="email" type="text">
-                    </div>
-                    <div class="txt-fld">
-                        <label for="">Password</label>
-                        <input id="pwd" name="password" type="password">
+                <form id='loginForm' method='post' action="/Control/ALogin.php?task=login">
+                    <table>
+                        <tr class="tableElem">
+                            <td class="desc">Email</td>
+                            <td><div class="txt-fld">
+                                    <input type="text" name="email" id="email" >
+                                </div>
+                            </td>
+                        </tr>
 
-                    </div>
+                        <tr class="tableElem">
+                            <td class="desc">Password</td>
+                            <td><div class="txt-fld">
+                                    <input type="password" name="pass" id="pass" >
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
                     <div class="btn-fld">
-                        <button id="lgbtn" type="button">Login »</button>
+                        <button id="bottoneLogin">Login »</button>
                     </div>
                 </form>
             </div>
         </div>
         <div id="registrazionemodal">
-              <div id="signup-header">
-                    <h3>Creazione account</h3>
-                    <p>&Egrave;facile e veloce.</p>
+            <div id="signup-ct">
+                <div id="signup-header">
+                    <h2>Creazione account</h2>
+                    <p>&Egrave; facile e veloce.</p>
+                    <a class="modal_close" href="#"></a>
                 </div>
-                <form id="regform">
+                <form action="phpperregistrazione">
                     <div class="txt-fld">
                         <label for="">Nome</label>
-                        <input id="name" name="nome" type="text">
+                        <input id="" name="" type="text">
                     </div>
                     <div class="txt-fld">
                         <label for="">Cognome</label>
-                        <input id="surname" name="cognome" type="text">
+                        <input id="" name="" type="text">
                     </div>
                     <div class="txt-fld">
                         <label for="">Email</label>
@@ -77,30 +92,19 @@
                     </div>
                     <div class="txt-fld">
                         <label for="">Data di nascita</label>
-                        <input id="datepicker" name="date" type="date">
-                    </div>
-                    <div class="txt-fld">
-                    </div>
-                    <div class="txt-fld">
-                        <label for="">sesso</label>                       
-                        <input type="radio" name="sesso" value="M"/>
-                        <input type="radio" name="sesso" value="F"/>
-                      
-                    </div>
-                    <div class="txt-fld">
-                        <label for="">Codice Fiscale</label>
-                        <input id="CodFis" name="CodiceFiscale" type="text">
+                        <input id="" name="" type="date">
                     </div>
                     <div class="txt-fld">
                         <label for="">Password</label>
-                        <input id="pwd1" name="password1" type="password">
+                        <input id="" name="" type="password">
 
                     </div>
                     <div class="btn-fld">
-                        <button id="regbtn" type="button">Registrati »</button>
+                        <button type="submit">Registrati »</button>
                     </div>
                 </form>
             </div>
+        </div>
     {/if}
     <div class ="main">
         <!-- MAIN CONTENT -->

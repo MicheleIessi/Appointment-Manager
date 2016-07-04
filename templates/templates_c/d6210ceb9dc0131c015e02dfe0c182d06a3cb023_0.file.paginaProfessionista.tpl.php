@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-07-01 20:46:03
+<?php /* Smarty version 3.1.27, created on 2016-07-04 14:03:16
          compiled from "templates\templates\paginaProfessionista.tpl" */ ?>
 <?php
-/*%%SmartyHeaderCode:69505776ba6b3eaca9_47488954%%*/
+/*%%SmartyHeaderCode:32510577a50843d5c82_92266498%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,11 +9,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'd6210ceb9dc0131c015e02dfe0c182d06a3cb023' => 
     array (
       0 => 'templates\\templates\\paginaProfessionista.tpl',
-      1 => 1467367873,
+      1 => 1467633794,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '69505776ba6b3eaca9_47488954',
+  'nocache_hash' => '32510577a50843d5c82_92266498',
   'variables' => 
   array (
     'numID' => 0,
@@ -31,13 +31,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_5776ba6b46c967_63672198',
+  'unifunc' => 'content_577a5084456413_06117597',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_5776ba6b46c967_63672198')) {
-function content_5776ba6b46c967_63672198 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_577a5084456413_06117597')) {
+function content_577a5084456413_06117597 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '69505776ba6b3eaca9_47488954';
+$_smarty_tpl->properties['nocache_hash'] = '32510577a50843d5c82_92266498';
 ?>
 <link type="text/css" rel="stylesheet" href="View/css/paginaProfessionista.css" />
 
@@ -159,11 +159,11 @@ $_smarty_tpl->tpl_vars['servizio'] = $foreach_servizio_Sav;
                 
         </table>
     </div>
-                
+
     <div title="Calendario" id="Calendario">
         <a href="?controller=calendario&idp=<?php echo $_smarty_tpl->tpl_vars['numID']->value;?>
 "><button>Prenota un appuntamento! Clicca per aprire l'agenda di <?php echo $_smarty_tpl->tpl_vars['nomeUtente']->value;?>
-<button/></a>
+</button></a>
     </div>
 
 </div><?php }

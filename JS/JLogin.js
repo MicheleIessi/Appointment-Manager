@@ -1,19 +1,67 @@
-$(function(){
-
-    $('#loginform').submit(function(e){
-        if(ControllaMail()==0)
-        {alert("attenzione questo non e' un indirizzo mail!");}
+$(document).ready(function() {
+    $(function(){
+        $("a[rel*=leanModal]").leanModal();
     });
-    $("a[rel*=leanModal]").leanModal();
+
+    $('#bottoneLogout').click(function () {
+        log_out();
+    });
+
+    function log_out() {
+        var uscita = confirm("Vuoi davvero uscire?");
+        if (uscita) {
+            $.ajax({
+                url: "Control/Ajax/ALogin.php",
+                method: "post",
+                data: {
+                    task: 'logout'
+                },
+                success: function () {
+                    location.href = "index.php";
+                }
+            });
+        }
+    }
+
+    $("#loginForm").validate({
+        rules: {
+            email: {
+                required: true,
+                controllaEmail: true,
+                maxlength: 40,
+                remote: {
+
+                    onfocusout: true,
+                    url: "Control/Ajax/ALogin.php",
+                    method: "post",
+                    data: {
+                        task: 'controllaEsistenzaMail'
+                    }
+                }
+            },
+
+            pass: {
+                required: true
+            }
+        },
+
+        messages: {
+            email:  {
+                required: "Inserisci il tuo indirizzo email",
+                email: "Non rispetta il giusto formato per una mail",
+                remote: "Email non presente, ricontrollala",
+                maxlength: "Massimo 40 caratteri"
+            },
+            pass: {
+                required: "Inserisci la password"
+            }
+        }
+
+    });
 });
 
+$.validator.addMethod("controllaEmail", function (value, element) {
 
+        return this.optional(element) || /^([a-zA-z0-9.]{3,})@([a-zA-z0-9.]+)\.([a-zA-Z]{2,4})/.test(value);
 
-function ControllaMail()
-{ var mail=$('#mail').val();
-    var email =/[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}/igm;
-    var ctlm=0;
-    if(email.test(mail))
-    {ctlm=1;}
-    return ctlm;
-}
+    }, "   Non rispetta il giusto formato per una mail");

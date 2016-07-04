@@ -1,1 +1,1 @@
-<div class="banner">APPOINTMENT MANAGER</div>
+<a href="index.php"><div class="banner">APPOINTMENT MANAGER</div></a>

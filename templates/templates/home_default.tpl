@@ -29,7 +29,11 @@
                     {$nolog = true}
                     <a class='buttonElem' rel="leanModal" href="{$button['link']}" id="modaltrigger">{$button['testo']}</a>
                 {else}
-                <a class='buttonElem' href="{$button['link']}">{$button['testo']}</a>
+                    {if $button['testo'] eq 'Logout'}
+                        <a class='buttonElem' id="bottoneLogout" href="{$button['link']}">{$button['testo']}</a>
+                    {else}
+                        <a class='buttonElem' href="{$button['link']}">{$button['testo']}</a>
+                    {/if}
                 {/if}
             {/foreach}
         </div>
@@ -42,18 +46,26 @@
                     <p>Sei già iscritto? Effettua il login.</p>
                     <a class="modal_close" href="#"></a>
                 </div>
-                <form action="phpperlogin">
-                    <div class="txt-fld">
-                        <label for="">Email</label>
-                        <input id="" name="" type="text">
-                    </div>
-                    <div class="txt-fld">
-                        <label for="">Password</label>
-                        <input id="" name="" type="password">
+                <form id='loginForm' method='post' action="Control/Ajax/ALogin.php?task=login">
+                    <table>
+                        <tr class="tableElem">
+                            <td class="desc">Email</td>
+                            <td><div class="txt-fld">
+                                    <input type="text" name="email" id="email" >
+                                </div>
+                            </td>
+                        </tr>
 
-                    </div>
+                        <tr class="tableElem">
+                            <td class="desc">Password</td>
+                            <td><div class="txt-fld">
+                                    <input type="password" name="pass" id="pass" >
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
                     <div class="btn-fld">
-                        <button type="submit">Login »</button>
+                        <button id="bottoneLogin">Login »</button>
                     </div>
                 </form>
             </div>

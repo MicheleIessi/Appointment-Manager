@@ -55,8 +55,6 @@ class CIndex {
                 return $CLog->smista();
             case 'lista':
                 if($log > 0) {
-                    $sessione->impostaValore('tipo','professionista'); //solo per provare
-
                     $cal = new CCalendar();
                     return $cal->smista();
                 }
@@ -97,7 +95,6 @@ class CIndex {
                     $CPagU = new CUtente();
                     $idUtente = $_REQUEST['id'];
                     if($CPagU->controllaProfessionista($idUtente) == 'cliente') {
-                        $sessione->impostaValore('tipo','cliente'); //solo per provare
                         return $CPagU->smista($idUtente);
                     }
                     else {
@@ -111,7 +108,6 @@ class CIndex {
                     $CPagU = new CUtente();
                     $idProfessionista = $_REQUEST['id'];
                     if($CPagU->controllaProfessionista($idProfessionista) == 'professionista') {
-                        $sessione->impostaValore('tipo', 'professionista');
                         return $CPagU->smista($idProfessionista);
                     }
                     else {

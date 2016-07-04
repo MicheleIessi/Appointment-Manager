@@ -36,7 +36,7 @@ pre { display: block; font-size: 1.2em; color: #17516E;font-family: "Courier", "
     margin-left: -202px;
     top: 200px;
     width: 404px;
-    padding-bottom: 2px;
+    padding-bottom: 20px;
     background: #FFF;
     border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
     box-shadow: 0 0 4px rgba(0,0,0,0.7); -webkit-box-shadow: 0 0 4px rgba(0,0,0,0.7); -moz-box-shadow: 0 0 4px rgba(0,0,0,0.7);
@@ -66,7 +66,7 @@ pre { display: block; font-size: 1.2em; color: #17516E;font-family: "Courier", "
 #signup-header  p { color: #444; font-size: 1.3em; margin: 0; text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5); text-shadow: none; }
 
 .txt-fld { position: relative; padding: 14px 20px; }
-.btn-fld { width: 254px; overflow: hidden; padding: 12px 20px 12px 130px; }
+.btn-fld { width: 254px; overflow: hidden; }
 .txt-fld label { display: block; color: red; font-size: 10px; text-align: left;  }
 .txt-fld input { width: 244px; padding: 3px; border-radius: 4px; -moz-border-radius: 4px; -webkit-border-radius: 4px; font-size: 1.2em; color: #222; background: #F7F7F7; font-family: "Helvetica Neue"; outline: none; border-top: 1px solid #CCC; border-left: 1px solid #CCC; border-right: 1px solid #E7E6E6; border-bottom: 1px solid #E7E6E6; }
 .txt-fld input.good_input { background: #DEF5E1 url(img/good.png) 236px center no-repeat; }
@@ -88,6 +88,7 @@ button {
     border: none;
     width: auto;
     overflow: visible;
+    margin-left: 157px;
     font-size: 1.4em;
     color: #FFF;
     padding: 7px 10px;  border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; font-weight: bold; text-shadow: 0 1px 0 rgba(0,0,0,0.4);}

@@ -31,7 +31,8 @@ class CLogin {
                     //$utente = $fute->caricaUtenteDaLogin($mail, $pass);
                     //if($utente!=false) { //è stato trovato un utente con mail e pass giuste
                         $sessione->impostaValore('idUtente',$utente->getID());
-                  //  }
+                        
+                        //  }
 
 
                    // }

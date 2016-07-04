@@ -29,7 +29,7 @@ class CIndex {
         if($log===false) {
             $log=-1;    //a questo punto del programma in questo commit, bisogna fare controlli per il login
         }
-        $sessione->impostaValore('idUtente', $log);
+        //$sessione->impostaValore('idUtente', $log);
         
         $this->VIndex = new VIndex();
         $content = $this->smista($log);

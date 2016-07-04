@@ -14,7 +14,8 @@
         <script type="text/javascript" src='JS/JCalendar.js'></script>
         <script type="text/javascript" src="JS/validation/jquery.validate.js"></script>
         <script type="text/javascript" src="JS/JLogRegOut.js"></script>
-        <script type="text/javascript" src=""Js
+        <script type="text/javascript" src="JS/jquery.leanModal.min.js"></script>
+        <script type="text/javascript" src="JS/jquery-ui/datepicker-it.js"></script>
         <title>{$title}</title>
     </head>
     <body>
@@ -36,11 +37,9 @@
     </div>
     {if $nolog} <!-- L'utente corrente non è loggato o non è registrato. Sono quindi presenti i div relativi a login e registrazione con leanmodal-->
         <div id="loginmodal">
-            <div id="signup-ct">
-                <div id="signup-header">
+                <div id="signin-header">
                     <h2>Login Utente</h2>
                     <p>Sei già iscritto? Effettua il login.</p>
-                    <a class="modal_close" href="#"></a>
                 </div>
                 <form id="logform">
                     <div class="txt-fld">
@@ -59,11 +58,9 @@
             </div>
         </div>
         <div id="registrazionemodal">
-            <div id="signup-ct">
-                <div id="signup-header">
-                    <h2>Creazione account</h2>
-                    <p>&Egrave; facile e veloce.</p>
-                    <a class="modal_close" href="#"></a>
+              <div id="signup-header">
+                    <h3>Creazione account</h3>
+                    <p>&Egrave;facile e veloce.</p>
                 </div>
                 <form id="regform">
                     <div class="txt-fld">
@@ -83,6 +80,14 @@
                         <input id="datepicker" name="date" type="date">
                     </div>
                     <div class="txt-fld">
+                    </div>
+                    <div class="txt-fld">
+                        <label for="">sesso</label>                       
+                        <input type="radio" name="sesso" value="M"/>
+                        <input type="radio" name="sesso" value="F"/>
+                      
+                    </div>
+                    <div class="txt-fld">
                         <label for="">Codice Fiscale</label>
                         <input id="CodFis" name="CodiceFiscale" type="text">
                     </div>
@@ -96,7 +101,6 @@
                     </div>
                 </form>
             </div>
-        </div>
     {/if}
     <div class ="main">
         <!-- MAIN CONTENT -->

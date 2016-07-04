@@ -23,12 +23,14 @@ class CIndex {
         $this->VIndex = new VIndex();
         
         $sessione = new USession();
-        $log = $sessione->getValore('idUtente');
+        $log = $sessione->getValore('idUtente');        
         //$sessione->impostaValore('idUtente',3);
         //$sessione->impostaValore('tipo','cliente');
         if($log===false) {
             $log=-1;    //a questo punto del programma in questo commit, bisogna fare controlli per il login
         }
+        $sessione->impostaValore('idUtente', $log);
+        
         $this->VIndex = new VIndex();
         $content = $this->smista($log);
         $this->VIndex->setContent($content);

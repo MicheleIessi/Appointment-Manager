@@ -12,9 +12,9 @@
         <script type="text/javascript" src='JS/fullcalendar-2.6.1/fullcalendar.min.js'></script>
         <script type="text/javascript" src='JS/fullcalendar-2.6.1/lang-all.js'></script>
         <script type="text/javascript" src='JS/JCalendar.js'></script>
-        <script type="text/javascript" src="JS/jquery.leanModal.min.js"></script>
         <script type="text/javascript" src="JS/validation/jquery.validate.js"></script>
         <script type="text/javascript" src="JS/JLogRegOut.js"></script>
+        <script type="text/javascript" src=""Js
         <title>{$title}</title>
     </head>
     <body>
@@ -65,14 +65,14 @@
                     <p>&Egrave; facile e veloce.</p>
                     <a class="modal_close" href="#"></a>
                 </div>
-                <form action="phpperregistrazione">
+                <form id="regform">
                     <div class="txt-fld">
                         <label for="">Nome</label>
-                        <input id="" name="" type="text">
+                        <input id="name" name="nome" type="text">
                     </div>
                     <div class="txt-fld">
                         <label for="">Cognome</label>
-                        <input id="" name="" type="text">
+                        <input id="surname" name="cognome" type="text">
                     </div>
                     <div class="txt-fld">
                         <label for="">Email</label>
@@ -80,15 +80,19 @@
                     </div>
                     <div class="txt-fld">
                         <label for="">Data di nascita</label>
-                        <input id="" name="" type="date">
+                        <input id="datepicker" name="date" type="date">
+                    </div>
+                    <div class="txt-fld">
+                        <label for="">Codice Fiscale</label>
+                        <input id="CodFis" name="CodiceFiscale" type="text">
                     </div>
                     <div class="txt-fld">
                         <label for="">Password</label>
-                        <input id="" name="" type="password">
+                        <input id="pwd1" name="password1" type="password">
 
                     </div>
                     <div class="btn-fld">
-                        <button type="submit">Registrati »</button>
+                        <button id="regbtn" type="button">Registrati »</button>
                     </div>
                 </form>
             </div>

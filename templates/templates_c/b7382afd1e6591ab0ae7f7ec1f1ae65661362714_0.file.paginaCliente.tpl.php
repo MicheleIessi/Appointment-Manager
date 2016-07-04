@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-07-04 12:08:27
+<?php /* Smarty version 3.1.27, created on 2016-07-04 17:44:01
          compiled from "templates\templates\paginaCliente.tpl" */ ?>
 <?php
-/*%%SmartyHeaderCode:1362577a359b0605b5_09471839%%*/
+/*%%SmartyHeaderCode:4109577a84411e9231_21030468%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,11 +9,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'b7382afd1e6591ab0ae7f7ec1f1ae65661362714' => 
     array (
       0 => 'templates\\templates\\paginaCliente.tpl',
-      1 => 1467626904,
+      1 => 1467647008,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '1362577a359b0605b5_09471839',
+  'nocache_hash' => '4109577a84411e9231_21030468',
   'variables' => 
   array (
     'numID' => 0,
@@ -29,13 +29,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_577a359b0bc8c7_20961765',
+  'unifunc' => 'content_577a844124bca5_52278240',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_577a359b0bc8c7_20961765')) {
-function content_577a359b0bc8c7_20961765 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_577a844124bca5_52278240')) {
+function content_577a844124bca5_52278240 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '1362577a359b0605b5_09471839';
+$_smarty_tpl->properties['nocache_hash'] = '4109577a84411e9231_21030468';
 ?>
 <link type="text/css" rel="stylesheet" href="View/css/paginaCliente.css" />
 
@@ -108,7 +108,7 @@ $_smarty_tpl->tpl_vars['app'] = $foreach_app_Sav;
 ?>
                     
                     <?php if ($_smarty_tpl->tpl_vars['modifica']->value) {?>
-                    <a href=?controller=modificaUtente id="modifica"><button>Modifica informazioni</button></a>
+                    <a href=?controller=modificaUtente><button id="modifica">Modifica informazioni</button></a>
                     <?php }?>
                 </table>
             

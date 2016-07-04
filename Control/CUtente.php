@@ -14,8 +14,8 @@ class CUtente {
     public function smista($id)    {
         $sessione = new USession();
         $tipoUtente = $sessione->getValore('tipo'); //cliente o professionista
-        
-        switch ($tipoUtente) {
+        $paginaDaMostrare =$sessione->getValore('paginaDaMostrare');
+        switch ($paginaDaMostrare) {
             case 'cliente':
                 
                 $VCli= new VCliente;
@@ -50,7 +50,7 @@ class CUtente {
                 $modifica = false;
                 if($idp == $id) {
                     $modifica = true;
-                }
+                }                
                 $VPro->setData('modifica',$modifica);
                 
                 /* Se prendo gli orari lavorativi del professionista, e li rendo un array, posso costruire una 

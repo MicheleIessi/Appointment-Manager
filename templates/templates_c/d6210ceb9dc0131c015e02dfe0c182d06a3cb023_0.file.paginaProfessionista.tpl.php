@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-07-04 16:28:14
+<?php /* Smarty version 3.1.27, created on 2016-07-04 16:31:58
          compiled from "templates\templates\paginaProfessionista.tpl" */ ?>
 <?php
-/*%%SmartyHeaderCode:27818577a727ec4c383_80709765%%*/
+/*%%SmartyHeaderCode:27704577a735eb05492_45782725%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,11 +9,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'd6210ceb9dc0131c015e02dfe0c182d06a3cb023' => 
     array (
       0 => 'templates\\templates\\paginaProfessionista.tpl',
-      1 => 1467642490,
+      1 => 1467642680,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '27818577a727ec4c383_80709765',
+  'nocache_hash' => '27704577a735eb05492_45782725',
   'variables' => 
   array (
     'numID' => 0,
@@ -32,13 +32,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_577a727ecb5d86_55525065',
+  'unifunc' => 'content_577a735eb75855_40345268',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_577a727ecb5d86_55525065')) {
-function content_577a727ecb5d86_55525065 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_577a735eb75855_40345268')) {
+function content_577a735eb75855_40345268 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '27818577a727ec4c383_80709765';
+$_smarty_tpl->properties['nocache_hash'] = '27704577a735eb05492_45782725';
 ?>
 <link type="text/css" rel="stylesheet" href="View/css/paginaProfessionista.css"/>
 
@@ -164,23 +164,10 @@ $_smarty_tpl->tpl_vars['servizio'] = $foreach_servizio_Sav;
                 
         </table>
     </div>
-<<<<<<< HEAD
     
     <a href="?controller=calendario&idp=<?php echo $_smarty_tpl->tpl_vars['numID']->value;?>
 "><button id="Calendario">Prenota un appuntamento! Clicca per aprire l'agenda di <?php echo $_smarty_tpl->tpl_vars['nomeUtente']->value;?>
 </button></a>
-=======
-
-    <?php if ($_smarty_tpl->tpl_vars['modifica']->value) {?>
-        <a href=?controller=modificaUtente id="modifica"><button>Modifica informazioni</button></a>
-    <?php }?>
-
-    <div title="Calendario" id="Calendario">
-        <a href="?controller=calendario&idp=<?php echo $_smarty_tpl->tpl_vars['numID']->value;?>
-"><button>Prenota un appuntamento! Clicca per aprire l'agenda di <?php echo $_smarty_tpl->tpl_vars['nomeUtente']->value;?>
-</button></a>
-    </div>
->>>>>>> a26cb3001772cf7ba63d1ddb5f4d79ed5ed24146
 
 </div><?php }
 }

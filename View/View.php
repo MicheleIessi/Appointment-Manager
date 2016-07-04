@@ -1,4 +1,6 @@
 <?php
+require($_SERVER["DOCUMENT_ROOT"].'/appointment-manager/lib/smarty/Smarty.class.php');
+
 
 class View extends Smarty {
     

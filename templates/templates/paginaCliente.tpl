@@ -44,7 +44,7 @@
                     {/foreach}
                     
                     {if $modifica}
-                    <a href=?controller=modificaUtente id="modifica"><button>Modifica informazioni</button></a>
+                    <a href=?controller=modificaUtente><button id="modifica">Modifica informazioni</button></a>
                     {/if}
                 </table>
             

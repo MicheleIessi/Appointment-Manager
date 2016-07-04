@@ -69,6 +69,8 @@
 }
 
 #orariLavoro    {
+    
+    clear: both;
     margin-bottom: 0px;
     margin-left: 20px;
     margin-right: 20px;
@@ -81,7 +83,7 @@
 
     width: auto;
     min-width: 500px;
-    height: 250px;
+    height: a;
     
     
     border-radius: 4px;
@@ -104,29 +106,6 @@
     border-color: black;
     background-color: inherit;
 }
-
-#Calendario {
-    
-    clear: both;
-    
-    margin-bottom: 20px;
-    margin-left: 20px;
-    margin-right: 20px;
-    margin-top: 20px;
-    
-    padding-bottom: 20px ;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-top: 20px;
-    
-    border: 1px solid black;
-    border-radius: 4px;
-    border-color: black;
-    background-color: aliceblue;
-    
-    text-align: center;
-}
-
 
 table   {
     
@@ -168,13 +147,21 @@ tr[id=chiavi]:hover {
     background-color: inherit;
 }
 
+h2  {
+    margin-left: 20px;
+}
+
 #chiavi {
     font-weight: bold;
 }
 
 button  {
-    float: right;
-    margin-right: 20px;
+    
+    float: left;
+    margin-left: 19px;
+    
+    margin-bottom: 20px;
+    
     font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
     background: cornflowerblue;
     border: 1px solid darkgray;
@@ -184,4 +171,10 @@ button  {
     color: #FFF;
     cursor: pointer;
     padding: 7px 10px;  border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; font-weight: bold; text-shadow: 0 1px 0 rgba(0,0,0,0.4);
+}
+
+#Calendario {
+    
+    clear: both;
+    
 }

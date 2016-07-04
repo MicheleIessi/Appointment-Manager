@@ -1,4 +1,4 @@
-<link type="text/css" rel="stylesheet" href="View/css/paginaProfessionista.css" />
+<link type="text/css" rel="stylesheet" href="View/css/paginaProfessionista.css"/>
 
 <div title="contenitoreUtente"id="contenitoreUtente">
         
@@ -11,16 +11,20 @@
     <div title="datiUtente" id="datiUtente">
 
         <ul>
-            <li>Nome: {$nome} </li>
-            <li>Cognome: {$cognome} </li>
-            <li>Data di nascita: {$dataNascita} </li>
-            <li>Sesso: {$sesso} </li>
-            <li>Codice fiscale: {$codiceFiscale} </li>
-            <li>Email:{$email} </li>
+            <li>Nome: {$nome} </li><br>
+            <li>Cognome: {$cognome} </li><br>
+            <li>Data di nascita: {$dataNascita} </li><br>
+            <li>Sesso: {$sesso} </li><br>
+            <li>Codice fiscale: {$codiceFiscale} </li><br>
+            <li>Email:{$email} </li><br>
             <li>Settore:{$settore} </li>
         </ul> 
         
     </div>
+        
+    {if $modifica}
+        <a href=?controller=modificaUtente id="modifica"><button>Modifica informazioni</button></a>
+    {/if}
 
     <div title="orariLavoro" id="orariLavoro">
         <table>
@@ -85,13 +89,7 @@
                 
         </table>
     </div>
-
-    {if $modifica}
-        <a href=?controller=modificaUtente id="modifica"><button>Modifica informazioni</button></a>
-    {/if}
-                
-    <div title="Calendario" id="Calendario">
-        <a href="?controller=calendario&idp={$numID}"><button>Prenota un appuntamento! Clicca per aprire l'agenda di {$nomeUtente}</button></a>
-    </div>
+    
+    <a href="?controller=calendario&idp={$numID}"><button id="Calendario">Prenota un appuntamento! Clicca per aprire l'agenda di {$nomeUtente}</button></a>
 
 </div>

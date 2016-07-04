@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-07-04 16:41:52
+<?php /* Smarty version 3.1.27, created on 2016-07-04 16:31:58
          compiled from "templates\templates\paginaProfessionista.tpl" */ ?>
 <?php
-/*%%SmartyHeaderCode:21733577a75b01050e6_80639179%%*/
+/*%%SmartyHeaderCode:27704577a735eb05492_45782725%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,12 +9,12 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'd6210ceb9dc0131c015e02dfe0c182d06a3cb023' => 
     array (
       0 => 'templates\\templates\\paginaProfessionista.tpl',
-      1 => 1467641368,
+      1 => 1467642680,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '21733577a75b01050e6_80639179',
-  'variables' => 
+  'nocache_hash' => '27704577a735eb05492_45782725',
+  'variables' =>
   array (
     'numID' => 0,
     'nome' => 0,
@@ -24,23 +24,23 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'codiceFiscale' => 0,
     'email' => 0,
     'settore' => 0,
+    'modifica' => 0,
     'orariLavorativi' => 0,
     'nomeUtente' => 0,
     'serviziOfferti' => 0,
     'servizio' => 0,
-    'modifica' => 0,
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_577a75b01c76b5_38320117',
+  'unifunc' => 'content_577a735eb75855_40345268',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_577a75b01c76b5_38320117')) {
-function content_577a75b01c76b5_38320117 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_577a735eb75855_40345268')) {
+function content_577a735eb75855_40345268 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '21733577a75b01050e6_80639179';
+$_smarty_tpl->properties['nocache_hash'] = '27704577a735eb05492_45782725';
 ?>
-<link type="text/css" rel="stylesheet" href="View/css/paginaProfessionista.css" />
+<link type="text/css" rel="stylesheet" href="View/css/paginaProfessionista.css"/>
 
 <div title="contenitoreUtente"id="contenitoreUtente">
         
@@ -71,6 +71,10 @@ $_smarty_tpl->properties['nocache_hash'] = '21733577a75b01050e6_80639179';
         </ul> 
         
     </div>
+        
+    <?php if ($_smarty_tpl->tpl_vars['modifica']->value) {?>
+        <a href=?controller=modificaUtente id="modifica"><button>Modifica informazioni</button></a>
+    <?php }?>
 
     <div title="orariLavoro" id="orariLavoro">
         <table>
@@ -161,15 +165,9 @@ $_smarty_tpl->tpl_vars['servizio'] = $foreach_servizio_Sav;
         </table>
     </div>
 
-    <?php if ($_smarty_tpl->tpl_vars['modifica']->value) {?>
-        <a href=?controller=modificaUtente id="modifica"><button>Modifica informazioni</button></a>
-    <?php }?>
-                
-    <div title="Calendario" id="Calendario">
-        <a href="?controller=calendario&idp=<?php echo $_smarty_tpl->tpl_vars['numID']->value;?>
-"><button>Prenota un appuntamento! Clicca per aprire l'agenda di <?php echo $_smarty_tpl->tpl_vars['nomeUtente']->value;?>
+    <a href="?controller=calendario&idp=<?php echo $_smarty_tpl->tpl_vars['numID']->value;?>
+"><button id="Calendario">Prenota un appuntamento! Clicca per aprire l'agenda di <?php echo $_smarty_tpl->tpl_vars['nomeUtente']->value;?>
 </button></a>
-    </div>
 
 </div><?php }
 }

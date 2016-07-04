@@ -78,12 +78,11 @@ class CIndex {
                                 $this->VIndex->setSideContent($cal->getColonnaProfessionista());
                             else
                                 $this->VIndex->setSideContent($cal->getColonnaInformazioni());
-                            return $cal->smista();
                         }
                         else if ($sessione->getValore('tipo') == 'cliente') {
                             $this->VIndex->setSideContent($cal->getServiziProf($idp));
-                            return $cal->smista();
                         }
+                        return $cal->smista();
                     }
                     else
                         return $this->VIndex->fetch('professionistaNonTrovato.tpl');
@@ -94,6 +93,7 @@ class CIndex {
                 if (isset($_REQUEST['id']) && is_numeric($_REQUEST['id'])) {
                     $CPagU = new CUtente();
                     $idUtente = $_REQUEST['id'];
+                    $sessione->impostaValore('paginaDaMostrare', 'cliente');
                     if($CPagU->controllaProfessionista($idUtente) == 'cliente') {
                         return $CPagU->smista($idUtente);
                     }
@@ -107,6 +107,7 @@ class CIndex {
                 if (isset($_REQUEST['id']) && is_numeric($_REQUEST['id'])) {
                     $CPagU = new CUtente();
                     $idProfessionista = $_REQUEST['id'];
+                    $sessione->impostaValore('paginaDaMostrare', 'professionista');
                     if($CPagU->controllaProfessionista($idProfessionista) == 'professionista') {
                         return $CPagU->smista($idProfessionista);
                     }

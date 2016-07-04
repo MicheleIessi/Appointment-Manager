@@ -1,4 +1,4 @@
-<link type="text/css" rel="stylesheet" href="View/css/paginaProfessionista.css" />
+<link type="text/css" rel="stylesheet" href="View/css/paginaProfessionista.css"/>
 
 <div title="contenitoreUtente"id="contenitoreUtente">
         
@@ -21,6 +21,10 @@
         </ul> 
         
     </div>
+        
+    {if $modifica}
+        <a href=?controller=modificaUtente id="modifica"><button>Modifica informazioni</button></a>
+    {/if}
 
     <div title="orariLavoro" id="orariLavoro">
         <table>
@@ -86,12 +90,6 @@
         </table>
     </div>
     
-    {if $modifica}
-        <a href=?controller=modificaUtente id="modifica"><button>Modifica informazioni</button></a>
-    {/if}
-                
-    <div title="Calendario" id="Calendario">
-        <a href="?controller=calendario&idp={$numID}"><button>Prenota un appuntamento! Clicca per aprire l'agenda di {$nomeUtente}<button/></a>
-    </div>
+    <a href="?controller=calendario&idp={$numID}"><button id="Calendario">Prenota un appuntamento! Clicca per aprire l'agenda di {$nomeUtente}</button></a>
 
 </div>

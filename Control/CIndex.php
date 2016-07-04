@@ -20,7 +20,7 @@ class CIndex {
     private $VIndex;
 
     public function impostaPagina() {
-                $this->VIndex = new VIndex();
+        $this->VIndex = new VIndex();
         $sessione = new USession();
         $log = $sessione->getValore('idUtente');
 //        $sessione->impostaValore('idUtente',15);
@@ -28,6 +28,7 @@ class CIndex {
         if($log===false) {
             $log=-1;    //a questo punto del programma in questo commit, bisogna fare controlli per il login
         }
+
         $this->VIndex = new VIndex();
         $content = $this->smista($log);
         $this->VIndex->setContent($content);
@@ -55,8 +56,6 @@ class CIndex {
                 return $CLog->smista();
             case 'lista':
                 if($log > 0) {
-                    $sessione->impostaValore('tipo','professionista'); //solo per provare
-
                     $cal = new CCalendar();
                     return $cal->smista();
                 }
@@ -80,12 +79,11 @@ class CIndex {
                                 $this->VIndex->setSideContent($cal->getColonnaProfessionista());
                             else
                                 $this->VIndex->setSideContent($cal->getColonnaInformazioni());
-                            return $cal->smista();
                         }
                         else if ($sessione->getValore('tipo') == 'cliente') {
                             $this->VIndex->setSideContent($cal->getServiziProf($idp));
-                            return $cal->smista();
                         }
+                        return $cal->smista();
                     }
                     else
                         return $this->VIndex->fetch('professionistaNonTrovato.tpl');
@@ -96,8 +94,8 @@ class CIndex {
                 if (isset($_REQUEST['id']) && is_numeric($_REQUEST['id'])) {
                     $CPagU = new CUtente();
                     $idUtente = $_REQUEST['id'];
+                    $sessione->impostaValore('paginaDaMostrare', 'cliente');
                     if($CPagU->controllaProfessionista($idUtente) == 'cliente') {
-                        $sessione->impostaValore('tipo','cliente'); //solo per provare
                         return $CPagU->smista($idUtente);
                     }
                     else {
@@ -110,8 +108,8 @@ class CIndex {
                 if (isset($_REQUEST['id']) && is_numeric($_REQUEST['id'])) {
                     $CPagU = new CUtente();
                     $idProfessionista = $_REQUEST['id'];
+                    $sessione->impostaValore('paginaDaMostrare', 'professionista');
                     if($CPagU->controllaProfessionista($idProfessionista) == 'professionista') {
-                        $sessione->impostaValore('tipo', 'professionista');
                         return $CPagU->smista($idProfessionista);
                     }
                     else {

@@ -20,7 +20,7 @@ class Fdb {
     private static $set = false;       //Per assicurare che ci sia al massimo una connessione per volta
 
     protected function __construct() {
-        require 'includes/config.inc.php';
+        require($_SERVER["DOCUMENT_ROOT"].'/appointment-manager/includes/config.inc.php');
         /** @var string $dbms è la stringa che specifica il db che si usa nel file di configurazione */
         /** @var string $config è il file di configurazione*/
         /* ho scritto queste 2 righe perché l'ide mi diceva che erano variabili sconosciute */

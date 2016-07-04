@@ -1,5 +1,5 @@
 <?php
-require_once('includes/autoload.inc.php');
+require_once($_SERVER["DOCUMENT_ROOT"].'/appointment-manager/includes/autoload.inc.php');
 
 
 class CLogin {
@@ -9,7 +9,7 @@ class CLogin {
         switch($task) {
             case 'login': {
                 $this->processaLogin();
-                header('Location: /appointment-manager/index.php');
+                header('location: ../../index.php');
             } break;
             case 'logout': {
                 $this->logout();

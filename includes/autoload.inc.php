@@ -8,24 +8,20 @@
 function myAutoload($class_name) {
     switch ($class_name[0]) {
         case 'V':
-            require_once('View/' . $class_name . '.php');
+            require_once($_SERVER["DOCUMENT_ROOT"].'/appointment-manager/View/' . $class_name . '.php');
             break;
         case 'F':
-            require_once('Foundation/' . $class_name . '.php');
+            require_once($_SERVER["DOCUMENT_ROOT"].'/appointment-manager/Foundation/' . $class_name . '.php');
             break;
         case 'E':
-            require_once('Entity/' . $class_name . '.php');
+            require_once($_SERVER["DOCUMENT_ROOT"].'/appointment-manager/Entity/' . $class_name . '.php');
             break;
         case 'C':
-            require_once('Control/' . $class_name . '.php');
+            require_once($_SERVER["DOCUMENT_ROOT"].'/appointment-manager/Control/' . $class_name . '.php');
             break;
         case 'U':
-            require_once('Foundation/Utility/' . $class_name . '.php');
+            require_once($_SERVER["DOCUMENT_ROOT"].'/appointment-manager/Foundation/Utility/' . $class_name . '.php');
     }
 }
 
-define('SMARTY_SPL_AUTOLOAD',1);
 spl_autoload_register('myAutoload');
-require('lib/smarty/Smarty.class.php');
-require_once('lib/smarty/Autoloader.php');
-Smarty_Autoloader::register();

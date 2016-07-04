@@ -1,7 +1,7 @@
 <?php
 
-require('lib/phpmailer/class.phpmailer.php');
-require('lib/phpmailer/class.smtp.php');
+require($_SERVER["DOCUMENT_ROOT"].'/appointment-manager/lib/phpmailer/class.phpmailer.php');
+require($_SERVER["DOCUMENT_ROOT"].'/appointment-manager/lib/phpmailer/class.smtp.php');
 /**
  * Created by PhpStorm.
  * User: Michele Iessi

@@ -1,6 +1,7 @@
 <?php
 
-require_once 'includes/autoload.inc.php';
+require_once $_SERVER["DOCUMENT_ROOT"].'/appointment-manager/includes/autoload.inc.php';
+
 // Processo la chiamata Ajax
 $FUte = new FUtente();
 $tipo = $_REQUEST['tipo'];

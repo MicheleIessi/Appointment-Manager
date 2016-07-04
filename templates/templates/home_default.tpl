@@ -19,11 +19,11 @@
     </head>
     <body>
     <!-- BANNER -->
-    {$banner}
     <!-- MAIN BUTTONS -->
     {$nolog = false}
     <div class="wrapper">
         <div class ="mainButtons">
+            {$banner}
             {foreach $mainButtons as $button}
                 {if $button['testo'] eq 'Login' or $button['testo'] eq 'Registrati' }
                     {$nolog = true}
@@ -46,7 +46,7 @@
                     <p>Sei già iscritto? Effettua il login.</p>
                     <a class="modal_close" href="#"></a>
                 </div>
-                <form id='loginForm' method='post' action="/Control/ALogin.php?task=login">
+                <form id='loginForm' method='post' action="Control/Ajax/ALogin.php?task=login">
                     <table>
                         <tr class="tableElem">
                             <td class="desc">Email</td>
@@ -77,31 +77,50 @@
                     <p>&Egrave; facile e veloce.</p>
                     <a class="modal_close" href="#"></a>
                 </div>
-                <form action="phpperregistrazione">
-                    <div class="txt-fld">
-                        <label for="">Nome</label>
-                        <input id="" name="" type="text">
-                    </div>
-                    <div class="txt-fld">
-                        <label for="">Cognome</label>
-                        <input id="" name="" type="text">
-                    </div>
-                    <div class="txt-fld">
-                        <label for="">Email</label>
-                        <input id="EmailReg" name="EmailReg" type="text">
-                    </div>
-                    <div class="txt-fld">
-                        <label for="">Data di nascita</label>
-                        <input id="" name="" type="date">
-                    </div>
-                    <div class="txt-fld">
-                        <label for="">Password</label>
-                        <input id="" name="" type="password">
-
-                    </div>
-                    <div class="btn-fld">
-                        <button type="submit">Registrati »</button>
-                    </div>
+                <form id="regForm" method="post" action="Control/CRegistrazione.php">
+                    <table>
+                    <tr class="tableElem">
+                        <td class="desc">Nome</td>
+                        <td><div class="txt-fld">
+                            <input  type="text"name="Nome" >
+                        </div>   
+                    </tr>
+                    <tr class="tableElem">
+                        <td class="desc">Cognome</td>
+                        <td><div class="txt-fld">
+                             <input  type="text"name="Cognome" >
+                            </div>   
+                    </tr>
+                    <tr class="tableElem">
+                        <td class="desc">Email Registrazione</td>
+                        <td><div class="txt-fld">
+                             <input  type="text"name="EmailReg" >
+                            </div>    
+                    </tr>
+                    <tr class="tableElem">
+                        <td class="desc">Data Nascita</td>
+                        <td><div class="txt-fld">
+                        <input  type="text"name="Data" >
+                            </div>
+                    </tr>
+                    <tr class="legend">
+                        <td class="desc" >Sesso</td>
+                        <td>maschio<input type="radio"name="sesso" value="maschio">femmina<input type="radio"name="sesso" value="femmina">
+                    </tr>    
+                    <tr class="tableElem">
+                        <td class="desc">Password</td>
+                        <td><div class="txt-fld">
+                        <input  type="text"name="Password" >
+                    </tr>
+                    <tr class="tableElem">
+                         <td class="desc">Ripeti Password</td>
+                        <td><div class="txt-fld">
+                        <input  type="text"name="RPassword" >
+                    </tr>
+                    </table>
+                    <tr class="btn-fld">
+                        <button type="bottoneReg">Registrati »</button>
+                    </tr>  
                 </form>
             </div>
         </div>

@@ -13,13 +13,13 @@
             <div title="datiUtente" id="datiUtente">
                 
                 <ul>
-                    <li>Nome: {$nome} </li>
-                    <li>Cognome: {$cognome} </li>
-                    <li>Data di nascita: {$dataNascita} </li>
-                    <li>Sesso: {$sesso} </li>
-                    <li>Codice fiscale: {$codiceFiscale} </li>
-                    <li>Email: {$email} </li>
-                    <br><br>Altre informazioni...
+                    <li>Nome: {$nome} </li><br>
+                    <li>Cognome: {$cognome} </li><br>
+                    <li>Data di nascita: {$dataNascita} </li><br>
+                    <li>Codice fiscale: {$codiceFiscale} </li><br>
+                    <li>Sesso: {$sesso} </li><br>
+                    <li>Email: {$email} </li><br>
+                    <br>
                 </ul>
                 
             </div>
@@ -43,8 +43,9 @@
                         </tr>
                     {/foreach}
                     
-                    <a href=?controller=modificaCliente id="modifica"><button>Modifica informazioni</button></a>
-                    
+                    {if $modifica}
+                    <a href=?controller=modificaUtente id="modifica"><button>Modifica informazioni</button></a>
+                    {/if}
                 </table>
             
 

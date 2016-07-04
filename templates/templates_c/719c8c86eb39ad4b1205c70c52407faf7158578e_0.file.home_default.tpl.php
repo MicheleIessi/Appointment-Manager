@@ -14,7 +14,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     ),
   ),
   'nocache_hash' => '23516577a6631577e95_89347251',
-  'variables' => 
+  'variables' =>
   array (
     'title' => 0,
     'banner' => 0,

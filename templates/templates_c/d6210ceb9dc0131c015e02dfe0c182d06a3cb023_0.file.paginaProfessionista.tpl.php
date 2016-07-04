@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-07-04 14:03:16
+<?php /* Smarty version 3.1.27, created on 2016-07-04 12:54:16
          compiled from "templates\templates\paginaProfessionista.tpl" */ ?>
 <?php
-/*%%SmartyHeaderCode:32510577a50843d5c82_92266498%%*/
+/*%%SmartyHeaderCode:28707577a4058b41960_22287168%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,12 +9,12 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'd6210ceb9dc0131c015e02dfe0c182d06a3cb023' => 
     array (
       0 => 'templates\\templates\\paginaProfessionista.tpl',
-      1 => 1467633794,
+      1 => 1467629647,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '32510577a50843d5c82_92266498',
-  'variables' => 
+  'nocache_hash' => '28707577a4058b41960_22287168',
+  'variables' =>
   array (
     'numID' => 0,
     'nome' => 0,
@@ -28,16 +28,17 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'nomeUtente' => 0,
     'serviziOfferti' => 0,
     'servizio' => 0,
+    'modifica' => 0,
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_577a5084456413_06117597',
+  'unifunc' => 'content_577a4058bcb496_08475553',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_577a5084456413_06117597')) {
-function content_577a5084456413_06117597 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_577a4058bcb496_08475553')) {
+function content_577a4058bcb496_08475553 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '32510577a50843d5c82_92266498';
+$_smarty_tpl->properties['nocache_hash'] = '28707577a4058b41960_22287168';
 ?>
 <link type="text/css" rel="stylesheet" href="View/css/paginaProfessionista.css" />
 
@@ -159,6 +160,10 @@ $_smarty_tpl->tpl_vars['servizio'] = $foreach_servizio_Sav;
                 
         </table>
     </div>
+
+    <?php if ($_smarty_tpl->tpl_vars['modifica']->value) {?>
+        <a href=?controller=modificaUtente id="modifica"><button>Modifica informazioni</button></a>
+    <?php }?>
 
     <div title="Calendario" id="Calendario">
         <a href="?controller=calendario&idp=<?php echo $_smarty_tpl->tpl_vars['numID']->value;?>

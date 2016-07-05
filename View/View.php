@@ -8,7 +8,6 @@ class View extends Smarty {
 
     public function __construct() {
         parent::__construct();
-        require('includes/config.inc.php');
         global $config;
         $this->setTemplateDir($config['smarty']['template_dir']);       // directory dei template
         $this->setCompileDir($config['smarty']['compile_dir']);         // directory per compilare

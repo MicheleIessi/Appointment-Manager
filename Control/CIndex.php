@@ -19,28 +19,38 @@ class CIndex {
      */
     private $VIndex;
 
-    public function impostaPagina() {
-        $this->VIndex = new VIndex();
-        $sessione = new USession();
-        $log = $sessione->getValore('idUtente');
-//        $sessione->impostaValore('idUtente',15);
-//        $sessione->impostaValore('tipo','cliente');
-        if($log===false) {
-            $log=-1;    //a questo punto del programma in questo commit, bisogna fare controlli per il login
+    public function impostaPagina()
+    {
+        if (!file_exists('includes/config.inc.php')) {
+            $CSet = new CSetup();
+            $CSet->mux();
         }
+        else {
+            require_once('includes/config.inc.php');
+            $this->VIndex = new VIndex();
+            $sessione = new USession();
+            $log = $sessione->getValore('idUtente');
+            //        $sessione->impostaValore('idUtente',15);
+            //        $sessione->impostaValore('tipo','cliente');
+            if ($log === false) {
+                $log = -1;    //a questo punto del programma in questo commit, bisogna fare controlli per il login
+            }
 
-        $this->VIndex = new VIndex();
-        $content = $this->smista($log);
-        $this->VIndex->setContent($content);
+            $this->VIndex = new VIndex();
+            $content = $this->smista($log);
+            $this->VIndex->setContent($content);
 
 
-        if($log==-1)//-1=non loggato
-            $this->VIndex->impostaPaginaOspite();
-        else if($log==0)//0=admin
-            /* qualcosa */;
-        else if($log>0)//professionista/utente
-            $this->VIndex->impostaPaginaRegistrato();
-        $this->VIndex->mostraPagina();
+            if ($log == -1)//-1=non loggato
+                $this->VIndex->impostaPaginaOspite();
+            else if ($log == 0)//0=admin
+                /* qualcosa */
+                ;
+            else if ($log > 0)//professionista/utente
+                $this->VIndex->impostaPaginaRegistrato();
+
+            $this->VIndex->mostraPagina();
+        }
     }
 
     public function smista($log) {

@@ -123,3 +123,12 @@ button {
     width: 230px;
     font-size: small;
 }
+
+#loadingGif {
+    width: 200px;
+    height: 150px;
+}
+
+#loadingDiv {
+    text-align: center;
+}

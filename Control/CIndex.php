@@ -23,7 +23,7 @@ class CIndex {
     {
         if (!file_exists('includes/config.inc.php')) {
             $CSet = new CSetup();
-            $CSet->mux();
+            $CSet->smista();
         }
         else {
             require_once('includes/config.inc.php');
@@ -33,7 +33,7 @@ class CIndex {
             //        $sessione->impostaValore('idUtente',15);
             //        $sessione->impostaValore('tipo','cliente');
             if ($log === false) {
-                $log = -1;    //a questo punto del programma in questo commit, bisogna fare controlli per il login
+                $log = -1;
             }
 
             $this->VIndex = new VIndex();
@@ -64,13 +64,13 @@ class CIndex {
                 $CLog = new CLogin();
                 return $CLog->smista();
             case 'lista':
-                if($log > 0) {
+                if($log >= 0) {
                     $cal = new CCalendar();
                     return $cal->smista();
                 }
             else return $this->VIndex->fetch('forbidden.tpl');
             case 'calendario':
-                if($log > 0) {
+                if($log >= 0) {
                     $FPro = new FProfessionista();
                     $profDisponibili = $FPro->caricaProfessionisti();
                     $idDisponibili = array();

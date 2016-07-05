@@ -8,6 +8,9 @@
  */
 
 class Fdb {
+    /**
+     * @var $db PDO
+     */
     protected static $db;              //Variabile per la connessione al database
     private $result;                   //Variabile contenente il risultato dell'ultima query
     protected $table;                  //Variabile contenente il nome della tabella
@@ -19,7 +22,32 @@ class Fdb {
     protected $old_keys;               //Per i prepared statements
     private static $set = false;       //Per assicurare che ci sia al massimo una connessione per volta
 
-    protected function __construct() {
+
+    public function __construct()
+    {
+        $a = func_get_args();
+        $i = func_num_args();
+        if (method_exists($this,$f='__construct'.$i))
+        {
+            call_user_func_array(array($this,$f),$a);
+        }
+        else throw new Exception("Costruttore invalido FDB");
+    }
+
+    public function __construct4($dbms,$dbhost,$dbuser,$dbpass) {
+        $dsn = "$dbms:host=$dbhost;";
+        $user = $dbuser;
+        $pass = $dbpass;
+        $attr = array(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        self::$set = true;
+        try {
+            self::$db = new PDO($dsn,$user,$pass,$attr);
+        } catch(PDOException $e) {
+            die("Impossibile connettersi al database 5: ".$e->getMessage());
+        }
+    }
+
+    public function __construct0() {
         require($_SERVER["DOCUMENT_ROOT"].'/appointment-manager/includes/config.inc.php');
         /** @var string $dbms è la stringa che specifica il db che si usa nel file di configurazione */
         /** @var string $config è il file di configurazione*/
@@ -275,6 +303,14 @@ class Fdb {
 
     public function getLastID() {
         return self::$db->lastInsertId();
+    }
+
+    /** La funzione query serve solo in caso di setup a creare il db
+     * @param $sql
+     * @return PDOStatement
+     */
+    public function query($sql) {
+        return self::$db->query($sql);
     }
 }
 ?>

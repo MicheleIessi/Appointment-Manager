@@ -87,12 +87,12 @@
     
 }
 
-td  {
+#pastAppTable td  {
     padding-left: 40px;
     padding-right: 40px;
 }
 
-tr:hover {
+#pastAppTable tr:hover {
     background-color: cornflowerblue;
 }
 
@@ -104,11 +104,11 @@ tr[id=chiavi]:hover {
     font-weight: bold;
 }
 
-h2 {
+#contenitoreUtente h2 {
     padding-left: 20px;
 }
 
-h3 {
+#contenitoreUtente h3 {
     padding-left: 20px;
 }
 

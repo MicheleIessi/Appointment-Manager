@@ -23,7 +23,7 @@
     
     float: left;
     
-    margin-bottom: 20px;
+    margin-bottom: 5px;
     margin-left: 20px;
     margin-right: 20px;
     margin-top: 20px;
@@ -47,7 +47,7 @@
 
 #datiUtente {
     
-    margin-bottom: 20px;
+    margin-bottom: 5px;
     margin-left: 280px;
     margin-right: 20px;
     margin-top: 38px;
@@ -68,51 +68,25 @@
     
 }
 
-#orariLavoro    {
+.tabProfessionisti  {   // è un div, anche se l'ho chiamato tab
     
-    clear: both;
-    margin-bottom: 0px;
-    margin-left: 20px;
-    margin-right: 20px;
-    margin-top: 20px;
-    
-    padding-bottom: 0px ;
-    padding-left: 0px;
-    padding-right: 0px;
-    padding-top: 0px;
-
-    width: auto;
-    min-width: 500px;
-    height: a;
-    
-    
-    border-radius: 4px;
-    border-color: black;
-    background-color: inherit;
-}
-
-#serviziOfferti {
     margin-bottom: 20px;
     margin-left: 20px;
     margin-right: 20px;
     margin-top: 20px;
     
-    padding-bottom: 0px ;
-    padding-left: 0px;
-    padding-right: 0px;
-    padding-top: 0px;
-    
-    border-radius: 4px;
-    border-color: black;
     background-color: inherit;
+    
 }
 
-table   {
+#orariLavoro    {
+    
+    
+    clear: both;
+    table-layout: fixed;
     
     padding-bottom: 20px;
     padding-top: 20px;
-    
-    table-layout: fixed;
     
     border: 1px solid black;
     border-radius: 4px;
@@ -121,25 +95,45 @@ table   {
     border-spacing: 0px;
     
     background-color: white;
-      
+    
 }
 
+#serviziOfferti {
+    
+    clear: both;
+    table-layout: fixed;
+    
+    padding-bottom: 20px;
+    padding-top: 20px;
+    margin-bottom: 5px;
+    
+    border: 1px solid black;
+    border-radius: 4px;
+    border-color: black;
+    border-collapse: separate;
+    border-spacing: 0px;
+    
+    background-color: white;
+    
+}
 
-td  {
+#orariLavoro td, #serviziOfferti td  {
     min-width: 100px;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 
 td[id=servizio]  {
     margin-top: 10px;
     margin-bottom: 10px;
-    padding-bottom: 10px;
     padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
-tr:hover {
+#orariLavoro tr:hover, #serviziOfferti tr:hover {
     background-color: cornflowerblue;
 }
 
@@ -147,20 +141,27 @@ tr[id=chiavi]:hover {
     background-color: inherit;
 }
 
-h2  {
+#contenitoreUtente h2  {
+    margin-left: 20px;
+}
+
+#contenitoreUtente h3{
+    clear: both;
     margin-left: 20px;
 }
 
 #chiavi {
     font-weight: bold;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
-button  {
+.bottoneProf  {
     
-    float: left;
-    margin-left: 19px;
-    
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 10px;
     
     font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
     background: cornflowerblue;

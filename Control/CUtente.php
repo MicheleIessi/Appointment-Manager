@@ -45,13 +45,20 @@ class CUtente {
                 $VPro->setData('settore', $EPro->getSettore());      // Sempre se vogliamo tenerlo
                 $VPro->setData('orariLavorativi',$EPro->getOrariLavorativi());
                 $VPro->setData('serviziOfferti', $this->serviziProfessionista($EPro));
+                $VPro->setData('tipo', $tipoUtente);
+                
                 
                 $idp = $sessione->getValore('idUtente');
+                
                 $modifica = false;
+                $proprietario= false;
+                
                 if($idp == $id) {
                     $modifica = true;
+                    $proprietario= true;
                 }                
                 $VPro->setData('modifica',$modifica);
+                $VPro->setData('proprietario',$proprietario);                
                 
                 /* Se prendo gli orari lavorativi del professionista, e li rendo un array, posso costruire una 
                 stringa del tipo 

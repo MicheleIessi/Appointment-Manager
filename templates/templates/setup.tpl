@@ -1,50 +1,14 @@
-<?php /* Smarty version 3.1.27, created on 2016-07-05 22:13:36
-         compiled from "templates\templates\setup.tpl" */ ?>
-<?php
-/*%%SmartyHeaderCode:15557577c14f00e5539_25710363%%*/
-if(!defined('SMARTY_DIR')) exit('no direct access allowed');
-$_valid = $_smarty_tpl->decodeProperties(array (
-  'file_dependency' => 
-  array (
-    '546f73fb708e7ac1d19f73f52de21a98e2af4947' => 
-    array (
-      0 => 'templates\\templates\\setup.tpl',
-      1 => 1467749614,
-      2 => 'file',
-    ),
-  ),
-  'nocache_hash' => '15557577c14f00e5539_25710363',
-  'has_nocache_code' => false,
-  'version' => '3.1.27',
-  'unifunc' => 'content_577c14f013bda0_33788974',
-),false);
-/*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_577c14f013bda0_33788974')) {
-function content_577c14f013bda0_33788974 ($_smarty_tpl) {
-
-$_smarty_tpl->properties['nocache_hash'] = '15557577c14f00e5539_25710363';
-?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
 <head>
     <title>Appointment manager setup</title>
     <link type="text/css" rel="stylesheet" href="View/css/jquery-ui.css" />
     <link rel="stylesheet" type="text/css" href="View/css/setup.css" />
-    <?php echo '<script'; ?>
- type="text/javascript" src="JS/fullcalendar-2.6.1/lib/jquery.min.js"><?php echo '</script'; ?>
->
-    <?php echo '<script'; ?>
- type="text/javascript" src="JS/validation/jquery.validate.js"><?php echo '</script'; ?>
->
-    <?php echo '<script'; ?>
- type="text/javascript" src="JS/JSetup.js"><?php echo '</script'; ?>
->
-    <?php echo '<script'; ?>
- type="text/javascript" src="JS/jquery-ui/jquery-ui.min.js"><?php echo '</script'; ?>
->
-    <?php echo '<script'; ?>
- type="text/javascript" src="JS/jquery-ui/datepicker-it.js"><?php echo '</script'; ?>
->
+    <script type="text/javascript" src="JS/fullcalendar-2.6.1/lib/jquery.min.js"></script>
+    <script type="text/javascript" src="JS/validation/jquery.validate.js"></script>
+    <script type="text/javascript" src="JS/JSetup.js"></script>
+    <script type="text/javascript" src="JS/jquery-ui/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="JS/jquery-ui/datepicker-it.js"></script>
 
 
 
@@ -149,6 +113,3 @@ $_smarty_tpl->properties['nocache_hash'] = '15557577c14f00e5539_25710363';
 </body>
 
 </html>
-<?php }
-}
-?>

@@ -17,6 +17,7 @@
 }
 
 #external-events {
+    top: -50px;
     float: left;
     width: 230px;
     height:auto;

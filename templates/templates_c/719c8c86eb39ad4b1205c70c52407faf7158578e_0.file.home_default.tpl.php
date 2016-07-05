@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-07-05 02:28:50
+<?php /* Smarty version 3.1.27, created on 2016-07-06 00:29:23
          compiled from "templates\templates\home_default.tpl" */ ?>
 <?php
-/*%%SmartyHeaderCode:28534577aff4281d084_12400943%%*/
+/*%%SmartyHeaderCode:9777577c34c3aba115_95300669%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,11 +9,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '719c8c86eb39ad4b1205c70c52407faf7158578e' => 
     array (
       0 => 'templates\\templates\\home_default.tpl',
-      1 => 1467678528,
+      1 => 1467757754,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '28534577aff4281d084_12400943',
+  'nocache_hash' => '9777577c34c3aba115_95300669',
   'variables' => 
   array (
     'title' => 0,
@@ -26,21 +26,19 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_577aff428ce560_92695662',
+  'unifunc' => 'content_577c34c3b305d6_66406421',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_577aff428ce560_92695662')) {
-function content_577aff428ce560_92695662 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_577c34c3b305d6_66406421')) {
+function content_577c34c3b305d6_66406421 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '28534577aff4281d084_12400943';
+$_smarty_tpl->properties['nocache_hash'] = '9777577c34c3aba115_95300669';
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
     <head>
-        <link type="text/css" rel='stylesheet' href='JS/fullcalendar-2.6.1/fullcalendar.css' />
         <link type="text/css" rel="stylesheet" href='View/css/prova.css' />
         <link type="text/css" rel="stylesheet" href="View/css/login.css" />
-        <link type="text/css" rel="stylesheet" href="View/css/calendario.css" />
 
         <?php echo '<script'; ?>
  type="text/javascript" src='JS/fullcalendar-2.6.1/lib/jquery.min.js'><?php echo '</script'; ?>
@@ -76,8 +74,9 @@ $_smarty_tpl->properties['nocache_hash'] = '28534577aff4281d084_12400943';
     <!-- BANNER -->
     <!-- MAIN BUTTONS -->
     <?php $_smarty_tpl->tpl_vars['nolog'] = new Smarty_Variable(false, null, 0);?>
-    <div class="wrapper">
-        <div class ="mainButtons">
+    
+    <div id="wrapper">
+        <div id ="mainButtons">
             <?php echo $_smarty_tpl->tpl_vars['banner']->value;?>
 
             <?php
@@ -113,6 +112,7 @@ $_smarty_tpl->tpl_vars['button'] = $foreach_button_Sav;
 ?>
         </div>
     </div>
+    
     <?php if ($_smarty_tpl->tpl_vars['nolog']->value) {?> <!-- L'utente corrente non è loggato o non è registrato. Sono quindi presenti i div relativi a login e registrazione con leanmodal-->
         <div id="loginmodal">
             <div id="signup-ct">
@@ -122,7 +122,7 @@ $_smarty_tpl->tpl_vars['button'] = $foreach_button_Sav;
                     <a class="modal_close" href="#"></a>
                 </div>
                 <form id='loginForm' method='post' action="Control/Ajax/ALogin.php?task=login">
-                    <table>
+                    <table id="campi">
                         <tr class="tableElem">
                             <td class="desc">Email</td>
                             <td><div class="txt-fld">
@@ -145,6 +145,7 @@ $_smarty_tpl->tpl_vars['button'] = $foreach_button_Sav;
                 </form>
             </div>
         </div>
+        
         <div id="registrazionemodal">
             <div id="signup-ct">
                 <div id="signup-header">
@@ -183,13 +184,12 @@ $_smarty_tpl->tpl_vars['button'] = $foreach_button_Sav;
     <?php }?>
     <div class ="main">
         <!-- MAIN CONTENT -->
-        <div class='content inline-content'>
-            <?php echo $_smarty_tpl->tpl_vars['main_content']->value;?>
+        <?php echo $_smarty_tpl->tpl_vars['main_content']->value;?>
 
-        </div>
+        
         <!-- SIDE CONTENT -->
         <?php if ($_smarty_tpl->tpl_vars['right_content']->value) {?>
-            <div class="side_content inline-content">
+            <div id="side_content">
                 <?php echo $_smarty_tpl->tpl_vars['right_content']->value;?>
 
             </div>

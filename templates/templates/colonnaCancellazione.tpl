@@ -2,6 +2,10 @@
     <p>Stai guardando la tua agenda</p>
     <p id="dettagli"></p>
     <div id='external-events'>
+        <div id="loadingDiv">
+            <img id="loadingGif" src="img/loading.gif" />
+        </div>
+
         <div id='bottoneCestino'>
             <button id="mostraCestino">Modifica appuntamenti</button>
             <p>Ricorda che non puoi annullare appuntamenti presi che avverranno tra meno di due giorni</p>

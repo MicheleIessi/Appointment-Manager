@@ -6,6 +6,11 @@ $(document).ready(function() {
 
     $('#bottoneLogout').click(function () {
         log_out();
+    });
+    
+    $(function() {                                                              // settaggio di datapicker; tramite
+        $.datepicker.setDefaults( $.datepicker.regional[ "it" ] );              // datapicker.regional["it"] si setta
+        $( "#datepicker" ).datepicker();                                        // in modo tale che rispetti il formato
     }); 
 
     function log_out() {
@@ -36,7 +41,7 @@ $(document).ready(function() {
                     url: "Control/Ajax/ALogin.php",
                     method: "post",
                     data: {
-                        task: 'controllaEsistenzaMail'
+                        task: 'controllaEsistenzaMailL'
                     }
                 }
             },
@@ -85,7 +90,7 @@ $("#RegisterForm").validate({
                  remote: {
 
                     onfocusout: true,
-                    url: "Control/Ajax/ARegistrazione.php",
+                    url: "Control/Ajax/ALogin.php",
                     method: "post",
                     data: {
                         task: 'controllaEsistenzaCodiceFiscale'
@@ -96,7 +101,7 @@ $("#RegisterForm").validate({
                  Sesso:  {
                  required: true
                       },
-                 EmailReg:  {
+                 email:  {
                  required: true,
                  email: true,
                  controllaEmail: true,
@@ -104,10 +109,10 @@ $("#RegisterForm").validate({
                  remote: {
 
                     onfocusout: true,
-                    url: "Control/Ajax/ARegistrazione.php",
+                    url: "Control/Ajax/ALogin.php",
                     method: "post",
                     data: {
-                        task: 'controllaEsistenzaMail'
+                        task: 'controllaEsistenzaMailR'
                            }
                       
                          }
@@ -149,7 +154,7 @@ $("#RegisterForm").validate({
                 required: " Campo richiesto"
             },
             
-            EmailReg:  {
+            email:  {
                 required: "   Inserisci il tuo indirizzo email",
                 email: "   Non rispetta il giusto formato per una mail",
                 remote: "   Email già presente, modificare",
@@ -178,9 +183,9 @@ $.validator.addMethod("controllaEmail", function (value, element) {
     }, "   Non rispetta il giusto formato per una mail");
 $.validator.addMethod("formatoData", function(value, element) {
  
-    return this.optional( element ) || /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test( value );
+    return this.optional( element ) || /^[0-9]{2}\/[0-9]{2}\/[0-9]{4}$/.test( value );
     
-}, "   Non rispetta il giusto formato per una data  aaaa/mm/gg");
+}, "   Non rispetta il giusto formato per una data aaaa/mm/gg");
 
 $.validator.addMethod("formatoCodiceFiscale", function(value, element) {
  

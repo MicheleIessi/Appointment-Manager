@@ -6,7 +6,7 @@ $(document).ready(function() {
 
     $('#bottoneLogout').click(function () {
         log_out();
-    });
+    }); 
 
     function log_out() {
         var uscita = confirm("Vuoi davvero uscire?");
@@ -59,124 +59,138 @@ $(document).ready(function() {
         }
 
     });
-});
-$("#regForm").validate({
+
+$("#RegisterForm").validate({
         rules: {
-                 nome:  {
+                 Nome:  {
                  required: true,
                  noNumeri: true,
                  maxlength:20
                         },
             
-                 cognome:  {
+                 Cognome:  {
                  required:true,
                  noNumeri:true,
                  maxlength:20
                         },
             
-                 dataNascita:  {
+                 Data:  {
                  required: true,
                  formatoData: true
                         },
             
-                 codiceFiscale:  {
+                 CodiceFiscale:  {
                  required: true,
                  formatoCodiceFiscale: true,
                  remote: {
-                    
+
                     onfocusout: true,
-                    url: "controllaEsistenza.php",
-                    type: "post",
+                    url: "Control/Ajax/ARegistrazione.php",
+                    method: "post",
                     data: {
-                        tipo: 'codiceFiscale',
-                        valore: function() {
-                            return $('#codiceFiscale').val();
-                            
-                                           }
-                          }
+                        task: 'controllaEsistenzaCodiceFiscale'
+                           }
+                      
                          }
                                   },
-                 sesso:  {
+                 Sesso:  {
                  required: true
                       },
-                 email:  {
+                 EmailReg:  {
                  required: true,
                  email: true,
                  controllaEmail: true,
                  maxlength: 40,
                  remote: {
-                    
+
                     onfocusout: true,
-                    url: "controllaEsistenza.php",
-                    type: "post",
+                    url: "Control/Ajax/ARegistrazione.php",
+                    method: "post",
                     data: {
-                        tipo: 'email',
-                        valore: function() {
-                            return $('#email').val();
-                        
-                                           }
-                          }
+                        task: 'controllaEsistenzaMail'
+                           }
+                      
                          }
+                 
                         },
-                 password1:  {
+                 Password:  {
                 required: true,
                 minlength:8,
                 maxlength:20
                       },
-                 password2:  {
+                 RPassword:  {
                 required: true,
-                equalTo: "#password1"
+                equalTo: "#Password"
                              }
              },
         
         messages:       // Questi sono i messaggi di errore nel caso in cui uno dei campi non rispetta le rules
         {
-            nome:  {
+            Nome:  {
                 required: "   Inserisci il tuo nome",
                 maxlength: "   Massimo 20 caratteri"
             },
             
-            cognome:  {
+            Cognome:  {
                 required: "   Inserisci il tuo cognome",
                 maxlength: "   Massimo 20 caratteri"
             },
             
-            dataNascita:  {
+            Data:  {
                 required: "   Inserisci la tua data di nascita"
             },
             
-            codiceFiscale:  {
+            CodiceFiscale:  {
                 required: "   Inserisci il tuo codice fiscale",
                 remote: "   Codice fiscale già presente, modificare"
             },
             
-            sesso:  {
-                required: "   Campo richiesto"
+            Sesso:  {
+                required: " Campo richiesto"
             },
             
-            email:  {
+            EmailReg:  {
                 required: "   Inserisci il tuo indirizzo email",
                 email: "   Non rispetta il giusto formato per una mail",
                 remote: "   Email già presente, modificare",
                 maxlength: "   Massimo 40 caratteri"
             },
             
-            password1:  {
+            Password:  {
                 required: "   Campo richiesto",
                 minlength: "   Minimo 8 caratteri",
                 maxlength: "   Massimo 20 caratteri"
             },
             
-            password2:  {
+            RPassword:  {
                 required: "   Campo richiesto",
-                equalTo: "   Conferma password errato"
+                equalTo: "   Conferma password errata"
             }
         }
     }
 );
+});
 
 $.validator.addMethod("controllaEmail", function (value, element) {
 
         return this.optional(element) || /^([a-zA-z0-9.]{3,})@([a-zA-z0-9.]+)\.([a-zA-Z]{2,4})/.test(value);
 
     }, "   Non rispetta il giusto formato per una mail");
+$.validator.addMethod("formatoData", function(value, element) {
+ 
+    return this.optional( element ) || /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test( value );
+    
+}, "   Non rispetta il giusto formato per una data  aaaa/mm/gg");
+
+$.validator.addMethod("formatoCodiceFiscale", function(value, element) {
+ 
+    return this.optional( element ) || /^[A-Z]{6}[0-9]{2}[ABCDEHLMPRST]{1}[0-9]{2}([A-Z]{1}[0-9]{3})[A-Z]{1}$/.test( value );
+    
+}, "   Non rispetta il giusto formato per un codice fiscale");
+
+
+$.validator.addMethod("noNumeri", function(value, element) {
+ 
+    return this.optional( element ) || /^[ a-zA-Zèéòì'àù]+$/.test( value );
+    
+}, "   Questo campo non può contenere numeri o caratteri speciali"); 

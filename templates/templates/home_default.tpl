@@ -71,13 +71,12 @@
             </div>
         </div>
         <div id="registrazionemodal">
-            <div id="signup-ct">
-                <div id="signup-header">
+                <te id="signup-header">
                     <h2>Creazione account</h2>
                     <p>&Egrave; facile e veloce.</p>
                     <a class="modal_close" href="#"></a>
-                </div>
-                <form id="regForm" method="post" action="Control/CRegistrazione.php">
+                </tr>
+                <form id='RegisterForm' method="post" action="Control/Ajax/ARegistrazione.php?task=reg">
                     <table>
                     <tr class="tableElem">
                         <td class="desc">Nome</td>
@@ -92,25 +91,31 @@
                             </div>   
                     </tr>
                     <tr class="tableElem">
+                        <td class="desc">Codice Fiscale</td>
+                        <td><div class="txt-fld">
+                             <input  id="codiceFiscale" type="text"name="CodiceFiscale" >
+                            </div>   
+                    </tr>
+                    <tr class="tableElem">
                         <td class="desc">Email Registrazione</td>
                         <td><div class="txt-fld">
-                             <input  type="text"name="EmailReg" >
+                             <input id="emailreg" type="text"name="EmailReg" >
                             </div>    
                     </tr>
                     <tr class="tableElem">
                         <td class="desc">Data Nascita</td>
                         <td><div class="txt-fld">
-                        <input  type="text"name="Data" >
+                        <input  id="datepicker" type="text" name="Data" >
                             </div>
                     </tr>
                     <tr class="legend">
                         <td class="desc" >Sesso</td>
-                        <td>maschio<input type="radio"name="sesso" value="maschio">femmina<input type="radio"name="sesso" value="femmina">
+                        <td>maschio<input type="radio"name="Sesso" value="m">femmina<input type="radio"name="Sesso" value="f">
                     </tr>    
                     <tr class="tableElem">
                         <td class="desc">Password</td>
                         <td><div class="txt-fld">
-                        <input  type="text"name="Password" >
+                        <input  type="text" name="Password" id="Password" >
                     </tr>
                     <tr class="tableElem">
                          <td class="desc">Ripeti Password</td>
@@ -122,7 +127,6 @@
                         <button type="bottoneReg">Registrati »</button>
                     </tr>  
                 </form>
-            </div>
         </div>
     {/if}
     <div class ="main">

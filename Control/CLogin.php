@@ -18,7 +18,11 @@ class CLogin {
                 return $this->controllaMail();
             }
             case 'reg': {
-                //registrazione
+                $this->processaReg();
+                header('location:../../index.php');   
+            }
+            case 'controllaEsistenzaCodiceFiscale':{
+               return $this->controllaCodiceFiscale(); 
             }
         }
     }
@@ -43,14 +47,36 @@ class CLogin {
             }
         }
     }
+    public function processaReg(){
+        $sessione=new USession();
+        if(!$sessione->getValore('idutente')== -1){
+            $nome=$_POST['Nome'];
+            $cognome=$_POST['Cognome'];
+            $data=$_POST['Data'];
+            $codicefiscale=$_POST['CodiceFiscale'];
+            $sesso=$_POST['Sesso'];
+            $emailreg=$_POST['EmailReg'];
+            $password=$_POST['Password'];
+            $Ute=new EUtente($nome,$cognome,$data,$codicefiscale,$sesso,$emailreg,$password);
+            $FUte=new FUtente();
+        $FUte->inserisciUtente($Ute);}
+            
+            
+    }
+    
 
     private function controllaMail() {
-        $mail = trim($_REQUEST['email']);
+        $mail = trim($_REQUEST['EmailReg']);
         $FUte = new FUtente();
         $esito = $FUte->controllaEsistenza('email',$mail);
+        return json_encode(!$esito);
 
-        return json_encode($esito);
-
+    }
+    private function ControllaCodiceFiscale(){
+        $codicefiscale=($_REQUEST['CodiceFiscale']);
+        $FUte = new FUtente();
+        $esito=$FUte->controllaEsistenza('codiceFiscale', $codicefiscale);
+        return json_encode(!$esito);
     }
     private function logout() {
         $sessione = new USession();

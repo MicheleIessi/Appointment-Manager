@@ -2,6 +2,9 @@
     <p>Agenda di {$nomeProf}:</p>
     <p id="dettagli"></p>
     <div id='external-events'>
+        <div id="loadingDiv">
+            <img id="loadingGif" src="img/loading.gif" />
+        </div>
         <h4>Servizi disponibili:</h4>
         {foreach $servizi as $servizio}
             <div class='fc-event' style='z-index: auto' data-event='{literal}{{/literal}"title"{literal}:{/literal}"{$servizio['nome']}"{literal}}{/literal}' data-duration="{$servizio['durata']}">{$servizio['nome']}</div>

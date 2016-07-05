@@ -19,11 +19,11 @@
     </head>
     <body>
     <!-- BANNER -->
-    {$banner}
     <!-- MAIN BUTTONS -->
     {$nolog = false}
     <div class="wrapper">
         <div class ="mainButtons">
+            {$banner}
             {foreach $mainButtons as $button}
                 {if $button['testo'] eq 'Login' or $button['testo'] eq 'Registrati' }
                     {$nolog = true}

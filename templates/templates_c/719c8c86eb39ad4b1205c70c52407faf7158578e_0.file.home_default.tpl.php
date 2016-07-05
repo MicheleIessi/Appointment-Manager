@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-07-04 16:31:58
+<?php /* Smarty version 3.1.27, created on 2016-07-05 02:28:50
          compiled from "templates\templates\home_default.tpl" */ ?>
 <?php
-/*%%SmartyHeaderCode:10614577a735eba13b0_44735398%%*/
+/*%%SmartyHeaderCode:28534577aff4281d084_12400943%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,11 +9,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '719c8c86eb39ad4b1205c70c52407faf7158578e' => 
     array (
       0 => 'templates\\templates\\home_default.tpl',
-      1 => 1467642630,
+      1 => 1467678528,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '10614577a735eba13b0_44735398',
+  'nocache_hash' => '28534577aff4281d084_12400943',
   'variables' => 
   array (
     'title' => 0,
@@ -26,13 +26,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_577a735ebe4c82_11218220',
+  'unifunc' => 'content_577aff428ce560_92695662',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_577a735ebe4c82_11218220')) {
-function content_577a735ebe4c82_11218220 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_577aff428ce560_92695662')) {
+function content_577aff428ce560_92695662 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '10614577a735eba13b0_44735398';
+$_smarty_tpl->properties['nocache_hash'] = '28534577aff4281d084_12400943';
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
@@ -74,12 +74,12 @@ $_smarty_tpl->properties['nocache_hash'] = '10614577a735eba13b0_44735398';
     </head>
     <body>
     <!-- BANNER -->
-    <?php echo $_smarty_tpl->tpl_vars['banner']->value;?>
-
     <!-- MAIN BUTTONS -->
     <?php $_smarty_tpl->tpl_vars['nolog'] = new Smarty_Variable(false, null, 0);?>
     <div class="wrapper">
         <div class ="mainButtons">
+            <?php echo $_smarty_tpl->tpl_vars['banner']->value;?>
+
             <?php
 $_from = $_smarty_tpl->tpl_vars['mainButtons']->value;
 if (!is_array($_from) && !is_object($_from)) {

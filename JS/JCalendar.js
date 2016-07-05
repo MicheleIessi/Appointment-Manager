@@ -1,5 +1,5 @@
 $(document).ready(function() {
-
+    $('#loadingGif').hide();
     $('.cestinoNascosto').hide();
     $('#mostraCestino').click(function() {
         $('.cestinoNascosto').show();
@@ -134,6 +134,9 @@ $(document).ready(function() {
                 var decisione = confirm('Sei sicuro di voler annullare questo appuntamento?');
                 if(decisione) {
                     var motivazione = prompt("Inserire la motivazione:","Nessuna motivazione");
+                    var dettagli = $('#dettagli');
+                    dettagli.text("");
+                    $('#loadingGif').show();
                     $.ajax({
                         url: 'Control/CProcessaCalendar.php',
                         type: 'POST',
@@ -146,6 +149,7 @@ $(document).ready(function() {
                         success: function (response) {
                             if (response.stato == 'successo') {
                                 var dettagli = $('#dettagli');
+                                $('#loadingGif').hide();
                                 dettagli.text(response.messaggio);
                                 dettagli.css('color','green');
                                 $('#calendar').fullCalendar('removeEvents', event._id);

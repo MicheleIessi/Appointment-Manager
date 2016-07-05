@@ -1,3 +1,12 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 5-lug-2016, 16.26.57
+    Author     : andy
+*/
 #aggiunta {
     margin: 0 auto;
     cursor: pointer;
@@ -122,4 +131,13 @@ button {
 #dettagli {
     width: 230px;
     font-size: small;
+}
+
+#loadingGif {
+    width: 200px;
+    height: 150px;
+}
+
+#loadingDiv {
+    text-align: center;
 }

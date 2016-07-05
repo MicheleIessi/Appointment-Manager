@@ -18,32 +18,35 @@ class CIndex {
      * @var VIndex
      */
     private $VIndex;
-
-    public function impostaPagina() {
-        $this->VIndex = new VIndex();
-        $sessione = new USession();
-        $log = $sessione->getValore('idUtente');
-//        $sessione->impostaValore('idUtente',15);
-//        $sessione->impostaValore('tipo','cliente');
-        if($log===false) {
-            $log=-1;    //a questo punto del programma in questo commit, bisogna fare controlli per il login
+    public function impostaPagina()
+    {
+        if (!file_exists('includes/config.inc.php')) {
+            $CSet = new CSetup();
+            $CSet->mux();
         }
-
-        $this->VIndex = new VIndex();
-        $content = $this->smista($log);
-        $this->VIndex->setContent($content);
-
-
-
-        if($log==-1)//-1=non loggato
-            $this->VIndex->impostaPaginaOspite();
-        else if($log==0)//0=admin
-            /* qualcosa */;
-        else if($log>0)//professionista/utente
-            $this->VIndex->impostaPaginaRegistrato();
-        $this->VIndex->mostraPagina();
+        else {
+            require_once('includes/config.inc.php');
+            $this->VIndex = new VIndex();
+            $sessione = new USession();
+            $log = $sessione->getValore('idUtente');
+            //        $sessione->impostaValore('idUtente',15);
+            //        $sessione->impostaValore('tipo','cliente');
+            if ($log === false) {
+                $log = -1;    //a questo punto del programma in questo commit, bisogna fare controlli per il login
+            }
+            $this->VIndex = new VIndex();
+            $content = $this->smista($log);
+            $this->VIndex->setContent($content);
+            if ($log == -1)//-1=non loggato
+                $this->VIndex->impostaPaginaOspite();
+            else if ($log == 0)//0=admin
+                /* qualcosa */
+                ;
+            else if ($log > 0)//professionista/utente
+                $this->VIndex->impostaPaginaRegistrato();
+            $this->VIndex->mostraPagina();
+        }
     }
-
     public function smista($log) {
         $sessione = new USession();
         switch($this->VIndex->getController()) {
@@ -73,7 +76,6 @@ class CIndex {
                         $idp = $_REQUEST['idp'];
                         $sessione->impostaValore('idCalendario',$idp);
                         $cal = new CCalendar();
-
                         if ($sessione->getValore('tipo') == 'professionista') {
                             if($sessione->getValore('idUtente') == $idp)
                                 $this->VIndex->setSideContent($cal->getColonnaProfessionista());
@@ -89,7 +91,6 @@ class CIndex {
                         return $this->VIndex->fetch('professionistaNonTrovato.tpl');
                     }
                 return $this->VIndex->fetch('forbidden.tpl');
-
             case 'paginaCliente':
                 if (isset($_REQUEST['id']) && is_numeric($_REQUEST['id'])) {
                     $CPagU = new CUtente();
@@ -115,7 +116,6 @@ class CIndex {
                     else {
                         return $this->VIndex->fetch('errore.tpl');
                     }
-
                 }
                 
             case 'modificaUtente':
@@ -123,12 +123,9 @@ class CIndex {
                 $this->VIndex->setData('messaggio', $messaggio);
                 $sessione->cancellaValore('messaggioErrore');
                 return $this->VIndex->fetch('modificaUtente.tpl');     // solo per provare, ancora da fare i controlli
-
-
-
             default:
                 return $this->VIndex->fetch('home_default_content.tpl');
         }
     }
-
+    
 }

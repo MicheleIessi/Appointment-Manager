@@ -5,6 +5,7 @@
         <link type="text/css" rel="stylesheet" href='View/css/prova.css' />
         <link type="text/css" rel="stylesheet" href="View/css/login.css" />
         <link type="text/css" rel="stylesheet" href="View/css/calendario.css" />
+        <link type="text/css" rel="stylesheet" href="View/css/jquery-ui.css" />
 
         <script type="text/javascript" src='JS/fullcalendar-2.6.1/lib/jquery.min.js'></script>
         <script type="text/javascript" src="JS/validation/jquery.validate.js"></script>
@@ -76,7 +77,7 @@
                     <p>&Egrave; facile e veloce.</p>
                     <a class="modal_close" href="#"></a>
                 </tr>
-                <form id='RegisterForm' method="post" action="Control/Ajax/ARegistrazione.php?task=reg">
+                <form id='RegisterForm' method="post" action="Control/Ajax/ALogin.php?task=reg">
                     <table>
                     <tr class="tableElem">
                         <td class="desc">Nome</td>
@@ -99,7 +100,7 @@
                     <tr class="tableElem">
                         <td class="desc">Email Registrazione</td>
                         <td><div class="txt-fld">
-                             <input id="emailreg" type="text"name="EmailReg" >
+                             <input id="emailreg" type="text"name="email" >
                             </div>    
                     </tr>
                     <tr class="tableElem">
@@ -110,7 +111,7 @@
                     </tr>
                     <tr class="legend">
                         <td class="desc" >Sesso</td>
-                        <td>maschio<input type="radio"name="Sesso" value="m">femmina<input type="radio"name="Sesso" value="f">
+                        <td>maschio<input type="radio"name="Sesso" value="m" checked>femmina<input type="radio"name="Sesso" value="f">
                     </tr>    
                     <tr class="tableElem">
                         <td class="desc">Password</td>

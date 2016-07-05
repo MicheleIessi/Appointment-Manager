@@ -90,7 +90,8 @@ class CIndex {
                 return $this->VIndex->fetch('forbidden.tpl');
 
             case 'paginaCliente':
-                if (isset($_REQUEST['id']) && is_numeric($_REQUEST['id'])) {
+                if($log > 0) {                
+                    if (isset($_REQUEST['id']) && is_numeric($_REQUEST['id'])) {
                     $CPagU = new CUtente();
                     $idUtente = $_REQUEST['id'];
                     $sessione->impostaValore('paginaDaMostrare', 'cliente');
@@ -102,21 +103,26 @@ class CIndex {
                     }
                     
                 }
-                
+            }
+            else
+                return $this->VIndex->fetch('forbidden.tpl');
             case 'paginaProfessionista':
-                if (isset($_REQUEST['id']) && is_numeric($_REQUEST['id'])) {
-                    $CPagU = new CUtente();
-                    $idProfessionista = $_REQUEST['id'];
-                    $sessione->impostaValore('paginaDaMostrare', 'professionista');
-                    if($CPagU->controllaProfessionista($idProfessionista) == 'professionista') {
-                        return $CPagU->smista($idProfessionista);
+                if($log > 0) {                
+                    if (isset($_REQUEST['id']) && is_numeric($_REQUEST['id'])) {
+                        $CPagU = new CUtente();
+                        $idProfessionista = $_REQUEST['id'];
+                        $sessione->impostaValore('paginaDaMostrare', 'professionista');
+                        if($CPagU->controllaProfessionista($idProfessionista) == 'professionista') {
+                            return $CPagU->smista($idProfessionista);
+                        }
+                        else {
+                            return $this->VIndex->fetch('errore.tpl');
+                        }
                     }
-                    else {
-                        return $this->VIndex->fetch('errore.tpl');
-                    }
-
                 }
-                
+                else
+                    return $this->VIndex->fetch('forbidden.tpl');
+
             case 'modificaUtente':
                 $messaggio = $sessione->getValore('messaggioErrore');
                 $this->VIndex->setData('messaggio', $messaggio);

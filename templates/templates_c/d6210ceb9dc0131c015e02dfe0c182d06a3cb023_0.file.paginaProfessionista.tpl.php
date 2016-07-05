@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-07-04 16:31:58
+<?php /* Smarty version 3.1.27, created on 2016-07-05 16:28:14
          compiled from "templates\templates\paginaProfessionista.tpl" */ ?>
 <?php
-/*%%SmartyHeaderCode:27704577a735eb05492_45782725%%*/
+/*%%SmartyHeaderCode:12875577bc3fe655c82_45794234%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,11 +9,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'd6210ceb9dc0131c015e02dfe0c182d06a3cb023' => 
     array (
       0 => 'templates\\templates\\paginaProfessionista.tpl',
-      1 => 1467642680,
+      1 => 1467728878,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '27704577a735eb05492_45782725',
+  'nocache_hash' => '12875577bc3fe655c82_45794234',
   'variables' => 
   array (
     'numID' => 0,
@@ -29,22 +29,24 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'nomeUtente' => 0,
     'serviziOfferti' => 0,
     'servizio' => 0,
+    'proprietario' => 0,
+    'tipo' => 0,
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_577a735eb75855_40345268',
+  'unifunc' => 'content_577bc3fe6d70f2_63987888',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_577a735eb75855_40345268')) {
-function content_577a735eb75855_40345268 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_577bc3fe6d70f2_63987888')) {
+function content_577bc3fe6d70f2_63987888 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '27704577a735eb05492_45782725';
+$_smarty_tpl->properties['nocache_hash'] = '12875577bc3fe655c82_45794234';
 ?>
 <link type="text/css" rel="stylesheet" href="View/css/paginaProfessionista.css"/>
 
 <div title="contenitoreUtente"id="contenitoreUtente">
         
-    <h2>Pagina Professionista - ID Utente <?php echo $_smarty_tpl->tpl_vars['numID']->value;?>
+    <h2 id="titolo">Pagina Professionista - ID Utente <?php echo $_smarty_tpl->tpl_vars['numID']->value;?>
 </h2>
 
     <div title="immagine" id="immagine">
@@ -55,17 +57,17 @@ $_smarty_tpl->properties['nocache_hash'] = '27704577a735eb05492_45782725';
 
         <ul>
             <li>Nome: <?php echo $_smarty_tpl->tpl_vars['nome']->value;?>
- </li>
+ </li><br>
             <li>Cognome: <?php echo $_smarty_tpl->tpl_vars['cognome']->value;?>
- </li>
+ </li><br>
             <li>Data di nascita: <?php echo $_smarty_tpl->tpl_vars['dataNascita']->value;?>
- </li>
+ </li><br>
             <li>Sesso: <?php echo $_smarty_tpl->tpl_vars['sesso']->value;?>
- </li>
+ </li><br>
             <li>Codice fiscale: <?php echo $_smarty_tpl->tpl_vars['codiceFiscale']->value;?>
- </li>
+ </li><br>
             <li>Email:<?php echo $_smarty_tpl->tpl_vars['email']->value;?>
- </li>
+ </li><br>
             <li>Settore:<?php echo $_smarty_tpl->tpl_vars['settore']->value;?>
  </li>
         </ul> 
@@ -73,12 +75,14 @@ $_smarty_tpl->properties['nocache_hash'] = '27704577a735eb05492_45782725';
     </div>
         
     <?php if ($_smarty_tpl->tpl_vars['modifica']->value) {?>
-        <a href=?controller=modificaUtente id="modifica"><button>Modifica informazioni</button></a>
+        <a href=?controller=modificaUtente><button class="bottoneProf">Modifica informazioni</button></a>
     <?php }?>
 
-    <div title="orariLavoro" id="orariLavoro">
-        <table>
-            <h3>Orario di lavoro</h3>
+    <h3>Orario di lavoro</h3>
+    
+    <div title="orariLavoro" class="tabProfessionisti">
+        <table id="orariLavoro">
+            
             <tr>
                 <td>Lunedì</td>
                 <td> <?php echo $_smarty_tpl->tpl_vars['orariLavorativi']->value['lun'];?>
@@ -123,12 +127,13 @@ $_smarty_tpl->properties['nocache_hash'] = '27704577a735eb05492_45782725';
 
         </table>
     </div>
-            
-    <div title="serviziOfferti" id="serviziOfferti">
-        <table id="servizi">
-            <h3>Servizi offerti da <?php echo $_smarty_tpl->tpl_vars['nomeUtente']->value;?>
+     
+    <h3>Servizi offerti da <?php echo $_smarty_tpl->tpl_vars['nomeUtente']->value;?>
 </h3>
-            
+    
+    <div title="serviziOfferti" class="tabProfessionisti">
+        <table id="serviziOfferti">
+                        
             <tr id="chiavi">
                 <td>Nome servizio</td>
                 <td>Settore</td>
@@ -165,10 +170,19 @@ $_smarty_tpl->tpl_vars['servizio'] = $foreach_servizio_Sav;
         </table>
     </div>
     
-    <a href="?controller=calendario&idp=<?php echo $_smarty_tpl->tpl_vars['numID']->value;?>
-"><button id="Calendario">Prenota un appuntamento! Clicca per aprire l'agenda di <?php echo $_smarty_tpl->tpl_vars['nomeUtente']->value;?>
-</button></a>
+    <?php if ($_smarty_tpl->tpl_vars['proprietario']->value || $_smarty_tpl->tpl_vars['tipo']->value == "cliente") {?>
+        <a href="?controller=calendario&idp=<?php echo $_smarty_tpl->tpl_vars['numID']->value;?>
+"><button class="bottoneProf">
 
+            <?php if ($_smarty_tpl->tpl_vars['proprietario']->value) {?>
+                Apri la tua agenda
+                <?php } else { ?>
+                Prenota un appuntamento! Clicca per aprire l'agenda di <?php echo $_smarty_tpl->tpl_vars['nomeUtente']->value;?>
+
+            <?php }?>
+
+        </button></a>
+    <?php }?>
 </div><?php }
 }
 ?>

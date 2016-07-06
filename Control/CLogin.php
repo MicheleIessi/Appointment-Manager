@@ -21,15 +21,10 @@ class CLogin {
         switch($a) {
             case 'login': {
                 $this->processaLogin();
-                //header('location: ../../index.php');
                 break;
             } 
             case 'logout': {
                 $this->logout();
-                break;
-            }
-            case 'controllapassword':{
-                return $this->controllaPassword();
                 break;
             }
             case 'controllaEsistenzaMailL': {
@@ -40,8 +35,8 @@ class CLogin {
                 return $this->controllaMail();
                 break;
             } 
-            case 'controllaconferma':{
-                return $this->controllaconferma();
+            case 'conferma':{
+                $this->conferma();
                 break;
             }
             case 'reg': {
@@ -63,8 +58,8 @@ class CLogin {
         $sessione = new USession();
 
         if( !$sessione->getValore('idUtente') == -1) {
-            $mail = $_POST['email'];
-            $pass = $_POST['password'];
+            $mail = $_REQUEST['email'];
+            $pass = $_REQUEST['password'];
             $fute = new FUtente();
             $utente = $fute->caricaUtenteDaLogin($mail, $pass);
             if($utente!=false) { //è stato trovato un utente con mail e pass giuste
@@ -72,8 +67,8 @@ class CLogin {
                 $sessione->impostaValore('idUtente',$id);
                 $CUte = new CUtente();
                 $tipo = $CUte->controllaProfessionista($id);
-                $sessione->impostaValore('tipo','Utente');
-                
+                $sessione->impostaValore('tipo',$tipo);
+                header('location: ../../index.php');
             }
         }
     }
@@ -88,30 +83,57 @@ class CLogin {
             $emailreg=$_POST['email'];
             $password=$_POST['Password'];
             $srpassword=$_POST['RPassword'];
+            if($password != $srpassword) {
+                throw new Exception("Le password non coincidono");
+            }
             $codice=$this->GeneraCodice();   
             $Ute=new EUtente($nome,$cognome,$data,$codicefiscale,$sesso,$emailreg,$password,$codice);
             $FUte=new FUtente();
             $FUte->inserisciUtente($Ute);
             $mail=new UMail();
             $oggetto='Conferma Registrazione';
-            $corpoMail='http://localhost/appointment-manager/Control/Ajax/AConfirm.php?confirm='.$codice;
+            $corpoMail = "Gentile $nome $cognome, per confermare l'iscrizione al sito cliccare sul seguente link:".
+                         "http://localhost/appointment-manager/Control/Ajax/ALogin.php?task=conferma&code=$codice";
             $mail->inviaMail($emailreg, $nome, $oggetto, $corpoMail);
         }
             
             
     }
+
+    public function conferma() {
+        $code=$_REQUEST['code'];
+        $sessione = new USession();
+        $FUte=new FUtente();
+        if($FUte->controllaEsistenza('codiceconferma', $code)){
+            $Ute=$FUte->caricaUtenteDaConferma($code);
+            $Ute->setCodiceConferma('0');
+            if($FUte->aggiornaUtente($Ute)) {
+                $CUte = new CUtente();
+                $id = $Ute->getID();
+                $tipo = $CUte->controllaProfessionista($id);
+                $sessione->impostaValore('tipo',$tipo);
+                $tipo = ucfirst($tipo);
+                $sessione->impostaValore('idUtente',$id);
+                header("location: ../../?controller=pagina$tipo&id=$id");
+            }
+        }
+        else {
+            header("location: ../../index.php"); // sarebbe meglio fare il redirect a una pagina d'errore
+        }
+    }
         
     public function controllaconferma(){
-        $mail = trim($_POST['email']);
+        $mail = strtolower(trim($_POST['email']));
         $FUte=new FUtente;
         $Ute=$FUte->caricaUtenteDaMail($mail);
         if($FUte->controllaEsistenza('email', $mail)){
-        if($Ute->getCodiceconferma()!=0)
-            {return json_encode(true);}
-            else
-        {return json_encode(false);}}
-        
-                       
+        if($Ute->getCodiceconferma()!=0) {
+            return json_encode(true);
+        }
+            else {
+                return json_encode(false);
+            }
+        }
     }    
 
     private function controllaMail() {

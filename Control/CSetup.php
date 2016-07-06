@@ -48,7 +48,8 @@ class CSetup {
                 // creo un oggetto eutente per verificare che tutti i parametri rispettino le regexp
                 // se ci sono errori l'eccezione verrà 'catturata' e verrà stampata a video
 
-                $EAdmin = new EUtente($nome,$cognome,$dataNascita,$codiceFis,$sesso,$email,$pass,$idNum);
+                $EAdmin = new EUtente($nome,$cognome,$dataNascita,$codiceFis,$sesso,$email,$pass,0,0);
+                // l'admin ha codice di conferma 0 (è già attivo) e idutente 0 (riservato all'admin)
 
                 // sezione db
 
@@ -78,8 +79,8 @@ class CSetup {
                 //// a questo punto il database dovrebbe essere stato creato correttamente
                 //// inserisco l'amministratore nella tabella utenti
 
-                $sql = "INSERT INTO `utente` (`numID`,`nome`,`cognome`,`dataNascita`,`codiceFiscale`,`sesso`,`email`,`password`)".
-                    "VALUES ('$idNum','$nome','$cognome','$dataNascita','$codiceFis','$sesso','$email','$pass');";
+                $sql = "INSERT INTO `utente` (`numID`,`nome`,`cognome`,`dataNascita`,`codiceFiscale`,`sesso`,`email`,`password`,`codiceConferma`)".
+                    "VALUES ('$idNum','$nome','$cognome','$dataNascita','$codiceFis','$sesso','$email','$pass','0');";
                 $Fdb->query($sql);
                 $sql = "UPDATE `utente` SET `numID` = '0' WHERE `numID` = '1';";
                 $Fdb->query($sql);
@@ -99,7 +100,7 @@ class CSetup {
                     '$'."config['smarty']['template_dir'] = 'templates/templates';".$eol.
                     '$'."config['smarty']['compile_dir'] = 'templates/templates_c';".$eol.
                     '$'."config['smarty']['config_dir'] = 'templates/configs';".$eol.
-                    '$'."config['smarty']['cache_dir'] = 'templates/templates';".$eol.
+                    '$'."config['smarty']['cache_dir'] = 'templates/cache';".$eol.
                     $eol.
                     '$'."config['smtp']['host'] = '$smtphost';".$eol.
                     '$'."config['smtp']['port'] = '$smtpport';".$eol.

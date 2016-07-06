@@ -10,8 +10,8 @@ class EProfessionista extends EUtente {
     private $orariLavorativi = array();
 
 
-    public function __construct($n, $c, $dn, $cf, $s, $e, $p, $id, $so, $set, $or) {
-        parent::__construct($n, $c, $dn, $cf, $s, $e, $p, $id);
+    public function __construct($n, $c, $dn, $cf, $s, $e, $p, $cc, $id, $so, $set, $or) {
+        parent::__construct($n, $c, $dn, $cf, $s, $e, $p, $cc, $id);
         $this->setServiziOfferti($so);
         $this->setSettore($set);
         $this->setOrariLavorativi($or);

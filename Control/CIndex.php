@@ -31,8 +31,7 @@ class CIndex {
             $this->VIndex = new VIndex();
             $sessione = new USession();
             $log = $sessione->getValore('idUtente');
-            //        $sessione->impostaValore('idUtente',15);
-            //        $sessione->impostaValore('tipo','cliente');
+
             if ($log === false) {
 
                 $log = -1;

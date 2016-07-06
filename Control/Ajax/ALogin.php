@@ -5,5 +5,3 @@ $tas = $_REQUEST['task'];
 $CLog = new CLogin($tas);
 
 echo $CLog->smista();
-
-

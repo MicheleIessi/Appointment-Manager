@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-07-06 15:56:55
+<?php /* Smarty version 3.1.27, created on 2016-07-06 22:01:51
          compiled from "templates\templates\home_default.tpl" */ ?>
 <?php
-/*%%SmartyHeaderCode:27726577d0e2748f843_69640209%%*/
+/*%%SmartyHeaderCode:485577d63afb14ca7_63341459%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,11 +9,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '719c8c86eb39ad4b1205c70c52407faf7158578e' => 
     array (
       0 => 'templates\\templates\\home_default.tpl',
-      1 => 1467813389,
+      1 => 1467835102,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '27726577d0e2748f843_69640209',
+  'nocache_hash' => '485577d63afb14ca7_63341459',
   'variables' => 
   array (
     'title' => 0,
@@ -26,19 +26,20 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_577d0e27532ab3_54560603',
+  'unifunc' => 'content_577d63afbc4922_41832885',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_577d0e27532ab3_54560603')) {
-function content_577d0e27532ab3_54560603 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_577d63afbc4922_41832885')) {
+function content_577d63afbc4922_41832885 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '27726577d0e2748f843_69640209';
+$_smarty_tpl->properties['nocache_hash'] = '485577d63afb14ca7_63341459';
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
     <head>
         <link type="text/css" rel="stylesheet" href='View/css/prova.css' />
         <link type="text/css" rel="stylesheet" href="View/css/login.css" />
+        <link type="text/css" rel="stylesheet" href="View/css/jquery-ui.css" />
         <?php echo '<script'; ?>
  type="text/javascript" src='JS/fullcalendar-2.6.1/lib/jquery.min.js'><?php echo '</script'; ?>
 >
@@ -66,6 +67,7 @@ $_smarty_tpl->properties['nocache_hash'] = '27726577d0e2748f843_69640209';
         <?php echo '<script'; ?>
  type="text/javascript" src="JS/JLogin.js"><?php echo '</script'; ?>
 >
+        
         <title><?php echo $_smarty_tpl->tpl_vars['title']->value;?>
 </title>
     </head>
@@ -133,7 +135,7 @@ $_smarty_tpl->tpl_vars['button'] = $foreach_button_Sav;
                         <tr class="tableElem">
                             <td class="desc">Password</td>
                             <td><div class="txt-fld">
-                                    <input type="password" name="pass" id="pass" >
+                                    <input type="password" name="password" id="pass" >
                                 </div>
                             </td>
                         </tr>

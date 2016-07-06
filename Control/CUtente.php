@@ -167,7 +167,7 @@ class CUtente {
     
     /**
      * La funzione controllaProfessionista vede se l'id passato è l'id di un professionista.
-     * @param type $id l'id da controllare
+     * @param string $id l'id da controllare
      * @return boolean true se l'id appartiene a un professionista, false altrimenti
      */
     public function controllaProfessionista($id) {

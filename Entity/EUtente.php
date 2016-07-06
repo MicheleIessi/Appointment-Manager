@@ -8,7 +8,7 @@ class EUtente {
     protected $sesso;
     protected $email;
     protected $password;
-    protected static $codiceconferma =0;
+    protected $codiceConferma = 0;
     public function __construct($n, $c, $dn, $cf, $s, $e, $p,$cc,$numID=null) {
         $this->setID($numID);
         $this->setNome($n);
@@ -18,10 +18,10 @@ class EUtente {
         $this->setSesso($s);
         $this->setEmail($e);
         $this->setPassword($p);
-        $this->setCodiceconferma($cc);
+        $this->setCodiceConferma($cc);
     }
-    public function setCodiceconferma($cc){
-        $this->codiceconferma=$cc;
+    public function setCodiceConferma($cc){
+        $this->codiceConferma=$cc;
     }
             
     public function setNome($n) {
@@ -135,10 +135,16 @@ class EUtente {
     public function getEmail()          { return $this->email; }
     public function getPassword()       { return $this->password; }
     public function getID()             { return $this->numID; }
-    public function getCodiceconferma() { return $this->codiceconferma;}
+    public function getCodiceConferma() {
+        if($this->codiceConferma == 0) {
+            return "0";
+        }
+        else
+            return $this->codiceConferma;
+    }
     // Metodo di utilità per il lato Foundation
     public function getArrayAttributi() {
         return array($this->numID,$this->nome,$this->cognome,$this->dataNascita,
-            $this->codiceFiscale,$this->sesso,$this->email,$this->password,$this->codiceconferma);
+            $this->codiceFiscale,$this->sesso,$this->email,$this->password,$this->codiceConferma);
     }
 }

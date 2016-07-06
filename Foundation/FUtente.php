@@ -74,10 +74,6 @@ class FUtente extends Fdb   {
         return true;
     }
 
-    /**
-     * @param $key
-     * @return EUtente
-     */
     public function caricaUtenteDaConferma($code){
         $this->setParametri();
         $binding=$this->confirm_bind;
@@ -119,6 +115,11 @@ class FUtente extends Fdb   {
         }
         
     }
+
+    /**
+     * @param $key
+     * @return EUtente
+     */
     public function caricaUtenteDaDb($key) {
         $this->setParametri();
         $valori=explode(',',$key);
@@ -132,7 +133,7 @@ class FUtente extends Fdb   {
         $arrayUte = parent::carica($arr);
         $arrayUte = array_values($arrayUte);
         $ute = new $this->return_class($arrayUte[1],$arrayUte[2],$arrayUte[3],$arrayUte[4],$arrayUte[5],
-                                       $arrayUte[6],$arrayUte[7],$arrayUte[0]);
+                                       $arrayUte[6],$arrayUte[7],$arrayUte[8],$arrayUte[0]);
         return $ute;
     }
 
@@ -159,7 +160,7 @@ class FUtente extends Fdb   {
             else {
                 $arrayUte = array_values($arrayUte[0]);
                 $ute = new $this->return_class($arrayUte[1], $arrayUte[2], $arrayUte[3], $arrayUte[4],
-                    $arrayUte[5], $arrayUte[6], $arrayUte[7], $arrayUte[0]);
+                    $arrayUte[5], $arrayUte[6], $arrayUte[7], $arrayUte[8], $arrayUte[0]);
                 //echo "Utente {$ute->getNome()} {$ute->getCognome()} ha effettuato correttamente il login.<br>";
                 return $ute;
             }

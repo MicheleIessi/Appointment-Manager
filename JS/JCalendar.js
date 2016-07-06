@@ -1,24 +1,13 @@
 $(document).ready(function() {
-    $('#loadingGif').hide();
-    $('.cestinoNascosto').hide();
-    $('#mostraCestino').click(function() {
-        $('.cestinoNascosto').show();
-        $('#mostraCestino').hide();
-        var dettagli = $('#dettagli');
-        dettagli.text('Trascina un appuntamento sul cestino per eliminarlo');
-        dettagli.css('color','cornflowerblue');
-    });
-    $('#fineModifica').click(function() {
-        $('.cestinoNascosto').hide();
-        $('#mostraCestino').show();
-        $('#dettagli').text("");
-    });
+    var oggi = moment();
+    var sett = oggi.clone().add(1,'week');
+    var calendar = $('#calendar');
 
-    $('#calendar').fullCalendar({
+    calendar.fullCalendar({
         header: {
             left: 'prev,next today',
             center: 'title',
-            right: 'month,agendaWeek,agendaDay'
+            right: 'agendaWeek'
         },
         editable: true,
         droppable: true,    // this allows things to be dropped onto the calendar
@@ -29,7 +18,7 @@ $(document).ready(function() {
 
         firstDay: 0,
         defaultView: 'agendaWeek',
-
+        defaultDate: sett,
         views: {
             agenda: {
                 allDaySlot: false,
@@ -38,7 +27,7 @@ $(document).ready(function() {
                 slotEventOverlap: false
             }
         },
-
+        contentHeight: 480,
         nowIndicator: true,
         lang: 'it',
         timeFormat: 'H:mm:ss',
@@ -130,10 +119,10 @@ $(document).ready(function() {
             var y1 = ofs.top;
             var y2 = ofs.top + trashEl.outerHeight(true);
             var idApp = event.id;
-            if (jsEvent.pageX >= x1 && jsEvent.pageX<= x2 && jsEvent.pageY>= y1 && jsEvent.pageY <= y2) {
+            if (jsEvent.pageX >= x1 && jsEvent.pageX <= x2 && jsEvent.pageY >= y1 && jsEvent.pageY <= y2) {
                 var decisione = confirm('Sei sicuro di voler annullare questo appuntamento?');
-                if(decisione) {
-                    var motivazione = prompt("Inserire la motivazione:","Nessuna motivazione");
+                if (decisione) {
+                    var motivazione = prompt("Inserire la motivazione:", "Nessuna motivazione");
                     var dettagli = $('#dettagli');
                     dettagli.text("");
                     $('#loadingGif').show();
@@ -151,7 +140,7 @@ $(document).ready(function() {
                                 var dettagli = $('#dettagli');
                                 $('#loadingGif').hide();
                                 dettagli.text(response.messaggio);
-                                dettagli.css('color','green');
+                                dettagli.css('color', 'green');
                                 $('#calendar').fullCalendar('removeEvents', event._id);
                             }
                             else if (response.stato == 'errore') {
@@ -169,6 +158,10 @@ $(document).ready(function() {
 
 
     });
+    // fix rendering per google chrome
+    window.setTimeout(function() {
+        calendar.fullCalendar('gotoDate',oggi);
+    },1);
     /* RENDE DRAGGABILI GLI EVENTI */
     $('#external-events .fc-event').each(function() {
 
@@ -187,14 +180,21 @@ $(document).ready(function() {
 
 
     });
-
-    $('#cestino').droppable({
-        tolerance: 'pointer',
-        accept: '#calendar .fc-event',
-        drop: function(event, ui) {
-            alert('droppato sul cestino');
-        }
+    $('#loadingGif').hide();
+    $('.cestinoNascosto').hide();
+    $('#mostraCestino').click(function() {
+        $('.cestinoNascosto').show();
+        $('#mostraCestino').hide();
+        var dettagli = $('#dettagli');
+        dettagli.text('Trascina un appuntamento sul cestino per eliminarlo');
+        dettagli.css('color','cornflowerblue');
     });
+    $('#fineModifica').click(function() {
+        $('.cestinoNascosto').hide();
+        $('#mostraCestino').show();
+        $('#dettagli').text("");
+    });
+
 });
 
 

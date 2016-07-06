@@ -57,6 +57,10 @@ class FServizio extends Fdb {
         }
     }
 
+    /**
+     * @param $key
+     * @return bool | EServizio
+     */
     public function caricaServizioDaDb($key) {
         $es = false;
         parent::setParam($this->table,$this->attributi,$this->bind,$this->bind_key,$this->old_keys);

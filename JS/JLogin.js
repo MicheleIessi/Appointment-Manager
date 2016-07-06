@@ -34,7 +34,7 @@ $(document).ready(function() {
             email: {
                 required: true,
                 controllaEmail: true,
-                maxlength: 40,
+                maxlength: 50,
                 remote: {
 
                     onfocusout: true,
@@ -43,7 +43,9 @@ $(document).ready(function() {
                     data: {
                         task: 'controllaEsistenzaMailL'
                     }
-                }
+                    }
+                 
+                
             },
 
             pass: {
@@ -56,14 +58,14 @@ $(document).ready(function() {
                 required: "Inserisci il tuo indirizzo email",
                 email: "Non rispetta il giusto formato per una mail",
                 remote: "Email non presente, ricontrollala",
-                maxlength: "Massimo 40 caratteri"
+                maxlength: "Massimo 50 caratteri"
             },
             pass: {
                 required: "Inserisci la password"
             }
-        }
-
-    });
+                 }
+             
+          });
 
 $("#RegisterForm").validate({
         rules: {

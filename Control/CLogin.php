@@ -28,20 +28,20 @@ class CLogin {
             } break;
             case 'controllaEsistenzaMailL': {
                 return $this->controllaMail();
-            }
+            } break;
             case 'controllaEsistenzaMailR': {
                 return $this->controllaMail();
+            } break;
+            case 'controllaconferma':{
+                return $this->controllaconferma();
             }    
             case 'reg': {
                 $this->processaReg();
-                header('location:../../index.php');
-                
-            }
-            case 'confirm':{
-            }
+                header('location:../../index.php');   
+            }break;
             case 'controllaEsistenzaCodiceFiscale':{
                return $this->controllaCodiceFiscale(); 
-            }
+            }break;
         }
     }
 
@@ -51,7 +51,7 @@ class CLogin {
 
         $sessione = new USession();
 
-        if(!$sessione->getValore('idUtente') == -1) {
+        if( !$sessione->getValore('idUtente') == -1) {
             $mail = $_POST['email'];
             $pass = $_POST['pass'];
             $fute = new FUtente();
@@ -76,16 +76,34 @@ class CLogin {
             $emailreg=$_POST['email'];
             $password=$_POST['Password'];
             $srpassword=$_POST['RPassword'];
-            if($password==$srpassword){
-            $Ute=new EUtente($nome,$cognome,$data,$codicefiscale,$sesso,$emailreg,$password);
+            $codice=$this->GeneraCodice();   
+            $Ute=new EUtente($nome,$cognome,$data,$codicefiscale,$sesso,$emailreg,$password,$codice);
             $FUte=new FUtente();
             $FUte->inserisciUtente($Ute);
-            }
+            $mail=new UMail();
+            $oggetto='Conferma Registrazione';
+            $corpoMail='http://localhost/appointment-manager/Control/Ajax/AConfirm.php?confirm='.$codice;
+            $mail->inviaMail($emailreg, $nome, $oggetto, $corpoMail);
         }
             
             
     }
-    
+    public function controllaconferma(){
+        $mail = trim($_POST['email']);
+        $a=$this->getTask();
+        $FUte=new FUtente;
+        $esito=$FUte->controllaEsistenza('email', $mail);
+        if($esito){
+            $Ute=$FUte->caricaUtenteDaMail($mail);
+            if($Ute->getCodiceconferma()!=0)
+            {return json_encode(false);}
+            else
+            {return json_encode(true);}          
+         
+        }
+        else{return json_encode($esito);}
+           
+    }    
 
     private function controllaMail() {
         $mail = trim($_POST['email']);
@@ -119,8 +137,17 @@ class CLogin {
         return $dataISO;
     }
     private function GeneraCodice(){
-        
-    }
+           $salt= 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345678';
+           $len= strlen($salt);
+           $length=8;
+           $makepass   = '';
+           mt_srand(10000000*(double)microtime());
+           for ($i = 0; $i < $length; $i++) {
+               $makepass .= $salt[mt_rand(0,$len - 1)];
+           }
+       	   return $makepass;
+}
+
             
 
     

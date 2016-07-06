@@ -21,27 +21,38 @@ class CLogin {
         switch($a) {
             case 'login': {
                 $this->processaLogin();
-                header('location: ../../index.php');
-            } break;
+                //header('location: ../../index.php');
+                break;
+            } 
             case 'logout': {
                 $this->logout();
-            } break;
+                break;
+            }
+            case 'controllapassword':{
+                return $this->controllaPassword();
+                break;
+            }
             case 'controllaEsistenzaMailL': {
                 return $this->controllaMail();
-            } break;
+                break;
+            } 
             case 'controllaEsistenzaMailR': {
                 return $this->controllaMail();
-            } break;
+                break;
+            } 
             case 'controllaconferma':{
                 return $this->controllaconferma();
-            }    
+                break;
+            }
             case 'reg': {
                 $this->processaReg();
-                header('location:../../index.php');   
-            }break;
+                header('location:../../index.php');
+                break;
+            }
             case 'controllaEsistenzaCodiceFiscale':{
-               return $this->controllaCodiceFiscale(); 
-            }break;
+               return $this->controllaCodiceFiscale();
+               break;
+            }
         }
     }
 
@@ -53,7 +64,7 @@ class CLogin {
 
         if( !$sessione->getValore('idUtente') == -1) {
             $mail = $_POST['email'];
-            $pass = $_POST['pass'];
+            $pass = $_POST['password'];
             $fute = new FUtente();
             $utente = $fute->caricaUtenteDaLogin($mail, $pass);
             if($utente!=false) { //è stato trovato un utente con mail e pass giuste
@@ -61,7 +72,8 @@ class CLogin {
                 $sessione->impostaValore('idUtente',$id);
                 $CUte = new CUtente();
                 $tipo = $CUte->controllaProfessionista($id);
-                $sessione->impostaValore('tipo',$tipo);
+                $sessione->impostaValore('tipo','Utente');
+                
             }
         }
     }
@@ -88,21 +100,18 @@ class CLogin {
             
             
     }
+        
     public function controllaconferma(){
         $mail = trim($_POST['email']);
-        $a=$this->getTask();
         $FUte=new FUtente;
-        $esito=$FUte->controllaEsistenza('email', $mail);
-        if($esito){
-            $Ute=$FUte->caricaUtenteDaMail($mail);
-            if($Ute->getCodiceconferma()!=0)
-            {return json_encode(false);}
+        $Ute=$FUte->caricaUtenteDaMail($mail);
+        if($FUte->controllaEsistenza('email', $mail)){
+        if($Ute->getCodiceconferma()!=0)
+            {return json_encode(true);}
             else
-            {return json_encode(true);}          
-         
-        }
-        else{return json_encode($esito);}
-           
+        {return json_encode(false);}}
+        
+                       
     }    
 
     private function controllaMail() {

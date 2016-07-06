@@ -60,7 +60,7 @@
                         <tr class="tableElem">
                             <td class="desc">Password</td>
                             <td><div class="txt-fld">
-                                    <input type="password" name="pass" id="pass" >
+                                    <input type="password" name="password" id="pass" >
                                 </div>
                             </td>
                         </tr>

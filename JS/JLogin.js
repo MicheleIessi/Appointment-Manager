@@ -36,7 +36,7 @@ $(document).ready(function() {
                 required: true,
                 controllaEmail: true,
                 maxlength: 50,
-                conferma:true,
+                //conferma:true,
                 remote: {
 
                     onfocusout: true,
@@ -50,12 +50,11 @@ $(document).ready(function() {
                 
             },
 
-            pass: {
+            password: {
                 required: true
-            }
-            
                 
-            },
+            }
+        },
     
 
         messages: {
@@ -66,7 +65,8 @@ $(document).ready(function() {
                 maxlength: "Massimo 50 caratteri"
             },
             pass: {
-                required: "Inserisci la password"
+                required: "Inserisci la password",
+                rermote: "password sbagliata"
             }
                  }
              
@@ -206,11 +206,15 @@ $.validator.addMethod("noNumeri", function(value, element) {
     return this.optional( element ) || /^[ a-zA-Zèéòì'àù]+$/.test( value );
     
 }, "   Questo campo non può contenere numeri o caratteri speciali"); 
-$.validator.addMethod("conferma",function(value,element){
+/*$.validator.addMethod("conferma",function(value,element){
     $.ajax({
+         async : false,
          type: "POST",
-         url: "",
+         url: "Control/Ajax/ALogin.php",
          data: {email:$('#email').val(),
-                task :'controllaconferma'}}); 
+                task :'controllaconferma'}});
+        
+     
+      
          
-},"email non ancora confermata");
+},"email non ancora confermata");*/

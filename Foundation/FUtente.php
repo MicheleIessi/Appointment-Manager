@@ -102,7 +102,7 @@ class FUtente extends Fdb   {
         $this->setParametri();
         $binding=$this->mail_bind;
         $arr=array();
-        $arr[$binding]=$code;
+        $arr[$binding]=$mail;
         try {
             $arrayUte = parent::caricaConChiave($arr, $this->mail_key);
             if($arrayUte == false) {

@@ -30,11 +30,13 @@ $(document).ready(function() {
     }
 
     $("#loginForm").validate({
+        
         rules: {
             email: {
                 required: true,
                 controllaEmail: true,
                 maxlength: 50,
+                conferma:true,
                 remote: {
 
                     onfocusout: true,
@@ -51,7 +53,10 @@ $(document).ready(function() {
             pass: {
                 required: true
             }
-        },
+            
+                
+            },
+    
 
         messages: {
             email:  {
@@ -201,3 +206,11 @@ $.validator.addMethod("noNumeri", function(value, element) {
     return this.optional( element ) || /^[ a-zA-Zèéòì'àù]+$/.test( value );
     
 }, "   Questo campo non può contenere numeri o caratteri speciali"); 
+$.validator.addMethod("conferma",function(value,element){
+    $.ajax({
+         type: "POST",
+         url: "",
+         data: {email:$('#email').val(),
+                task :'controllaconferma'}}); 
+         
+},"email non ancora confermata");

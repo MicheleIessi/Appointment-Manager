@@ -41,7 +41,7 @@ $(document).ready(function() {
         eventDurationEditable: false,
         dragOpacity: .75,
         events: {
-            url: 'Control/CProcessaCalendar.php',
+            url: 'Control/Ajax/ACalendar.php',
             type: 'POST',
             data: {
                 type: 'fetch'
@@ -72,7 +72,7 @@ $(document).ready(function() {
             var decisione = confirm('Sei sicuro di voler effettuare la prenotazione per '+title+'?');
             if ( decisione == true) { // aggiungo l'appuntamento al database
                 $.ajax({
-                    url: 'Control/CProcessaCalendar.php',
+                    url: 'Control/Ajax/ACalendar.php',
                     type: 'POST',
                     data: {
                         type: 'new',
@@ -127,7 +127,7 @@ $(document).ready(function() {
                     dettagli.text("");
                     $('#loadingGif').show();
                     $.ajax({
-                        url: 'Control/CProcessaCalendar.php',
+                        url: 'Control/Ajax/ACalendar.php',
                         type: 'POST',
                         data: {
                             idApp: idApp,

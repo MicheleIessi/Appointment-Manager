@@ -16,7 +16,7 @@ $config['smarty']['cache_dir'] = 'templates/templates';
 $config['smtp']['host'] = 'smtp.gmail.com';
 $config['smtp']['port'] = '587';
 $config['smtp']['smtpauth'] = true;
-$config['smtp']['username'] = 'progettoappointment@gmail.com';
+$config['smtp']['username'] = 'progettoappointmentmanager@gmail.com';
 $config['smtp']['password'] = 'progetto123';
 
 

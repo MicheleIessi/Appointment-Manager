@@ -71,7 +71,7 @@
         </div>
         
         <div id="registrazionemodal">
-                <te id="signup-header">
+                <tr id="signup-header">
                     <h2>Creazione account</h2>
                     <p>&Egrave; facile e veloce.</p>
                     <a class="modal_close" href="#"></a>

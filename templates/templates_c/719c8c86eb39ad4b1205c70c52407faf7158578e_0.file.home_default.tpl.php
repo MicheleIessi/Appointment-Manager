@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-07-06 11:48:25
+<?php /* Smarty version 3.1.27, created on 2016-07-06 15:56:55
          compiled from "templates\templates\home_default.tpl" */ ?>
 <?php
-/*%%SmartyHeaderCode:29337577cd3e98a8c27_29792757%%*/
+/*%%SmartyHeaderCode:27726577d0e2748f843_69640209%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,11 +9,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '719c8c86eb39ad4b1205c70c52407faf7158578e' => 
     array (
       0 => 'templates\\templates\\home_default.tpl',
-      1 => 1467798465,
+      1 => 1467813389,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '29337577cd3e98a8c27_29792757',
+  'nocache_hash' => '27726577d0e2748f843_69640209',
   'variables' => 
   array (
     'title' => 0,
@@ -26,13 +26,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_577cd3e9939997_74237069',
+  'unifunc' => 'content_577d0e27532ab3_54560603',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_577cd3e9939997_74237069')) {
-function content_577cd3e9939997_74237069 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_577d0e27532ab3_54560603')) {
+function content_577d0e27532ab3_54560603 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '29337577cd3e98a8c27_29792757';
+$_smarty_tpl->properties['nocache_hash'] = '27726577d0e2748f843_69640209';
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
@@ -146,7 +146,7 @@ $_smarty_tpl->tpl_vars['button'] = $foreach_button_Sav;
         </div>
         
         <div id="registrazionemodal">
-                <te id="signup-header">
+                <tr id="signup-header">
                     <h2>Creazione account</h2>
                     <p>&Egrave; facile e veloce.</p>
                     <a class="modal_close" href="#"></a>

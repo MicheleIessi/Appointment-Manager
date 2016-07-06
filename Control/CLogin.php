@@ -75,10 +75,12 @@ class CLogin {
             $sesso=$_POST['Sesso'];
             $emailreg=$_POST['email'];
             $password=$_POST['Password'];
+            $srpassword=$_POST['RPassword'];
+            if($password==$srpassword){
             $Ute=new EUtente($nome,$cognome,$data,$codicefiscale,$sesso,$emailreg,$password);
             $FUte=new FUtente();
             $FUte->inserisciUtente($Ute);
-            
+            }
         }
             
             

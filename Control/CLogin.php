@@ -21,26 +21,37 @@ class CLogin {
         switch($a) {
             case 'login': {
                 $this->processaLogin();
-                header('location: ../../index.php');
-            } break;
+                //header('location: ../../index.php');
+                break;
+            } 
             case 'logout': {
                 $this->logout();
-            } break;
+                break;
+            }
+            case 'controllapassword':{
+                return $this->controllaPassword();
+                break;
+            }
             case 'controllaEsistenzaMailL': {
                 return $this->controllaMail();
-            }
+                break;
+            } 
             case 'controllaEsistenzaMailR': {
                 return $this->controllaMail();
-            }    
+                break;
+            } 
+            case 'controllaconferma':{
+                return $this->controllaconferma();
+                break;
+            }
             case 'reg': {
                 $this->processaReg();
                 header('location:../../index.php');
-                
-            }
-            case 'confirm':{
+                break;
             }
             case 'controllaEsistenzaCodiceFiscale':{
-               return $this->controllaCodiceFiscale(); 
+               return $this->controllaCodiceFiscale();
+               break;
             }
         }
     }
@@ -51,9 +62,9 @@ class CLogin {
 
         $sessione = new USession();
 
-        if(!$sessione->getValore('idUtente') == -1) {
+        if( !$sessione->getValore('idUtente') == -1) {
             $mail = $_POST['email'];
-            $pass = $_POST['pass'];
+            $pass = $_POST['password'];
             $fute = new FUtente();
             $utente = $fute->caricaUtenteDaLogin($mail, $pass);
             if($utente!=false) { //è stato trovato un utente con mail e pass giuste
@@ -61,7 +72,8 @@ class CLogin {
                 $sessione->impostaValore('idUtente',$id);
                 $CUte = new CUtente();
                 $tipo = $CUte->controllaProfessionista($id);
-                $sessione->impostaValore('tipo',$tipo);
+                $sessione->impostaValore('tipo','Utente');
+                
             }
         }
     }
@@ -76,16 +88,31 @@ class CLogin {
             $emailreg=$_POST['email'];
             $password=$_POST['Password'];
             $srpassword=$_POST['RPassword'];
-            if($password==$srpassword){
-            $Ute=new EUtente($nome,$cognome,$data,$codicefiscale,$sesso,$emailreg,$password);
+            $codice=$this->GeneraCodice();   
+            $Ute=new EUtente($nome,$cognome,$data,$codicefiscale,$sesso,$emailreg,$password,$codice);
             $FUte=new FUtente();
             $FUte->inserisciUtente($Ute);
-            }
+            $mail=new UMail();
+            $oggetto='Conferma Registrazione';
+            $corpoMail='http://localhost/appointment-manager/Control/Ajax/AConfirm.php?confirm='.$codice;
+            $mail->inviaMail($emailreg, $nome, $oggetto, $corpoMail);
         }
             
             
     }
-    
+        
+    public function controllaconferma(){
+        $mail = trim($_POST['email']);
+        $FUte=new FUtente;
+        $Ute=$FUte->caricaUtenteDaMail($mail);
+        if($FUte->controllaEsistenza('email', $mail)){
+        if($Ute->getCodiceconferma()!=0)
+            {return json_encode(true);}
+            else
+        {return json_encode(false);}}
+        
+                       
+    }    
 
     private function controllaMail() {
         $mail = trim($_POST['email']);
@@ -119,8 +146,17 @@ class CLogin {
         return $dataISO;
     }
     private function GeneraCodice(){
-        
-    }
+           $salt= 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345678';
+           $len= strlen($salt);
+           $length=8;
+           $makepass   = '';
+           mt_srand(10000000*(double)microtime());
+           for ($i = 0; $i < $length; $i++) {
+               $makepass .= $salt[mt_rand(0,$len - 1)];
+           }
+       	   return $makepass;
+}
+
             
 
     

@@ -39,6 +39,9 @@ class CLogin {
                 $this->conferma();
                 break;
             }
+            case 'controllaconferma': {
+                return $this->controllaconferma();
+            }
             case 'reg': {
                 $this->processaReg();
                 header('location:../../index.php');

@@ -3,7 +3,6 @@
     <head>
         <link type="text/css" rel="stylesheet" href='View/css/prova.css' />
         <link type="text/css" rel="stylesheet" href="View/css/login.css" />
-
         <script type="text/javascript" src='JS/fullcalendar-2.6.1/lib/jquery.min.js'></script>
         <script type="text/javascript" src="JS/validation/jquery.validate.js"></script>
         <script type="text/javascript" src='JS/jquery-ui/jquery-ui.min.js'></script>
@@ -72,39 +71,62 @@
         </div>
         
         <div id="registrazionemodal">
-            <div id="signup-ct">
-                <div id="signup-header">
+                <te id="signup-header">
                     <h2>Creazione account</h2>
                     <p>&Egrave; facile e veloce.</p>
                     <a class="modal_close" href="#"></a>
-                </div>
-                <form action="phpperregistrazione">
-                    <div class="txt-fld">
-                        <label for="">Nome</label>
-                        <input id="" name="" type="text">
-                    </div>
-                    <div class="txt-fld">
-                        <label for="">Cognome</label>
-                        <input id="" name="" type="text">
-                    </div>
-                    <div class="txt-fld">
-                        <label for="">Email</label>
-                        <input id="EmailReg" name="EmailReg" type="text">
-                    </div>
-                    <div class="txt-fld">
-                        <label for="">Data di nascita</label>
-                        <input id="" name="" type="date">
-                    </div>
-                    <div class="txt-fld">
-                        <label for="">Password</label>
-                        <input id="" name="" type="password">
-
-                    </div>
-                    <div class="btn-fld">
-                        <button type="submit">Registrati »</button>
-                    </div>
+                </tr>
+                <form id='RegisterForm' method="post" action="Control/Ajax/ALogin.php?task=reg">
+                    <table>
+                    <tr class="tableElem">
+                        <td class="desc">Nome</td>
+                        <td><div class="txt-fld">
+                            <input  type="text"name="Nome" >
+                        </div>   
+                    </tr>
+                    <tr class="tableElem">
+                        <td class="desc">Cognome</td>
+                        <td><div class="txt-fld">
+                             <input  type="text"name="Cognome" >
+                            </div>   
+                    </tr>
+                    <tr class="tableElem">
+                        <td class="desc">Codice Fiscale</td>
+                        <td><div class="txt-fld">
+                             <input  id="codiceFiscale" type="text"name="CodiceFiscale" >
+                            </div>   
+                    </tr>
+                    <tr class="tableElem">
+                        <td class="desc">Email Registrazione</td>
+                        <td><div class="txt-fld">
+                             <input id="emailreg" type="text"name="email" >
+                            </div>    
+                    </tr>
+                    <tr class="tableElem">
+                        <td class="desc">Data Nascita</td>
+                        <td><div class="txt-fld">
+                        <input  id="datepicker" type="text" name="Data" >
+                            </div>
+                    </tr>
+                    <tr class="legend">
+                        <td class="desc" >Sesso</td>
+                        <td>maschio<input type="radio"name="Sesso" value="m" checked>femmina<input type="radio"name="Sesso" value="f">
+                    </tr>    
+                    <tr class="tableElem">
+                        <td class="desc">Password</td>
+                        <td><div class="txt-fld">
+                        <input  type="text" name="Password" id="Password" >
+                    </tr>
+                    <tr class="tableElem">
+                         <td class="desc">Ripeti Password</td>
+                        <td><div class="txt-fld">
+                        <input  type="text"name="RPassword" >
+                    </tr>
+                    </table>
+                    <tr class="btn-fld">
+                        <button type="bottoneReg">Registrati »</button>
+                    </tr>  
                 </form>
-            </div>
         </div>
     {/if}
     <div class ="main">

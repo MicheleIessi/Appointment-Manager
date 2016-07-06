@@ -1,8 +1,9 @@
 <?php
 
 require_once($_SERVER["DOCUMENT_ROOT"].'/appointment-manager/includes/autoload.inc.php');
+$tas = $_REQUEST['task'];
+$CLog = new CLogin($tas);
 
-$task = $_REQUEST['task'];
-$CLog = new CLogin();
+echo $CLog->smista();
 
-echo $CLog->smista($task);
+

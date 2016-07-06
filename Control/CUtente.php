@@ -31,6 +31,13 @@ class CUtente {
                 }
                 $VCli->setData('modifica',$modifica);
                 
+                $idc = $sessione->getValore('idUtente');
+                $modifica = false;
+                if($idc == $id) {
+                    $modifica = true;
+                }
+                $VCli->setData('modifica',$modifica);
+                
                 $VCli->setData('cronologia', $this->cronologiaAppuntamentiCliente($id));
                 
                 return $VCli->impostaPaginaCliente();

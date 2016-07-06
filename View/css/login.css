@@ -96,6 +96,7 @@ p.error span { display: inline-block; background: #D43636; padding: 6px; border-
     padding: 7px 10px;  border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; font-weight: bold; text-shadow: 0 1px 0 rgba(0,0,0,0.4);
 }
 
+
 .campi {
     margin: 20px;
 }
@@ -103,3 +104,4 @@ p.error span { display: inline-block; background: #D43636; padding: 6px; border-
 #campi td   {
     text-align: left;
 }
+

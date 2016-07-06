@@ -19,6 +19,7 @@ class CIndex {
      */
     private $VIndex;
 
+
     public function impostaPagina()
     {
         if (!file_exists('includes/config.inc.php')) {
@@ -33,6 +34,7 @@ class CIndex {
             //        $sessione->impostaValore('idUtente',15);
             //        $sessione->impostaValore('tipo','cliente');
             if ($log === false) {
+
                 $log = -1;
             }
 
@@ -49,10 +51,10 @@ class CIndex {
             else if ($log > 0)//professionista/utente
                 $this->VIndex->impostaPaginaRegistrato();
 
+
             $this->VIndex->mostraPagina();
         }
     }
-
     public function smista($log) {
         $sessione = new USession();
         switch($this->VIndex->getController()) {
@@ -82,7 +84,6 @@ class CIndex {
                         $idp = $_REQUEST['idp'];
                         $sessione->impostaValore('idCalendario',$idp);
                         $cal = new CCalendar();
-
                         if ($sessione->getValore('tipo') == 'professionista') {
                             if($sessione->getValore('idUtente') == $idp)
                                 $this->VIndex->setSideContent($cal->getColonnaProfessionista());
@@ -98,7 +99,6 @@ class CIndex {
                         return $this->VIndex->fetch('professionistaNonTrovato.tpl');
                     }
                 return $this->VIndex->fetch('forbidden.tpl');
-
             case 'paginaCliente':
                 if($log > 0) {                
                     if (isset($_REQUEST['id']) && is_numeric($_REQUEST['id'])) {
@@ -129,7 +129,7 @@ class CIndex {
                             return $this->VIndex->fetch('errore.tpl');
                         }
                     }
-                }
+               }
                 else
                     return $this->VIndex->fetch('forbidden.tpl');
 
@@ -138,9 +138,6 @@ class CIndex {
                 $this->VIndex->setData('messaggio', $messaggio);
                 $sessione->cancellaValore('messaggioErrore');
                 return $this->VIndex->fetch('modificaUtente.tpl');     // solo per provare, ancora da fare i controlli
-
-
-
             default:
                 return $this->VIndex->fetch('home_default_content.tpl');
         }

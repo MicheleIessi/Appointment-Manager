@@ -21,5 +21,4 @@
             <button id="fineModifica">Ho finito</button>
         </div>
     </div>
-
 </div>

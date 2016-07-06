@@ -58,7 +58,7 @@ class VIndex extends View {
             $logBut[]=array('testo'=>'Profilo','link'=>'?controller=paginaCliente&id='.$id);
         else
             $logBut[]=array('testo'=>'Profilo','link'=>'?controller=paginaProfessionista&id='.$id);
-        $logBut[]=array('testo'=>'Logout','link'=>'#logout');
+        $logBut[]=array('testo'=>'Logout','link'=>'javascript:log_out()');
         $this->main_button=array_merge($this->main_button,$logBut);
     }
 

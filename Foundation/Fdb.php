@@ -21,6 +21,7 @@ class Fdb {
     protected $bind_key;               //Per i prepared statements
     protected $old_keys;               //Per i prepared statements
     private static $set = false;       //Per assicurare che ci sia al massimo una connessione per volta
+    private $last_id;
 
 
     public function __construct()
@@ -86,8 +87,12 @@ class Fdb {
         //echo $sql;
         $query=self::$db->prepare($sql);
         try {
+            self::$db->beginTransaction();
             $this->result = $query->execute($data);
+            $this->last_id = self::$db->lastInsertId();
+            self::$db->commit();
         } catch (PDOException $e) {
+            self::$db->rollBack();
             echo 'Error: '.$e->getMessage();
         }
         return $this->result;
@@ -302,7 +307,7 @@ class Fdb {
     }
 
     public function getLastID() {
-        return self::$db->lastInsertId();
+        return $this->last_id;
     }
 
     /** La funzione query serve solo in caso di setup a creare il db

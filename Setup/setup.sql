@@ -43,7 +43,8 @@ CREATE TABLE `utente` (
   `codiceFiscale` varchar(16) NOT NULL,
   `sesso` varchar(1) NOT NULL,
   `email` varchar(40) NOT NULL,
-  `password` varchar(20) NOT NULL
+  `password` varchar(20) NOT NULL,
+  `codiceConferma` varchar(8) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 ALTER TABLE `appuntamento`

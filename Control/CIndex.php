@@ -18,11 +18,13 @@ class CIndex {
      * @var VIndex
      */
     private $VIndex;
+
+
     public function impostaPagina()
     {
         if (!file_exists('includes/config.inc.php')) {
             $CSet = new CSetup();
-            $CSet->mux();
+            $CSet->smista();
         }
         else {
             require_once('includes/config.inc.php');
@@ -32,11 +34,15 @@ class CIndex {
             //        $sessione->impostaValore('idUtente',15);
             //        $sessione->impostaValore('tipo','cliente');
             if ($log === false) {
-                $log = -1;    //a questo punto del programma in questo commit, bisogna fare controlli per il login
+
+                $log = -1;
             }
+
             $this->VIndex = new VIndex();
             $content = $this->smista($log);
             $this->VIndex->setContent($content);
+
+
             if ($log == -1)//-1=non loggato
                 $this->VIndex->impostaPaginaOspite();
             else if ($log == 0)//0=admin
@@ -44,6 +50,8 @@ class CIndex {
                 ;
             else if ($log > 0)//professionista/utente
                 $this->VIndex->impostaPaginaRegistrato();
+
+
             $this->VIndex->mostraPagina();
         }
     }
@@ -58,13 +66,13 @@ class CIndex {
                 $CLog = new CLogin();
                 return $CLog->smista();
             case 'lista':
-                if($log > 0) {
+                if($log >= 0) {
                     $cal = new CCalendar();
                     return $cal->smista();
                 }
             else return $this->VIndex->fetch('forbidden.tpl');
             case 'calendario':
-                if($log > 0) {
+                if($log >= 0) {
                     $FPro = new FProfessionista();
                     $profDisponibili = $FPro->caricaProfessionisti();
                     $idDisponibili = array();
@@ -92,7 +100,8 @@ class CIndex {
                     }
                 return $this->VIndex->fetch('forbidden.tpl');
             case 'paginaCliente':
-                if (isset($_REQUEST['id']) && is_numeric($_REQUEST['id'])) {
+                if($log > 0) {                
+                    if (isset($_REQUEST['id']) && is_numeric($_REQUEST['id'])) {
                     $CPagU = new CUtente();
                     $idUtente = $_REQUEST['id'];
                     $sessione->impostaValore('paginaDaMostrare', 'cliente');
@@ -104,20 +113,26 @@ class CIndex {
                     }
                     
                 }
-                
+            }
+            else
+                return $this->VIndex->fetch('forbidden.tpl');
             case 'paginaProfessionista':
-                if (isset($_REQUEST['id']) && is_numeric($_REQUEST['id'])) {
-                    $CPagU = new CUtente();
-                    $idProfessionista = $_REQUEST['id'];
-                    $sessione->impostaValore('paginaDaMostrare', 'professionista');
-                    if($CPagU->controllaProfessionista($idProfessionista) == 'professionista') {
-                        return $CPagU->smista($idProfessionista);
+                if($log > 0) {                
+                    if (isset($_REQUEST['id']) && is_numeric($_REQUEST['id'])) {
+                        $CPagU = new CUtente();
+                        $idProfessionista = $_REQUEST['id'];
+                        $sessione->impostaValore('paginaDaMostrare', 'professionista');
+                        if($CPagU->controllaProfessionista($idProfessionista) == 'professionista') {
+                            return $CPagU->smista($idProfessionista);
+                        }
+                        else {
+                            return $this->VIndex->fetch('errore.tpl');
+                        }
                     }
-                    else {
-                        return $this->VIndex->fetch('errore.tpl');
-                    }
-                }
-                
+               }
+                else
+                    return $this->VIndex->fetch('forbidden.tpl');
+
             case 'modificaUtente':
                 $messaggio = $sessione->getValore('messaggioErrore');
                 $this->VIndex->setData('messaggio', $messaggio);

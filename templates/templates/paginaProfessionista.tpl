@@ -2,7 +2,7 @@
 
 <div title="contenitoreUtente"id="contenitoreUtente">
         
-    <h2>Pagina Professionista - ID Utente {$numID}</h2>
+    <h2 id="titolo">Pagina Professionista - ID Utente {$numID}</h2>
 
     <div title="immagine" id="immagine">
         Carica Immagine
@@ -23,12 +23,14 @@
     </div>
         
     {if $modifica}
-        <a href=?controller=modificaUtente id="modifica"><button>Modifica informazioni</button></a>
+        <a href=?controller=modificaUtente><button class="bottoneProf">Modifica informazioni</button></a>
     {/if}
 
-    <div title="orariLavoro" id="orariLavoro">
-        <table>
-            <h3>Orario di lavoro</h3>
+    <h3>Orario di lavoro</h3>
+    
+    <div title="orariLavoro" class="tabProfessionisti">
+        <table id="orariLavoro">
+            
             <tr>
                 <td>Lunedì</td>
                 <td> {$orariLavorativi['lun']} </td>
@@ -66,11 +68,12 @@
 
         </table>
     </div>
-            
-    <div title="serviziOfferti" id="serviziOfferti">
-        <table id="servizi">
-            <h3>Servizi offerti da {$nomeUtente}</h3>
-            
+     
+    <h3>Servizi offerti da {$nomeUtente}</h3>
+    
+    <div title="serviziOfferti" class="tabProfessionisti">
+        <table id="serviziOfferti">
+                        
             <tr id="chiavi">
                 <td>Nome servizio</td>
                 <td>Settore</td>
@@ -90,6 +93,15 @@
         </table>
     </div>
     
-    <a href="?controller=calendario&idp={$numID}"><button id="Calendario">Prenota un appuntamento! Clicca per aprire l'agenda di {$nomeUtente}</button></a>
+    {if $proprietario OR $tipo=="cliente"}
+        <a href="?controller=calendario&idp={$numID}"><button class="bottoneProf">
 
+            {if $proprietario}
+                Apri la tua agenda
+                {else}
+                Prenota un appuntamento! Clicca per aprire l'agenda di {$nomeUtente}
+            {/if}
+
+        </button></a>
+    {/if}
 </div>

@@ -1,1 +1,2 @@
-<a href="index.php">APPOINTMENT MANAGER</a>
+
+<a class='buttonElem' href="index.php">HOME</a>

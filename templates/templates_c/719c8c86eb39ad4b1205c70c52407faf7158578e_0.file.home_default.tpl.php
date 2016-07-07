@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-07-06 12:24:15
+<?php /* Smarty version 3.1.27, created on 2016-07-07 12:27:45
          compiled from "templates\templates\home_default.tpl" */ ?>
 <?php
-/*%%SmartyHeaderCode:1573577cdc4f1f7e90_44772517%%*/
+/*%%SmartyHeaderCode:15869577e2ea1f34da3_17534173%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,11 +9,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '719c8c86eb39ad4b1205c70c52407faf7158578e' => 
     array (
       0 => 'templates\\templates\\home_default.tpl',
-      1 => 1467800641,
+      1 => 1467884796,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '1573577cdc4f1f7e90_44772517',
+  'nocache_hash' => '15869577e2ea1f34da3_17534173',
   'variables' => 
   array (
     'title' => 0,
@@ -26,13 +26,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_577cdc4f2717f5_33546444',
+  'unifunc' => 'content_577e2ea2072bc9_22861916',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_577cdc4f2717f5_33546444')) {
-function content_577cdc4f2717f5_33546444 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_577e2ea2072bc9_22861916')) {
+function content_577e2ea2072bc9_22861916 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '1573577cdc4f1f7e90_44772517';
+$_smarty_tpl->properties['nocache_hash'] = '15869577e2ea1f34da3_17534173';
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
@@ -40,7 +40,10 @@ $_smarty_tpl->properties['nocache_hash'] = '1573577cdc4f1f7e90_44772517';
         <link type="text/css" rel="stylesheet" href='View/css/prova.css' />
         <link type="text/css" rel="stylesheet" href="View/css/login.css" />
         <link type="text/css" rel="stylesheet" href="View/css/jquery-ui.css" />
+<<<<<<< HEAD
         
+=======
+>>>>>>> 2e4a99b608fec693ec42c471d8f21a8bbe54e7e4
         <?php echo '<script'; ?>
  type="text/javascript" src='JS/fullcalendar-2.6.1/lib/jquery.min.js'><?php echo '</script'; ?>
 >
@@ -68,6 +71,7 @@ $_smarty_tpl->properties['nocache_hash'] = '1573577cdc4f1f7e90_44772517';
         <?php echo '<script'; ?>
  type="text/javascript" src="JS/JLogin.js"><?php echo '</script'; ?>
 >
+        
         <title><?php echo $_smarty_tpl->tpl_vars['title']->value;?>
 </title>
     </head>
@@ -135,7 +139,7 @@ $_smarty_tpl->tpl_vars['button'] = $foreach_button_Sav;
                         <tr class="tableElem">
                             <td class="desc">Password</td>
                             <td><div class="txt-fld">
-                                    <input type="password" name="pass" id="pass" >
+                                    <input type="password" name="password" id="pass" >
                                 </div>
                             </td>
                         </tr>
@@ -148,7 +152,7 @@ $_smarty_tpl->tpl_vars['button'] = $foreach_button_Sav;
         </div>
         
         <div id="registrazionemodal">
-                <te id="signup-header">
+                <tr id="signup-header">
                     <h2>Creazione account</h2>
                     <p>&Egrave; facile e veloce.</p>
                     <a class="modal_close" href="#"></a>

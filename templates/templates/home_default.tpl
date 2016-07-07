@@ -4,10 +4,7 @@
         <link type="text/css" rel="stylesheet" href='View/css/prova.css' />
         <link type="text/css" rel="stylesheet" href="View/css/login.css" />
         <link type="text/css" rel="stylesheet" href="View/css/jquery-ui.css" />
-<<<<<<< HEAD
         
-=======
->>>>>>> 2e4a99b608fec693ec42c471d8f21a8bbe54e7e4
         <script type="text/javascript" src='JS/fullcalendar-2.6.1/lib/jquery.min.js'></script>
         <script type="text/javascript" src="JS/validation/jquery.validate.js"></script>
         <script type="text/javascript" src='JS/jquery-ui/jquery-ui.min.js'></script>

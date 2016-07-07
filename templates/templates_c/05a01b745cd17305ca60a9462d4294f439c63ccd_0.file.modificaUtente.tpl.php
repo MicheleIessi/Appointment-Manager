@@ -1,9 +1,47 @@
+<?php /* Smarty version 3.1.27, created on 2016-07-06 13:03:27
+         compiled from "templates\templates\modificaUtente.tpl" */ ?>
+<?php
+/*%%SmartyHeaderCode:24676577ce57f5acf97_59879612%%*/
+if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+$_valid = $_smarty_tpl->decodeProperties(array (
+  'file_dependency' => 
+  array (
+    '05a01b745cd17305ca60a9462d4294f439c63ccd' => 
+    array (
+      0 => 'templates\\templates\\modificaUtente.tpl',
+      1 => 1467803000,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '24676577ce57f5acf97_59879612',
+  'variables' => 
+  array (
+    'messaggio' => 0,
+  ),
+  'has_nocache_code' => false,
+  'version' => '3.1.27',
+  'unifunc' => 'content_577ce57f5f3365_46093529',
+),false);
+/*/%%SmartyHeaderCode%%*/
+if ($_valid && !is_callable('content_577ce57f5f3365_46093529')) {
+function content_577ce57f5f3365_46093529 ($_smarty_tpl) {
+
+$_smarty_tpl->properties['nocache_hash'] = '24676577ce57f5acf97_59879612';
+?>
 <link type="text/css" rel="stylesheet" href="View/css/modificaUtente.css" />
 
-<script type="text/javascript" src='JS/validation/dateITA.js'></script>
-<script type="text/javascript" src='JS/modificaUtente.js'></script>
-<script type="text/javascript" src='JS/jquery-ui/jquery-ui.min.js'></script>
-<script type="text/javascript" src='JS/jquery-ui/datepicker-it.js'></script>
+<?php echo '<script'; ?>
+ type="text/javascript" src='JS/validation/dateITA.js'><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ type="text/javascript" src='JS/modificaUtente.js'><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ type="text/javascript" src='JS/jquery-ui/jquery-ui.min.js'><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ type="text/javascript" src='JS/jquery-ui/datepicker-it.js'><?php echo '</script'; ?>
+>
 
 <div id="contenitoreForm">
 
@@ -61,8 +99,11 @@
             
     </form>
     
-    {if $messaggio}
-        <label>{$messaggio}</label>
-    {/if}
+    <?php if ($_smarty_tpl->tpl_vars['messaggio']->value) {?>
+        <label><?php echo $_smarty_tpl->tpl_vars['messaggio']->value;?>
+</label>
+    <?php }?>
 
-</div>
+</div><?php }
+}
+?>

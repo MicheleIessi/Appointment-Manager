@@ -35,26 +35,29 @@ pre { display: block; font-size: 1.2em; color: #17516E;font-family: "Courier", "
     margin-left: -202px;
     top: 200px;
     width: 404px;
+    margin-top: 20px;
     padding-bottom: 20px;
     padding-left: 20px;
     padding-right: 20px;
     background: #FFF;
-    border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
+    border-radius: 4px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
     box-shadow: 0 0 4px rgba(0,0,0,0.7); -webkit-box-shadow: 0 0 4px rgba(0,0,0,0.7); -moz-box-shadow: 0 0 4px rgba(0,0,0,0.7);
 }
 
 #registrazionemodal {
-    position: fixed;
+    position: absolute;
+    display: none;
     opacity: 1;
     z-index: 11000;
     left: 50%;
-    margin-left: -202px;
-    top: 200px;
-    width: 404px;
-    padding: 30px;
-    display:none;
+    margin-left: -233px;
+    width: 466px;
+    margin-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
     background: #FFF;
-    border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
+    border-radius: 4px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
     box-shadow: 0 0 4px rgba(0,0,0,0.7); -webkit-box-shadow: 0 0 4px rgba(0,0,0,0.7); -moz-box-shadow: 0 0 4px rgba(0,0,0,0.7);
 
 }
@@ -66,10 +69,10 @@ pre { display: block; font-size: 1.2em; color: #17516E;font-family: "Courier", "
 #signup-header  h2 { color: #444; font-size: 2em; font-weight: 500; margin-bottom: 3px; text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5); }
 #signup-header  p { color: #444; font-size: 1.3em; margin: 0; padding-bottom: 5px; text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5); text-shadow: none; }
 
-.txt-fld { position: relative; padding: 14px 20px; }
+.txt-fld { height: 40px; position: relative; padding: 8px 20px; }
 .btn-fld { width: auto; overflow: hidden; }
 .txt-fld label { display: block; color: red; font-size: 10px; text-align: left;  }
-.txt-fld input { width: 244px; padding: 3px; border-radius: 4px; -moz-border-radius: 4px; -webkit-border-radius: 4px; font-size: 14px; color: #222; background: #F7F7F7; font-family: "Arial"; outline: none; border-top: 1px solid #CCC; border-left: 1px solid #CCC; border-right: 1px solid #E7E6E6; border-bottom: 1px solid #E7E6E6; }
+.txt-fld input { width: 280px; padding: 3px; border-radius: 4px; -moz-border-radius: 4px; -webkit-border-radius: 4px; font-size: 14px; color: #222; background: #F7F7F7; font-family: "Arial"; outline: none; border-top: 1px solid #CCC; border-left: 1px solid #CCC; border-right: 1px solid #E7E6E6; border-bottom: 1px solid #E7E6E6; }
 .txt-fld input.good_input { background: #DEF5E1 url(img/good.png) 236px center no-repeat; }
 .txt-fld input.error_input { background: #FDE0E0; }
 
@@ -79,10 +82,25 @@ p.error span { display: inline-block; background: #D43636; padding: 6px; border-
 .txt-fld input:focus, .txt-fld textarea:focus { background-color: #FAF9DC; }
 
 .desc {
-    text-align: center;
+    text-align: left;
+    padding-bottom: 14px;
 }
 
-#loginmodal button, #registrazionemodal button {
+#registrazionemodal button {
+    
+    margin-left: auto;
+    width: 140px;
+    font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    background: cornflowerblue;
+    border: 1px solid darkgray;
+    overflow: visible;
+    font-size: 1.4em;
+    color: #FFF;
+    cursor: pointer;
+    padding: 7px 10px;  border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; font-weight: bold; text-shadow: 0 1px 0 rgba(0,0,0,0.4);
+}
+
+#loginmodal button  {
     
     margin-left: 142px;
     width: 120px;
@@ -96,6 +114,9 @@ p.error span { display: inline-block; background: #D43636; padding: 6px; border-
     padding: 7px 10px;  border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; font-weight: bold; text-shadow: 0 1px 0 rgba(0,0,0,0.4);
 }
 
+label.error {
+    
+}
 
 .campi {
     margin: 20px;

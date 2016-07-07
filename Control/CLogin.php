@@ -39,12 +39,9 @@ class CLogin {
                 $this->conferma();
                 break;
             }
-            case 'controllaconferma': {
-                return $this->controllaconferma();
-            }
             case 'reg': {
                 $this->processaReg();
-                header('location:../../index.php');
+                header("location : index.php");
                 break;
             }
             case 'controllaEsistenzaCodiceFiscale':{
@@ -71,7 +68,7 @@ class CLogin {
                 $CUte = new CUtente();
                 $tipo = $CUte->controllaProfessionista($id);
                 $sessione->impostaValore('tipo',$tipo);
-                header('location: ../../index.php');
+                header('location: index.php');
             }
         }
     }
@@ -98,6 +95,7 @@ class CLogin {
             $corpoMail = "Gentile $nome $cognome, per confermare l'iscrizione al sito cliccare sul seguente link:".
                          "http://localhost/appointment-manager/Control/Ajax/ALogin.php?task=conferma&code=$codice";
             $mail->inviaMail($emailreg, $nome, $oggetto, $corpoMail);
+            
         }
             
             
@@ -129,14 +127,11 @@ class CLogin {
         $mail = strtolower(trim($_POST['email']));
         $FUte=new FUtente;
         $Ute=$FUte->caricaUtenteDaMail($mail);
-        if($FUte->controllaEsistenza('email', $mail)){
-        if($Ute->getCodiceconferma()!=0) {
-            return json_encode(true);
-        }
+        if($Ute->getCodiceconferma()==0) {
+        return false;}
             else {
-                return json_encode(false);
+                return true;
             }
-        }
     }    
 
     private function controllaMail() {
@@ -146,11 +141,11 @@ class CLogin {
         $esito = $FUte->controllaEsistenza('email',$mail);
         if($a==='controllaEsistenzaMailL'){return json_encode($esito);
         }
-        elseif($this->getTask()==='controllaEsistenzaMailR'){return json_encode(!$esito);}
+        elseif($a==='controllaEsistenzaMailR'){return json_encode(!$esito);}
         
     }
     private function ControllaCodiceFiscale(){
-        $codicefiscale=($_REQUEST['CodiceFiscale']);
+        $codicefiscale=$_POST['CodiceFiscale'];
         $FUte = new FUtente();
         $esito=$FUte->controllaEsistenza('codiceFiscale', $codicefiscale);
         return json_encode(!$esito);

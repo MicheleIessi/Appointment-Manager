@@ -1,4 +1,5 @@
 <?php
+//require_once($_SERVER["DOCUMENT_ROOT"].'/appointment-manager/includes/autoload.inc.php');
 /**
  * Created by PhpStorm.
  * User: Michele Iessi
@@ -57,13 +58,27 @@ class CIndex {
     public function smista($log) {
         $sessione = new USession();
         switch($this->VIndex->getController()) {
-            case 'registrazione':
-                $CReg = new CRegistrazione();
-                return $CReg->smista();
-                
+            case 'reg':
+                $con = $_REQUEST['controller'];
+                $this->VIndex->unsetController();
+                $CLog = new CLogin($con);
+                $CLog->smista();
+                break;
+            case 'logout':
+                $con = $_REQUEST['controller'];
+                $this->VIndex->unsetController();
+                $CLog = new CLogin($con);
+                $CLog->smista();
+                break;
             case 'login':
-                $CLog = new CLogin();
-                return $CLog->smista();
+                $con=$_REQUEST['controller'];
+                $this->VIndex->unsetController();
+                $CLog = new CLogin($con);
+                if($CLog->controllaconferma()){
+                    $CLog->smista();
+                }
+                else return $this->VIndex->fetch('conferma.tpl');
+                break;
             case 'lista':
                 if($log >= 0) {
                     $cal = new CCalendar();

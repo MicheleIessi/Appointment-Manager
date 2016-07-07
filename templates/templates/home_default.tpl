@@ -47,7 +47,7 @@
                     <p>Sei già iscritto? Effettua il login.</p>
                     <a class="modal_close" href="#"></a>
                 </div>
-                <form id='loginForm' method='post' action="Control/Ajax/ALogin.php?task=login">
+                <form id='loginForm' method='post' action="index.php?controller=login">
                     <table id="campi">
                         <tr class="tableElem">
                             <td class="desc">Email</td>
@@ -78,7 +78,7 @@
                     <p>&Egrave; facile e veloce.</p>
                     <a class="modal_close" href="#"></a>
                 </tr>
-                <form id='RegisterForm' method="post" action="Control/Ajax/ALogin.php?task=reg">
+                <form id='RegisterForm' method="post" action="index.php?controller=reg">
                     <table>
                     <tr class="tableElem">
                         <td class="desc">Nome</td>

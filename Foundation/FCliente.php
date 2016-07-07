@@ -14,6 +14,26 @@ class FCliente extends Fdb  {
         $this->old_keys;
     }
 
+    public function aggiungiCliente($id) {
+        $valori = array();
+        $valori[':IDC'] = $id;
+        parent::inserisciGenerica($valori,'cliente');
+    }
+
+    public function cancellaCliente($id) {
+        $FUte = new FUtente();
+        $EUte = $FUte->caricaUtenteDaDb($id);
+        $FUte->cancellaUtente($EUte);
+        parent::setParam('cliente',$this->primary_key,$this->bind_key,$this->bind_key,$this->old_keys);
+        $valori = array();
+        $valori[':IDC'] = $id;
+        if(parent::cancella($valori) == 0) { //non è stata cancellata nessuna ennupla da cliente
+            return false;
+        }
+        else
+            return true;
+    }
+
     public function getAppuntamenti($idc) {
         $this->setParametri();
         $valori[':IDC']=$idc;

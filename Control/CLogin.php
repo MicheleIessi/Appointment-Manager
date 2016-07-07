@@ -20,7 +20,8 @@ class CLogin {
         $a=$this->getTask();
         switch($a) {
             case 'login': {
-                $this->processaLogin();
+                $on=$this->processaLogin();
+                return $on;
                 break;
             } 
             case 'logout': {
@@ -70,6 +71,8 @@ class CLogin {
                 $sessione->impostaValore('tipo',$tipo);
                 header('location: index.php');
             }
+            else                
+            return $utente;
         }
     }
     public function processaReg(){
@@ -128,9 +131,9 @@ class CLogin {
         $FUte=new FUtente;
         $Ute=$FUte->caricaUtenteDaMail($mail);
         if($Ute->getCodiceconferma()==0) {
-        return false;}
+        return true;}
             else {
-                return true;
+                return false;
             }
     }    
 

@@ -75,7 +75,9 @@ class CIndex {
                 $this->VIndex->unsetController();
                 $CLog = new CLogin($con);
                 if($CLog->controllaconferma()){
-                    $CLog->smista();
+                    if($CLog->smista()==false){
+                    return $this->VIndex->fetch('passworderrata.tpl');
+                    }
                 }
                 else return $this->VIndex->fetch('conferma.tpl');
                 break;

@@ -90,9 +90,11 @@ class CLogin {
                 throw new Exception("Le password non coincidono");
             }
             $codice=$this->GeneraCodice();   
-            $Ute=new EUtente($nome,$cognome,$data,$codicefiscale,$sesso,$emailreg,$password,$codice);
-            $FUte=new FUtente();
+            $Ute = new EUtente($nome,$cognome,$data,$codicefiscale,$sesso,$emailreg,$password,$codice);
+            $FUte = new FUtente();
             $FUte->inserisciUtente($Ute);
+            $FCli = new FCliente();
+            $FCli->aggiungiCliente($FUte->getLastID());
             $mail=new UMail();
             $oggetto='Conferma Registrazione';
             $corpoMail = "Gentile $nome $cognome, per confermare l'iscrizione al sito cliccare sul seguente link:".

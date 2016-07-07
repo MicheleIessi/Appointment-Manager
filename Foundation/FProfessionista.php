@@ -77,9 +77,10 @@ class FProfessionista extends Fdb {
         $orario['sab']=$risultato['orarioSab'];
         $orario['dom']=$risultato['orarioDom'];
         $serviziOfferti = $this->ricavaServiziOfferti($key);
+        $codiceConferma = $utente->getCodiceConferma();
         $prof = new EProfessionista($utente->getNome(),$utente->getCognome(),$utente->getDataNascita(),
             $utente->getCodiceFiscale(),$utente->getSesso(),$utente->getEmail(),
-            $utente->getPassword(),$key,$serviziOfferti,$settore,$orario);
+            $utente->getPassword(),$codiceConferma,$key,$serviziOfferti,$settore,$orario);
         return $prof;
     }
 

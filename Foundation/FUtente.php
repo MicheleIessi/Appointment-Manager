@@ -4,15 +4,19 @@ class FUtente extends Fdb   {
 
     private $login_key='email,password';
     private $login_bind=':email,:password';
+    private $confirm_key='codiceconferma';
+    private $confirm_bind=':codiceconferma';
+    private $mail_bind=':email';
+    private $mail_key='email';
 
     public function __construct() {
         if(!parent::isOn())
             parent::__construct();
         $this->table = 'utente';
         $this->primary_key = 'numID';
-        $this->attributi = 'numID,nome,cognome,dataNascita,codiceFiscale,sesso,email,password';
+        $this->attributi = 'numID,nome,cognome,dataNascita,codiceFiscale,sesso,email,password,codiceconferma';
         $this->return_class = 'EUtente';
-        $this->bind = ':numID,:nome,:cognome,:dataNascita,:codiceFiscale,:sesso,:email,:password';
+        $this->bind = ':numID,:nome,:cognome,:dataNascita,:codiceFiscale,:sesso,:email,:password,:codiceconferma';
         $this->bind_key = ':numID';
         $this->old_keys;
 
@@ -70,6 +74,48 @@ class FUtente extends Fdb   {
         return true;
     }
 
+    public function caricaUtenteDaConferma($code){
+        $this->setParametri();
+        $binding=$this->confirm_bind;
+        $arr=array();
+        $arr[$binding]=$code;
+        try {
+            $arrayUte = parent::caricaConChiave($arr, $this->confirm_key);
+            if($arrayUte == false) {
+                return false;
+            }
+            else {
+                $arrayUte = array_values($arrayUte[0]);
+                $ute = new $this->return_class($arrayUte[1], $arrayUte[2], $arrayUte[3], $arrayUte[4],
+                    $arrayUte[5], $arrayUte[6], $arrayUte[7],$arrayUte[8],$arrayUte[0]);
+                return $ute;
+            }
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+    public function caricaUtenteDaMail($mail){
+        $this->setParametri();
+        $binding=$this->mail_bind;
+        $arr=array();
+        $arr[$binding]=$mail;
+        try {
+            $arrayUte = parent::caricaConChiave($arr, $this->mail_key);
+            if($arrayUte == false) {
+                return false;
+            }
+            else {
+                $arrayUte = array_values($arrayUte[0]);
+                $ute = new $this->return_class($arrayUte[1], $arrayUte[2], $arrayUte[3], $arrayUte[4],
+                    $arrayUte[5], $arrayUte[6], $arrayUte[7],$arrayUte[8],$arrayUte[0]);
+                return $ute;
+            }
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+        
+    }
+
     /**
      * @param $key
      * @return EUtente
@@ -87,7 +133,7 @@ class FUtente extends Fdb   {
         $arrayUte = parent::carica($arr);
         $arrayUte = array_values($arrayUte);
         $ute = new $this->return_class($arrayUte[1],$arrayUte[2],$arrayUte[3],$arrayUte[4],$arrayUte[5],
-                                       $arrayUte[6],$arrayUte[7],$arrayUte[0]);
+                                       $arrayUte[6],$arrayUte[7],$arrayUte[8],$arrayUte[0]);
         return $ute;
     }
 
@@ -114,7 +160,7 @@ class FUtente extends Fdb   {
             else {
                 $arrayUte = array_values($arrayUte[0]);
                 $ute = new $this->return_class($arrayUte[1], $arrayUte[2], $arrayUte[3], $arrayUte[4],
-                    $arrayUte[5], $arrayUte[6], $arrayUte[7], $arrayUte[0]);
+                    $arrayUte[5], $arrayUte[6], $arrayUte[7], $arrayUte[8], $arrayUte[0]);
                 //echo "Utente {$ute->getNome()} {$ute->getCognome()} ha effettuato correttamente il login.<br>";
                 return $ute;
             }
@@ -139,6 +185,10 @@ class FUtente extends Fdb   {
         else if($chiave == 'codiceFiscale') {
             $valore = strtoupper($valore);
             $valori[':codiceFiscale'] = $valore;
+        }
+        elseif($chiave=='codiceconferma'){
+            $valore=  strtoupper($valore);
+            $valori[':codiceconferma']=$valore;
         }
         try {
             if(parent::caricaConChiave($valori, $chiave) == false) // non c'è

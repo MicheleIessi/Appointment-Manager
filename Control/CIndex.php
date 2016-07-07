@@ -31,8 +31,7 @@ class CIndex {
             $this->VIndex = new VIndex();
             $sessione = new USession();
             $log = $sessione->getValore('idUtente');
-            //        $sessione->impostaValore('idUtente',15);
-            //        $sessione->impostaValore('tipo','cliente');
+
             if ($log === false) {
 
                 $log = -1;
@@ -68,7 +67,7 @@ class CIndex {
             case 'lista':
                 if($log >= 0) {
                     $cal = new CCalendar();
-                    return $cal->smista();
+                    return $cal->smista('lista');
                 }
             else return $this->VIndex->fetch('forbidden.tpl');
             case 'calendario':
@@ -93,7 +92,7 @@ class CIndex {
                         else if ($sessione->getValore('tipo') == 'cliente') {
                             $this->VIndex->setSideContent($cal->getServiziProf($idp));
                         }
-                        return $cal->smista();
+                        return $cal->impostaPagina();
                     }
                     else
                         return $this->VIndex->fetch('professionistaNonTrovato.tpl');

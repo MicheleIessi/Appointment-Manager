@@ -4,7 +4,10 @@
         <link type="text/css" rel="stylesheet" href='View/css/prova.css' />
         <link type="text/css" rel="stylesheet" href="View/css/login.css" />
         <link type="text/css" rel="stylesheet" href="View/css/jquery-ui.css" />
+<<<<<<< HEAD
         
+=======
+>>>>>>> 2e4a99b608fec693ec42c471d8f21a8bbe54e7e4
         <script type="text/javascript" src='JS/fullcalendar-2.6.1/lib/jquery.min.js'></script>
         <script type="text/javascript" src="JS/validation/jquery.validate.js"></script>
         <script type="text/javascript" src='JS/jquery-ui/jquery-ui.min.js'></script>
@@ -14,6 +17,7 @@
         <script type="text/javascript" src='JS/JCalendar.js'></script>
         <script type="text/javascript" src="JS/jquery.leanModal.min.js"></script>
         <script type="text/javascript" src="JS/JLogin.js"></script>
+        
         <title>{$title}</title>
     </head>
     <body>
@@ -60,7 +64,7 @@
                         <tr class="tableElem">
                             <td class="desc">Password</td>
                             <td><div class="txt-fld">
-                                    <input type="password" name="pass" id="pass" >
+                                    <input type="password" name="password" id="pass" >
                                 </div>
                             </td>
                         </tr>
@@ -73,7 +77,7 @@
         </div>
         
         <div id="registrazionemodal">
-                <te id="signup-header">
+                <tr id="signup-header">
                     <h2>Creazione account</h2>
                     <p>&Egrave; facile e veloce.</p>
                     <a class="modal_close" href="#"></a>

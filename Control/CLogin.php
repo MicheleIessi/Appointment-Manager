@@ -21,26 +21,35 @@ class CLogin {
         switch($a) {
             case 'login': {
                 $this->processaLogin();
-                header('location: ../../index.php');
-            } break;
+                break;
+            } 
             case 'logout': {
                 $this->logout();
-            } break;
+                break;
+            }
             case 'controllaEsistenzaMailL': {
                 return $this->controllaMail();
-            }
+                break;
+            } 
             case 'controllaEsistenzaMailR': {
                 return $this->controllaMail();
-            }    
+                break;
+            } 
+            case 'conferma':{
+                $this->conferma();
+                break;
+            }
+            case 'controllaconferma': {
+                return $this->controllaconferma();
+            }
             case 'reg': {
                 $this->processaReg();
                 header('location:../../index.php');
-                
-            }
-            case 'confirm':{
+                break;
             }
             case 'controllaEsistenzaCodiceFiscale':{
-               return $this->controllaCodiceFiscale(); 
+               return $this->controllaCodiceFiscale();
+               break;
             }
         }
     }
@@ -51,9 +60,9 @@ class CLogin {
 
         $sessione = new USession();
 
-        if(!$sessione->getValore('idUtente') == -1) {
-            $mail = $_POST['email'];
-            $pass = $_POST['pass'];
+        if( !$sessione->getValore('idUtente') == -1) {
+            $mail = $_REQUEST['email'];
+            $pass = $_REQUEST['password'];
             $fute = new FUtente();
             $utente = $fute->caricaUtenteDaLogin($mail, $pass);
             if($utente!=false) { //è stato trovato un utente con mail e pass giuste
@@ -62,6 +71,7 @@ class CLogin {
                 $CUte = new CUtente();
                 $tipo = $CUte->controllaProfessionista($id);
                 $sessione->impostaValore('tipo',$tipo);
+                header('location: ../../index.php');
             }
         }
     }
@@ -76,16 +86,58 @@ class CLogin {
             $emailreg=$_POST['email'];
             $password=$_POST['Password'];
             $srpassword=$_POST['RPassword'];
-            if($password==$srpassword){
-            $Ute=new EUtente($nome,$cognome,$data,$codicefiscale,$sesso,$emailreg,$password);
+            if($password != $srpassword) {
+                throw new Exception("Le password non coincidono");
+            }
+            $codice=$this->GeneraCodice();   
+            $Ute=new EUtente($nome,$cognome,$data,$codicefiscale,$sesso,$emailreg,$password,$codice);
             $FUte=new FUtente();
             $FUte->inserisciUtente($Ute);
-            }
+            $mail=new UMail();
+            $oggetto='Conferma Registrazione';
+            $corpoMail = "Gentile $nome $cognome, per confermare l'iscrizione al sito cliccare sul seguente link:".
+                         "http://localhost/appointment-manager/Control/Ajax/ALogin.php?task=conferma&code=$codice";
+            $mail->inviaMail($emailreg, $nome, $oggetto, $corpoMail);
         }
             
             
     }
-    
+
+    public function conferma() {
+        $code=$_REQUEST['code'];
+        $sessione = new USession();
+        $FUte=new FUtente();
+        if($FUte->controllaEsistenza('codiceconferma', $code)){
+            $Ute=$FUte->caricaUtenteDaConferma($code);
+            $Ute->setCodiceConferma('0');
+            if($FUte->aggiornaUtente($Ute)) {
+                $CUte = new CUtente();
+                $id = $Ute->getID();
+                $tipo = $CUte->controllaProfessionista($id);
+                $sessione->impostaValore('tipo',$tipo);
+                $tipo = ucfirst($tipo);
+                $sessione->impostaValore('idUtente',$id);
+                header("location: ../../?controller=pagina$tipo&id=$id");
+            }
+        }
+        else {
+            header("location: ../../index.php"); // sarebbe meglio fare il redirect a una pagina d'errore
+        }
+    }
+        
+    public function controllaconferma(){
+        $mail = strtolower(trim($_POST['email']));
+        $FUte=new FUtente;
+        $Ute=$FUte->caricaUtenteDaMail($mail);
+        if($FUte->controllaEsistenza('email', $mail)){
+        if($Ute->getCodiceconferma()!=0) {
+            return json_encode(true);
+        }
+            else {
+                return json_encode(false);
+            }
+        }
+    }    
 
     private function controllaMail() {
         $mail = trim($_POST['email']);
@@ -119,8 +171,17 @@ class CLogin {
         return $dataISO;
     }
     private function GeneraCodice(){
-        
-    }
+           $salt= 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345678';
+           $len= strlen($salt);
+           $length=8;
+           $makepass   = '';
+           mt_srand(10000000*(double)microtime());
+           for ($i = 0; $i < $length; $i++) {
+               $makepass .= $salt[mt_rand(0,$len - 1)];
+           }
+       	   return $makepass;
+}
+
             
 
     

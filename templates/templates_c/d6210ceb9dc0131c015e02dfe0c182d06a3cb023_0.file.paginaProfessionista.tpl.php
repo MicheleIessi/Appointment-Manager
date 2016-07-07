@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-07-06 13:29:27
+<?php /* Smarty version 3.1.27, created on 2016-07-07 12:29:33
          compiled from "templates\templates\paginaProfessionista.tpl" */ ?>
 <?php
-/*%%SmartyHeaderCode:25767577ceb97bf2ab6_42982740%%*/
+/*%%SmartyHeaderCode:17537577e2f0dcea3b9_34496890%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,11 +9,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'd6210ceb9dc0131c015e02dfe0c182d06a3cb023' => 
     array (
       0 => 'templates\\templates\\paginaProfessionista.tpl',
-      1 => 1467804240,
+      1 => 1467816162,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '25767577ceb97bf2ab6_42982740',
+  'nocache_hash' => '17537577e2f0dcea3b9_34496890',
   'variables' => 
   array (
     'numID' => 0,
@@ -34,13 +34,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_577ceb97c69633_34848419',
+  'unifunc' => 'content_577e2f0dd63d28_47250231',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_577ceb97c69633_34848419')) {
-function content_577ceb97c69633_34848419 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_577e2f0dd63d28_47250231')) {
+function content_577e2f0dd63d28_47250231 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '25767577ceb97bf2ab6_42982740';
+$_smarty_tpl->properties['nocache_hash'] = '17537577e2f0dcea3b9_34496890';
 ?>
 <head>
     <link type="text/css" rel="stylesheet" href="View/css/paginaProfessionista.css"/>
@@ -68,9 +68,9 @@ $_smarty_tpl->properties['nocache_hash'] = '25767577ceb97bf2ab6_42982740';
  </li><br>
             <li>Codice fiscale: <?php echo $_smarty_tpl->tpl_vars['codiceFiscale']->value;?>
  </li><br>
-            <li>Email:<?php echo $_smarty_tpl->tpl_vars['email']->value;?>
+            <li>Email: <?php echo $_smarty_tpl->tpl_vars['email']->value;?>
  </li><br>
-            <li>Settore:<?php echo $_smarty_tpl->tpl_vars['settore']->value;?>
+            <li>Settore: <?php echo $_smarty_tpl->tpl_vars['settore']->value;?>
  </li>
         </ul> 
         

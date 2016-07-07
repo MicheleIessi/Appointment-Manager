@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-07-06 23:20:04
+<?php /* Smarty version 3.1.27, created on 2016-07-06 13:03:27
          compiled from "templates\templates\modificaUtente.tpl" */ ?>
 <?php
-/*%%SmartyHeaderCode:10952577d76042bff40_42713636%%*/
+/*%%SmartyHeaderCode:24676577ce57f5acf97_59879612%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,27 +9,26 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '05a01b745cd17305ca60a9462d4294f439c63ccd' => 
     array (
       0 => 'templates\\templates\\modificaUtente.tpl',
-      1 => 1467582047,
+      1 => 1467803000,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '10952577d76042bff40_42713636',
+  'nocache_hash' => '24676577ce57f5acf97_59879612',
   'variables' => 
   array (
     'messaggio' => 0,
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_577d76043c00b7_00387558',
+  'unifunc' => 'content_577ce57f5f3365_46093529',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_577d76043c00b7_00387558')) {
-function content_577d76043c00b7_00387558 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_577ce57f5f3365_46093529')) {
+function content_577ce57f5f3365_46093529 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '10952577d76042bff40_42713636';
+$_smarty_tpl->properties['nocache_hash'] = '24676577ce57f5acf97_59879612';
 ?>
 <link type="text/css" rel="stylesheet" href="View/css/modificaUtente.css" />
-<link type="text/css" rel="stylesheet" href="View/css/jquery-ui.css" />
 
 <?php echo '<script'; ?>
  type="text/javascript" src='JS/validation/dateITA.js'><?php echo '</script'; ?>
@@ -93,7 +92,7 @@ $_smarty_tpl->properties['nocache_hash'] = '10952577d76042bff40_42713636';
             </tr>
 
             <tr>
-                <td><input type="submit" value=" INVIA "><td/>
+                <td><input id="submit" type="submit" value=" INVIA "><td/>
             </tr>
 
         </table>

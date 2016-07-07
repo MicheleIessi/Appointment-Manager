@@ -1,4 +1,6 @@
-<link type="text/css" rel="stylesheet" href="View/css/paginaProfessionista.css"/>
+<head>
+    <link type="text/css" rel="stylesheet" href="View/css/paginaProfessionista.css"/>
+</head>
 
 <div title="contenitoreUtente"id="contenitoreUtente">
         
@@ -16,8 +18,8 @@
             <li>Data di nascita: {$dataNascita} </li><br>
             <li>Sesso: {$sesso} </li><br>
             <li>Codice fiscale: {$codiceFiscale} </li><br>
-            <li>Email:{$email} </li><br>
-            <li>Settore:{$settore} </li>
+            <li>Email: {$email} </li><br>
+            <li>Settore: {$settore} </li>
         </ul> 
         
     </div>

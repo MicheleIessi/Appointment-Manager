@@ -20,7 +20,8 @@ class CLogin {
         $a=$this->getTask();
         switch($a) {
             case 'login': {
-                $this->processaLogin();
+                $cor=$this->processaLogin();
+                return $cor;
                 break;
             } 
             case 'logout': {
@@ -39,12 +40,9 @@ class CLogin {
                 $this->conferma();
                 break;
             }
-            case 'controllaconferma': {
-                return $this->controllaconferma();
-            }
             case 'reg': {
                 $this->processaReg();
-                header('location:../../index.php');
+                header("location : index.php");
                 break;
             }
             case 'controllaEsistenzaCodiceFiscale':{
@@ -60,18 +58,27 @@ class CLogin {
 
         $sessione = new USession();
 
-        if( !$sessione->getValore('idUtente') == -1) {
+        if( !($sessione->getValore('idUtente'))) { // l'utente non è loggato
             $mail = $_REQUEST['email'];
             $pass = $_REQUEST['password'];
             $fute = new FUtente();
             $utente = $fute->caricaUtenteDaLogin($mail, $pass);
             if($utente!=false) { //è stato trovato un utente con mail e pass giuste
                 $id = $utente->getID();
-                $sessione->impostaValore('idUtente',$id);
-                $CUte = new CUtente();
-                $tipo = $CUte->controllaProfessionista($id);
-                $sessione->impostaValore('tipo',$tipo);
-                header('location: ../../index.php');
+                if($id == 0) {
+                    $sessione->impostaValore('idUtente',0);
+                    $sessione->impostaValore('tipo','admin');
+                }
+                else {
+                    $sessione->impostaValore('idUtente', $id);
+                    $CUte = new CUtente();
+                    $tipo = $CUte->controllaProfessionista($id);
+                    $sessione->impostaValore('tipo', $tipo);
+                }
+                header('Location: index.php');
+            }
+            else {
+                return $cor = false;
             }
         }
     }
@@ -100,6 +107,7 @@ class CLogin {
             $corpoMail = "Gentile $nome $cognome, per confermare l'iscrizione al sito cliccare sul seguente link:".
                          "http://localhost/appointment-manager/Control/Ajax/ALogin.php?task=conferma&code=$codice";
             $mail->inviaMail($emailreg, $nome, $oggetto, $corpoMail);
+            
         }
             
             
@@ -131,15 +139,11 @@ class CLogin {
         $mail = strtolower(trim($_POST['email']));
         $FUte=new FUtente;
         $Ute=$FUte->caricaUtenteDaMail($mail);
-        if($FUte->controllaEsistenza('email', $mail)){
-        if($Ute->getCodiceconferma()!=0) {
-            return json_encode(true);
-        }
-            else {
-                return json_encode(false);
-            }
-        }
-    }    
+        if($Ute->getCodiceConferma()=='0') 
+        return true;
+        else 
+        return false;        }
+        
 
     private function controllaMail() {
         $mail = trim($_POST['email']);
@@ -148,11 +152,11 @@ class CLogin {
         $esito = $FUte->controllaEsistenza('email',$mail);
         if($a==='controllaEsistenzaMailL'){return json_encode($esito);
         }
-        elseif($this->getTask()==='controllaEsistenzaMailR'){return json_encode(!$esito);}
+        elseif($a==='controllaEsistenzaMailR'){return json_encode(!$esito);}
         
     }
     private function ControllaCodiceFiscale(){
-        $codicefiscale=($_REQUEST['CodiceFiscale']);
+        $codicefiscale=$_POST['CodiceFiscale'];
         $FUte = new FUtente();
         $esito=$FUte->controllaEsistenza('codiceFiscale', $codicefiscale);
         return json_encode(!$esito);

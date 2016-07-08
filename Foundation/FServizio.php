@@ -45,7 +45,6 @@ class FServizio extends Fdb {
     public function aggiornaServizio(Eservizio $es) {
         parent::setParam($this->table,$this->attributi,$this->bind,$this->bind_key,$this->old_keys);
         $valori = parent::cambiaChiaviArray($es->getArrayAttributi());
-        $valori[':durata']=intval($valori[':durata']);
         try {
             if(parent::aggiorna($valori) == 0) {
                 throw new PDOException("Impossibile modificare il servizio.<br>");
@@ -75,6 +74,17 @@ class FServizio extends Fdb {
             echo $e->getMessage();
         }
         return $es;
+    }
+
+    //carica tutti i servizi
+    public function caricaServizi() {
+        $result = parent::caricaTutte($this->table);
+        $arrSer = array();
+        foreach($result as $ser) {
+            $serElem = $this->caricaServizioDaDb($ser['nomeServizio']);
+            array_push($arrSer,$serElem);
+        }
+        return $arrSer;
     }
 
 }

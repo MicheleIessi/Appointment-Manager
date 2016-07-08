@@ -91,7 +91,7 @@ class EProfessionista extends EUtente {
     public function getUtenteDaProfessionista() {
         return new EUtente($this->getNome(),$this->getCognome(),$this->getDataNascita(),
                            $this->getCodiceFiscale(),$this->getSesso(),$this->getEmail(),
-                           $this->getPassword(),$this->getID());
+                           $this->getPassword(),$this->getCodiceConferma(),$this->getID());
     }
 
     /**Gli orari lavorativi devono essere rappresentati da un array associativo del tipo 'lun'=>'aa:bb:cc-xx:yy:zz','mar'=>...

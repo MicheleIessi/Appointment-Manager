@@ -61,6 +61,11 @@ class CCalendar {
 
     public function getColonnaInformazioni() {
         $VCal = new VCalendar();
+        $id = $_REQUEST['idp'];
+        $FProf = new FProfessionista();
+        $EProf = $FProf->caricaProfessionistaDaDB($id);
+        $nomeProf = $EProf->getNome() . " " . $EProf->getCognome();
+        $VCal->setData('nomeProf',$nomeProf);        
         return $VCal->fetch('colonnaInformazioni.tpl');
     }
 

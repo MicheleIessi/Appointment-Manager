@@ -1,8 +1,7 @@
-
-<?php /* Smarty version 3.1.27, created on 2016-07-07 13:08:20
+<?php /* Smarty version 3.1.27, created on 2016-07-09 00:04:32
          compiled from "templates\templates\paginaProfessionista.tpl" */ ?>
 <?php
-/*%%SmartyHeaderCode:8583577e38249a4f62_54092053%%*/
+/*%%SmartyHeaderCode:2746157802370d582b2_16705289%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -10,14 +9,16 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'd6210ceb9dc0131c015e02dfe0c182d06a3cb023' => 
     array (
       0 => 'templates\\templates\\paginaProfessionista.tpl',
-      1 => 1467889670,
+      1 => 1468015467,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '8583577e38249a4f62_54092053',
+  'nocache_hash' => '2746157802370d582b2_16705289',
   'variables' => 
   array (
     'numID' => 0,
+    'modifica' => 0,
+    'immagine' => 0,
     'nome' => 0,
     'cognome' => 0,
     'dataNascita' => 0,
@@ -25,7 +26,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'codiceFiscale' => 0,
     'email' => 0,
     'settore' => 0,
-    'modifica' => 0,
     'orariLavorativi' => 0,
     'nomeUtente' => 0,
     'serviziOfferti' => 0,
@@ -35,13 +35,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_577e3824c2c3a5_70283767',
+  'unifunc' => 'content_57802370dd8558_73644889',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_577e3824c2c3a5_70283767')) {
-function content_577e3824c2c3a5_70283767 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_57802370dd8558_73644889')) {
+function content_57802370dd8558_73644889 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '8583577e38249a4f62_54092053';
+$_smarty_tpl->properties['nocache_hash'] = '2746157802370d582b2_16705289';
 ?>
 <head>
     <link type="text/css" rel="stylesheet" href="View/css/paginaProfessionista.css"/>
@@ -53,7 +53,13 @@ $_smarty_tpl->properties['nocache_hash'] = '8583577e38249a4f62_54092053';
 </h2>
 
     <div title="immagine" id="immagine">
-        Carica Immagine
+        <?php if ($_smarty_tpl->tpl_vars['modifica']->value) {?>
+            <a class='buttonElem' rel="leanModal" href="#caricamentoImmagine" id="bottoneImmagine"></a>
+        <?php }?>
+        <?php if ($_smarty_tpl->tpl_vars['immagine']->value) {?>
+            <image id="immagineProfilo" src="<?php echo $_smarty_tpl->tpl_vars['immagine']->value;?>
+" />
+        <?php }?>
     </div>
 
     <div title="datiUtente" id="datiUtente">
@@ -186,6 +192,29 @@ $_smarty_tpl->tpl_vars['servizio'] = $foreach_servizio_Sav;
 
         </button></a>
     <?php }?>
+    
+    <?php if ($_smarty_tpl->tpl_vars['modifica']->value) {?>            
+    <div title="caricamentoImmagine" id="caricamentoImmagine">
+        
+        <h2>Carica immagine</h2>
+        
+        <form enctype="multipart/form-data" action="caricaImmagine.php" method="POST">
+            <input type="hidden" name="MAX_FILE_SIZE" value="4194304" />
+            <input type="hidden" name="utenteCorrente" value="<?php echo $_smarty_tpl->tpl_vars['numID']->value;?>
+" />
+            <table>
+                <tr>
+                    <td> <input id="fileLabel" name="immagineUtente" type="file"> </td>
+                </tr>
+                <tr>
+                    <td> <input type="submit" value="Carica"> </td>
+                </tr>            
+            </table>
+        </form>
+                
+    </div>
+    <?php }?>
+    
 </div>
 <?php }
 }

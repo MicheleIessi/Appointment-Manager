@@ -1,15 +1,21 @@
 <link type="text/css" rel="stylesheet" href="View/css/paginaCliente.css" />
 
 <div title="contenitoreUtente"id='contenitoreUtente'>
-    
+            
             
 
             <h2>Pagina Cliente - ID Utente: {$numID} </h2>
 
-            <div title="immagine" id="immagine">
-                Carica Immagine
+            <div id="immagine">
+                {if $modifica}
+                <a class='buttonElem' rel="leanModal" href="#caricamentoImmagine" id="bottoneImmagine"></a>
+                {/if}
+                {if $immagine}
+                    <image id="immagineProfilo" src="{$immagine}" />
+                {/if}
+                
             </div>
-
+            
             <div title="datiUtente" id="datiUtente">
                 
                 <ul>
@@ -22,8 +28,7 @@
                     <br>
                 </ul>
                 
-            </div>
-            
+            </div>            
             
                 <h3>Cronologia Appuntamenti </h3>
                 <table id="pastAppTable">
@@ -47,8 +52,29 @@
                     <a href=?controller=modificaUtente><button id="modifica">Modifica informazioni</button></a>
                     {/if}
                 </table>
-            
+                
+     <!-- ----------------------------------------------------------------------------------------------------- -->           
+    {if $modifica}            
+    <div title="caricamentoImmagine" id="caricamentoImmagine">
+        
+        <h2>Carica immagine</h2>
+        
+        <form enctype="multipart/form-data" action="caricaImmagine.php" method="POST">
+            <input type="hidden" name="MAX_FILE_SIZE" value="4194304" />
+            <input type="hidden" name="utenteCorrente" value="{$numID}" />
+            <table>
+                <tr>
+                    <td> <input id="fileLabel" name="immagineUtente" type="file"> </td>
+                </tr>
+                <tr>
+                    <td> <input type="submit" value="Carica"> </td>
+                </tr>            
+            </table>
+        </form>
+                
+    </div>
+    {/if}
 
-        </div>
+</div>
 
 

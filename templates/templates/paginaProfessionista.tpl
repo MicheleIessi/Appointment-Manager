@@ -7,7 +7,12 @@
     <h2 id="titolo">Pagina Professionista - ID Utente {$numID}</h2>
 
     <div title="immagine" id="immagine">
-        Carica Immagine
+        {if $modifica}
+            <a class='buttonElem' rel="leanModal" href="#caricamentoImmagine" id="bottoneImmagine"></a>
+        {/if}
+        {if $immagine}
+            <image id="immagineProfilo" src="{$immagine}" />
+        {/if}
     </div>
 
     <div title="datiUtente" id="datiUtente">
@@ -106,4 +111,26 @@
 
         </button></a>
     {/if}
+    
+    {if $modifica}            
+    <div title="caricamentoImmagine" id="caricamentoImmagine">
+        
+        <h2>Carica immagine</h2>
+        
+        <form enctype="multipart/form-data" action="caricaImmagine.php" method="POST">
+            <input type="hidden" name="MAX_FILE_SIZE" value="4194304" />
+            <input type="hidden" name="utenteCorrente" value="{$numID}" />
+            <table>
+                <tr>
+                    <td> <input id="fileLabel" name="immagineUtente" type="file"> </td>
+                </tr>
+                <tr>
+                    <td> <input type="submit" value="Carica"> </td>
+                </tr>            
+            </table>
+        </form>
+                
+    </div>
+    {/if}
+    
 </div>

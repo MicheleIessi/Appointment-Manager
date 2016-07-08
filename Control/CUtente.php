@@ -130,7 +130,6 @@ class CUtente {
             );
             
             array_push($arrayCronologia,$rigaCronologia);
-            
         }
         return $arrayCronologia;
     }
@@ -263,6 +262,78 @@ class CUtente {
         $dataISO= $anno."-".$mese."-".$giorno;
         return $dataISO;
     }
-
     
+    public function caricaImmagine()   {
+        
+        $sessione= new USession();
+        $id = $sessione->getValore('idUtente');
+        $paginaCorrente = $_REQUEST['utenteCorrente'];
+        if($paginaCorrente != $id) {
+            echo "Non puoi modificare un'immagine di un profilo non tuo, str.. furbetto...";
+            exit;
+        }
+        // verifico che il file sia stato uploadato
+        if (!isset($_FILES['immagineUtente']) || !is_uploaded_file($_FILES['immagineUtente']['tmp_name'])) {
+            echo 'Errore: caricamento file non avvenuto';
+            exit;
+        }
+        
+        // verifico che il file caricato sia effettivamente un'immagine
+        $is_img = getimagesize($_FILES['immagineUtente']['tmp_name']);
+        
+        if (!$is_img) {
+            echo 'Puoi inviare solo immagini';
+        exit;    
+        }
+        
+        // controllo che il file non superi i 4 MB
+        if ($_FILES['immagineUtente']['size'] > 4194304) {
+            echo 'Il file è troppo grande!';
+        exit;
+        }
+        
+        // Se tutti i precedenti controlli sono superati:
+        
+        //percorso della cartella dove mettere i file caricati dagli utenti
+        $cartellaImmagini = "./img/immaginiProfilo/";
+        
+        //Recupero il percorso temporaneo in cui vengono inizialmente uploadati i files
+        $nomeTmp = $_FILES['immagineUtente']['tmp_name'];
+        
+        //recupero il nome originale del file caricato
+        $nomeImmagine = $_FILES['immagineUtente']['name'];
+        
+        // per recuperare l'estensione del file
+        $info = new SplFileInfo($nomeImmagine);
+        $estensione = $info->getExtension();
+        
+        // chiamo l'immagine del profilo di un utente con il suo id + estensione
+        $nomeImmagine= $sessione->getValore("idUtente").".$estensione";
+        
+        // Ricostruisco il path completo del file
+        $target_file = $cartellaImmagini.$nomeImmagine;
+        
+        // controllo che il file non esista già   
+        $mask = $cartellaImmagini.$id.".*";
+        $arrImm = glob($mask);
+        array_map('unlink',glob($mask));
+        
+        
+        //Arrivati a questo punto copio il file dalla sua posizione temporanea alla mia cartella upload
+        
+        if (move_uploaded_file($nomeTmp, $target_file)) { 
+            //Se l'operazione è andata a buon fine...
+            $tipo = ucfirst($sessione->getValore('tipo'));
+            $id = $sessione->getValore('idUtente');
+            header("Location: index.php?controller=pagina$tipo&id=$id");
+        }
+        else{
+            //Se l'operazione è fallta...
+            echo 'Upload immagine non riuscito';   
+        }
+        
+        // finito, assegno l'immagine a una variabile smarty
+        
+        
+    }
 }

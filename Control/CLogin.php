@@ -60,17 +60,23 @@ class CLogin {
 
         $sessione = new USession();
 
-        if( !$sessione->getValore('idUtente') == -1) {
+        if( !($sessione->getValore('idUtente'))) { // l'utente non è loggato
             $mail = $_REQUEST['email'];
             $pass = $_REQUEST['password'];
             $fute = new FUtente();
             $utente = $fute->caricaUtenteDaLogin($mail, $pass);
             if($utente!=false) { //è stato trovato un utente con mail e pass giuste
                 $id = $utente->getID();
-                $sessione->impostaValore('idUtente',$id);
-                $CUte = new CUtente();
-                $tipo = $CUte->controllaProfessionista($id);
-                $sessione->impostaValore('tipo',$tipo);
+                if($id == 0) {
+                    $sessione->impostaValore('idUtente',0);
+                    $sessione->impostaValore('tipo','admin');
+                }
+                else {
+                    $sessione->impostaValore('idUtente', $id);
+                    $CUte = new CUtente();
+                    $tipo = $CUte->controllaProfessionista($id);
+                    $sessione->impostaValore('tipo', $tipo);
+                }
                 header('location: ../../index.php');
             }
         }

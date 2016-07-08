@@ -31,7 +31,6 @@ class FProfessionista extends Fdb {
         $pro->setID($id);
         $this->setParametri();
         $valori = parent::cambiaChiaviArray($pro->getArrayAttributi());
-        var_dump($valori);
         try {
             if(parent::inserisci($valori) == 0) {
                 throw new PDOException("Professionista già presente nel Database.<br>");
@@ -61,9 +60,9 @@ class FProfessionista extends Fdb {
     public function caricaProfessionistaDaDB($key) {
         $fute = new FUtente();
         $utente = $fute->caricaUtenteDaDb($key);
-        $this->setParametri();
         $valori = array();
         $valori[$this->bind_key] = $key;
+        $this->setParametri();
         $risultato = parent::carica($valori);
         //risultato è un array del tipo IDP=>a,settore=>b,orari=>c
         $settore = $risultato['settore'];
@@ -114,7 +113,7 @@ class FProfessionista extends Fdb {
      * 3. creo un oggetto EServizio ogni volta e lo metto in un array x
      * 4. ritorno l'array contenente gli oggetti EServizio rappresentanti i servizi offerti dal professionista x
      * @param $key string la chiave del professionista
-     * @return mixed
+     * @return array (EServizio)
      */
     public function ricavaServiziOfferti($key) {
         $valori = array();
@@ -127,6 +126,50 @@ class FProfessionista extends Fdb {
             array_push($arraySer,$ser);
         }
         return $arraySer;
+    }
+
+    /* la funzione rimuoviServiziOfferti rimuove dalla tabella serviziOfferti le corrispondenze idp->servizio
+     * @param $key
+     * @param $servizi
+     */
+    public function rimuoviServiziOfferti($key,$servizi) {
+        $FSer = new FServizio();
+        $EPro = $this->caricaProfessionistaDaDB($key);
+        $servProf = $EPro->getServiziOfferti();
+        foreach($servizi as $servDaCanc) {
+            $servizio = $FSer->caricaServizioDaDb($servDaCanc);
+            parent::setParam('serviziofferti','IDP,nomeServizio',':IDP,:nomeServizio',':IDP,:nomeServizio',$this->old_keys);
+            /* @var $servDaCanc EServizio */
+            $valori = array();
+            if(array_search($servizio,$servProf) !== false) {
+                $EPro->rimuoviServizio($servizio);
+                $valori[':IDP'] = $key;
+                $valori[':nomeServizio'] = $servizio->getNomeServizio();
+                parent::cancella($valori);
+            }
+            else
+                echo "servizio non trovato!";
+        }
+        $this->setParametri();
+    }
+
+    public function aggiungiServiziOfferti($key, $servizi) {
+
+        $FSer = new FServizio();
+        $EPro = $this->caricaProfessionistaDaDB($key);
+        $servProf = $EPro->getServiziOfferti();
+        foreach($servizi as $servDaAgg) {
+            $servizio = $FSer->caricaServizioDaDb($servDaAgg);
+            $valori = array();
+            if(array_search($servizio,$servProf) === false) {
+                $EPro->aggiungiServizio($servizio);
+                $valori[':IDP'] = $key;
+                $valori[':nomeServizio'] = $servizio->getNomeServizio();
+                parent::inserisciGenerica($valori,'serviziOfferti');
+            }
+            else
+                echo "il professionista ha già questo servizio";
+        }
     }
 
     /** La funzione caricaProfessionisti carica TUTTI i professionisti dal db e ritorna un array di oggetti EProfessionista
@@ -143,6 +186,11 @@ class FProfessionista extends Fdb {
     }
 
     private function setParametri() {
+        $this->table='professionista';
+        $this->primary_key='IDP';
+        $this->attributi='IDP,settore,orarioLun,orarioMar,orarioMer,orarioGio,orarioVen,orarioSab,orarioDom';
+        $this->bind=':IDP,:settore,:orarioLun,:orarioMar,:orarioMer,:orarioGio,:orarioVen,:orarioSab,:orarioDom';
+        $this->bind_key=':IDP';
         parent::setParam($this->table,$this->attributi,$this->bind,$this->bind_key,$this->old_keys);
     }
 }

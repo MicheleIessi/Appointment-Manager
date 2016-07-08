@@ -1,9 +1,52 @@
+<?php /* Smarty version 3.1.27, created on 2016-07-08 21:18:01
+         compiled from "templates\templates\paginaAmministratore.tpl" */ ?>
+<?php
+/*%%SmartyHeaderCode:14231577ffc69b0f047_59716131%%*/
+if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+$_valid = $_smarty_tpl->decodeProperties(array (
+  'file_dependency' => 
+  array (
+    '55e812cba7d563b1e49c81b512aa6b8f36e94b7c' => 
+    array (
+      0 => 'templates\\templates\\paginaAmministratore.tpl',
+      1 => 1468005479,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '14231577ffc69b0f047_59716131',
+  'variables' => 
+  array (
+    'professionisti' => 0,
+    'prof' => 0,
+    'servizi' => 0,
+    'ser' => 0,
+  ),
+  'has_nocache_code' => false,
+  'version' => '3.1.27',
+  'unifunc' => 'content_577ffc69bdae33_19823694',
+),false);
+/*/%%SmartyHeaderCode%%*/
+if ($_valid && !is_callable('content_577ffc69bdae33_19823694')) {
+function content_577ffc69bdae33_19823694 ($_smarty_tpl) {
+
+$_smarty_tpl->properties['nocache_hash'] = '14231577ffc69b0f047_59716131';
+?>
 <link type="text/css" rel="stylesheet" href="View/css/paginaAmministratore.css" />
-<script type="text/javascript" src="JS/fullcalendar-2.6.1/lib/jquery.min.js"></script>
-<script type="text/javascript" src="JS/jquery-ui/jquery-ui.min.js"></script>
-<script type="text/javascript" src="JS/jquery-ui/datepicker-it.js"></script>
-<script type="text/javascript" src="JS/jquery.leanModal.min.js"></script>
-<script type="text/javascript" src="JS/paginaAmministratore.js"></script>
+<?php echo '<script'; ?>
+ type="text/javascript" src="JS/fullcalendar-2.6.1/lib/jquery.min.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ type="text/javascript" src="JS/jquery-ui/jquery-ui.min.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ type="text/javascript" src="JS/jquery-ui/datepicker-it.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ type="text/javascript" src="JS/jquery.leanModal.min.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ type="text/javascript" src="JS/paginaAmministratore.js"><?php echo '</script'; ?>
+>
 
 <div name="contenitoreAmministratore" id="contenitoreAmministratore">
     
@@ -124,9 +167,26 @@
                     <optgroup label="Professionista">
                         <option selected disabled>Professionisti:</option>
                         <!-- Qui da implementare un ciclo smarty per caricare tutti i professionisti-->
-                        {foreach $professionisti as $prof}
-                        <option value="{$prof['idProf']}">{$prof['idProf']} - {$prof['nomePro']} {$prof['cognomePro']}</option>
-                        {/foreach}
+                        <?php
+$_from = $_smarty_tpl->tpl_vars['professionisti']->value;
+if (!is_array($_from) && !is_object($_from)) {
+settype($_from, 'array');
+}
+$_smarty_tpl->tpl_vars['prof'] = new Smarty_Variable;
+$_smarty_tpl->tpl_vars['prof']->_loop = false;
+foreach ($_from as $_smarty_tpl->tpl_vars['prof']->value) {
+$_smarty_tpl->tpl_vars['prof']->_loop = true;
+$foreach_prof_Sav = $_smarty_tpl->tpl_vars['prof'];
+?>
+                        <option value="<?php echo $_smarty_tpl->tpl_vars['prof']->value['idProf'];?>
+"><?php echo $_smarty_tpl->tpl_vars['prof']->value['idProf'];?>
+ - <?php echo $_smarty_tpl->tpl_vars['prof']->value['nomePro'];?>
+ <?php echo $_smarty_tpl->tpl_vars['prof']->value['cognomePro'];?>
+</option>
+                        <?php
+$_smarty_tpl->tpl_vars['prof'] = $foreach_prof_Sav;
+}
+?>
                     </optgroup>
                 </select>
                     <br>
@@ -218,9 +278,24 @@
                     <optgroup label="Servizio">
                         <option selected disabled>Servizi:</option>
                         <!-- Qui da implementare un ciclo smarty per caricare tutti i professionisti-->
-                        {foreach $servizi as $ser}
-                            <option value="{$ser['nomeSer']}">{$ser['nomeSer']}</option>
-                        {/foreach}
+                        <?php
+$_from = $_smarty_tpl->tpl_vars['servizi']->value;
+if (!is_array($_from) && !is_object($_from)) {
+settype($_from, 'array');
+}
+$_smarty_tpl->tpl_vars['ser'] = new Smarty_Variable;
+$_smarty_tpl->tpl_vars['ser']->_loop = false;
+foreach ($_from as $_smarty_tpl->tpl_vars['ser']->value) {
+$_smarty_tpl->tpl_vars['ser']->_loop = true;
+$foreach_ser_Sav = $_smarty_tpl->tpl_vars['ser'];
+?>
+                            <option value="<?php echo $_smarty_tpl->tpl_vars['ser']->value['nomeSer'];?>
+"><?php echo $_smarty_tpl->tpl_vars['ser']->value['nomeSer'];?>
+</option>
+                        <?php
+$_smarty_tpl->tpl_vars['ser'] = $foreach_ser_Sav;
+}
+?>
                     </optgroup>
                 </select>
                 <table id="modificaServizioTab">
@@ -267,9 +342,26 @@
                         <optgroup label="Professionista">
                             <option selected disabled>Professionisti:</option>
                             <!-- Qui da implementare un ciclo smarty per caricare tutti i professionisti-->
-                            {foreach $professionisti as $prof}
-                                <option value="{$prof['idProf']}">{$prof['idProf']} - {$prof['nomePro']} {$prof['cognomePro']}</option>
-                            {/foreach}
+                            <?php
+$_from = $_smarty_tpl->tpl_vars['professionisti']->value;
+if (!is_array($_from) && !is_object($_from)) {
+settype($_from, 'array');
+}
+$_smarty_tpl->tpl_vars['prof'] = new Smarty_Variable;
+$_smarty_tpl->tpl_vars['prof']->_loop = false;
+foreach ($_from as $_smarty_tpl->tpl_vars['prof']->value) {
+$_smarty_tpl->tpl_vars['prof']->_loop = true;
+$foreach_prof_Sav = $_smarty_tpl->tpl_vars['prof'];
+?>
+                                <option value="<?php echo $_smarty_tpl->tpl_vars['prof']->value['idProf'];?>
+"><?php echo $_smarty_tpl->tpl_vars['prof']->value['idProf'];?>
+ - <?php echo $_smarty_tpl->tpl_vars['prof']->value['nomePro'];?>
+ <?php echo $_smarty_tpl->tpl_vars['prof']->value['cognomePro'];?>
+</option>
+                            <?php
+$_smarty_tpl->tpl_vars['prof'] = $foreach_prof_Sav;
+}
+?>
                         </optgroup>
                     </select>
                     </td>
@@ -304,9 +396,26 @@
                             <optgroup label="Professionista">
                                 <option selected disabled>Professionisti:</option>
                                 <!-- Qui da implementare un ciclo smarty per caricare tutti i professionisti-->
-                                {foreach $professionisti as $prof}
-                                    <option value="{$prof['idProf']}">{$prof['idProf']} - {$prof['nomePro']} {$prof['cognomePro']}</option>
-                                {/foreach}
+                                <?php
+$_from = $_smarty_tpl->tpl_vars['professionisti']->value;
+if (!is_array($_from) && !is_object($_from)) {
+settype($_from, 'array');
+}
+$_smarty_tpl->tpl_vars['prof'] = new Smarty_Variable;
+$_smarty_tpl->tpl_vars['prof']->_loop = false;
+foreach ($_from as $_smarty_tpl->tpl_vars['prof']->value) {
+$_smarty_tpl->tpl_vars['prof']->_loop = true;
+$foreach_prof_Sav = $_smarty_tpl->tpl_vars['prof'];
+?>
+                                    <option value="<?php echo $_smarty_tpl->tpl_vars['prof']->value['idProf'];?>
+"><?php echo $_smarty_tpl->tpl_vars['prof']->value['idProf'];?>
+ - <?php echo $_smarty_tpl->tpl_vars['prof']->value['nomePro'];?>
+ <?php echo $_smarty_tpl->tpl_vars['prof']->value['cognomePro'];?>
+</option>
+                                <?php
+$_smarty_tpl->tpl_vars['prof'] = $foreach_prof_Sav;
+}
+?>
                         </optgroup>
                         </select>
                         </td>
@@ -366,3 +475,6 @@
 <!-- ---------------------------------------------------------------------------------------------------------------------------------------- -->
     
 
+<?php }
+}
+?>

@@ -56,10 +56,17 @@ class VIndex extends View {
         $id = $sessione->getValore('idUtente');
         if($tipo =='cliente')
             $logBut[]=array('testo'=>'Profilo','link'=>'?controller=paginaCliente&id='.$id);
-        else
+        else if($tipo == 'professionista')
             $logBut[]=array('testo'=>'Profilo','link'=>'?controller=paginaProfessionista&id='.$id);
-        $logBut[]=array('testo'=>'Logout','link'=>'javascript:log_out()');
+        $logBut[]=array('testo'=>'Logout','link'=>'#logout');
         $this->main_button=array_merge($this->main_button,$logBut);
+    }
+
+    public function impostaPaginaAdmin() {
+        $this->aggiungiTastiLoggato();
+        $this->assign('title','Amministrazione sito');
+        $this->assign('main_content',$this->main_content);
+        $this->assign('right_content',$this->side_content);
     }
 
     public function impostaPaginaRegistrato() {

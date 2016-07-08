@@ -67,7 +67,7 @@
                         </tr>
                     </table>
                     <div class="btn-fld">
-                        <button id="bottoneLogin">Login »</button>
+                        <button type="submit" id="bottoneLogin">Login »</button>
                     </div>
                 </form>
             </div>

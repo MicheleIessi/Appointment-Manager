@@ -106,8 +106,8 @@ class Fdb {
      */
     protected function cancella($data) {
         $sql="DELETE FROM $this->table WHERE";
-        $Primary = explode(',',$this->primary_key);
         $BindKey = explode(',',$this->bind_key);
+        $Primary = array_map(function($v) { return ltrim($v, ':');}, $BindKey);
         $imax=count($Primary);
         for($i=0;$i<$imax;$i++) {
             $sql.=" $Primary[$i] = $BindKey[$i] AND";

@@ -85,7 +85,7 @@ $(document).ready(function() {
                         if(response.stato == 'successo') {
                             dettagli.css('color','green');
                             dettagli.text(response.messaggio);
-                            window.setTimeout(function(){document.location.reload()},3000)
+                            window.setTimeout(function(){document.location.reload()},1500)
                         }
                         else if (response.stato == 'errore') {
                             $('#calendar').fullCalendar('removeEvents',event._id);

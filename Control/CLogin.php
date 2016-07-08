@@ -75,10 +75,11 @@ class CLogin {
                     $tipo = $CUte->controllaProfessionista($id);
                     $sessione->impostaValore('tipo', $tipo);
                 }
-                header('location: ../../index.php');
+                header('Location: index.php');
             }
-            else                
-            return $cor=false;
+            else {
+                return $cor = false;
+            }
         }
     }
     public function processaReg(){

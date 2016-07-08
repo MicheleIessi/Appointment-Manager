@@ -48,7 +48,6 @@ class VIndex extends View {
         $this->assign('main_content',$this->main_content);
         $this->assign('right_content',$this->side_content);
     }
-
     public function aggiungiTastiLoggato() {
         $logBut = array();
         $sessione = new USession();

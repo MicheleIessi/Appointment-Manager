@@ -46,19 +46,37 @@ class CIndex {
             return $VAdm->impostaTemplate();
         }
         else {
-            switch ($this->VIndex->getController()) {
-                case 'registrazione':
-                    $CReg = new CRegistrazione();
-                    return $CReg->smista();
-
+            switch($this->VIndex->getController()) {
+                case 'reg':
+                    $con = $_REQUEST['controller'];
+                    $this->VIndex->unsetController();
+                    $CLog = new CLogin($con);
+                    $CLog->smista();
+                    break;
+                case 'logout':
+                    $con = $_REQUEST['controller'];
+                    $this->VIndex->unsetController();
+                    $CLog = new CLogin($con);
+                    $CLog->smista();
+                    break;
                 case 'login':
-                    $CLog = new CLogin();
-                    return $CLog->smista();
+                    $con=$_REQUEST['controller'];
+                    $this->VIndex->unsetController();
+                    $CLog = new CLogin($con);
+                    if($CLog->controllaconferma()){
+                      if(!$CLog->smista())
+                        return $this->VIndex->fetch('passworderrata.tpl');
+                    }
+                    else
+                        return $this->VIndex->fetch('conferma.tpl');
+                    break;
                 case 'lista':
-                    if ($log >= 0) {
-                        $cal = new CCalendar();
-                        return $cal->smista('lista');
-                    } else return $this->VIndex->fetch('forbidden.tpl');
+                    if($log >= 0) {
+                            $cal = new CCalendar();
+                            return $cal->smista('lista');
+                        }
+                    else
+                        return $this->VIndex->fetch('forbidden.tpl');
                 case 'calendario':
                     if ($log >= 0) {
                         $FPro = new FProfessionista();
@@ -96,11 +114,10 @@ class CIndex {
                             } else {
                                 return $this->VIndex->fetch('errore.tpl');
                             }
-
                         }
                     } else
                         return $this->VIndex->fetch('forbidden.tpl');
-                case 'paginaProfessionista':
+                case 'paginaProfessionista': {
                     if ($log > 0) {
                         if (isset($_REQUEST['id']) && is_numeric($_REQUEST['id'])) {
                             $CPagU = new CUtente();
@@ -114,7 +131,7 @@ class CIndex {
                         }
                     } else
                         return $this->VIndex->fetch('forbidden.tpl');
-
+                }
                 case 'modificaUtente':
                     $messaggio = $sessione->getValore('messaggioErrore');
                     $this->VIndex->setData('messaggio', $messaggio);
@@ -125,5 +142,4 @@ class CIndex {
             }
         }
     }
-    
 }

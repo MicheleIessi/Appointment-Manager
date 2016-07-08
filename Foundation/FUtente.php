@@ -43,21 +43,16 @@ class FUtente extends Fdb   {
 
     public function cancellaUtente(EUtente $u) {
         $this->setParametri();
-        $codFis = $u->getCodiceFiscale();
-        $cod[':codiceFiscale'] = $codFis;
         try {
-            $risultato = parent::caricaConChiave($cod,'codiceFiscale');
-            if($risultato != false) {
-                $id = $risultato['numID'];
-                $valori=array(':numID'=>$id);
-                parent::cancella($valori);
-                echo "Utente cancellato con successo.<br>";
+            $id = $u->getID();
+            $valori=array(':numID'=>$id);
+            if(parent::cancella($valori) != 0) {
+                return true;
             }
-            else
-                throw new PDOException("Utente non presente nel database: impossibile cancellarlo.<br>");
         } catch(PDOException $e) {
             echo $e->getMessage();
         }
+        return false;
     }
 
     public function aggiornaUtente(EUtente $u) {
@@ -74,6 +69,10 @@ class FUtente extends Fdb   {
         return true;
     }
 
+    /**
+     * @param $code
+     * @return bool | EUtente
+     */
     public function caricaUtenteDaConferma($code){
         $this->setParametri();
         $binding=$this->confirm_bind;

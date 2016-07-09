@@ -20,7 +20,7 @@ $config['smtp']['username'] = 'progettoappointmentmanager@gmail.com';
 $config['smtp']['password'] = 'progetto123';
 
 
-$config['home'][0] = array('testo'=>'chi siamo','link'=>'?controller=info&action=informazioni');
-$config['home'][1] = array('testo'=>'contatti','link'=>'?controller=info&action=contatti');
+$config['home'][0] = array('testo'=>'chi siamo','link'=>'?controller=info&task=informazioni');
+$config['home'][1] = array('testo'=>'credits','link'=>'?controller=info&task=credits');
 
 ?>

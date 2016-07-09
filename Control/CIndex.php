@@ -132,13 +132,26 @@ class CIndex {
                     } else
                         return $this->VIndex->fetch('forbidden.tpl');
                 }
-                case 'modificaUtente':
+                case 'modificaUtente': {
                     $messaggio = $sessione->getValore('messaggioErrore');
                     $this->VIndex->setData('messaggio', $messaggio);
                     $sessione->cancellaValore('messaggioErrore');
-                    return $this->VIndex->fetch('modificaUtente.tpl');     // solo per provare, ancora da fare i controlli
-                default:
+                    return $this->VIndex->fetch('modificaUtente.tpl');
+                }
+                case 'info': {
+                    $CInfo = new CInfo();
+                    return $CInfo->smista();
+                }
+                default: {
+                    $nome = "ospite";
+                    if($log > 0) {
+                        $FUte = new FUtente();
+                        $ute = $FUte->caricaUtenteDaDb($log);
+                        $nome = $ute->getNome()." ".$ute->getCognome();
+                    }
+                    $this->VIndex->setData('nome',$nome);
                     return $this->VIndex->fetch('home_default_content.tpl');
+                }
             }
         }
     }

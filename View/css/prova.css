@@ -6,20 +6,16 @@ body    {
     
 }
 
-
-.main {
-   
+.titolo {
+    font-size: 50px;
 }
 
-.content {
-    
-}
-
-.content:only-child {
-    
+p.titolo {
+    font-size: 40px;
 }
 
 #contenutoDefault   {
+    text-align:center;
     padding-left: 20px;
 }
 
@@ -98,11 +94,11 @@ button  {
 
 .profContainer  {
     margin-left: 20px;
+    text-align: center;
 }
-
+button.profLink {
+    min-width: 200px;
+}
 .profList   {
-    padding-bottom: 10px;
-    padding-left: 0px ;
-    padding-right: 10px ;
-    padding-top: 10px;
+    padding: 10px 0 10px 0;
 }

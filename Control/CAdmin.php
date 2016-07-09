@@ -23,6 +23,9 @@ class CAdmin {
             case 'assegnaServizio':
                 $this->assegnaServizio();
                 break;
+            case 'modificaInfo':
+                $this->modificaInfo();
+                break;
 
             //chiamate ajax
             case 'ajaxServ':
@@ -123,6 +126,42 @@ class CAdmin {
         $vecchioSer->setDurata($durataSer);
 
         $FSer->aggiornaServizio($vecchioSer);
+
+        header('Location: ../../index.php');
+
+    }
+
+    private function modificaInfo() {
+
+        $VAdm = new VAdmin();
+        $campi = $VAdm->getModificaInfo();
+
+        $titolo = $campi['titolo'];
+        $sotto1 = $campi['sotto1'];
+        $testo1 = $campi['testo1'];
+        $sotto2 = $campi['sotto2'];
+        $testo2 = $campi['testo2'];
+        $sotto3 = $campi['sotto3'];
+        $testo3 = $campi['testo3'];
+
+        //se il file esiste già, prima lo cancello e in seguito lo riscrivo
+        if(file_exists('contenutoStatico/informazioni.txt')) {
+            unlink('contenutoStatico/informazioni.txt');
+        }
+
+        $UFile = new UFile();
+        $file = $UFile->apriFile('../../contenutoStatico','informazioni.txt','w');
+
+        $stringaDaScrivere =  $titolo."\n"
+                             .$sotto1."\n"
+                             .$testo1."\n"
+                             .$sotto2."\n"
+                             .$testo2."\n"
+                             .$sotto3."\n"
+                             .$testo3;
+
+        $UFile->scriviFile($stringaDaScrivere,$file);
+        $UFile->chiudiFile($file);
 
         header('Location: ../../index.php');
 

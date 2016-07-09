@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-07-08 21:18:01
+<?php /* Smarty version 3.1.27, created on 2016-07-09 19:13:48
          compiled from "templates\templates\paginaAmministratore.tpl" */ ?>
 <?php
-/*%%SmartyHeaderCode:14231577ffc69b0f047_59716131%%*/
+/*%%SmartyHeaderCode:5032578130ccebda51_17708239%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,11 +9,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '55e812cba7d563b1e49c81b512aa6b8f36e94b7c' => 
     array (
       0 => 'templates\\templates\\paginaAmministratore.tpl',
-      1 => 1468005479,
+      1 => 1468081074,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '14231577ffc69b0f047_59716131',
+  'nocache_hash' => '5032578130ccebda51_17708239',
   'variables' => 
   array (
     'professionisti' => 0,
@@ -23,13 +23,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_577ffc69bdae33_19823694',
+  'unifunc' => 'content_578130cd0353a3_60081279',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_577ffc69bdae33_19823694')) {
-function content_577ffc69bdae33_19823694 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_578130cd0353a3_60081279')) {
+function content_578130cd0353a3_60081279 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '14231577ffc69b0f047_59716131';
+$_smarty_tpl->properties['nocache_hash'] = '5032578130ccebda51_17708239';
 ?>
 <link type="text/css" rel="stylesheet" href="View/css/paginaAmministratore.css" />
 <?php echo '<script'; ?>
@@ -59,7 +59,6 @@ $_smarty_tpl->properties['nocache_hash'] = '14231577ffc69b0f047_59716131';
         <div class="box"><a class='adminButton' rel="leanModal" href="#eliminaServizio"><button class="modifica">Elimina servizio</button></a></div>
         <div class="box clear"><a class='adminButton' rel="leanModal" href="#assegnaServizio"><button class="modifica">Assegna servizio</button></a></div>
         <div class="box clear"><a class='adminButton' rel="leanModal" href="#modificaInformazioni"><button class="modifica">Modifica informazioni</button></a></div>
-        <div class="box clear"><a class='adminButton' rel="leanModal" href="#modificaContatti"><button class="modifica">Modifica contatti</button></a></div>
 
 <!-- ---------------------------------------------------------------------------------------------------------------------------------------- -->    
         <div id="aggiungiProfessionista">
@@ -439,42 +438,47 @@ $_smarty_tpl->tpl_vars['prof'] = $foreach_prof_Sav;
         
         <div id="modificaInformazioni">
 
-            <h3>Testo da Inserire nella sezione informazioni:</h3> <!-- E' il campo "Chi siamo" -->
+            <h3>Testo da Inserire nella sezione informazioni:</h3>
 
-            <form name="modificaInf" id="modificaInf" method="post" wrap="hard" action="amministratore.php">
-                <textarea id="testo" cols="150"></textarea>
+            <form name="modificaInf" id="modificaInf" method="post" action="Control/Ajax/AAdmin.php">
+                <table id="infoTab">
+                    <tr>
+                        <td class="tdbold left">Sezione</td>
+                        <td class="tdbold">Valore</td>
+                    </tr>
+                    <tr>
+                        <td class="left">Titolo</td>
+                        <td><input type="text" class="textLargo" id="infoTitolo" name="infoTitolo" /></td>
+                    </tr>
+                    <tr>
+                        <td class="left">Sottotitolo 1</td>
+                        <td><input type="text" class="textLargo" id="infoSot1" name="infoSot1" /></td>
+                    </tr>
+                    <tr>
+                        <td class="left">Testo area 1</td>
+                        <td><textarea class="areaTesto" id="testoArea1" name="testoArea1"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td class="left">Sottotitolo 2</td>
+                        <td><input type="text" class="textLargo" id="infoSot2" name="infoSot2" /></td>
+                    </tr>
+                    <tr>
+                        <td class="left">Testo area 2</td>
+                        <td><textarea class="areaTesto" id="testoArea2" name="testoArea2"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td class="left">Sottotitolo 3</td>
+                        <td><input type="text" class="textLargo" id="infoSot3" name="infoSot3" /></td>
+                    </tr>
+                    <tr>
+                        <td class="left">Testo area 3</td>
+                        <td><textarea class="areaTesto" id="testoArea3" name="testoArea3"></textarea></td>
+                    </tr>
+                </table>
+                <input type="hidden" name="task" value="modificaInfo" />
+                <input id="submit7" type="submit" value="MODIFICA ">
             </form>
-            
-            <br>
-            
-            <input id="submit7" type="submit" value="MODIFICA ">
 
-        </div>
-        
-<!-- ---------------------------------------------------------------------------------------------------------------------------------------- -->
-        
-        <div id="modificaContatti">
-
-            <h3>Testo da Inserire nella sezione contatti:</h3> <!-- E' il campo "Chi siamo" -->
-
-            <form name="modificaCon" id="modificaCon" method="post" wrap="hard" action="amministratore.php">
-                <textarea id="testo" cols="150"></textarea>
-            </form>
-            
-            <br>
-            
-            <input id="submit8" type="submit" value="MODIFICA ">
-            
-
-        </div>
-        
-        <!-- Elimina utente da fare nel caso volessimo -->
-    
-    </div>
-    
-<!-- ---------------------------------------------------------------------------------------------------------------------------------------- -->
-    
-
-<?php }
+        </div><?php }
 }
 ?>

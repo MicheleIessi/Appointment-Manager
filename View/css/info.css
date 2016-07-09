@@ -1,0 +1,42 @@
+#primaParte {
+    font-size: 20px;
+    text-align: center;
+    margin: 20px;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: aliceblue;
+}
+
+#secondaParte {
+    font-size: 20px;
+    text-align: left;
+    padding: 10px;
+    margin: 20px;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: aliceblue;
+}
+
+#terzaParte {
+    font-size: 20px;
+    text-align: right;
+    padding: 5px;
+    margin: 20px;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: aliceblue;
+}
+
+p#titolo {
+    font-size: 2em;
+    text-align: center;
+}
+
+p.testo {
+    color: black;
+    font-size: 17px;
+}
+
+h1 {
+    text-align: center;
+}

@@ -101,6 +101,29 @@ class VAdmin extends View {
         return $risultato;
     }
 
+    public function getModificaInfo() {
+
+        $risultato = array();
+
+        $titolo = ($_REQUEST['infoTitolo']  == "") ? "" : $_REQUEST['infoTitolo'];
+        $sotto1 = ($_REQUEST['infoSot1']    == "") ? "" : $_REQUEST['infoSot1'];
+        $testo1 = ($_REQUEST['testoArea1']  == "") ? "" : $_REQUEST['testoArea1'];
+        $sotto2 = ($_REQUEST['infoSot2']    == "") ? "" : $_REQUEST['infoSot2'];
+        $testo2 = ($_REQUEST['testoArea2']  == "") ? "" : $_REQUEST['testoArea2'];
+        $sotto3 = ($_REQUEST['infoSot3']    == "") ? "" : $_REQUEST['infoSot3'];
+        $testo3 = ($_REQUEST['testoArea3']  == "") ? "" : $_REQUEST['testoArea3'];
+
+        $risultato['titolo'] = $titolo;
+        $risultato['sotto1'] = $sotto1;
+        $risultato['testo1'] = $testo1;
+        $risultato['sotto2'] = $sotto2;
+        $risultato['testo2'] = $testo2;
+        $risultato['sotto3'] = $sotto3;
+        $risultato['testo3'] = $testo3;
+
+        return $risultato;
+    }
+
     public function setProfessionisti() {
 
         $FPro = new FProfessionista();

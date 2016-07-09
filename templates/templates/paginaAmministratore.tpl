@@ -16,7 +16,6 @@
         <div class="box"><a class='adminButton' rel="leanModal" href="#eliminaServizio"><button class="modifica">Elimina servizio</button></a></div>
         <div class="box clear"><a class='adminButton' rel="leanModal" href="#assegnaServizio"><button class="modifica">Assegna servizio</button></a></div>
         <div class="box clear"><a class='adminButton' rel="leanModal" href="#modificaInformazioni"><button class="modifica">Modifica informazioni</button></a></div>
-        <div class="box clear"><a class='adminButton' rel="leanModal" href="#modificaContatti"><button class="modifica">Modifica contatti</button></a></div>
 
 <!-- ---------------------------------------------------------------------------------------------------------------------------------------- -->    
         <div id="aggiungiProfessionista">
@@ -330,39 +329,45 @@
         
         <div id="modificaInformazioni">
 
-            <h3>Testo da Inserire nella sezione informazioni:</h3> <!-- E' il campo "Chi siamo" -->
+            <h3>Testo da Inserire nella sezione informazioni:</h3>
 
-            <form name="modificaInf" id="modificaInf" method="post" wrap="hard" action="amministratore.php">
-                <textarea id="testo" cols="150"></textarea>
+            <form name="modificaInf" id="modificaInf" method="post" action="Control/Ajax/AAdmin.php">
+                <table id="infoTab">
+                    <tr>
+                        <td class="tdbold left">Sezione</td>
+                        <td class="tdbold">Valore</td>
+                    </tr>
+                    <tr>
+                        <td class="left">Titolo</td>
+                        <td><input type="text" class="textLargo" id="infoTitolo" name="infoTitolo" /></td>
+                    </tr>
+                    <tr>
+                        <td class="left">Sottotitolo 1</td>
+                        <td><input type="text" class="textLargo" id="infoSot1" name="infoSot1" /></td>
+                    </tr>
+                    <tr>
+                        <td class="left">Testo area 1</td>
+                        <td><textarea class="areaTesto" id="testoArea1" name="testoArea1"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td class="left">Sottotitolo 2</td>
+                        <td><input type="text" class="textLargo" id="infoSot2" name="infoSot2" /></td>
+                    </tr>
+                    <tr>
+                        <td class="left">Testo area 2</td>
+                        <td><textarea class="areaTesto" id="testoArea2" name="testoArea2"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td class="left">Sottotitolo 3</td>
+                        <td><input type="text" class="textLargo" id="infoSot3" name="infoSot3" /></td>
+                    </tr>
+                    <tr>
+                        <td class="left">Testo area 3</td>
+                        <td><textarea class="areaTesto" id="testoArea3" name="testoArea3"></textarea></td>
+                    </tr>
+                </table>
+                <input type="hidden" name="task" value="modificaInfo" />
+                <input id="submit7" type="submit" value="MODIFICA ">
             </form>
-            
-            <br>
-            
-            <input id="submit7" type="submit" value="MODIFICA ">
 
         </div>
-        
-<!-- ---------------------------------------------------------------------------------------------------------------------------------------- -->
-        
-        <div id="modificaContatti">
-
-            <h3>Testo da Inserire nella sezione contatti:</h3> <!-- E' il campo "Chi siamo" -->
-
-            <form name="modificaCon" id="modificaCon" method="post" wrap="hard" action="amministratore.php">
-                <textarea id="testo" cols="150"></textarea>
-            </form>
-            
-            <br>
-            
-            <input id="submit8" type="submit" value="MODIFICA ">
-            
-
-        </div>
-        
-        <!-- Elimina utente da fare nel caso volessimo -->
-    
-    </div>
-    
-<!-- ---------------------------------------------------------------------------------------------------------------------------------------- -->
-    
-

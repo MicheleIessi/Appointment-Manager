@@ -3,7 +3,7 @@
 class CAdmin {
 
     public function smista($task) {
-
+        try {
         switch($task) {
             case 'aggiungiProf':
                 $this->aggiungiProfessionista();
@@ -42,6 +42,9 @@ class CAdmin {
                 break;
 
             default: header('Location: ../../index.php');
+        }
+        } catch (Exception $e) {
+            $this->errore($e->getMessage());
         }
     }
 
@@ -301,5 +304,12 @@ class CAdmin {
         $dataISO= $anno."-".$mese."-".$giorno;
         return $dataISO;
     }
+    
+    private function errore($messaggioErrore)   {
+        $sessione = new USession();
+        $sessione->impostaValore('messaggioErrore', $messaggioErrore);
+        header("location: ../../index.php");
+    }
+
 
 }

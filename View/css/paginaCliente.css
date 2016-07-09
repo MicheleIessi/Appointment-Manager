@@ -160,6 +160,16 @@ button[id=modifica]  {
     z-index: 10;
 }
 
+#immModifica {
+    width: 20px;
+    height: 20px;
+    opacity: 0.2;
+}
+#immModifica:hover {
+    opacity: 1;
+}
+
+
 #immagineProfilo {
     width: 240px;
     height: 290px;

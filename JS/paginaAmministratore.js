@@ -533,63 +533,11 @@ $(document).ready(function() {
         }
     }
     );
-    
-    $("#modificaInformazioni").validate(    {
         
-        rules:
-        {    
-            
-        },
-        
-        messages:
-        {
-                         
-        }
-    }
-    );
-    
-    $("#modificacontatti").validate(    {
-        
-        rules:
-        {    
-            
-        },
-        
-        messages:
-        {
-                         
-        }
-    }
-    );
-    
-    
-    
-    
-    
 }
 );
 
 
-//funzionamento bottone logout e funzione logout
-$('#bottoneLogout').click(function () {
-    log_out();
-});
-
-function log_out() {
-    var uscita = confirm("Vuoi davvero uscire?");
-    if (uscita) {
-        $.ajax({
-            url: "Control/Ajax/ALogin.php",
-            method: "post",
-            data: {
-                task: 'logout'
-            },
-            success: function () {
-                location.href = "index.php";
-            }
-        });
-    }
-}
     
 $.validator.addMethod("noNumeri", function(value, element) {
  

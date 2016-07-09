@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-07-08 23:59:34
+<?php /* Smarty version 3.1.27, created on 2016-07-09 20:19:31
          compiled from "templates\templates\paginaCliente.tpl" */ ?>
 <?php
-/*%%SmartyHeaderCode:705457802246805a45_07339423%%*/
+/*%%SmartyHeaderCode:742578140333a3324_20368288%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,11 +9,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'b7382afd1e6591ab0ae7f7ec1f1ae65661362714' => 
     array (
       0 => 'templates\\templates\\paginaCliente.tpl',
-      1 => 1468015171,
+      1 => 1468088334,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '705457802246805a45_07339423',
+  'nocache_hash' => '742578140333a3324_20368288',
   'variables' => 
   array (
     'numID' => 0,
@@ -30,13 +30,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_57802246872893_58519025',
+  'unifunc' => 'content_5781403340bba6_69197329',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_57802246872893_58519025')) {
-function content_57802246872893_58519025 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_5781403340bba6_69197329')) {
+function content_5781403340bba6_69197329 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '705457802246805a45_07339423';
+$_smarty_tpl->properties['nocache_hash'] = '742578140333a3324_20368288';
 ?>
 <link type="text/css" rel="stylesheet" href="View/css/paginaCliente.css" />
 
@@ -47,16 +47,15 @@ $_smarty_tpl->properties['nocache_hash'] = '705457802246805a45_07339423';
             <h2>Pagina Cliente - ID Utente: <?php echo $_smarty_tpl->tpl_vars['numID']->value;?>
  </h2>
 
-            <div id="immagine">
-                <?php if ($_smarty_tpl->tpl_vars['modifica']->value) {?>
-                <a class='buttonElem' rel="leanModal" href="#caricamentoImmagine" id="bottoneImmagine"></a>
-                <?php }?>
-                <?php if ($_smarty_tpl->tpl_vars['immagine']->value) {?>
-                    <image id="immagineProfilo" src="<?php echo $_smarty_tpl->tpl_vars['immagine']->value;?>
+    <div title="immagine" id="immagine">
+        <?php if ($_smarty_tpl->tpl_vars['modifica']->value) {?>
+            <a rel="leanModal" href="#caricamentoImmagine" id="bottoneImmagine"><img src="img/modifica.gif" id="immModifica" /></a>
+        <?php }?>
+        <?php if ($_smarty_tpl->tpl_vars['immagine']->value) {?>
+            <image id="immagineProfilo" src="<?php echo $_smarty_tpl->tpl_vars['immagine']->value;?>
 " />
-                <?php }?>
-                
-            </div>
+        <?php }?>
+    </div>
             
             <div title="datiUtente" id="datiUtente">
                 
@@ -131,7 +130,7 @@ $_smarty_tpl->tpl_vars['app'] = $foreach_app_Sav;
 " />
             <table>
                 <tr>
-                    <td> <input id="croc" name="immagineUtente" type="file"> </td>
+                    <td> <input id="fileLabel" name="immagineUtente" type="file"> </td>
                 </tr>
                 <tr>
                     <td> <input type="submit" value="Carica"> </td>

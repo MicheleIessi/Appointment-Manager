@@ -238,7 +238,7 @@ class Fdb {
         }
         $sql = rtrim($sql,',');
         $sql.=")";
-        echo "$sql<br>";
+        //echo "$sql<br>";
         $query = self::$db->prepare($sql);
         try {
             $this->result = $query->execute($data);

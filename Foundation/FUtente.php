@@ -32,7 +32,7 @@ class FUtente extends Fdb   {
                 if (parent::inserisci($valori) == 0) {
                     throw new PDOException("Impossibile inserire l'utente.<br>");
                 } else
-                    echo "Utente aggiunto correttamente al database.<br>";
+                    return true;
             }
             else
                 echo "Utente già presente nel database.<br>";

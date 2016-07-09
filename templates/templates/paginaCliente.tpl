@@ -6,15 +6,14 @@
 
             <h2>Pagina Cliente - ID Utente: {$numID} </h2>
 
-            <div id="immagine">
-                {if $modifica}
-                <a class='buttonElem' rel="leanModal" href="#caricamentoImmagine" id="bottoneImmagine"></a>
-                {/if}
-                {if $immagine}
-                    <image id="immagineProfilo" src="{$immagine}" />
-                {/if}
-                
-            </div>
+    <div title="immagine" id="immagine">
+        {if $modifica}
+            <a rel="leanModal" href="#caricamentoImmagine" id="bottoneImmagine"><img src="img/modifica.gif" id="immModifica" /></a>
+        {/if}
+        {if $immagine}
+            <image id="immagineProfilo" src="{$immagine}" />
+        {/if}
+    </div>
             
             <div title="datiUtente" id="datiUtente">
                 

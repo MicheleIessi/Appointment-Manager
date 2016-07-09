@@ -84,6 +84,8 @@ class CSetup {
                 $Fdb->query($sql);
                 $sql = "UPDATE `utente` SET `numID` = '0' WHERE `numID` = '1';";
                 $Fdb->query($sql);
+                $sql = "ALTER TABLE `utente` AUTO_INCREMENT = 1";
+                $Fdb->query($sql);
 
                 // CREAZIONE FILE CONFIGURAZIONE
                 $eol = PHP_EOL;
@@ -109,8 +111,8 @@ class CSetup {
                     '$'."config['smtp']['password'] = '$smtppass';".$eol.
                     $eol.
                     $eol.
-                    '$'."config['home'][0] = array('testo'=>'chi siamo','link'=>'?controller=info&action=informazioni');".$eol.
-                    '$'."config['home'][1] = array('testo'=>'contatti','link'=>'?controller=info&action=contatti');".$eol.
+                    '$'."config['home'][0] = array('testo'=>'chi siamo','link'=>'?controller=info&task=informazioni');".$eol.
+                    '$'."config['home'][1] = array('testo'=>'credits','link'=>'?controller=info&task=credits');".$eol.
                     $eol.
                     "?>";
                 $UFile = new UFile();
@@ -118,6 +120,8 @@ class CSetup {
                 $UFile->scriviFile($config,$file);
                 $UFile->chiudiFile($file);
                 $CIndex = new CIndex();
+                $sessione = new USession();
+                $sessione->fineSessione();
                 $CIndex->impostaPagina();
 
             } catch(Exception $e) {

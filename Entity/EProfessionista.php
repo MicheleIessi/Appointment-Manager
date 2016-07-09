@@ -1,15 +1,25 @@
 <?php
-
 /**
- * Class EProfessionista
- */
+* EProfessionista e' la classe principale del package Entity
+*
+* EProfessionista e' la classe invocata ogni volta che bisogna creare degli
+* oggetti EProfessionista 
+*
+* @package  Entity
+* @author   Michele Iessi
+* @author   Davide Iessi
+* @author   Andrea Pagliaro
+* @access   public
+* 
+*/
 class EProfessionista extends EUtente {
-
+    
+    //Attributi
     private $serviziOfferti = array();
     private $settore;
     private $orariLavorativi = array();
-
-
+    
+    //Costruttore
     public function __construct($n, $c, $dn, $cf, $s, $e, $p, $cc, $id, $so, $set, $or) {
         parent::__construct($n, $c, $dn, $cf, $s, $e, $p, $cc, $id);
         $this->setServiziOfferti($so);
@@ -17,12 +27,21 @@ class EProfessionista extends EUtente {
         $this->setOrariLavorativi($or);
     }
     
+    /**
+     * Viene settato l'array dei servizi offerti dal prfessionista
+     * @param array $so
+     */
+    
     public function setServiziOfferti($so) {
         $this->serviziOfferti = array();
         foreach ($so as $servizio) {
             array_push($this->serviziOfferti, $servizio);
         }
     }
+    /**
+     * Vine settato il settore di competenza del professionista
+     * @param $set
+     */
     
     public function setSettore($set) {
         $this->settore = $set;
@@ -38,6 +57,13 @@ class EProfessionista extends EUtente {
             $this->orariLavorativi = $or;
         }
     }
+    /**
+     * 
+     * La funzione modificaGiornoLavorativo accetta un parametro giorno e orario
+     * cerca il giorno dato e ne aggiorna l'orario
+     * @param type $giorno
+     * @param type $orario
+     */
 
     public function modificaGiornoLavorativo($giorno,$orario) {
         $chiaviRichieste = array('lun','mar','mer','gio','ven','sab','dom');
@@ -54,7 +80,7 @@ class EProfessionista extends EUtente {
             echo "Giorno non valido.<br>";
     }
     /**
-     * @return array EServizio
+     * @return type
      */
     public function getServiziOfferti()     {
         return $this->serviziOfferti;
@@ -71,7 +97,13 @@ class EProfessionista extends EUtente {
     public function aggiungiServizio($so) {
         array_push($this->serviziOfferti, $so);
     }
-
+    /**
+     * La funzione rimuoviServizio riceve il nome di un servizio svolto dal 
+     * professionista effettua un controllo sull'array dei servizi offerti dallo 
+     * stesso , nel caso in cui ci sia match viene eliminato quel servizio
+     * @param type $so
+     * @throws Exception
+     */
     public function rimuoviServizio($so) {
         if(($key = array_search($so, $this->serviziOfferti)) !== false) {
             unset($this->serviziOfferti[$key]);
@@ -81,6 +113,12 @@ class EProfessionista extends EUtente {
             throw new Exception ("Servizio non presente");
         }
     }
+    /**
+     * Metodo di utilita' per il lato foundation
+     * E' lo stesso metodo utilizzato per EUtente solo e' adattato
+     * al caso professionista
+     * @return array
+     */
 
     public function getArrayAttributi() {
         return array($this->numID,$this->settore,$this->orariLavorativi['lun'],$this->orariLavorativi['mar'],

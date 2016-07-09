@@ -2,13 +2,13 @@
     <link type="text/css" rel="stylesheet" href="View/css/paginaProfessionista.css"/>
 </head>
 
-<div title="contenitoreUtente"id="contenitoreUtente">
+<div title="contenitoreUtente" id="contenitoreUtente">
         
     <h2 id="titolo">Pagina Professionista - ID Utente {$numID}</h2>
 
     <div title="immagine" id="immagine">
         {if $modifica}
-            <a class='buttonElem' rel="leanModal" href="#caricamentoImmagine" id="bottoneImmagine"></a>
+            <a rel="leanModal" href="#caricamentoImmagine" id="bottoneImmagine"><img src="img/modifica.gif" id="immModifica" /></a>
         {/if}
         {if $immagine}
             <image id="immagineProfilo" src="{$immagine}" />

@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-07-09 00:33:58
+<?php /* Smarty version 3.1.27, created on 2016-07-09 19:35:06
          compiled from "templates\templates\paginaProfessionista.tpl" */ ?>
 <?php
-/*%%SmartyHeaderCode:1214457802a56b8b706_55701931%%*/
+/*%%SmartyHeaderCode:20686578135ca4e1b21_31913821%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,11 +9,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'd6210ceb9dc0131c015e02dfe0c182d06a3cb023' => 
     array (
       0 => 'templates\\templates\\paginaProfessionista.tpl',
-      1 => 1468016609,
+      1 => 1468085600,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '1214457802a56b8b706_55701931',
+  'nocache_hash' => '20686578135ca4e1b21_31913821',
   'variables' => 
   array (
     'numID' => 0,
@@ -35,26 +35,26 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_57802a56d23694_81794118',
+  'unifunc' => 'content_578135ca592f88_05111828',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_57802a56d23694_81794118')) {
-function content_57802a56d23694_81794118 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_578135ca592f88_05111828')) {
+function content_578135ca592f88_05111828 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '1214457802a56b8b706_55701931';
+$_smarty_tpl->properties['nocache_hash'] = '20686578135ca4e1b21_31913821';
 ?>
 <head>
     <link type="text/css" rel="stylesheet" href="View/css/paginaProfessionista.css"/>
 </head>
 
-<div title="contenitoreUtente"id="contenitoreUtente">
+<div title="contenitoreUtente" id="contenitoreUtente">
         
     <h2 id="titolo">Pagina Professionista - ID Utente <?php echo $_smarty_tpl->tpl_vars['numID']->value;?>
 </h2>
 
     <div title="immagine" id="immagine">
         <?php if ($_smarty_tpl->tpl_vars['modifica']->value) {?>
-            <a class='buttonElem' rel="leanModal" href="#caricamentoImmagine" id="bottoneImmagine"></a>
+            <a rel="leanModal" href="#caricamentoImmagine" id="bottoneImmagine"><img src="img/modifica.gif" id="immModifica" /></a>
         <?php }?>
         <?php if ($_smarty_tpl->tpl_vars['immagine']->value) {?>
             <image id="immagineProfilo" src="<?php echo $_smarty_tpl->tpl_vars['immagine']->value;?>

@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-07-08 21:18:01
+<?php /* Smarty version 3.1.27, created on 2016-07-09 17:46:29
          compiled from "templates\templates\paginaAmministratore.tpl" */ ?>
 <?php
-/*%%SmartyHeaderCode:14231577ffc69b0f047_59716131%%*/
+/*%%SmartyHeaderCode:434257811c55dbca46_00663751%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,32 +9,31 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '55e812cba7d563b1e49c81b512aa6b8f36e94b7c' => 
     array (
       0 => 'templates\\templates\\paginaAmministratore.tpl',
-      1 => 1468005479,
+      1 => 1468079072,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '14231577ffc69b0f047_59716131',
+  'nocache_hash' => '434257811c55dbca46_00663751',
   'variables' => 
   array (
     'professionisti' => 0,
     'prof' => 0,
     'servizi' => 0,
     'ser' => 0,
+    'messaggio' => 0,
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_577ffc69bdae33_19823694',
+  'unifunc' => 'content_57811c55e617f4_18422894',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_577ffc69bdae33_19823694')) {
-function content_577ffc69bdae33_19823694 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_57811c55e617f4_18422894')) {
+function content_57811c55e617f4_18422894 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '14231577ffc69b0f047_59716131';
+$_smarty_tpl->properties['nocache_hash'] = '434257811c55dbca46_00663751';
 ?>
 <link type="text/css" rel="stylesheet" href="View/css/paginaAmministratore.css" />
-<?php echo '<script'; ?>
- type="text/javascript" src="JS/fullcalendar-2.6.1/lib/jquery.min.js"><?php echo '</script'; ?>
->
+
 <?php echo '<script'; ?>
  type="text/javascript" src="JS/jquery-ui/jquery-ui.min.js"><?php echo '</script'; ?>
 >
@@ -43,6 +42,12 @@ $_smarty_tpl->properties['nocache_hash'] = '14231577ffc69b0f047_59716131';
 >
 <?php echo '<script'; ?>
  type="text/javascript" src="JS/jquery.leanModal.min.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ type="text/javascript" src="JS/validation/jquery.validate.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ type="text/javascript" src="JS/validation/dateITA.js"><?php echo '</script'; ?>
 >
 <?php echo '<script'; ?>
  type="text/javascript" src="JS/paginaAmministratore.js"><?php echo '</script'; ?>
@@ -67,7 +72,7 @@ $_smarty_tpl->properties['nocache_hash'] = '14231577ffc69b0f047_59716131';
             <h3>Modifica informazioni</h3>
 
             <form name="aggiungiProf" id="aggiungiProf" method="post" action="Control/Ajax/AAdmin.php">
-                <table>
+                <table id="tabellaProfessionista">
 
                     <tr>
                         <td>
@@ -251,7 +256,7 @@ $_smarty_tpl->tpl_vars['prof'] = $foreach_prof_Sav;
                     </tr>
                     <tr>
                         <td>Settore</td>
-                        <td> <input type="text" id="settore" name="setAggSer"></td>
+                        <td> <input type="text" id="settoreAgg" name="setAggSer"></td>
                     </tr>
                     <tr>
                         <td>Durata</td>
@@ -468,8 +473,11 @@ $_smarty_tpl->tpl_vars['prof'] = $foreach_prof_Sav;
 
         </div>
         
-        <!-- Elimina utente da fare nel caso volessimo -->
-    
+        <?php if ($_smarty_tpl->tpl_vars['messaggio']->value) {?>
+            <label><?php echo $_smarty_tpl->tpl_vars['messaggio']->value;?>
+</label>
+        <?php }?>
+
     </div>
     
 <!-- ---------------------------------------------------------------------------------------------------------------------------------------- -->

@@ -43,6 +43,9 @@ class CIndex {
         $sessione = new USession();
         if($log == 0) {
             $VAdm = new VAdmin();
+            $messaggio = $sessione->getValore('messaggioErrore');
+            $VAdm->setData('messaggio', $messaggio);
+            $sessione->cancellaValore('messaggioErrore');
             return $VAdm->impostaTemplate();
         }
         else {

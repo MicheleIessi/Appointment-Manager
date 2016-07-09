@@ -1,8 +1,10 @@
 <link type="text/css" rel="stylesheet" href="View/css/paginaAmministratore.css" />
-<script type="text/javascript" src="JS/fullcalendar-2.6.1/lib/jquery.min.js"></script>
+
 <script type="text/javascript" src="JS/jquery-ui/jquery-ui.min.js"></script>
 <script type="text/javascript" src="JS/jquery-ui/datepicker-it.js"></script>
 <script type="text/javascript" src="JS/jquery.leanModal.min.js"></script>
+<script type="text/javascript" src="JS/validation/jquery.validate.js"></script>
+<script type="text/javascript" src="JS/validation/dateITA.js"></script>
 <script type="text/javascript" src="JS/paginaAmministratore.js"></script>
 
 <div name="contenitoreAmministratore" id="contenitoreAmministratore">
@@ -24,7 +26,7 @@
             <h3>Modifica informazioni</h3>
 
             <form name="aggiungiProf" id="aggiungiProf" method="post" action="Control/Ajax/AAdmin.php">
-                <table>
+                <table id="tabellaProfessionista">
 
                     <tr>
                         <td>
@@ -191,7 +193,7 @@
                     </tr>
                     <tr>
                         <td>Settore</td>
-                        <td> <input type="text" id="settore" name="setAggSer"></td>
+                        <td> <input type="text" id="settoreAgg" name="setAggSer"></td>
                     </tr>
                     <tr>
                         <td>Durata</td>
@@ -359,8 +361,10 @@
 
         </div>
         
-        <!-- Elimina utente da fare nel caso volessimo -->
-    
+        {if $messaggio}
+            <label>{$messaggio}</label>
+        {/if}
+
     </div>
     
 <!-- ---------------------------------------------------------------------------------------------------------------------------------------- -->

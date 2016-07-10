@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-07-06 13:03:27
+<?php /* Smarty version 3.1.27, created on 2016-07-10 23:53:14
          compiled from "templates\templates\modificaUtente.tpl" */ ?>
 <?php
-/*%%SmartyHeaderCode:24676577ce57f5acf97_59879612%%*/
+/*%%SmartyHeaderCode:211455782c3ca87fb32_09026316%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,26 +9,26 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '05a01b745cd17305ca60a9462d4294f439c63ccd' => 
     array (
       0 => 'templates\\templates\\modificaUtente.tpl',
-      1 => 1467803000,
+      1 => 1468187251,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '24676577ce57f5acf97_59879612',
+  'nocache_hash' => '211455782c3ca87fb32_09026316',
   'variables' => 
   array (
     'messaggio' => 0,
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_577ce57f5f3365_46093529',
+  'unifunc' => 'content_5782c3ca8db175_94432466',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_577ce57f5f3365_46093529')) {
-function content_577ce57f5f3365_46093529 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_5782c3ca8db175_94432466')) {
+function content_5782c3ca8db175_94432466 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '24676577ce57f5acf97_59879612';
+$_smarty_tpl->properties['nocache_hash'] = '211455782c3ca87fb32_09026316';
 ?>
-<link type="text/css" rel="stylesheet" href="../../css/modificaUtente.css" />
+<link type="text/css" rel="stylesheet" href="css/modificaUtente.css" />
 
 <?php echo '<script'; ?>
  type="text/javascript" src='JS/validation/dateITA.js'><?php echo '</script'; ?>
@@ -47,7 +47,7 @@ $_smarty_tpl->properties['nocache_hash'] = '24676577ce57f5acf97_59879612';
 
     <h1>Modifica informazioni</h1>
 
-    <form name="modificaUtente" id="modificaUtente" method="post" action="modificaUtente.php">
+    <form name="modificaUtente" id="modificaUtente" method="post" action="Chiamate/AUtente.php">
 
         <table>
 
@@ -96,7 +96,7 @@ $_smarty_tpl->properties['nocache_hash'] = '24676577ce57f5acf97_59879612';
             </tr>
 
         </table>
-            
+            <input type="hidden" name="task" value="modifica" />
     </form>
     
     <?php if ($_smarty_tpl->tpl_vars['messaggio']->value) {?>

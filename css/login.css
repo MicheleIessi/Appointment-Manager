@@ -74,7 +74,7 @@ pre { display: block; font-size: 1.2em; color: #17516E;font-family: "Courier", "
 
 #test p { color: #666; text-shadow: none; }
 
-#signup-header { background: url(../img/hd-bg.png); text-align: center; border-bottom: 1px solid #CCC; border-top-left-radius: 5px; -moz-border-radius-topleft: 5px; -webkit-border-top-left-radius: 5px; border-top-right-radius: 5px; -moz-border-radius-topright: 5px; -webkit-border-top-right-radius: 5px; }
+#signup-header { text-align: center; border-bottom: 1px solid #CCC; border-top-left-radius: 5px; -moz-border-radius-topleft: 5px; -webkit-border-top-left-radius: 5px; border-top-right-radius: 5px; -moz-border-radius-topright: 5px; -webkit-border-top-right-radius: 5px; }
 
 #signup-header  h2 { color: #444; font-size: 2em; font-weight: 500; margin-bottom: 3px; text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5); }
 #signup-header  p { color: #444; font-size: 1.3em; margin: 0; padding-bottom: 5px; text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5); text-shadow: none; }

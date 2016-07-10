@@ -1,6 +1,4 @@
 <?php
-require_once($_SERVER["DOCUMENT_ROOT"].'/appointment-manager/includes/autoload.inc.php');
-
 
 class CLogin {
     
@@ -41,8 +39,7 @@ class CLogin {
                 break;
             }
             case 'reg': {
-                $this->processaReg();
-                header("location : index.php");
+                return $this->processaReg();
                 break;
             }
             case 'controllaEsistenzaCodiceFiscale':{
@@ -51,8 +48,6 @@ class CLogin {
             }
         }
     }
-
-
 
     public function processaLogin() {
 
@@ -105,12 +100,13 @@ class CLogin {
             $mail=new UMail();
             $oggetto='Conferma Registrazione';
             $corpoMail = "Gentile $nome $cognome, per confermare l'iscrizione al sito cliccare sul seguente link:".
-                         "http://localhost/appointment-manager/Control/Ajax/ALogin.php?task=conferma&code=$codice";
+                         "http://localhost/appointment-manager/Chiamate/ALogin.php?task=conferma&code=$codice";
             $mail->inviaMail($emailreg, $nome, $oggetto, $corpoMail);
-            
+            $VIn = new VIndex();
+            return $VIn->fetch('postRegistrazione.tpl');
         }
-            
-            
+
+
     }
 
     public function conferma() {

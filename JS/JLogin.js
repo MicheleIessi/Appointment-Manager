@@ -16,7 +16,7 @@ $(document).ready(function() {
         var uscita = confirm("Vuoi davvero uscire?");
         if (uscita) {
             $.ajax({
-                url: "Control/Ajax/ALogin.php",
+                url: "Chiamate/ALogin.php",
                 method: "post",
                 data: {
                     task: 'logout'
@@ -39,7 +39,7 @@ $(document).ready(function() {
                 remote: {
 
                     onfocusout: true,
-                    url: "Control/Ajax/ALogin.php",
+                    url: "Chiamate/ALogin.php",
                     method: "post",
                     data: {
                         task: 'controllaEsistenzaMailL'
@@ -96,7 +96,7 @@ $("#RegisterForm").validate({
                  remote: {
 
                     onfocusout: true,
-                    url: "Control/Ajax/ALogin.php",
+                    url: "Chiamate/ALogin.php",
                     method: "post",
                     data: {
                         task: 'controllaEsistenzaCodiceFiscale'
@@ -115,7 +115,7 @@ $("#RegisterForm").validate({
                  remote: {
 
                     onfocusout: true,
-                    url: "Control/Ajax/ALogin.php",
+                    url: "Chiamate/ALogin.php",
                     method: "post",
                     data: {
                         task: 'controllaEsistenzaMailR'
@@ -209,7 +209,7 @@ $.validator.addMethod("noNumeri", function(value, element) {
     $.ajax({
          async : false,
          type: "POST",
-         url: "Control/Ajax/ALogin.php",
+         url: "Control/Chiamate/ALogin.php",
          data: {email:$('#email').val(),
                 task :'controllaconferma'}});
         

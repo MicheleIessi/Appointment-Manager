@@ -54,7 +54,7 @@ class CIndex {
                     $con = $_REQUEST['controller'];
                     $this->VIndex->unsetController();
                     $CLog = new CLogin($con);
-                    $CLog->smista();
+                    return $CLog->smista();
                     break;
                 case 'logout':
                     $con = $_REQUEST['controller'];

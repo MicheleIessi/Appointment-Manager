@@ -32,7 +32,7 @@ $(document).ready( function()   {
                 remote: {
                     
                     onfocusout: true,
-                    url: "controllaEsistenza.php",
+                    url: "Chiamate/AControllaEsistenza.php",
                     type: "post",
                     data: {
                         tipo: 'codiceFiscale',
@@ -56,7 +56,7 @@ $(document).ready( function()   {
                 remote: {
                     
                     onfocusout: true,
-                    url: "controllaEsistenza.php",
+                    url: "Chiamate/AControllaEsistenza.php",
                     type: "post",
                     data: {
                         tipo: 'email',

@@ -3,7 +3,7 @@
 /**
 * EAppuntamento e' una delle classi del package Entity
 *
-* EUtente e' la classe invocata ogni volta che viene creato un appuntamento
+* EAppuntamento e' la classe invocata ogni volta che viene creato un appuntamento
 * tra un professionista ed un utente
 *  
 *

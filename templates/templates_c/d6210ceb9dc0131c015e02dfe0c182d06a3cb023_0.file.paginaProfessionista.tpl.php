@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-07-09 19:39:18
+<?php /* Smarty version 3.1.27, created on 2016-07-10 23:55:29
          compiled from "templates\templates\paginaProfessionista.tpl" */ ?>
 <?php
-/*%%SmartyHeaderCode:15011578136c6e504b1_61941198%%*/
+/*%%SmartyHeaderCode:39985782c451a9bc86_31529509%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,11 +9,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'd6210ceb9dc0131c015e02dfe0c182d06a3cb023' => 
     array (
       0 => 'templates\\templates\\paginaProfessionista.tpl',
-      1 => 1468085904,
+      1 => 1468187448,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '15011578136c6e504b1_61941198',
+  'nocache_hash' => '39985782c451a9bc86_31529509',
   'variables' => 
   array (
     'numID' => 0,
@@ -35,16 +35,16 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_578136c6ed5b43_58683214',
+  'unifunc' => 'content_5782c451b5b0c5_92283835',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_578136c6ed5b43_58683214')) {
-function content_578136c6ed5b43_58683214 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_5782c451b5b0c5_92283835')) {
+function content_5782c451b5b0c5_92283835 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '15011578136c6e504b1_61941198';
+$_smarty_tpl->properties['nocache_hash'] = '39985782c451a9bc86_31529509';
 ?>
 <head>
-    <link type="text/css" rel="stylesheet" href="../../css/paginaProfessionista.css"/>
+    <link type="text/css" rel="stylesheet" href="css/paginaProfessionista.css"/>
 </head>
 
 <div title="contenitoreUtente" id="contenitoreUtente">
@@ -198,7 +198,7 @@ $_smarty_tpl->tpl_vars['servizio'] = $foreach_servizio_Sav;
         
         <h2>Carica immagine</h2>
         
-        <form enctype="multipart/form-data" action="caricaImmagine.php" method="POST">
+        <form enctype="multipart/form-data" action="Chiamate/AUtente.php" method="POST">
             <input type="hidden" name="MAX_FILE_SIZE" value="4194304" />
             <input type="hidden" name="utenteCorrente" value="<?php echo $_smarty_tpl->tpl_vars['numID']->value;?>
 " />
@@ -210,6 +210,7 @@ $_smarty_tpl->tpl_vars['servizio'] = $foreach_servizio_Sav;
                     <td> <input type="submit" value="Carica"> </td>
                 </tr>            
             </table>
+            <input type="hidden" name="task" value="caricaImmagine" />
         </form>
                 
     </div>

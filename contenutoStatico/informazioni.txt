@@ -1,7 +1,7 @@
 Mario Rossi: Medical Division
-In onda stasera
-Mi raccomando non perdetevelo
-No davvero, non fatelo
-Ve ne pentireste
-Amaramente
-Ve l'assicuro
+Queste informazioni possono essere cambiate dall'amministratore
+La prima sezione è centrata ed è pensata per il contenuto principale delle informazioni
+Seconda sezione
+La seconda sezione è centrata a sinistra ed è pensata per il contenuto meno importante delle informazioni
+Terza sezione
+La terza sezione è semplicemente centrata a destra

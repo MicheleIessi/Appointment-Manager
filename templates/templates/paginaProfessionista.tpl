@@ -117,7 +117,7 @@
         
         <h2>Carica immagine</h2>
         
-        <form enctype="multipart/form-data" action="caricaImmagine.php" method="POST">
+        <form enctype="multipart/form-data" action="Chiamate/AUtente.php" method="POST">
             <input type="hidden" name="MAX_FILE_SIZE" value="4194304" />
             <input type="hidden" name="utenteCorrente" value="{$numID}" />
             <table>
@@ -128,6 +128,7 @@
                     <td> <input type="submit" value="Carica"> </td>
                 </tr>            
             </table>
+            <input type="hidden" name="task" value="caricaImmagine" />
         </form>
                 
     </div>

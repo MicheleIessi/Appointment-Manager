@@ -64,8 +64,7 @@ $(document).ready( function() {
                 required: false
             },
             dbname: {
-                required: true,
-                maxlength: 20
+                required: true
             },
             dbhost: {
                 required: true
@@ -132,8 +131,7 @@ $(document).ready( function() {
                 required: "Questo campo è richiesto"
             },
             dbname: {
-                required: "Questo campo è richiesto",
-                maxlength: "Massimo 20 caratteri"
+                required: "Questo campo è richiesto"
             },
             dbhost: {
                 required: "Questo campo è richiesto"

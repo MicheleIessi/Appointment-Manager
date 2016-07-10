@@ -16,7 +16,7 @@ $(document).ready(function() {
         var idp = $('#listaProf').val();
         $.ajax({
             type: 'post',
-            url: 'Control/Ajax/AAdmin.php',
+            url: 'Chiamate/AAdmin.php',
             dataType: 'json',
             data: {
                 task: 'ajaxOrari',
@@ -38,7 +38,7 @@ $(document).ready(function() {
         var idp = $('#listaProfEliminaSer').val();
         $.ajax({
             type: 'post',
-            url: 'Control/Ajax/AAdmin.php',
+            url: 'Chiamate/AAdmin.php',
             dataType: 'json',
             data: {
                 task: 'ajaxServProf',
@@ -61,7 +61,7 @@ $(document).ready(function() {
         var idp = $('#listaProfAggiungiSer').val();
         $.ajax({
             type: 'post',
-            url: 'Control/Ajax/AAdmin.php',
+            url: 'Chiamate/AAdmin.php',
             dataType: 'json',
             data: {
                 task: 'ajaxAltriServ',
@@ -88,7 +88,7 @@ $(document).ready(function() {
         var serv = $('#listaSer').val();
         $.ajax({
             type: 'post',
-            url: 'Control/Ajax/AAdmin.php',
+            url: 'Chiamate/AAdmin.php',
             dataType: 'json',
             data: {
                 task: 'ajaxServ',
@@ -133,7 +133,7 @@ $(document).ready(function() {
                 remote: {
                     
                     onfocusout: true,
-                    url: "controllaEsistenza.php",
+                    url: "Chiamate/AControllaEsistenza.php",
                     type: "post",
                     data: {
                         tipo: 'codiceFiscale',
@@ -157,7 +157,7 @@ $(document).ready(function() {
                 remote: {
                     
                     onfocusout: true,
-                    url: "controllaEsistenza.php",
+                    url: "Chiamate/AControllaEsistenza.php",
                     type: "post",
                     data: {
                         tipo: 'email',

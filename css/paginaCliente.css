@@ -163,7 +163,7 @@ button[id=modifica]  {
 #immModifica {
     width: 20px;
     height: 20px;
-    opacity: 0.2;
+    opacity: 0.3;
 }
 #immModifica:hover {
     opacity: 1;

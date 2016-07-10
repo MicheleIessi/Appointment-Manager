@@ -1,6 +1,6 @@
 <?php
 
-require_once($_SERVER["DOCUMENT_ROOT"].'/appointment-manager/includes/autoload.inc.php');
+require_once($_SERVER["DOCUMENT_ROOT"] . '/appointment-manager/includes/autoload.inc.php');
 
 $task = $_POST['type'];
 

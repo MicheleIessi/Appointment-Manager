@@ -66,18 +66,7 @@ class CUtente {
                 }                
                 $VPro->setData('modifica',$modifica);
                 $VPro->setData('proprietario',$proprietario);                
-                
-                /* Se prendo gli orari lavorativi del professionista, e li rendo un array, posso costruire una 
-                stringa del tipo 
-                 * lun -> ****
-                 * mar -> ****
-                 * mer -> ****
-                 * e così via; in questo modo posso inserire il tutto in un div (o in una table) 
-                 * in modo tale che gli orari del professionista siano visibili sulla sua pagina   
-                */
-                
-                //$this->processaOrari($EPro);
-                
+
                 return $VPro->impostaPaginaProfessionista();
 
             default:
@@ -227,7 +216,7 @@ class CUtente {
             if($FUte->aggiornaUtente($EUte)) {
                 $tipo = ucfirst($sessione->getValore('tipo'));
                 $id = $sessione->getValore('idUtente');
-                header("location: ./?controller=pagina$tipo&id=$id");
+                header("location: ../?controller=pagina$tipo&id=$id");
 
             }
 
@@ -295,7 +284,7 @@ class CUtente {
         // Se tutti i precedenti controlli sono superati:
         
         //percorso della cartella dove mettere i file caricati dagli utenti
-        $cartellaImmagini = "./img/immaginiProfilo/";
+        $cartellaImmagini = "../img/immaginiProfilo/";
         
         //Recupero il percorso temporaneo in cui vengono inizialmente uploadati i files
         $nomeTmp = $_FILES['immagineUtente']['tmp_name'];
@@ -325,15 +314,12 @@ class CUtente {
             //Se l'operazione è andata a buon fine...
             $tipo = ucfirst($sessione->getValore('tipo'));
             $id = $sessione->getValore('idUtente');
-            header("Location: index.php?controller=pagina$tipo&id=$id");
+            header("Location: ../index.php?controller=pagina$tipo&id=$id");
         }
         else{
             //Se l'operazione è fallta...
             echo 'Upload immagine non riuscito';   
         }
-        
-        // finito, assegno l'immagine a una variabile smarty
-        
-        
+
     }
 }

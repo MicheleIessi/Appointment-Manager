@@ -9,7 +9,7 @@
 
     <h1>Modifica informazioni</h1>
 
-    <form name="modificaUtente" id="modificaUtente" method="post" action="modificaUtente.php">
+    <form name="modificaUtente" id="modificaUtente" method="post" action="Chiamate/AUtente.php">
 
         <table>
 
@@ -58,7 +58,7 @@
             </tr>
 
         </table>
-            
+            <input type="hidden" name="task" value="modifica" />
     </form>
     
     {if $messaggio}

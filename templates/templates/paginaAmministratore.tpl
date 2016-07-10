@@ -24,7 +24,7 @@
 
             <h3>Modifica informazioni</h3>
 
-            <form name="aggiungiProf" id="aggiungiProf" method="post" action="Control/Ajax/AAdmin.php">
+            <form name="aggiungiProf" id="aggiungiProf" method="post" action="../../Chiamate/AAdmin.php">
                 <table id="tabellaProfessionista">
 
                     <tr>
@@ -119,7 +119,7 @@
 
             <h3>Modifica orari</h3>
 
-            <form name="modificaOra" id="modificaOra" method="post" action="Control/Ajax/AAdmin.php">
+            <form name="modificaOra" id="modificaOra" method="post" action="../../Chiamate/AAdmin.php">
                 
                 <select id="listaProf" name="listaProf">
                     <optgroup label="Professionista">
@@ -179,7 +179,7 @@
 
             <h3>Aggiungi servizio</h3>
 
-            <form name="aggiungiSer" id="aggiungiSer" method="post" wrap="hard" action="Control/Ajax/AAdmin.php">
+            <form name="aggiungiSer" id="aggiungiSer" method="post" wrap="hard" action="../../Chiamate/AAdmin.php">
                 <table id="aggiungiServizioTab">
 
                     <tr>
@@ -214,7 +214,7 @@
 
             <h3>Modifica servizio</h3>
 
-            <form name="modificaSer" id="modificaSer" method="post" wrap="hard" action="Control/Ajax/AAdmin.php">
+            <form name="modificaSer" id="modificaSer" method="post" wrap="hard" action="../../Chiamate/AAdmin.php">
                 <select id="listaSer" name="listaSer">
                     <optgroup label="Servizio">
                         <option selected disabled>Servizi:</option>
@@ -258,7 +258,7 @@
 
             <h3>Assegna servizio</h3>
 
-            <form name="assegnaSer" id="assegnaSer" method="post" action="Control/Ajax/AAdmin.php">
+            <form name="assegnaSer" id="assegnaSer" method="post" action="../../Chiamate/AAdmin.php">
                 
                 <table id="assegnaServizioTab">
                  
@@ -274,7 +274,7 @@
                         </optgroup>
                     </select>
                     </td>
-                    <!-- Ciclo for che popola la checkbox tramite chiamata Ajax che dipende dal prof scelto; in questo caso vengono
+                    <!-- Ciclo for che popola la checkbox tramite chiamata Chiamate che dipende dal prof scelto; in questo caso vengono
                         caricati i servizi della tabella 'servizio' -->
                     <td id="checkboxContainerAgg">
                     </td>
@@ -296,7 +296,7 @@
 
             <h3>Elimina servizi</h3>
 
-            <form name="eliminaSer" id="eliminaSer" method="post" action="Control/Ajax/AAdmin.php">
+            <form name="eliminaSer" id="eliminaSer" method="post" action="../../Chiamate/AAdmin.php">
                         
                 <table id="eliminaServiziotab">
                     <tr>
@@ -311,7 +311,7 @@
                         </optgroup>
                         </select>
                         </td>
-                        <!-- Ciclo for che popola la checkbox tramite chiamata Ajax che dipende dal prof scelto, in questo caso vengono
+                        <!-- Ciclo for che popola la checkbox tramite chiamata Chiamate che dipende dal prof scelto, in questo caso vengono
                             caricati solo i relativi a quel professionista -->
                         <td id="checkboxContainer"></td>
                     </tr>
@@ -333,7 +333,7 @@
 
             <h3>Testo da Inserire nella sezione informazioni:</h3>
 
-            <form name="modificaInf" id="modificaInf" method="post" action="Control/Ajax/AAdmin.php">
+            <form name="modificaInf" id="modificaInf" method="post" action="../../Chiamate/AAdmin.php">
                 <table id="infoTab">
                     <tr>
                         <td class="tdbold left">Sezione</td>

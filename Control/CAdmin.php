@@ -41,7 +41,7 @@ class CAdmin {
                 $this->dettagliAltriServiziProf();
                 break;
 
-            default: header('Location: ../../index.php');
+            default: header('Location: ../index.php');
         }
         } catch (Exception $e) {
             $this->errore($e->getMessage());
@@ -73,7 +73,7 @@ class CAdmin {
         $Prof = new EProfessionista($nome,$cognome,$dataNas,$codFis,$sesso,$email,$pass,"0",null,$servizi,$settore,$orari);
 
         $FPro->inserisciProfessionista($Prof);
-        header('Location: ../../index.php');
+        header('Location: ../index.php');
 
     }
 
@@ -87,7 +87,7 @@ class CAdmin {
         $Prof = $FPro->caricaProfessionistaDaDB($id);
         $Prof->setOrariLavorativi($orari);
         $FPro->aggiornaProfessionista($Prof);
-        header('Location: ../../index.php'); //sarebbe meglio una json_encode con un messaggio ajax
+        header('Location: ../index.php'); //sarebbe meglio una json_encode con un messaggio ajax
     }
 
     private function aggiungiServizio() {
@@ -104,7 +104,7 @@ class CAdmin {
         $Ser = new EServizio($nome,$descrizione,$settore,$durata);
 
         $FSer->inserisciServizio($Ser);
-        header('Location: ../../index.php');
+        header('Location: ../index.php');
 
     }
 
@@ -130,7 +130,7 @@ class CAdmin {
 
         $FSer->aggiornaServizio($vecchioSer);
 
-        header('Location: ../../index.php');
+        header('Location: ../index.php');
 
     }
 
@@ -153,7 +153,7 @@ class CAdmin {
         }
 
         $UFile = new UFile();
-        $file = $UFile->apriFile('../../contenutoStatico','informazioni.txt','w');
+        $file = $UFile->apriFile('../contenutoStatico','informazioni.txt','w');
 
         $stringaDaScrivere =  $titolo."\n"
                              .$sotto1."\n"
@@ -166,7 +166,7 @@ class CAdmin {
         $UFile->scriviFile($stringaDaScrivere,$file);
         $UFile->chiudiFile($file);
 
-        header('Location: ../../index.php');
+        header('Location: ../index.php');
 
     }
 
@@ -178,7 +178,7 @@ class CAdmin {
         $idProf = $_REQUEST['listaProfEliminaSer'];
         $FPro->rimuoviServiziOfferti($idProf, $serviziDaRimuovere);
 
-        header('Location: ../../index.php');
+        header('Location: ../index.php');
 
     }
 
@@ -190,7 +190,7 @@ class CAdmin {
         $idProf = $_REQUEST['listaProfAggiungiSer'];
         $FPro->aggiungiServiziOfferti($idProf, $serviziDaAggiungere);
 
-        header('Location: ../../index.php');
+        header('Location: ../index.php');
     }
 
 // metodi che usano le chiamate ajax
@@ -308,7 +308,7 @@ class CAdmin {
     private function errore($messaggioErrore)   {
         $sessione = new USession();
         $sessione->impostaValore('messaggioErrore', $messaggioErrore);
-        header("location: ../../index.php");
+        header("location: ../index.php");
     }
 
 

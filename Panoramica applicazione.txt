@@ -1,0 +1,117 @@
++ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - +
+|										|
+|			       APPOINTMENT MANAGER				|
+|										|
++-------------------------------------------------------------------------------+
+|			        Programmazione Web				|
++-------------------------------------------------------------------------------+
+|										|
+|  				   Sviluppatori:				|
+|										|
+|				   Iessi Michele				|
+|				   Iessi Davide					|
+|				  Pagliaro Andrea				|
+|										|
++-------------------------------------------------------------------------------+
+|										|
+|  Scopo dell'applicazione:							|
+|  										|
+|  	? È necessario realizzare un'applicazione web per la gestione		|
+|	  di appuntamenti di professionisti impiegati presso un'azienda		|
+|	  che offre servizi. L'applicazione deve supportare quattro 		|
+|	  tipi di utenti: non registrati, Clienti, Professionisti e 		|
+|	  Amministratore. In questa applicazione, i Clienti possono		|
+|	  scegliere data e ora dei colloqui da effettuare con diversi		|
+|	  professionisti.							|
+|  										|
+|	? Gli utenti non registrati possono registrarsi, accedere alla		|
+|	  sezione 'Chi Siamo' e alla sezione 'Credits'. Se essi provano		|
+|	  ad accedere a una qualsiasi altra parte dell'applicazione, viene	|
+|	  mostrato un messaggio di errore.					|
+|										|
+|	? I Clienti possono registrarsi riempiendo una form con i seguenti	|
+|	  dati: dati anagrafici, email, password. Per essere abilitati ai	|
+|	  servizi offerti dall'applicazione, essi devono confermare la		|
+|	  propria registrazione attraverso un link ricevuto per email.		|
+|										|
+|	? I Professionisti possono essere registrati solo attraverso		|
+|	  l'azione dell'Amministratore.	Essi si distinguono dai Clienti		|
+|	  poiché possiedono un settore e degli orari lavorativi.	 	|
+|										|
+|	? L'Amministratore è il primo utente che avvia l'applicazione e		|
+|	  che ne imposta le configurazioni (impostazioni anagrafiche,		|
+|	  impostazioni del database, impostazioni della email che verrà		|
+|	  usata dall'applicazione per l'invio di informazioni all'utenza.	|
+|										|
+|	? L'Amministratore può: 						|
+|	    - aggiungere Professionisti						|
+|	    - aggiungere e modificare Servizi, assegnare Servizi ai 		|
+|	      Professionisti, rimuovere Servizi dai Professionisti		|
+|	    - modificare gli orari di lavoro dei Professionisti			|
+|	    - modificare le informazioni relative all'azienda, ovvero		|
+|	      la sezione 'Chi Siamo'						|
+|										|
+|	? Un Servizio rappresenta il tipo di colloquio professionale		|
+|	  che può prendere luogo tra un cliente e un professionista.		|
+|	  Esso è composto da un nome, una descrizione, un settore e		|
+|	  una durata.								|
+|										|
+|	? I Clienti, previa conferma dell'account tramite email, possono	|
+|	  prenotare colloqui con i professionisti presenti. Non è possibile	|
+|	  avere appuntamenti che si accavallano tra loro. Inoltre, un		|
+|	  utente non può avere più di un appuntamento per giorno per ogni	|
+|	  professionista, e non può avere più di tre appuntamenti futuri	|
+|	  per ogni professionista. Il Cliente ha la facoltà di annullare	|
+|	  un appuntamento se a questo mancano non meno di due giorni. Il	|
+|	  Professionista interessato viene notificato dell'annullamento		|
+|	  tramite email e in quel lasso temporale altri Clienti possono 	|
+|	  effettuare la loro prenotazione.					|
+|										|
+|	? I Professionisti possono accedere alla propria agenda e annullare	|
+|	  appuntamenti fissati con Clienti. A differenza dei clienti, essi	|
+|	  possono cancellare i loro impegni anche se a questi mancano meno	|
+|	  di due giorni. I Clienti interessati a queste modifiche vengono	|
+|	  notificati via mail dall'applicazione dell'avvenuta modifica.		|
+|										|
+|	? I Clienti e i Professionisti possono modificare i loro dati		|
+|	  utente attraverso la pagina utente della quale sono forniti.		|
+|	  Entrambe le tipologie possono caricare un immagine del profilo	|
+|	  che verrà vista da tutti gli utenti loggati che richiederanno		|
+|	  di vedere la pagina. Nelle pagine dei Professionisti sono inoltre	|
+|	  presenti una tabella che ne descrive gli orari lavorativi, e una	|
+|	  che descrive i servizi offerti dal professionista con i relativi	|
+|	  dettagli.								|
+|										|
+|	? Nelle pagine utente							|
+|	    - si può vedere un riepilogo dei dati dell'utente			|
+|	    - un Cliente sulla propria pagina può vedere una lista dei 		|
+|	      colloqui effettuati in passato con dettagli relativi alla		|
+|	      data, all'orario, al tipo di colloquio e al professionista	|
+|	      che l'ha offerto							|
+|										|
++-------------------------------------------------------------------------------+
+|										|
+|	? Come avviene la prenotazione di un appuntamento:			|
+|										|
+|	  l'utente registrato di tipo Cliente naviga nella pagina che 		|
+|	  presenta la lista dei Professionisti correntemente operativi.		|
+|	  Dopo aver scelto, egli viene portato sulla pagina relativa		|
+|	  al Professionista selezionato. Qui può vedere una paronamica		|
+|	  dei suoi dati, una lista dei propri orari lavorativi e un'altra	|
+|	  relativa ai Servizi che offre. In fondo alla pagina clicca un 	|
+|	  link che lo porta all'agenda del Professionista. Egli non può 	|
+|	  vedere i dettagli degli appuntamenti che il Professionista ha		|
+|	  già preso, a meno che non siano esplicitamente con lui. In 		|
+|	  seguito egli trova nella colonna a destra dell'agenda il servizio	|
+|	  per il quale vuole effettuare un appuntamento e lo trascina sul	|
+|	  calendario in una data e ora che preferisce. Il sistema chiede	|
+|	  al Cliente conferma della sua scelta: se il cliente è sicuro,		|
+|	  l'appuntamento viene aggiunto all'agenda, altrimenti non succede	|
+|	  nulla. Se il Cliente prova a inserire un appuntamento in un 		|
+|	  giorno nel quale ha già programmato un appuntamento, viene 		|
+|	  visualizzato un messaggio d'errore. Un messaggio simile viene		|
+|	  mostrato se il Cliente tenta di spostare un appuntamento già		|
+|	  preso, o se ha già in programma tre appuntamenti futuri con il	|
+|	  Professionista corrente e tenta di prenotarne ulteriormente.		|
+|										|
++ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - +

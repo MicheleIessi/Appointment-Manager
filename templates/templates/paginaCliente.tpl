@@ -1,6 +1,6 @@
-<link type="text/css" rel="stylesheet" href="View/css/paginaCliente.css" />
+<link type="text/css" rel="stylesheet" href="css/paginaCliente.css" />
 
-<div title="contenitoreUtente"id='contenitoreUtente'>
+<div title="contenitoreUtente" id='contenitoreUtente'>
             
             
 

@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-07-09 00:20:45
+<?php /* Smarty version 3.1.27, created on 2016-07-10 21:10:53
          compiled from "templates\templates\home_default.tpl" */ ?>
 <?php
-/*%%SmartyHeaderCode:320735780273d51dba2_93768230%%*/
+/*%%SmartyHeaderCode:1521357829dbd7fb0c0_56104138%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,11 +9,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '719c8c86eb39ad4b1205c70c52407faf7158578e' => 
     array (
       0 => 'templates\\templates\\home_default.tpl',
-      1 => 1468016324,
+      1 => 1468177850,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '320735780273d51dba2_93768230',
+  'nocache_hash' => '1521357829dbd7fb0c0_56104138',
   'variables' => 
   array (
     'title' => 0,
@@ -26,20 +26,20 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_5780273d621ed2_47746330',
+  'unifunc' => 'content_57829dbd88f6a4_70848938',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_5780273d621ed2_47746330')) {
-function content_5780273d621ed2_47746330 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_57829dbd88f6a4_70848938')) {
+function content_57829dbd88f6a4_70848938 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '320735780273d51dba2_93768230';
+$_smarty_tpl->properties['nocache_hash'] = '1521357829dbd7fb0c0_56104138';
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
     <head>
-        <link type="text/css" rel="stylesheet" href='View/css/prova.css' />
-        <link type="text/css" rel="stylesheet" href="View/css/login.css" />
-        <link type="text/css" rel="stylesheet" href="View/css/jquery-ui.css" />
+        <link type="text/css" rel="stylesheet" href='css/prova.css' />
+        <link type="text/css" rel="stylesheet" href="css/login.css" />
+        <link type="text/css" rel="stylesheet" href="css/jquery-ui.css" />
         
         <?php echo '<script'; ?>
  type="text/javascript" src='JS/fullcalendar-2.6.1/lib/jquery.min.js'><?php echo '</script'; ?>

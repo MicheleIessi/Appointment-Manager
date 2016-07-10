@@ -1,4 +1,4 @@
-<link type="text/css" rel="stylesheet" href="View/css/paginaAmministratore.css" />
+<link type="text/css" rel="stylesheet" href="css/paginaAmministratore.css" />
 
 <script type="text/javascript" src="JS/jquery-ui/jquery-ui.min.js"></script>
 <script type="text/javascript" src="JS/jquery-ui/datepicker-it.js"></script>

@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-07-09 19:47:19
+<?php /* Smarty version 3.1.27, created on 2016-07-10 21:12:15
          compiled from "templates\templates\paginaAmministratore.tpl" */ ?>
 <?php
-/*%%SmartyHeaderCode:11075578138a74b0108_96383619%%*/
+/*%%SmartyHeaderCode:1948857829e0f90ad68_61782867%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,11 +9,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '55e812cba7d563b1e49c81b512aa6b8f36e94b7c' => 
     array (
       0 => 'templates\\templates\\paginaAmministratore.tpl',
-      1 => 1468085904,
+      1 => 1468177883,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '11075578138a74b0108_96383619',
+  'nocache_hash' => '1948857829e0f90ad68_61782867',
   'variables' => 
   array (
     'professionisti' => 0,
@@ -24,15 +24,15 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_578138a755ea01_30196682',
+  'unifunc' => 'content_57829e0f9d29f7_71076572',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_578138a755ea01_30196682')) {
-function content_578138a755ea01_30196682 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_57829e0f9d29f7_71076572')) {
+function content_57829e0f9d29f7_71076572 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '11075578138a74b0108_96383619';
+$_smarty_tpl->properties['nocache_hash'] = '1948857829e0f90ad68_61782867';
 ?>
-<link type="text/css" rel="stylesheet" href="View/css/paginaAmministratore.css" />
+<link type="text/css" rel="stylesheet" href="css/paginaAmministratore.css" />
 
 <?php echo '<script'; ?>
  type="text/javascript" src="JS/jquery-ui/jquery-ui.min.js"><?php echo '</script'; ?>

@@ -1,5 +1,5 @@
 <head>
-    <link type="text/css" rel="stylesheet" href="View/css/paginaProfessionista.css"/>
+    <link type="text/css" rel="stylesheet" href="css/paginaProfessionista.css"/>
 </head>
 
 <div title="contenitoreUtente" id="contenitoreUtente">

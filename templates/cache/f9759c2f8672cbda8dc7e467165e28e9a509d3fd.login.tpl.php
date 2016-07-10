@@ -27,7 +27,7 @@ function content_57470370e27572_11360142 ($_smarty_tpl) {
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
     <head>
-        <link href='View/css/prova.css' rel='stylesheet' type='text/css'>
+        <link href='../../css/prova.css' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
         <title>Home - Appointment Manager</title>
     </head>

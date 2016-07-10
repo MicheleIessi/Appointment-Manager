@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-07-09 19:40:07
+<?php /* Smarty version 3.1.27, created on 2016-07-10 21:11:53
          compiled from "templates\templates\credits.tpl" */ ?>
 <?php
-/*%%SmartyHeaderCode:12633578136f7ea5f48_72647128%%*/
+/*%%SmartyHeaderCode:362957829df9663cc4_64553040%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,22 +9,22 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '1881738d7879e120b5c4cf07ab7bb94e04e5e2e8' => 
     array (
       0 => 'templates\\templates\\credits.tpl',
-      1 => 1468085904,
+      1 => 1468177883,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '12633578136f7ea5f48_72647128',
+  'nocache_hash' => '362957829df9663cc4_64553040',
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_578136f7ed8cd6_15571912',
+  'unifunc' => 'content_57829df969f860_99869046',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_578136f7ed8cd6_15571912')) {
-function content_578136f7ed8cd6_15571912 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_57829df969f860_99869046')) {
+function content_57829df969f860_99869046 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '12633578136f7ea5f48_72647128';
+$_smarty_tpl->properties['nocache_hash'] = '362957829df9663cc4_64553040';
 ?>
-<link rel="stylesheet" type="text/css" href="View/css/credits.css">
+<link rel="stylesheet" type="text/css" href="css/credits.css">
 <p class="grande">Questa applicazione utilizza i seguenti plugins:</p>
 <div id="contenitoreCredits">
     <div id="wrapperCredits">

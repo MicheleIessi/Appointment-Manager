@@ -28,8 +28,8 @@ $_smarty_tpl->properties['nocache_hash'] = '18572577c3b1c209d40_82710267';
 <html>
 <head>
     <title>Appointment manager setup</title>
-    <link type="text/css" rel="stylesheet" href="View/css/jquery-ui.css" />
-    <link rel="stylesheet" type="text/css" href="View/css/setup.css" />
+    <link type="text/css" rel="stylesheet" href="../../css/jquery-ui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/setup.css" />
     <?php echo '<script'; ?>
  type="text/javascript" src="JS/fullcalendar-2.6.1/lib/jquery.min.js"><?php echo '</script'; ?>
 >

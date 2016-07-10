@@ -2,8 +2,8 @@
 <html>
 <head>
     <title>Appointment manager setup</title>
-    <link type="text/css" rel="stylesheet" href="View/css/jquery-ui.css" />
-    <link rel="stylesheet" type="text/css" href="View/css/setup.css" />
+    <link type="text/css" rel="stylesheet" href="css/jquery-ui.css" />
+    <link rel="stylesheet" type="text/css" href="css/setup.css" />
     <script type="text/javascript" src="JS/fullcalendar-2.6.1/lib/jquery.min.js"></script>
     <script type="text/javascript" src="JS/validation/jquery.validate.js"></script>
     <script type="text/javascript" src="JS/JSetup.js"></script>

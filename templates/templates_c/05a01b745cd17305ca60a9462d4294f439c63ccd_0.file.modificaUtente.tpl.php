@@ -28,7 +28,7 @@ function content_577ce57f5f3365_46093529 ($_smarty_tpl) {
 
 $_smarty_tpl->properties['nocache_hash'] = '24676577ce57f5acf97_59879612';
 ?>
-<link type="text/css" rel="stylesheet" href="View/css/modificaUtente.css" />
+<link type="text/css" rel="stylesheet" href="../../css/modificaUtente.css" />
 
 <?php echo '<script'; ?>
  type="text/javascript" src='JS/validation/dateITA.js'><?php echo '</script'; ?>

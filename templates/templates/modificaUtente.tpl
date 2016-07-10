@@ -1,4 +1,4 @@
-<link type="text/css" rel="stylesheet" href="View/css/modificaUtente.css" />
+<link type="text/css" rel="stylesheet" href="css/modificaUtente.css" />
 
 <script type="text/javascript" src='JS/validation/dateITA.js'></script>
 <script type="text/javascript" src='JS/modificaUtente.js'></script>

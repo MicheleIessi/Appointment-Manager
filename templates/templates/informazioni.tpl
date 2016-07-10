@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="View/css/info.css">
+<link rel="stylesheet" type="text/css" href="css/info.css">
 
 <p id="titolo">{$titolo}</p>
 {if $sezione1}

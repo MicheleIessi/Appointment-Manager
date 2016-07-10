@@ -25,7 +25,7 @@ function content_577e2f1d7118f4_94822110 ($_smarty_tpl) {
 $_smarty_tpl->properties['nocache_hash'] = '10534577e2f1d6e0b72_44218503';
 ?>
 <link type="text/css" rel='stylesheet' href='JS/fullcalendar-2.6.1/fullcalendar.css' />
-<link type="text/css" rel="stylesheet" href="View/css/calendario.css" />
+<link type="text/css" rel="stylesheet" href="../../css/calendario.css" />
 
 <div id='calendar'></div><?php }
 }

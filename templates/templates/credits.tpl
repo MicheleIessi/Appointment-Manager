@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="View/css/credits.css">
+<link rel="stylesheet" type="text/css" href="css/credits.css">
 <p class="grande">Questa applicazione utilizza i seguenti plugins:</p>
 <div id="contenitoreCredits">
     <div id="wrapperCredits">

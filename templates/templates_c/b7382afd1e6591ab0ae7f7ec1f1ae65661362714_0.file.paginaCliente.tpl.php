@@ -38,7 +38,7 @@ function content_5781403340bba6_69197329 ($_smarty_tpl) {
 
 $_smarty_tpl->properties['nocache_hash'] = '742578140333a3324_20368288';
 ?>
-<link type="text/css" rel="stylesheet" href="View/css/paginaCliente.css" />
+<link type="text/css" rel="stylesheet" href="../../css/paginaCliente.css" />
 
 <div title="contenitoreUtente"id='contenitoreUtente'>
             

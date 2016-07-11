@@ -1,7 +1,15 @@
 <?php
 
-
-class VSetup extends View{
+/**
+ * VSetup si occupa di gestire la visualizzazione della pagina del setup.
+ *
+ * @package  View
+ * @author   Michele Iessi
+ * @author   Davide Iessi
+ * @author   Andrea Pagliaro
+ * @access   public
+ */
+class VSetup extends View {
 
     public function __construct() {
         parent::__construct();
@@ -11,6 +19,11 @@ class VSetup extends View{
         $this->setCacheDir('templates/cache');
     }
 
+    /** La funzione getDatiAdmin si occupa di raccogliere i dati dalla form del setup relativa ai dati anagrafici
+     * dell'amministratore. Prende i dati che servono dalla variabile superglobale $_REQUEST e controlla se tutti i
+     * dati sono instanziati in modo corretto. Viene chiamata dal controller CSetup al momento del setup.
+     * @return array | bool Un array contenente tutti i dati anagrafici dell'amministratore, o false se ci sono stati errori.
+     */
     public function getDatiAdmin() {
 
         $dati = array();
@@ -42,6 +55,11 @@ class VSetup extends View{
         return $dati;
     }
 
+    /** La funzione getDatiDB si occupa di raccogliere i dati dalla form del setup relativa ai dati del database.
+     * Prende i dati che servono dalla variabile superglobale $_REQUEST e controlla se tutti i dati sono stati
+     * instanziati in modo corretto. Viene chiamata dal controller CSetup al momento del setup.
+     * @return array | bool Un array contenente tutti i dati relativi al database, o false se ci sono stati errori.
+     */
     public function getDatiDB() {
 
         $dati = array();
@@ -65,6 +83,11 @@ class VSetup extends View{
         return $dati;
     }
 
+    /** La funzione getDatiMail si occupa di raccogliere i dati dalla form del setup relativa ai dati della email che
+     * verrà usata dall'applicazione. Prende i dati che servono dalla variabile superglobale $_REQUEST e controlla se
+     * tutti i dati sono stati instanziati in modo corretto. Viene chiamata dal controller CSetup al momento del setup.
+     * @return array | bool Un array contenente tutti i dati relativi alla email, o false se ci sono stati errori.
+     */
     public function getDatiMail() {
 
         $dati = array();
@@ -86,6 +109,10 @@ class VSetup extends View{
         return $dati;
     }
 
+    /** È una funzione di supporto che si occupa di trasformare una data dal formato gg/mm/aaaa al formato aaaa-mm-gg.
+     * @param $data string La data originale in formato gg/mm/aaaa.
+     * @return string La data riformattata nel formato ISO aaaa-mm-gg.
+     */
     private function dataItaToISO($data) {
         $arrayData=  explode("/", $data);
 

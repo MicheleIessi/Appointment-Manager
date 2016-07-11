@@ -1,7 +1,20 @@
 <?php
-
+/**
+ * VCliente si occupa di gestire la visualizzazione della pagina delle informazioni, ovvero della pagina 'Chi Siamo'.
+ *
+ * @package  View
+ * @author   Michele Iessi
+ * @author   Davide Iessi
+ * @author   Andrea Pagliaro
+ * @access   public
+ */
 class VInfo extends View {
 
+    /** La funzione impostaTemplateInformazioni si occupa di popolare il template relativo alle informazioni (pagina
+     * 'Chi Siamo'). Per farlo legge il contenuto di un file di testo statico (che può essere modificato se necessario
+     * dall'amministratore).
+     * @return string Il template relativo alle informazioni.
+     */
     public function impostaTemplateInformazioni() {
 
         $UFile = new UFile();
@@ -39,11 +52,5 @@ class VInfo extends View {
 
         return $this->fetch('credits.tpl');
     }
-
-
-
-
-
-
 
 }

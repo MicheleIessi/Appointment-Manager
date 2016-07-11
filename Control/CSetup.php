@@ -1,7 +1,17 @@
 <?php
-
+/**
+ * CSetup si occupa di gestire il caso d'uso relativo al setup dell'applicazione.
+ *
+ * @package  Control
+ * @author   Michele Iessi
+ * @author   Davide Iessi
+ * @author   Andrea Pagliaro
+ * @access   public
+ */
 class CSetup {
-
+    /**
+     * La funzione smista si occupa di delegare a diverse funzioni diversi compiti, in base al task passato.
+     */
     public function smista() {
         $view = new View();
         $task = $view->getTask();
@@ -18,6 +28,13 @@ class CSetup {
         }
     }
 
+    /**
+     * La funzione setup si occupa di raccogliere dalla classe VSetup i dati relativi alla form di installazione
+     * e di processarli. In caso tutte e tre le form (Dati anagrafici amministratore, Dati relativi al database, Dati
+     * relativi alla email dell'applicazione) siano state passate correttamente, si procede alla creazione del database,
+     * alla creazione dell'utente amministratore (con ID speciale uguale a 0) e alla creazione del file di
+     * configurazione.
+     */
     public function setup() {
 
         $VSet = new VSetup;

@@ -4,7 +4,6 @@
 *
 * EAgenda e' la classe invocata ogni volta che bisogna visualizzare lato view 
 * l'agenda di un professionista 
-* 
 *
 * @package  Entity
 * @author   Michele Iessi
@@ -28,15 +27,14 @@ class EAgenda {
     }
 
     /**
-     * la funzione setImpegni e' la funzione che si occupa settare gli impegni
-     * gia presi con altri clienti di un professionista ovviamente prende come parametro
+     * la funzione setImpegni e' la funzione che si occupa di settare gli impegni
+     * gia presi con altri clienti di un professionista. Prende come parametro
      * una array di oggetti EAppuntamento e controlla se ognuno di loro risulta
-     * un oggetto EAppuntamento e aggiugerlo nell'array impegni mediante chiamata 
+     * un oggetto EAppuntamento. Se p così lo aggiunge nell'array impegni mediante chiamata
      * della funzione aggiungiAppuntamento
-     *  
-     * 
-     * @param $i
-     * @throws Exception
+     *
+     * @param $i array(EAppuntamento) l'array di appuntamenti
+     * @throws Exception Se uno degli oggetti nell'array non è un EAppuntamento
      */
     public function setImpegni($i) {
         foreach ($i as $appuntamenti) {
@@ -46,28 +44,29 @@ class EAgenda {
             $this->aggiungiAppuntamento($appuntamenti);
         }
     }
+
     /**
-     * 
-     * @param $id
+     * Imposta l'id del professionista 'proprietario' dell'agenda
+     * @param $id int L'id che si vuole impostare
      */
     public function setIDProfessionista($id) {
         $this->IDProfessionista=$id;
     }
-    /**
-     * 
-     * @return 
-     */
 
+    /**
+     * Ritorna l'array di impegni dell'agenda
+     * @return array (EAppuntamento) Array di oggetti EAppuntamento
+     */
     public function getImpegni() {
         return $this->impegni;
     }
+
     /**
-     * la funzione aggiungiAppuntamento e' una sottofunzione di setImpegni
+     * La funzione aggiungiAppuntamento e' una sottofunzione di setImpegni
      * che aggiunge gli oggetti EAppuntamento che riceve come parametro
-     * nell'array degli impegni 
-     * 
-     * 
-     * @param EAppuntamento $a
+     * nell'array degli impegni.
+     *
+     * @param EAppuntamento $a L'oggetto EAppuntamento da inserire
      * @throws Exception
      */
     public function aggiungiAppuntamento($a)    {    // $a è un oggetto della classe EAppuntamento
@@ -76,13 +75,13 @@ class EAgenda {
         }
         array_push($this->impegni, $a);
     }
+
     /**
      * la funzione eliminaAppuntamento riceve come parametro
      * un oggetto appuntamento cui viene fatta controllare la sua esistenza
      * all'interno dell'array impegni e eliminato nel caso in cui si verifichi un match
      * @param EAppuntamento $a
      */
-
     public function eliminaAppuntamento($a) {           // ricontrollare
         unset($this->impegni[array_search($a, $this->impegni)]);
     }

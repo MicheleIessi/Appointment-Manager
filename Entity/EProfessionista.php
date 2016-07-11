@@ -28,10 +28,9 @@ class EProfessionista extends EUtente {
     }
     
     /**
-     * Viene settato l'array dei servizi offerti dal prfessionista
+     * Viene settato l'array dei servizi offerti dal professionista
      * @param array $so
      */
-    
     public function setServiziOfferti($so) {
         $this->serviziOfferti = array();
         foreach ($so as $servizio) {
@@ -39,10 +38,9 @@ class EProfessionista extends EUtente {
         }
     }
     /**
-     * Vine settato il settore di competenza del professionista
+     * Viene settato il settore di competenza del professionista
      * @param $set
      */
-    
     public function setSettore($set) {
         $this->settore = $set;
     }
@@ -58,13 +56,10 @@ class EProfessionista extends EUtente {
         }
     }
     /**
-     * 
-     * La funzione modificaGiornoLavorativo accetta un parametro giorno e orario
-     * cerca il giorno dato e ne aggiorna l'orario
-     * @param type $giorno
-     * @param type $orario
+     * La funzione modificaGiornoLavorativo cerca il giorno dato e ne aggiorna l'orario
+     * @param string $giorno
+     * @param string $orario
      */
-
     public function modificaGiornoLavorativo($giorno,$orario) {
         $chiaviRichieste = array('lun','mar','mer','gio','ven','sab','dom');
         if(array_search($giorno,$chiaviRichieste) != false) {
@@ -80,28 +75,41 @@ class EProfessionista extends EUtente {
             echo "Giorno non valido.<br>";
     }
     /**
-     * @return type
+     * Ritorna i servizi offerti.
+     * @return array (EServizio) Array di servizi offerti.
      */
-    public function getServiziOfferti()     {
+    public function getServiziOfferti() {
         return $this->serviziOfferti;
     }
-    
-    public function getSettore()    {
+
+    /**
+     * Ritorna il settore di afferenza.
+     * @return string Il settore.
+     */
+    public function getSettore() {
         return $this->settore;
     }
-    
+
+    /**
+     * Ritorna l'array di 7 elementi contenente gli orari lavorativi.
+     * @return array Array di orari lavorativi.
+     */
     public function getOrariLavorativi()  {
         return $this->orariLavorativi;
     }
 
+    /**
+     * Aggiunge un servizio all'array serviziOfferti.
+     * @param $so EServizio il servizio da aggiungere.
+     */
     public function aggiungiServizio($so) {
         array_push($this->serviziOfferti, $so);
     }
     /**
-     * La funzione rimuoviServizio riceve il nome di un servizio svolto dal 
-     * professionista effettua un controllo sull'array dei servizi offerti dallo 
-     * stesso , nel caso in cui ci sia match viene eliminato quel servizio
-     * @param type $so
+     * La funzione rimuoviServizio riceve il un oggetto EServizio svolto dal
+     * professionista, effettua un controllo sull'array dei servizi offerti dallo
+     * stesso e nel caso in cui ci sia match viene eliminato quel servizio
+     * @param EServizio $so
      * @throws Exception
      */
     public function rimuoviServizio($so) {
@@ -115,7 +123,7 @@ class EProfessionista extends EUtente {
     }
     /**
      * Metodo di utilita' per il lato foundation
-     * E' lo stesso metodo utilizzato per EUtente solo e' adattato
+     * E' lo stesso metodo utilizzato per EUtente adattato
      * al caso professionista
      * @return array
      */
@@ -126,15 +134,22 @@ class EProfessionista extends EUtente {
                      $this->orariLavorativi['sab'],$this->orariLavorativi['dom']);
     }
 
+    /**
+     * La funzione getUtenteDaProfessionista restituisce un oggetto EUtente creato con le
+     * credenziali del professionista.
+     * @return EUtente L'utente corrispondente al professionista.
+     */
     public function getUtenteDaProfessionista() {
         return new EUtente($this->getNome(),$this->getCognome(),$this->getDataNascita(),
                            $this->getCodiceFiscale(),$this->getSesso(),$this->getEmail(),
                            $this->getPassword(),$this->getCodiceConferma(),$this->getID());
     }
 
-    /**Gli orari lavorativi devono essere rappresentati da un array associativo del tipo 'lun'=>'aa:bb:cc-xx:yy:zz','mar'=>...
-     * @param $orari
-     * @return bool
+    /**
+     * La funzione esaminaOrariLavorativi si assicura che gli orari passati rispettino il formato per gli orari lavorativi
+     * del professionista. Il formato è 'hh:mm:ss-hh:mm:ss,hh:mm:ss-hh:mm:ss,...'
+     * @param $orari array Array di orari del tipo 'lun'=>'a','mar'=>'b',...
+     * @return bool false se uno degli orari non rispetta il formato richiesto, true altrimenti.
      */
     public function esaminaOrariLavorativi($orari) {
 

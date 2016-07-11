@@ -3,9 +3,9 @@
 * EServizio e' una classe del package Entity
 *
 * EServizio e' la classe invocatata nel momento in cui bisogna definire
-* un nuovo servizio che determinati professionisti possono offrire 
+* una tipologia di colloquio professionale che determinati professionisti
+* possono offrire.
 * example: medico,avvocato,... 
-* 
 *
 * @package  Entity
 * @author   Michele Iessi
@@ -30,18 +30,26 @@ class EServizio {
         $this->setDurata($dur);
     }
     /**
-     * 
-     * @param $nom,$des,$set
+     * Imposta il nome del servizio.
+     * @param $nom string Il nome del servizio.
      */
     public function setNomeServizio($nom) { $this->nomeServizio=$nom; }
-    public function setDescrizione($des) { $this->descrizione=$des; }
-    public function setSettore($set) { $this->settore=$set; }
+
     /**
-     * 
-     * @param $dur
-     * Viene effettuato un controllo sul formato della durata del
-     * servizio
-     * 
+     * Imposta la descrizione del servizio.
+     * @param $des string La descrizione del servizio.
+     */
+    public function setDescrizione($des) { $this->descrizione=$des; }
+
+    /**
+     * Imposta il settore del servizio.
+     * @param $set string Il settore del servizio.
+     */
+    public function setSettore($set) { $this->settore=$set; }
+
+    /**
+     * Imposta la durata del servizio, se questa rispetta il pattern 'hh:mm:ss'.
+     * @param $dur string La durata che si vuole impostare.
      */
     public function setDurata($dur) {
         $pattern = "#^([2][0-3]|[01][0-9]|[0-9]):([0-5][0-9]):([0-5][0-9])$#";
@@ -51,19 +59,34 @@ class EServizio {
             echo "Durata del servizio non valida.<br>";
     }
     /**
-     * 
-     * @return type
+     * Ritorna il nome del servizio.
+     * @return string Il nome del servizio.
      */
     public function getNomeServizio() { return $this->nomeServizio; }
+
+    /**
+     * Ritorna la descrizione del servizio.
+     * @return string La descrizione del servizio.
+     */
     public function getDescrizione() { return $this->descrizione; }
+
+    /**
+     * Ritorna il settore a cui appartiene il servizio.
+     * @return string Il settore.
+     */
     public function getSettore() { return $this->settore; }
+
+    /**
+     * Ritrona la durata del servizio.
+     * @return string La durata del servizio.
+     */
     public function getDurata() { return $this->durata; }
+
     /**
      * Metodo di utilita per il lato Foundation
      * E' la stessa funzione di EUtente solo e' adattata ad EServizio
      * @return array
      */
-
     public function getArrayAttributi() {
         return array($this->nomeServizio,$this->descrizione,$this->settore,$this->durata);
     }

@@ -1,14 +1,31 @@
 <?php
-
+/**
+ * VAdmin si occupa di gestire la visualizzazione della pagina dell'amministratore.
+ *
+ * @package  View
+ * @author   Michele Iessi
+ * @author   Davide Iessi
+ * @author   Andrea Pagliaro
+ * @access   public
+ */
 class VAdmin extends View {
 
+    /** La funzione impostaTemplate ritorna il template relativo alla pagina dell'amministratore dopo aver chiamato
+     * metodi di supporto per popolare il template con dati utili.
+     * @return resource Il template relativo alla pagina dell'amministratore.
+     */
     public function impostaTemplate() {
-        //oltre a fare il return del template devo impostare tutte le variabili smarty
+
         $this->setProfessionisti();
         $this->setServizi();
         return $this->fetch('paginaAmministratore.tpl');
     }
 
+    /** La funzione getDatiAggiuntaProf viene chiamata quando l'amministratore tenta di aggiungere un professionista al
+     * database tramite form. Raccoglie tutti i dati utili dalla variabile superglobale $_REQUEST e li inserisce in un
+     * array che poi verrà usato dalla classe CAdmin.
+     * @return array Array che racchiude il contenuto della form riempita dall'amministratore.
+     */
     public function getDatiAggiuntaProf() {
 
         $risposta = array();
@@ -41,6 +58,11 @@ class VAdmin extends View {
 
     }
 
+    /** La funzione getModificheOrari viene richiamata quando l'amministratore tenta di modificare gli orari di lavoro
+     * di un professionista tramite form. Raccoglie tutti i dati utili dalla variabile superglobale $_REQUEST e li
+     * inserisce in un array che verrà poi usato dalla classe CAdmin.
+     * @return array Array che racchiude il contenuto della form riempita dall'amministratore.
+     */
     public function getModificheOrari (){
 
         $risultato = array();
@@ -58,6 +80,11 @@ class VAdmin extends View {
         return $risultato;
     }
 
+    /** La funzione getInserimentoSer viene richiamata quando l'amministratore tenta di aggiungere un servizio al
+     * database tramite form. Raccoglie tutti i dati utili dalla variabile superglobale $_REQUEST e li inserisce in un
+     * array che verrà poi usato dalla classe CAdmin.
+     * @return array Array che racchiude il contenuto della form riempita dall'amministratore.
+     */
     public function getInserimentoSer() {
 
         $risultato = array();
@@ -75,6 +102,11 @@ class VAdmin extends View {
         return $risultato;
     }
 
+    /** La funzione getModificaSer viene richiamata quando l'amministratore tenta di modificare un servizio tramite
+     * form. Raccoglie tutti i dati utili dalla variabile superglobale $_REQUEST e li inserisce in un array che verrà
+     * poi usato dalla classe CAdmin.
+     * @return array Array che racchiude il contenuto della form riempita dall'amministratore.
+     */
     public function getModificaSer() {
 
         $risultato = array();
@@ -95,6 +127,11 @@ class VAdmin extends View {
         return $risultato;
     }
 
+    /** La funzione getModificaInfo viene richiamata quando l'amministratore tenta di modificare le informazioni
+     * dell'azienda/sito tramite form. Raccoglie tutti i dati utili dalla variabile superglobale $_REQUEST e li
+     * inserisce in un array che verrà poi usato dalla classe CAdmin.
+     * @return array Array che racchiude il contenuto della form riempita dall'amministratore.
+     */
     public function getModificaInfo() {
 
         $risultato = array();
@@ -118,6 +155,10 @@ class VAdmin extends View {
         return $risultato;
     }
 
+    /**
+     * La funzione setProfessionisti è una funzione di supporto il cui compito è popolare la variabile Smarty
+     * 'professionisti' presente nel template di dati relativi ai professionisti presenti nel database.
+     */
     public function setProfessionisti() {
 
         $FPro = new FProfessionista();
@@ -136,6 +177,10 @@ class VAdmin extends View {
 
     }
 
+    /**
+     * La funzione setServizi è una funzione di supporto il cui compito è popolare la variabile Smarty
+     * 'servizi' presente nel template di dati relativi ai servizi presenti nel database.
+     */
     public function setServizi() {
 
         $FSer = new FServizio();

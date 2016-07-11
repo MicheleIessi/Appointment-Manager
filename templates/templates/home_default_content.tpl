@@ -6,7 +6,7 @@
     {if $nome eq "ospite"}
         <a href="#registrazionemodal" rel="leanmodal" id="modaltrigger"><button>Registrati!</button></a>
     {else}
-        <a href="?controller=lista&task=lista"><button>Lista professionisti</button></a>
+        <a href="?controller=lista"><button>Lista professionisti</button></a>
 
     {/if}
 </div>

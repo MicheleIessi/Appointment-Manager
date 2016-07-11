@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-07-11 02:45:51
+<?php /* Smarty version 3.1.27, created on 2016-07-11 11:51:37
          compiled from "templates\templates\paginaAmministratore.tpl" */ ?>
 <?php
-/*%%SmartyHeaderCode:310705782ec3f8eb896_01617367%%*/
+/*%%SmartyHeaderCode:1975357836c29ea7742_68059395%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,11 +9,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '55e812cba7d563b1e49c81b512aa6b8f36e94b7c' => 
     array (
       0 => 'templates\\templates\\paginaAmministratore.tpl',
-      1 => 1468197949,
+      1 => 1468230696,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '310705782ec3f8eb896_01617367',
+  'nocache_hash' => '1975357836c29ea7742_68059395',
   'variables' => 
   array (
     'professionisti' => 0,
@@ -24,31 +24,16 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_5782ec3fc09e08_51150557',
+  'unifunc' => 'content_57836c2a033ac5_38979028',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_5782ec3fc09e08_51150557')) {
-function content_5782ec3fc09e08_51150557 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_57836c2a033ac5_38979028')) {
+function content_57836c2a033ac5_38979028 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '310705782ec3f8eb896_01617367';
+$_smarty_tpl->properties['nocache_hash'] = '1975357836c29ea7742_68059395';
 ?>
 <link type="text/css" rel="stylesheet" href="css/paginaAmministratore.css" />
 
-<?php echo '<script'; ?>
- type="text/javascript" src="JS/jquery-ui/jquery-ui.min.js"><?php echo '</script'; ?>
->
-<?php echo '<script'; ?>
- type="text/javascript" src="JS/jquery-ui/datepicker-it.js"><?php echo '</script'; ?>
->
-<?php echo '<script'; ?>
- type="text/javascript" src="JS/jquery.leanModal.min.js"><?php echo '</script'; ?>
->
-<?php echo '<script'; ?>
- type="text/javascript" src="JS/validation/jquery.validate.js"><?php echo '</script'; ?>
->
-<?php echo '<script'; ?>
- type="text/javascript" src="JS/validation/dateITA.js"><?php echo '</script'; ?>
->
 <?php echo '<script'; ?>
  type="text/javascript" src="JS/paginaAmministratore.js"><?php echo '</script'; ?>
 >
@@ -369,10 +354,9 @@ $_smarty_tpl->tpl_vars['prof'] = $foreach_prof_Sav;
                         </optgroup>
                     </select>
                     </td>
-                    <!-- Ciclo for che popola la checkbox tramite chiamata Chiamate che dipende dal prof scelto; in questo caso vengono
+                    <!-- Ciclo for che popola la checkbox tramite chiamata Ajax che dipende dal prof scelto; in questo caso vengono
                         caricati i servizi della tabella 'servizio' -->
-                    <td id="checkboxContainerAgg">
-                    </td>
+                    <td id="checkboxContainerAgg"></td>
                 </tr>
                     
                 <tr>
@@ -423,7 +407,7 @@ $_smarty_tpl->tpl_vars['prof'] = $foreach_prof_Sav;
                         </optgroup>
                         </select>
                         </td>
-                        <!-- Ciclo for che popola la checkbox tramite chiamata Chiamate che dipende dal prof scelto, in questo caso vengono
+                        <!-- Ciclo for che popola la checkbox tramite chiamata Ajax che dipende dal prof scelto, in questo caso vengono
                             caricati solo i relativi a quel professionista -->
                         <td id="checkboxContainer"></td>
                     </tr>
@@ -483,12 +467,6 @@ $_smarty_tpl->tpl_vars['prof'] = $foreach_prof_Sav;
                 <input type="hidden" name="task" value="modificaInfo" />
                 <input id="submit7" type="submit" value="MODIFICA ">
             </form>
-
-            <br>
-            
-            <input id="submit8" type="submit" value="MODIFICA ">
-            
-
         </div>
         
         <?php if ($_smarty_tpl->tpl_vars['messaggio']->value) {?>
@@ -496,11 +474,6 @@ $_smarty_tpl->tpl_vars['prof'] = $foreach_prof_Sav;
 </label>
         <?php }?>
 
-    </div>
-    
-<!-- ---------------------------------------------------------------------------------------------------------------------------------------- -->
-    
-
-        </div><?php }
+    </div><?php }
 }
 ?>

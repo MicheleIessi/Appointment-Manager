@@ -4,15 +4,15 @@
         <link type="text/css" rel="stylesheet" href='css/base.css' />
         <link type="text/css" rel="stylesheet" href="css/login.css" />
         <link type="text/css" rel="stylesheet" href="css/jquery-ui.css" />
-        
+
+        <script type="text/javascript" src="JS/fullcalendar-2.6.1/lib/jquery.min.js"></script>
+        <script type="text/javascript" src="JS/validation/jquery.validate.js"></script>
+        <script type="text/javascript" src="JS/validation/dateITA.js"></script>
         <script type="text/javascript" src='JS/fullcalendar-2.6.1/lib/jquery.min.js'></script>
         <script type="text/javascript" src="JS/validation/jquery.validate.js"></script>
         <script type="text/javascript" src='JS/jquery-ui/jquery-ui.min.js'></script>
-        <script type="text/javascript" src='JS/fullcalendar-2.6.1/lib/moment.min.js'></script>
-        <script type="text/javascript" src='JS/fullcalendar-2.6.1/fullcalendar.min.js'></script>
-        <script type="text/javascript" src='JS/fullcalendar-2.6.1/lang-all.js'></script>
-        <script type="text/javascript" src='JS/JCalendar.js'></script>
         <script type="text/javascript" src="JS/jquery.leanModal.min.js"></script>
+        <script type="text/javascript" src="JS/jquery-ui/datepicker-it.js"></script>
         <script type="text/javascript" src="JS/JLogin.js"></script>
         
         <title>{$title}</title>

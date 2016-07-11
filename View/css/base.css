@@ -1,0 +1,104 @@
+body    {
+    text-align: left;
+    width: inherit;
+    font-size: 14px;
+    font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+    
+}
+
+.titolo {
+    font-size: 50px;
+}
+
+p.titolo {
+    font-size: 40px;
+}
+
+#contenutoDefault   {
+    text-align:center;
+    padding-left: 20px;
+}
+
+#side_content {
+    float:left;
+}
+
+#forbiddenAccess {
+    background-color: #3baae3;
+    border: 1px solid black;
+    border-radius: 4px;
+    height: auto;
+    margin: 2px;
+}
+
+#mainButtons {
+    
+    height: 60px;
+    border: 1px solid black;
+    border-radius: 4px;
+    justify-content: center;
+    align-items: center;
+    display:flex;
+    background-color: cornflowerblue;
+    min-width: 580px;
+    
+}
+
+a.buttonElem {
+        
+    width: 100px;
+    height: inherit;
+    padding-left:10px;
+    padding-right:10px;
+    justify-content:center;
+    align-items:center;
+    display:flex;
+    font-size: 16px;
+    text-transform: uppercase;
+    text-align: center;
+    background-color: cornflowerblue;
+    
+    font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+    font-size: 1.3em; 
+    color: #222222; 
+    line-height: 140%; 
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+    
+}
+
+a.buttonElem:link, a.buttonElem:visited {
+    text-decoration: none;
+}
+
+
+a.buttonElem:hover {
+    
+    color:white;
+    background-color: RoyalBlue;
+
+}
+
+button  {
+    
+    font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    background: cornflowerblue;
+    border: 1px solid darkgray;
+    width: auto;
+    overflow: visible;
+    font-size: 1.4em;
+    color: #FFF;
+    cursor: pointer;
+    padding: 7px 10px;  border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; font-weight: bold; text-shadow: 0 1px 0 rgba(0,0,0,0.4);
+
+}
+
+.profContainer  {
+    margin-left: 20px;
+    text-align: center;
+}
+button.profLink {
+    min-width: 200px;
+}
+.profList   {
+    padding: 10px 0 10px 0;
+}

@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-07-10 21:23:33
+<?php /* Smarty version 3.1.27, created on 2016-07-11 02:45:51
          compiled from "templates\templates\paginaAmministratore.tpl" */ ?>
 <?php
-/*%%SmartyHeaderCode:230015782a0b50123f8_86078688%%*/
+/*%%SmartyHeaderCode:310705782ec3f8eb896_01617367%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,11 +9,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '55e812cba7d563b1e49c81b512aa6b8f36e94b7c' => 
     array (
       0 => 'templates\\templates\\paginaAmministratore.tpl',
-      1 => 1468178561,
+      1 => 1468197949,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '230015782a0b50123f8_86078688',
+  'nocache_hash' => '310705782ec3f8eb896_01617367',
   'variables' => 
   array (
     'professionisti' => 0,
@@ -24,13 +24,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_5782a0b50dfcd0_33023187',
+  'unifunc' => 'content_5782ec3fc09e08_51150557',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_5782a0b50dfcd0_33023187')) {
-function content_5782a0b50dfcd0_33023187 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_5782ec3fc09e08_51150557')) {
+function content_5782ec3fc09e08_51150557 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '230015782a0b50123f8_86078688';
+$_smarty_tpl->properties['nocache_hash'] = '310705782ec3f8eb896_01617367';
 ?>
 <link type="text/css" rel="stylesheet" href="css/paginaAmministratore.css" />
 
@@ -70,7 +70,7 @@ $_smarty_tpl->properties['nocache_hash'] = '230015782a0b50123f8_86078688';
 
             <h3>Modifica informazioni</h3>
 
-            <form name="aggiungiProf" id="aggiungiProf" method="post" action="../../Chiamate/AAdmin.php">
+            <form name="aggiungiProf" id="aggiungiProf" method="post" action="Chiamate/AAdmin.php">
                 <table id="tabellaProfessionista">
 
                     <tr>
@@ -165,7 +165,7 @@ $_smarty_tpl->properties['nocache_hash'] = '230015782a0b50123f8_86078688';
 
             <h3>Modifica orari</h3>
 
-            <form name="modificaOra" id="modificaOra" method="post" action="../../Chiamate/AAdmin.php">
+            <form name="modificaOra" id="modificaOra" method="post" action="Chiamate/AAdmin.php">
                 
                 <select id="listaProf" name="listaProf">
                     <optgroup label="Professionista">
@@ -242,7 +242,7 @@ $_smarty_tpl->tpl_vars['prof'] = $foreach_prof_Sav;
 
             <h3>Aggiungi servizio</h3>
 
-            <form name="aggiungiSer" id="aggiungiSer" method="post" wrap="hard" action="../../Chiamate/AAdmin.php">
+            <form name="aggiungiSer" id="aggiungiSer" method="post" wrap="hard" action="Chiamate/AAdmin.php">
                 <table id="aggiungiServizioTab">
 
                     <tr>
@@ -277,7 +277,7 @@ $_smarty_tpl->tpl_vars['prof'] = $foreach_prof_Sav;
 
             <h3>Modifica servizio</h3>
 
-            <form name="modificaSer" id="modificaSer" method="post" wrap="hard" action="../../Chiamate/AAdmin.php">
+            <form name="modificaSer" id="modificaSer" method="post" wrap="hard" action="Chiamate/AAdmin.php">
                 <select id="listaSer" name="listaSer">
                     <optgroup label="Servizio">
                         <option selected disabled>Servizi:</option>
@@ -336,7 +336,7 @@ $_smarty_tpl->tpl_vars['ser'] = $foreach_ser_Sav;
 
             <h3>Assegna servizio</h3>
 
-            <form name="assegnaSer" id="assegnaSer" method="post" action="../../Chiamate/AAdmin.php">
+            <form name="assegnaSer" id="assegnaSer" method="post" action="Chiamate/AAdmin.php">
                 
                 <table id="assegnaServizioTab">
                  
@@ -369,7 +369,7 @@ $_smarty_tpl->tpl_vars['prof'] = $foreach_prof_Sav;
                         </optgroup>
                     </select>
                     </td>
-                    <!-- Ciclo for che popola la checkbox tramite chiamata Ajax che dipende dal prof scelto; in questo caso vengono
+                    <!-- Ciclo for che popola la checkbox tramite chiamata Chiamate che dipende dal prof scelto; in questo caso vengono
                         caricati i servizi della tabella 'servizio' -->
                     <td id="checkboxContainerAgg">
                     </td>
@@ -391,7 +391,7 @@ $_smarty_tpl->tpl_vars['prof'] = $foreach_prof_Sav;
 
             <h3>Elimina servizi</h3>
 
-            <form name="eliminaSer" id="eliminaSer" method="post" action="../../Chiamate/AAdmin.php">
+            <form name="eliminaSer" id="eliminaSer" method="post" action="Chiamate/AAdmin.php">
                         
                 <table id="eliminaServiziotab">
                     <tr>
@@ -423,7 +423,7 @@ $_smarty_tpl->tpl_vars['prof'] = $foreach_prof_Sav;
                         </optgroup>
                         </select>
                         </td>
-                        <!-- Ciclo for che popola la checkbox tramite chiamata Ajax che dipende dal prof scelto, in questo caso vengono
+                        <!-- Ciclo for che popola la checkbox tramite chiamata Chiamate che dipende dal prof scelto, in questo caso vengono
                             caricati solo i relativi a quel professionista -->
                         <td id="checkboxContainer"></td>
                     </tr>
@@ -445,7 +445,7 @@ $_smarty_tpl->tpl_vars['prof'] = $foreach_prof_Sav;
 
             <h3>Testo da Inserire nella sezione informazioni:</h3>
 
-            <form name="modificaInf" id="modificaInf" method="post" action="../../Chiamate/AAdmin.php">
+            <form name="modificaInf" id="modificaInf" method="post" action="Chiamate/AAdmin.php">
                 <table id="infoTab">
                     <tr>
                         <td class="tdbold left">Sezione</td>

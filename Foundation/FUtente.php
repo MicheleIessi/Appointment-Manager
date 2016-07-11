@@ -1,5 +1,13 @@
 <?php
-
+/**
+ * FUtente si occupa di gestire gli scambi di informazioni con la tabella utente.
+ *
+ * @package  Foundation
+ * @author   Michele Iessi
+ * @author   Davide Iessi
+ * @author   Andrea Pagliaro
+ * @access   public
+ */
 class FUtente extends Fdb   {
 
     private $login_key='email,password';
@@ -22,6 +30,11 @@ class FUtente extends Fdb   {
 
     }
 
+    /** Il metodo inserisciUtente cerca di inserire un oggetto della classe EUtente nel Database. Se esiste già un
+     * utente con lo stesso codice fiscale nel database l'aggiunta non viene effettuata.
+     * @param EUtente $u L'oggetto EUtente che si vuole aggiungere al database.
+     * @return bool true se c'è stata una aggiunta
+     */
     public function inserisciUtente(EUtente $u) {
         $this->setParametri();
         $valori = parent::cambiaChiaviArray($u->getArrayAttributi());
@@ -41,6 +54,10 @@ class FUtente extends Fdb   {
         }
     }
 
+    /** La funzione cancellaUtente cancella un utente dal database.
+     * @param EUtente $u L'utente che si vuole cancellare
+     * @return bool true se la cancellazione è avvenuta, false altrimenti.
+     */
     public function cancellaUtente(EUtente $u) {
         $this->setParametri();
         try {
@@ -55,6 +72,14 @@ class FUtente extends Fdb   {
         return false;
     }
 
+    /** La funzione aggiornaUtente cerca di modificare una ennupla della tabella utente prendendo come input un oggetto
+     * di tipo EUtente. L'oggetto di tipo EUtente passato come parametro deve avere un id valido, cioè deve essere stato
+     * creato con l'id di un utente conosciuto O essere stato creato tramite la funzione caricaUtenteDaDb avente come
+     * parametro l'id dell'utente.
+     * @param EUtente $u L'utente che si vuole modificare
+     * @return bool true se c'è stata una modifica
+     * @throws Exception Se non sono state apportate modifiche (ossia se l'oggetto EUtente passato come parametro non ha differenze rispetto al suo corrispettivo sul db)
+     */
     public function aggiornaUtente(EUtente $u) {
         $this->setParametri();
         try {
@@ -69,9 +94,10 @@ class FUtente extends Fdb   {
         return true;
     }
 
-    /**
-     * @param $code
-     * @return bool | EUtente
+    /** Il metodo caricaUtenteDaConferma è un analogo di caricaUtenteDaDb e di caricaUtenteDaMail. Questo metodo carica
+     * un oggetto EUtente a partire da un codice di conferma.
+     * @param $code string Il codice di conferma da cercare
+     * @return bool | EUtente false se non è presente, altrimenti un oggetto EUtente corrispondente alla ennupla sul db.
      */
     public function caricaUtenteDaConferma($code){
         $this->setParametri();
@@ -93,6 +119,12 @@ class FUtente extends Fdb   {
             echo $e->getMessage();
         }
     }
+
+    /** Il metodo caricaUtenteDaMail è un analogo di caricaUtenteDaDb e di caricaUtenteDaMail. Questo metodo carica
+     * un oggetto EUtente a partire da un indirizzo email.
+     * @param $mail string La mail da cercare
+     * @return bool | EUtente false se non è presente, altrimenti un oggetto EUtente corrispondente alla ennupla sul db.
+     */
     public function caricaUtenteDaMail($mail){
         $this->setParametri();
         $binding=$this->mail_bind;
@@ -115,9 +147,10 @@ class FUtente extends Fdb   {
         
     }
 
-    /**
-     * @param $key
-     * @return EUtente
+    /** Il metodo caricaUtenteDaDb crea un oggetto EUtente dopo aver effettuato una query di tipo select
+     * nella tabella, prendendo come parametro l'id dell'utente da cercare
+     * @param $key int L'id dell'utente
+     * @return EUtente L'utente con id scelto
      */
     public function caricaUtenteDaDb($key) {
         $this->setParametri();
@@ -136,10 +169,11 @@ class FUtente extends Fdb   {
         return $ute;
     }
 
-    /**
-     * @param $email
-     * @param $password
-     * @return EUtente
+    /** Il metodo caricaUtenteDaLogin crea un oggetto EUtente dopo aver effettuato una query di tipo sleect nella
+     * tabella prendendo come parametri l'indirizzo email e la password dell'utente. Serve per effettuare il login.
+     * @param $email string L'email dell'utente.
+     * @param $password string La password dell'utente.
+     * @return EUtente | bool L'utente con mail e password inserite, o false se non ce ne sono con quelle credenziali.
      */
     public function caricaUtenteDaLogin($email,$password) {
         $this->setParametri();
@@ -168,10 +202,13 @@ class FUtente extends Fdb   {
         }
     }
 
-    /**
-     * @param $chiave
-     * @param $valore
-     * @return bool
+    /** Il metodo controllaEsistenza verifica se esiste già una ennupla nella tabella utente con la chiave passata
+     * come parametro uguale al valore passato come parametro. È un metodo di supporto usato per operazioni quali la
+     * registrazione o il cambiamento dei dati utente, per verificare che non ci siano più utenti con le stesse
+     * credenziali sensibili.
+     * @param $chiave string La chiave passata come parametro. Può essere 'email','codiceFiscale' o 'codiceconferma'.
+     * @param $valore string Il valore da verificare
+     * @return bool false se non è presente, true altrimenti.
      */
     public function controllaEsistenza($chiave, $valore) {
         $this->setParametri();

@@ -1,4 +1,13 @@
 <?php
+/**
+ * FCliente gestisce gli scambi di informazioni con la tabella 'cliente'
+ *
+ * @package  Foundation
+ * @author   Michele Iessi
+ * @author   Davide Iessi
+ * @author   Andrea Pagliaro
+ * @access   public
+ */
 
 class FCliente extends Fdb  {
 
@@ -14,12 +23,19 @@ class FCliente extends Fdb  {
         $this->old_keys;
     }
 
+    /** La funzione aggiungiCliente aggiunge una ennupla alla tabella cliente
+     * @param $id int L'id del cliente da aggiungere
+     */
     public function aggiungiCliente($id) {
         $valori = array();
         $valori[':IDC'] = $id;
         parent::inserisciGenerica($valori,'cliente');
     }
 
+    /** La funzione cancellaCliente elimina una ennupla dalla tabella 'cliente'
+     * @param $id int L'id del cliente che si vuole eliminare dalla tabella
+     * @return bool true se c'è stato un cancellamento, false altrimenti
+     */
     public function cancellaCliente($id) {
         $FUte = new FUtente();
         $EUte = $FUte->caricaUtenteDaDb($id);
@@ -34,6 +50,10 @@ class FCliente extends Fdb  {
             return true;
     }
 
+    /** La funzione getAppuntamenti si occupa di prendere dal database lo storico degli appuntamenti di un cliente
+     * @param $idc int L'id del cliente per il quale si vuole caricare la lista degli appuntamenti
+     * @return array un array di oggetti EAppuntamento del cliente
+     */
     public function getAppuntamenti($idc) {
         $this->setParametri();
         $valori[':IDC']=$idc;
@@ -59,6 +79,13 @@ class FCliente extends Fdb  {
         return $risultato;
     }
 
+    /** La funzione getAppuntamentiFuturi si occupa di trovare tutti gli appuntamenti non ancora avvenuti tra un dato
+     * cliente e un dato professionista. Questa funzione sarà usata per verificare che un cliente non abbia più di 3
+     * impegni futuri con un dato professionista.
+     * @param $idc int L'id del cliente
+     * @param $idp int L'id del professionista
+     * @return array Un array di oggetti EAppuntamento, rappresentante gli appuntamenti futuri di un cliente con un professionista.
+     */
     public function getAppuntamentiFuturi($idc,$idp) {
         $appuntamenti = $this->getAppuntamenti($idc);
         $appFuturi = array();

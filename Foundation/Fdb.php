@@ -1,12 +1,16 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: Michele Iessi
- * Date: 16/03/2016
- * Time: 09:51
- */
 
+/**
+ * Fdb rappresenta la classe foundation più 'vicina' al database, e come tale si occupa di gestire tutte le query.
+ * È l'unica classe in cui sono presenti codici SQL.
+ *
+ * @package  Foundation
+ * @author   Michele Iessi
+ * @author   Davide Iessi
+ * @author   Andrea Pagliaro
+ * @access   public
+ */
 class Fdb {
     /**
      * @var $db PDO
@@ -23,7 +27,10 @@ class Fdb {
     private static $set = false;       //Per assicurare che ci sia al massimo una connessione per volta
     private $last_id;
 
-
+    /**
+     * Fdb constructor. In realtà ci sono due costruttori e questa funzione sceglie quale usare a seconda del numero
+     * di parametri che le si passano.
+     */
     public function __construct()
     {
         $a = func_get_args();
@@ -35,6 +42,12 @@ class Fdb {
         else throw new Exception("Costruttore invalido FDB");
     }
 
+    /** Il costruttore con 4 parametri. È usato solo una volta al momento del setup.
+     * @param $dbms string Il dbms che si vuole usare (di default è mysql)
+     * @param $dbhost string L'indirizzo dell'host su cui risiederà il database usato dall'applicazione
+     * @param $dbuser string L'username usato per la connessione al database
+     * @param $dbpass string La password usata per la connessione al database
+     */
     public function __construct4($dbms,$dbhost,$dbuser,$dbpass) {
         $dsn = "$dbms:host=$dbhost;";
         $user = $dbuser;
@@ -48,6 +61,9 @@ class Fdb {
         }
     }
 
+    /**
+     * Il costruttore con 0 parametri. Usa i parametri presi dal file di configurazione.
+     */
     public function __construct0() {
         require($_SERVER["DOCUMENT_ROOT"].'/appointment-manager/includes/config.inc.php');
         /** @var string $dbms è la stringa che specifica il db che si usa nel file di configurazione */
@@ -187,10 +203,21 @@ class Fdb {
         return $this->result;
     }
 
+    /** Il metodo isOn serve ad evitare che più istanze di Fdb vengano istanziate allo stesso momento.
+     * @return bool true se c'è già un Fdb istanziata, false altrimenti.
+     */
     protected static function isOn() {
         return self::$set;
     }
 
+    /** Il metodo setParam si occupa di settare gli attributi di Fdb in maniera adatta per l'esecuzione di una query
+     * sul database. Viene richiamato dalle classi che estendono da Fdb, che usano i propri parametri.
+     * @param $tabella string La tabella su cui viene fatta la query
+     * @param $chiavi string Gli attributi della tabella
+     * @param $bindings string I bindings usati da Fdb per l'uso dei prepared statements
+     * @param $bindkey string I bindings per le chiavi primarie della tabella
+     * @param $oldkey string Parametro di supporto che serve se si vuole modificare la chiave primaria
+     */
     protected function setParam($tabella,$chiavi,$bindings,$bindkey,$oldkey) {
         $this->table=$tabella;
         $this->attributi=$chiavi;
@@ -201,9 +228,9 @@ class Fdb {
 
     /** Il metodo 'caricaConChiave' prende in input un array associativo con elementi del tipo [:nomeAttributo]=>valore
      * e usa una stringa passata come chiave alternativa per effettuare una query di tipo SELECT al database
-     * @param $data
-     * @param $chiave
-     * @return mixed
+     * @param $data array Array associativo usato per il funzionamento corretto dei prepared statements
+     * @param $chiave string Stringa contenente una o più chiavi, separate da virgole
+     * @return mixed Un result set contenente il risultato della select
      */
     protected function caricaConChiave($data,$chiave) {
         $sql="SELECT * FROM $this->table WHERE ";
@@ -226,9 +253,9 @@ class Fdb {
     }
 
     /** La funzione inserisciGenerica effettua una query di tipo INSERT prendendo come input la tabella su cui farla
-     * @param $data
-     * @param $table
-     * @return bool
+     * @param $data array Array associativo usato per il funzionamento corretto dei prepared statements
+     * @param $table string La tabella su cui effettuare la insert
+     * @return bool true se la query è andata a buon fine, false altrimenti
      */
     protected function inserisciGenerica($data,$table) {
         $BindKey = array_keys($data);
@@ -249,10 +276,10 @@ class Fdb {
     }
 
     /** La funzione caricaGenerica effettua una query di tipo SELECT prendendo come input la tabella su cui farla
-     * @param $data
-     * @param $table
-     * @param $chiavi
-     * @return mixed
+     * @param $data array Array associativo usato per il funzionamento corretto dei prepared statements
+     * @param $table string La tabella su cui effettuare la select
+     * @param $chiavi string Stringa contenente una o più chiavi, separate da virgole
+     * @return mixed Un result set contenente il risultato della select
      */
     protected function caricaGenerica($data,$table,$chiavi) {
         $sql="SELECT * FROM $table WHERE ";
@@ -275,8 +302,8 @@ class Fdb {
     }
 
     /**La funzione caricaTutte effettua una query di tipo SELECT * in una tabella in input
-     * @param $table
-     * @return array
+     * @param $table string La tabella per il quale si vogliono caricare tutte le tuple
+     * @return array Array di result set, ogni elemento dell'array corrisponde a una tupla
      */
     protected function caricaTutte($table) {
         $sql="SELECT * FROM $table";
@@ -291,7 +318,12 @@ class Fdb {
         return $this->result;
     }
 
-    // METODO DI SUPPORTO: cambia le chiavi dell'array passato nei bind della classe estesa da Fdb che chiama il metodo
+    /** Il metodo cambiaChiaviArray serve per cambiare gli indici di un array rendendolo un array associativo di tipo
+     * $array[':attributo'] = valore. Questa configurazione dell'array associativo serve a garantire il corretto
+     * funzionamento dei prepared statements.
+     * @param $arr array L'array per cui cambiare gli indici
+     * @return mixed
+     */
     protected function cambiaChiaviArray($arr) {
         $chiavi = explode(',',$this->bind);
         $imax = count($arr);
@@ -302,20 +334,22 @@ class Fdb {
         return $arr;
     }
 
-    protected function getOldKeys() {
-        return $this->old_keys;
-    }
-
+    /** La funzione getLastID ritorna l'id acquisito dall'ultima ennupla inserita nel database. È necessario creare una
+     * funzione per questo, poiché dopo una commit() la funzione PDO lastInsertId restituisce sempre 0.
+     * @return mixed l'id dell'ultima insert
+     */
     public function getLastID() {
         return $this->last_id;
     }
 
-    /** La funzione query serve solo in caso di setup a creare il db
-     * @param $sql
-     * @return PDOStatement
+    /** La funzione query serve solo in caso di setup a creare il db. È possibile usarla solo se non esiste il file
+     * di configurazione, ovvero solamente durante il setup.
+     * @param $sql string una stringa SQL usata per effettuare una query.
+     * @return PDOStatement Il risultato generico della query
      */
     public function query($sql) {
-        return self::$db->query($sql);
+        if(!file_exists("includes/config.inc.php"))
+            return self::$db->query($sql);
     }
 }
 ?>

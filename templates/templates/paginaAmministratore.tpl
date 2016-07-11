@@ -1,10 +1,5 @@
 <link type="text/css" rel="stylesheet" href="css/paginaAmministratore.css" />
 
-<script type="text/javascript" src="JS/jquery-ui/jquery-ui.min.js"></script>
-<script type="text/javascript" src="JS/jquery-ui/datepicker-it.js"></script>
-<script type="text/javascript" src="JS/jquery.leanModal.min.js"></script>
-<script type="text/javascript" src="JS/validation/jquery.validate.js"></script>
-<script type="text/javascript" src="JS/validation/dateITA.js"></script>
 <script type="text/javascript" src="JS/paginaAmministratore.js"></script>
 
 <div name="contenitoreAmministratore" id="contenitoreAmministratore">
@@ -274,10 +269,9 @@
                         </optgroup>
                     </select>
                     </td>
-                    <!-- Ciclo for che popola la checkbox tramite chiamata Chiamate che dipende dal prof scelto; in questo caso vengono
+                    <!-- Ciclo for che popola la checkbox tramite chiamata Ajax che dipende dal prof scelto; in questo caso vengono
                         caricati i servizi della tabella 'servizio' -->
-                    <td id="checkboxContainerAgg">
-                    </td>
+                    <td id="checkboxContainerAgg"></td>
                 </tr>
                     
                 <tr>
@@ -311,7 +305,7 @@
                         </optgroup>
                         </select>
                         </td>
-                        <!-- Ciclo for che popola la checkbox tramite chiamata Chiamate che dipende dal prof scelto, in questo caso vengono
+                        <!-- Ciclo for che popola la checkbox tramite chiamata Ajax che dipende dal prof scelto, in questo caso vengono
                             caricati solo i relativi a quel professionista -->
                         <td id="checkboxContainer"></td>
                     </tr>
@@ -371,12 +365,6 @@
                 <input type="hidden" name="task" value="modificaInfo" />
                 <input id="submit7" type="submit" value="MODIFICA ">
             </form>
-
-            <br>
-            
-            <input id="submit8" type="submit" value="MODIFICA ">
-            
-
         </div>
         
         {if $messaggio}
@@ -384,8 +372,3 @@
         {/if}
 
     </div>
-    
-<!-- ---------------------------------------------------------------------------------------------------------------------------------------- -->
-    
-
-        </div>

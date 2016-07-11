@@ -1,14 +1,10 @@
 $(document).ready(function() {
 
-    // aggiunta leanmodal ai bottoni
-    $(function () {
-        $("a[rel*=leanModal]").leanModal();
-    });
     // aggiunta datepicker dove serve
-    $(function() {
-        $.datepicker.setDefaults( $.datepicker.regional[ "it" ] );
-        $( "#datepicker" ).datepicker();
-    });
+    //$(function() {
+    //    $.datepicker.setDefaults( $.datepicker.regional[ "it" ] );
+    //    $( "#datepicker" ).datepicker();
+    //});
 
     //inserimento e gestione chiamata ajax su modifica servizio
 
@@ -76,9 +72,6 @@ $(document).ready(function() {
                     tdCheck.append(elem);
                     i++;
                 });
-            },
-            error: function(response) {
-                alert(response);
             }
         });
     });

@@ -1,4 +1,15 @@
 <?php
+
+/**
+ * FProfessionista si occupa di gestire gli scambi di informazioni con la tabella professionista.
+ *
+ * @package  Foundation
+ * @author   Michele Iessi
+ * @author   Davide Iessi
+ * @author   Andrea Pagliaro
+ * @access   public
+ */
+
 class FProfessionista extends Fdb {
 
     public function __construct() {
@@ -16,8 +27,8 @@ class FProfessionista extends Fdb {
      * Se il professionista non è già presente nel database come utente, provvede ad aggiungerlo. Inoltre, aggiunge
      * qualsiasi Servizio che il professionista offre nel database (se non già presente) e provvede al join tra
      * l'id del professionista e il nome del servizio nella tabella serviziOfferti.
-     * @param EProfessionista $pro
-     * @throws Exception
+     * @param EProfessionista $pro Il professionista da inserire
+     * @throws Exception Se il professionista è già presente nel database.
      */
     public function inserisciProfessionista(EProfessionista $pro) {
         $ute = $pro->getUtenteDaProfessionista();
@@ -36,7 +47,7 @@ class FProfessionista extends Fdb {
                 throw new PDOException("Professionista già presente nel Database.<br>");
             }
             else {
-                echo("Professionista aggiunto correttamente al database.<br>");
+                //echo("Professionista aggiunto correttamente al database.<br>");
                 $servizi = $pro->getServiziOfferti();
                 $fser = new FServizio();
                 /** @var EServizio $servizio */
@@ -53,9 +64,10 @@ class FProfessionista extends Fdb {
             echo $e->getMessage();
         }
     }
-    /**
-     * @param $key
-     * @return EProfessionista
+    /** Il metodo caricaProfessionistaDaDB crea un oggetto EProfessionista dopo aver effettuato una query di tipo select
+     * nella tabella, prendendo come parametro l'id del professionista da cercare
+     * @param $key int L'id del professionista
+     * @return EProfessionista Il professionista con l'id scelto
      */
     public function caricaProfessionistaDaDB($key) {
         $fute = new FUtente();
@@ -107,13 +119,10 @@ class FProfessionista extends Fdb {
             echo "Professionista non presente nel database.<br>";
 
     }
-    /** deve trovare tutti i servizi offerti da un professionista e restituire un array che li contiene
-     * 1. query su serviziofferti con IDP come chiave x
-     * 2. per ogni risultato trovato, query su servizi per prendere le altre informazioni x
-     * 3. creo un oggetto EServizio ogni volta e lo metto in un array x
-     * 4. ritorno l'array contenente gli oggetti EServizio rappresentanti i servizi offerti dal professionista x
+    /** Il metodo ricavaServiziOfferti prende come parametro un id e restituisce un array di oggetti EServizio, che
+     * rappresenta una lista di servizi offerti dal professionista
      * @param $key string la chiave del professionista
-     * @return array (EServizio)
+     * @return array (EServizio) La lista di servizi offerti
      */
     public function ricavaServiziOfferti($key) {
         $valori = array();
@@ -128,9 +137,10 @@ class FProfessionista extends Fdb {
         return $arraySer;
     }
 
-    /* la funzione rimuoviServiziOfferti rimuove dalla tabella serviziOfferti le corrispondenze idp->servizio
-     * @param $key
-     * @param $servizi
+    /** La funzione rimuoviServiziOfferti rimuove delle ennuple dalla tabella serviziOfferti se il professionista con id
+     * selezionato li ha come servizi offerti. È il duale di aggiungiServiziOfferti.
+     * @param $key int L'id del professionista per il quale si vogliono rimuovere servizi offerti
+     * @param $servizi array(EServizio) Array di oggetti EServizio che si vogliono rimuovere dal pool di servizi offerti dal professionista.
      */
     public function rimuoviServiziOfferti($key,$servizi) {
         $FSer = new FServizio();
@@ -153,6 +163,11 @@ class FProfessionista extends Fdb {
         $this->setParametri();
     }
 
+    /** La funzione aggiungiServiziOfferti aggiunge delle ennuple alla tabella serviziOfferti se il professionista con id
+     * selezionato non li ha già come servizi offerti. È il duale di rimuoviServiziOfferti.
+     * @param $key int L'id del professionista per il quale si vogliono aggiungere servizi offerti.
+     * @param $servizi array(EServizi) Array di oggetti Eservizio che si vogliono aggiungere al pool di servizi offerti dal professionista.
+     */
     public function aggiungiServiziOfferti($key, $servizi) {
 
         $FSer = new FServizio();
@@ -173,7 +188,7 @@ class FProfessionista extends Fdb {
     }
 
     /** La funzione caricaProfessionisti carica TUTTI i professionisti dal db e ritorna un array di oggetti EProfessionista
-     * @return array
+     * @return array(EProfessionista) Array di oggetti EProfessionista contenente tutti i professionisti presenti
      */
     public function caricaProfessionisti() {
         $result = parent::caricaTutte($this->table);

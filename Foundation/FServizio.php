@@ -1,5 +1,13 @@
 <?php
-
+/**
+ * FServizio si occupa di gestire gli scambi di informazioni con la tabella servizio.
+ *
+ * @package  Foundation
+ * @author   Michele Iessi
+ * @author   Davide Iessi
+ * @author   Andrea Pagliaro
+ * @access   public
+ */
 class FServizio extends Fdb {
 
     public function __construct() {
@@ -14,6 +22,9 @@ class FServizio extends Fdb {
         $this->old_keys;
     }
 
+    /** La funzione inserisciServizio inserisce un oggetto EServizio nel database.
+     * @param EServizio $es l'oggetto EServizio da inserire nel db.
+     */
     public function inserisciServizio(EServizio $es) {
         parent::setParam($this->table,$this->attributi,$this->bind,$this->bind_key,$this->old_keys);
         $valori = parent::cambiaChiaviArray($es->getArrayAttributi());
@@ -28,6 +39,9 @@ class FServizio extends Fdb {
         }
     }
 
+    /** La funzione cancellaServizio cancella una ennupla rappresentante un servizio dal database
+     * @param Eservizio $es L'oggetto EServizio che si vuole eliminare dal db.
+     */
     public function cancellaServizio(Eservizio $es) {
         parent::setParam($this->table,$this->attributi,$this->bind,$this->bind_key,$this->old_keys);
         $valori = parent::cambiaChiaviArray($es->getArrayAttributi());
@@ -42,6 +56,10 @@ class FServizio extends Fdb {
         }
     }
 
+    /** La funzione aggiornaServizio cerca di modificare una ennupla della tabella servizio prendendo come input un
+     * oggetto di tipo EServizio.
+     * @param Eservizio $es
+     */
     public function aggiornaServizio(Eservizio $es) {
         parent::setParam($this->table,$this->attributi,$this->bind,$this->bind_key,$this->old_keys);
         $valori = parent::cambiaChiaviArray($es->getArrayAttributi());
@@ -56,9 +74,10 @@ class FServizio extends Fdb {
         }
     }
 
-    /**
-     * @param $key
-     * @return bool | EServizio
+    /** La funzione caricaServizioDaDb effettua una query sulla tabella servizio e crea un oggetto EServizio corrispondente
+     * ai valori trovati.
+     * @param $key int l'id del servizio cercato
+     * @return bool | EServizio L'oggetto EServizio corrispondente all'id selezionato.
      */
     public function caricaServizioDaDb($key) {
         $es = false;
@@ -76,7 +95,10 @@ class FServizio extends Fdb {
         return $es;
     }
 
-    //carica tutti i servizi
+    /** La funzione caricaServizi carica dalla tabella servizio tutti i servizi presenti e restituisce un array di oggetti
+     * EServizio
+     * @return array (EServizio) Array rappresentante tutti i servizi presenti sul database.
+     */
     public function caricaServizi() {
         $result = parent::caricaTutte($this->table);
         $arrSer = array();

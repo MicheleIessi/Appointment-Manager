@@ -1,4 +1,12 @@
 <?php
+/**
+ * FAgenda si occupa di caricare gli appuntamenti di un professionista e creare un oggetto EAgenda di conseguenza.
+ * @package  Foundation
+ * @author   Michele Iessi
+ * @author   Davide Iessi
+ * @author   Andrea Pagliaro
+ * @access   public
+ */
 
 class FAgenda extends Fdb {
 

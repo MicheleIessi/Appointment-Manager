@@ -1,12 +1,23 @@
 <?php
-
+/**CIndex si occupa di gestire il carimento dei templates.
+ *
+ * @package  Control
+ * @author   Michele Iessi
+ * @author   Davide Iessi
+ * @author   Andrea Pagliaro
+ * @access   public
+ */
 class CIndex {
-    /**
-     * @var VIndex
-     */
+
     private $VIndex;
 
-
+    /** Il metodo 'impostaPagina' si occupa del caricamento di un template nel main_content della 
+     * pagina web da visualizzare. Questa azione viene svolta richiamando il metodo 'smista' (che in base 
+     * al valore del 'controller' delega il compito alla classe Control più appropriata per l'azione richiesta),
+     * il metodo 'setContent' della classe VIndex (che è il metodo che effettivamente assegna il template 
+     * selezionato al main_content) e infine il metodo 'mostraPagina', sempre della classe VIndex (che è il 
+     * mediante il quale il template selezionato viene mostrato a video).
+     */
     public function impostaPagina()
     {
         if (!file_exists('includes/config.inc.php')) {
@@ -39,6 +50,17 @@ class CIndex {
             $this->VIndex->mostraPagina();
         }
     }
+    
+    /**Il metodo 'smista' effettua un controllo sul valore della variabile 'controller' della classe
+     * VIndex; in base al valore di questa variabile si occupa di richiamare i metodi della classe 
+     * Control più appropriata per lo svolgimento dell'azione richiesta. Questi metodi ritorneranno 
+     * dei templates che verranno quindi caricati nel main_content dal metodo 'impostaPagina'.
+     * 
+     * @param int $log Valore intero che indica se un utente è loggato o meno; questo valore corrisponde
+     * all'ID dell'utente: un valore >=0 indica quindi che l'utente è loggato (0 per amministratore).
+     * Il valore -1 indica che l'utente non è autenticato.
+     * @return resource
+     */
     public function smista($log) {
         $sessione = new USession();
         if($log == 0) {

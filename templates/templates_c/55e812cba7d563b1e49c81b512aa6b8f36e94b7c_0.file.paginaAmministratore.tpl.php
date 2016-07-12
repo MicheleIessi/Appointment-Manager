@@ -1,3 +1,4 @@
+
 <?php /* Smarty version 3.1.27, created on 2016-07-11 11:51:37
          compiled from "templates\templates\paginaAmministratore.tpl" */ ?>
 <?php
@@ -9,6 +10,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '55e812cba7d563b1e49c81b512aa6b8f36e94b7c' => 
     array (
       0 => 'templates\\templates\\paginaAmministratore.tpl',
+
       1 => 1468230696,
       2 => 'file',
     ),
@@ -24,6 +26,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
+
   'unifunc' => 'content_57836c2a033ac5_38979028',
 ),false);
 /*/%%SmartyHeaderCode%%*/

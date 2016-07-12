@@ -1,7 +1,14 @@
 <?php
-
+/**
+ * La classe CAdmin è la classe relativa al caso d'uso della gestione dell'amministratore.
+ */
 class CAdmin {
 
+    /**Il metodo 'smista' effettua un controllo in base alla variabile $task; in base al valore 
+     * della variabile viene chiamato il relativo metodo.
+     * 
+     * @param string $task Il compito da svolgere, per il quale viene richiamato un certo metodo.
+     */
     public function smista($task) {
         try {
         switch($task) {
@@ -48,7 +55,10 @@ class CAdmin {
         }
     }
 
-
+    /**Il metodo 'aggiungiProfessionista' gestisce l'aggiunta dei professionisti da parte dell'amministratore.
+     * La variabile $datiInseriti contiene i valori inseriti dall'amministratore tramite form; questi dati vengono
+     * utilizzati per la creazione effettiva e l'aggiunta su db del professionista.
+     */
     private function aggiungiProfessionista() {
 
         $FPro = new FProfessionista();
@@ -77,6 +87,13 @@ class CAdmin {
 
     }
 
+    /**Il metodo 'modificaOrariProf' gestisce la modifica degli orari di un professionista da parte 
+     * dell'amministratore. I dati per la modifica degli orari vengono prelevati dall'apposita
+     * form dell'amministratore. Gli orari di un professionista devono essere nella forma
+     * "hh:mm:ss-hh:mm:ss" e possono prevedere una pausa scrivendo l'orario con l'ausilio di una virgole,
+     * e quindi nella forma ""hh:mm:ss-hh:mm:ss,hh:mm:ss-hh:mm:ss"
+     * 
+     */
     private function modificaOrariProf() {
         $FPro = new FProfessionista();
 
@@ -87,9 +104,13 @@ class CAdmin {
         $Prof = $FPro->caricaProfessionistaDaDB($id);
         $Prof->setOrariLavorativi($orari);
         $FPro->aggiornaProfessionista($Prof);
-        header('Location: ../index.php'); //sarebbe meglio una json_encode con un messaggio ajax
+        header('Location: ../index.php');
     }
-
+    
+    /**Il metodo 'aggiungiServizio' gestisce la modifica dei servizi da parte dell'amministratore.
+     * I dati relativi al servizio vengono prelevati dalla relativa form riempita
+     * dall'amministratore. 
+     */
     private function aggiungiServizio() {
         $FSer = new FServizio();
 
@@ -107,7 +128,11 @@ class CAdmin {
         header('Location: ../index.php');
 
     }
-
+    
+    /**Il metodo 'modificaServizio' gestisce la modifica di un servizio da parte dell'amministratore.
+     * i dati relativi per la modifica del servizio vengono prelevati dalla relativa form riempita
+     * dall'amministratore
+     */
     private function modificaServizio() {
 
         $FSer = new FServizio();
@@ -134,6 +159,10 @@ class CAdmin {
 
     }
 
+    /**Il metodo 'modificaInfo' gestisce la modifica della sezione 'chi siamo' da parte dell'amministratore.
+     * i dati relativi per la modifica della sezione vengono prelevati dalla relativa form riempita
+     * dall'amministratore
+     */
     private function modificaInfo() {
 
         $VAdm = new VAdmin();
@@ -169,7 +198,11 @@ class CAdmin {
         header('Location: ../index.php');
 
     }
-
+    
+    /**Il metodo 'rimuoviServizio' gestisce la rimozione di un servizio da parte dell'amministratore.
+     * I dati relativi ai servizi da rimuovere vengono inviati da una checkbox relativa a un professionista,
+     * inseriti in un array inviato tramite la relativa'apposita form. 
+     */
     private function rimuoviServizio() {
 
         $FPro = new FProfessionista();
@@ -182,6 +215,11 @@ class CAdmin {
 
     }
 
+    /**Il metodo 'assegnaServizio' gestisce l'assegnazione di un servizio da parte dell'amministratore a 
+     * un dato professionista. I dati relativi all'assegnazione del servizio vengono inviati da una checkbox
+     * relativa a un professionista, inseriti in un array inviato tramite l'apposita form.
+     *      
+     */
     private function assegnaServizio() {
 
         $FPro = new FProfessionista();
@@ -193,8 +231,11 @@ class CAdmin {
         header('Location: ../index.php');
     }
 
-// metodi che usano le chiamate ajax
-
+    // metodi che usano le chiamate ajax -----------------------------------------------------------------------
+       
+    /**il metodo 'dettagliOrari' è usato per la gestione di una chiamata Ajax che popola i campi 
+     * relativi agli orari di un professionista (se già settati)
+     */
     private function dettagliOrari() {
         $FPro = new FProfessionista();
 
@@ -215,6 +256,9 @@ class CAdmin {
         echo json_encode($risultato);
     }
 
+    /**Il metodo 'dettagliServizio' è usato per la gestione di una chiamata Ajax che popola il campi
+     * relativi ai dettagli di un servizo (se già settati)
+     */
     private function dettagliServizio() {
         $FSer = new FServizio();
 
@@ -252,9 +296,11 @@ class CAdmin {
         }
 
         echo json_encode($risultato);
-
+        
     }
 
+    /**ritorna tramite json_encode un array di servizi che il professionista non possiede già
+     */
     private function dettagliAltriServiziProf() {
 
         $FPro = new FProfessionista();
@@ -294,6 +340,12 @@ class CAdmin {
 
     }
 
+    /**'dataItaToISO' è una funzione di supporto usata dalla funzione aggiungiProfessionista. Si occupa 
+     * di trasformare una data dal formato gg/mm/aaaa al formato aaaa/mm/gg.
+     * 
+     * @param string $data La data nel formato gg/mm/aaaa
+     * @return string La data nel formato aaaa/mm/gg
+     */
     private function dataItaToISO($data) {
         $arrayData=  explode("/", $data);
 
@@ -305,6 +357,12 @@ class CAdmin {
         return $dataISO;
     }
     
+    /**'errore' è una funzione di supporto usata dalla funzione aggiungiProfessionista. Si occupa di mostrare a
+     * video i messaggi d'errore lanciati dalle eccezioni catchate e in questo caso di redirigere l'utente
+     * all'index.
+     * 
+     * @param string $messaggioErrore Il messaggio d'errore relativo ad una certa eccezione.
+     */
     private function errore($messaggioErrore)   {
         $sessione = new USession();
         $sessione->impostaValore('messaggioErrore', $messaggioErrore);

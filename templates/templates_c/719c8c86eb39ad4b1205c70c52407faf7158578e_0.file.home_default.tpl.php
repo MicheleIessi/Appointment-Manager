@@ -9,6 +9,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '719c8c86eb39ad4b1205c70c52407faf7158578e' => 
     array (
       0 => 'templates\\templates\\home_default.tpl',
+
       1 => 1468230696,
       2 => 'file',
     ),
@@ -26,6 +27,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
+
   'unifunc' => 'content_57836c2a1f0951_83023984',
 ),false);
 /*/%%SmartyHeaderCode%%*/

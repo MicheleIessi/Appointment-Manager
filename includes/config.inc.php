@@ -6,12 +6,12 @@ $dbms = 'mysql';
 $config[$dbms]['username'] = 'root';
 $config[$dbms]['password'] = '';
 $config[$dbms]['hostname'] = 'localhost';
-$config[$dbms]['database'] = 'manager';
+$config[$dbms]['database'] = 'SetupSeraPrima';
 
 $config['smarty']['template_dir'] = 'templates/templates';
 $config['smarty']['compile_dir'] = 'templates/templates_c';
 $config['smarty']['config_dir'] = 'templates/configs';
-$config['smarty']['cache_dir'] = 'templates/templates';
+$config['smarty']['cache_dir'] = 'templates/cache';
 
 $config['smtp']['host'] = 'smtp.gmail.com';
 $config['smtp']['port'] = '587';

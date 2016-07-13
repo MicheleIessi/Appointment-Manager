@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-07-10 21:44:17
+<?php /* Smarty version 3.1.27, created on 2016-07-12 21:52:22
          compiled from "templates\templates\postRegistrazione.tpl" */ ?>
 <?php
-/*%%SmartyHeaderCode:260065782a591502376_06993710%%*/
+/*%%SmartyHeaderCode:891057854a76ccd9f5_89633256%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,20 +9,20 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'ad0054d11ee781f7fda03372224e35eae6210cdf' => 
     array (
       0 => 'templates\\templates\\postRegistrazione.tpl',
-      1 => 1468179739,
+      1 => 1468227546,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '260065782a591502376_06993710',
+  'nocache_hash' => '891057854a76ccd9f5_89633256',
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_5782a59153d067_57968093',
+  'unifunc' => 'content_57854a76cff2d7_81092604',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_5782a59153d067_57968093')) {
-function content_5782a59153d067_57968093 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_57854a76cff2d7_81092604')) {
+function content_57854a76cff2d7_81092604 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '260065782a591502376_06993710';
+$_smarty_tpl->properties['nocache_hash'] = '891057854a76ccd9f5_89633256';
 ?>
 <div style="text-align: center;">
     <h2>Registrazione effettuata</h2>

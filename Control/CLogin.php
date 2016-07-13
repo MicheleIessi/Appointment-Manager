@@ -131,7 +131,7 @@ class CLogin {
             $FCli->aggiungiCliente($FUte->getLastID());
             $mail=new UMail();
             $oggetto='Conferma Registrazione';
-            $corpoMail = "Gentile $nome $cognome, per confermare l'iscrizione al sito cliccare sul seguente link:".
+            $corpoMail = "Gentile $nome $cognome, per confermare l'iscrizione al sito cliccare sul seguente link: ".
                          "http://localhost/appointment-manager/Chiamate/ALogin.php?task=conferma&code=$codice";
             $mail->inviaMail($emailreg, $nome, $oggetto, $corpoMail);
             $VIn = new VIndex();
@@ -156,7 +156,7 @@ class CLogin {
                 $sessione->impostaValore('tipo',$tipo);
                 $tipo = ucfirst($tipo);
                 $sessione->impostaValore('idUtente',$id);
-                header("location: ../../?controller=pagina$tipo&id=$id");
+                header("location: ../index.php?controller=pagina$tipo&id=$id");
             }
         }
         else {

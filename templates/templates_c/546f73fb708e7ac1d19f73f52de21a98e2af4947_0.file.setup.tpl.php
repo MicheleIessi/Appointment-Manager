@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-07-06 00:56:28
+<?php /* Smarty version 3.1.27, created on 2016-07-12 21:48:14
          compiled from "templates\templates\setup.tpl" */ ?>
 <?php
-/*%%SmartyHeaderCode:18572577c3b1c209d40_82710267%%*/
+/*%%SmartyHeaderCode:89475785497e832cd2_28707748%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,27 +9,27 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '546f73fb708e7ac1d19f73f52de21a98e2af4947' => 
     array (
       0 => 'templates\\templates\\setup.tpl',
-      1 => 1467759281,
+      1 => 1468227546,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '18572577c3b1c209d40_82710267',
+  'nocache_hash' => '89475785497e832cd2_28707748',
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_577c3b1c2502e3_31156552',
+  'unifunc' => 'content_5785497e893557_65657105',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_577c3b1c2502e3_31156552')) {
-function content_577c3b1c2502e3_31156552 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_5785497e893557_65657105')) {
+function content_5785497e893557_65657105 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '18572577c3b1c209d40_82710267';
+$_smarty_tpl->properties['nocache_hash'] = '89475785497e832cd2_28707748';
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
 <head>
     <title>Appointment manager setup</title>
-    <link type="text/css" rel="stylesheet" href="../../css/jquery-ui.css" />
-    <link rel="stylesheet" type="text/css" href="../../css/setup.css" />
+    <link type="text/css" rel="stylesheet" href="css/jquery-ui.css" />
+    <link rel="stylesheet" type="text/css" href="css/setup.css" />
     <?php echo '<script'; ?>
  type="text/javascript" src="JS/fullcalendar-2.6.1/lib/jquery.min.js"><?php echo '</script'; ?>
 >
